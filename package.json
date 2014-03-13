@@ -1,11 +1,11 @@
 {
-  "name": "mean",
-  "description": "MEAN - A fullStack javascript framework powered by  MongoDB, ExpressJS, AngularJS, NodeJS.",
-  "version": "0.1.2",
-  "private": false,
+  "name": "startupwichita.com",
+  "description": "A community site for bringing connection and awareness to the Tech and Startup Communities in Wichita, KS, USA.",
+  "version": "0.0.0",
+  "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/linnovate/mean.git"
+    "url": "https://github.com/devict/startupwichita.com.git"
   },
   "engines": {
     "node": "0.10.x",
