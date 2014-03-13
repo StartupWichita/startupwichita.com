@@ -1,0 +1,8 @@
+
+#use the official puppet labs forge
+
+forge "http://forge.puppetlabs.com"
+
+mod "puppetlabs/stdlib", "3.2.1"
+mod "willdurand/nodejs", "1.6.0"
+mod "puppetlabs/mongodb", "0.7.0"

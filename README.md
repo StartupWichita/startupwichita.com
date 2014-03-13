@@ -2,6 +2,35 @@
 A community site for bringing connection and awareness to the Tech and Startup
 Communities in Wichita, KS.
 
+## Setup
+You can run a copy of the site on a VM on your machine using VirtualBox and Vagrant.
+
+### Installing VirtualBox
+Download and run an installer from
+[VirtualBox Downloads](https://www.virtualbox.org/wiki/Downloads).
+
+### Installing Vagrant
+Download and run an installer from
+[Vagrant Downloads](http://www.vagrantup.com/downloads).
+
+### Create and Provision the VM
+For Mac and Linux run the following from the checkout of the project.
+
+~~~bash
+vagrant up                     # This can take 15 minutes depending on your
+                               # machine and network
+vagrant ssh                    # This will open a shell connection to your VM
+cd /var/www/startupwichita.com # This will put you in the project directory
+npm install                    # This can take another 5 minutes
+grunt                          # This will run the default grunt task which
+                               # will start the server
+~~~
+
+Leave that terminal window open for as long as you want the server to be
+running. You can type `rs` and Enter to restart the server.
+
+In a web browser open `http://localhost:3000`.
+
 ## Attributions
 This site is built on the [MEAN Stack](http://www.mean.io). Details of the
 stack are outlined below.
