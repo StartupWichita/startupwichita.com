@@ -1,4 +1,4 @@
-(function(angular, _) {
+(function(angular) {
     'use strict';
 
     var ArticlesController = [
@@ -27,7 +27,7 @@
                         if ($scope.articles[i] === article) {
                             $scope.articles.splice(i, 1);
                         }
-                    };
+                    }
                 }
                 else {
                     $scope.article.$remove();
@@ -64,4 +64,4 @@
     ];
 
     angular.module('startupwichita.controllers').controller('ArticlesController', ArticlesController);
-})(window.angular, window._);
+})(window.angular);
