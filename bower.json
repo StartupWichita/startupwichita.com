@@ -7,7 +7,7 @@
         "angular-cookies": "latest",
         "angular-mocks": "latest",
         "angular-route": "latest",
-        "bootstrap": "3.0.3",
+        "bootstrap": "3.1.1",
         "angular-bootstrap": "0.10.0",
         "angular-ui-router": "#master",
         "lodash": "2.4.1"
