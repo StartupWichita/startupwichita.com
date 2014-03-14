@@ -1,6 +1,15 @@
-'use strict';
+(function(angular) {
+    'use strict';
 
-angular.module('mean', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router', 'mean.system', 'mean.articles']);
+    angular.module('startupwichita', [
+        'ngCookies',
+        'ngResource',
+        'ui.bootstrap',
+        'ui.router',
+        'startupwichita.services',
+        'startupwichita.controllers'
+    ]);
 
-angular.module('mean.system', []);
-angular.module('mean.articles', []);
+    angular.module('startupwichita.services', []);
+    angular.module('startupwichita.controllers', []);
+})(window.angular);
