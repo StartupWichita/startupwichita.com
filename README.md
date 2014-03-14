@@ -26,8 +26,9 @@ grunt                          # This will run the default grunt task which
                                # will start the server
 ~~~
 
-Leave that terminal window open for as long as you want the server to be
-running. You can type `rs` and Enter to restart the server.
+Wait until you see the line `Express app started on port 3000`. Leave that
+terminal window open for as long as you want the server to be running. You can
+type `rs` and Enter to restart the server.
 
 In a web browser open `http://localhost:3000`.
 
