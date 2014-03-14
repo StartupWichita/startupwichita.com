@@ -31,5 +31,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
             web_puppet.manifests_path = "vm/puppet/manifests"
             web_puppet.manifest_file  = "site.pp"
         end
+
+        if File.exist? "./Vagrantfile.web"
+            WEB = web
+            load "./Vagrantfile.web"
+        end
     end
 end
