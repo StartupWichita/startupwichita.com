@@ -2,7 +2,7 @@
 
 (function() {
     // Articles Controller Spec
-    describe('MEAN controllers', function() {
+    describe('startupwichita controllers', function() {
         describe('ArticlesController', function() {
             // The $resource service augments the response object with methods for updating and deleting the resource.
             // If we were to use the standard toEqual matcher, our tests would fail because the test values would not match
@@ -18,7 +18,7 @@
             });
 
             // Load the controllers module
-            beforeEach(module('mean'));
+            beforeEach(module('startupwichita'));
 
             // Initialize the controller and a mock scope
             var ArticlesController,

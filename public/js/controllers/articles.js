@@ -23,11 +23,11 @@
                 if (article) {
                     article.$remove();
 
-                    _.forOwn($scope.articles, function(value, key) {
-                        if (value === article) {
-                            $scope.articles.splice(key, 1);
+                    for (var i in $scope.articles) {
+                        if ($scope.articles[i] === article) {
+                            $scope.articles.splice(i, 1);
                         }
-                    });
+                    };
                 }
                 else {
                     $scope.article.$remove();
