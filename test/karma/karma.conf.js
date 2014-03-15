@@ -11,7 +11,7 @@ module.exports = function(config) {
 
 
         // frameworks to use
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'sinon'],
 
 
         // list of files / patterns to load in the browser
@@ -23,12 +23,10 @@ module.exports = function(config) {
             'public/lib/angular-ui-router/release/angular-ui-router.js',
             'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
             'public/lib/angular-bootstrap/ui-bootstrap.js',
+            'public/lib/ngstorage/ngStorage.min.js',
             'public/lib/lodash/dist/lodash.min.js',
             'public/lib/crypto-js/rollups/md5.js',
-            'public/js/app.js',
-            'public/js/config.js',
-            'public/js/directives.js',
-            'public/js/filters.js',
+            'public/js/*.js',
             'public/js/services/*.js',
             'public/js/controllers/*.js',
             'public/js/init.js',

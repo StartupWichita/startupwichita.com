@@ -4,6 +4,7 @@
     angular.module('startupwichita', [
         'ngCookies',
         'ngResource',
+        'ngStorage',
         'ui.bootstrap',
         'ui.router',
         'startupwichita.services',
