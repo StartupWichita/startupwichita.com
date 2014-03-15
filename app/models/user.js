@@ -20,6 +20,18 @@ var UserSchema = new Schema({
         type: String,
         unique: true
     },
+    role: {
+        type: String,
+        default: 'Visitor',
+    },
+    bio: {
+        type: String,
+        default: '',
+    },
+    featured: {
+        type: Boolean,
+        default: false,
+    },
     hashed_password: String,
     provider: String,
     salt: String,

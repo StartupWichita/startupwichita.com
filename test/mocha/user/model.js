@@ -53,6 +53,27 @@ describe('<Unit Test>', function() {
                     done();
                 });
             });
+
+            it('should have "Visitor" as the default role', function(done) {
+                user.save(function() {
+                    user.role.should.equal('Visitor');
+                    done();
+                });
+            });
+
+            it('should have false as the default featured status', function(done) {
+                user.save(function() {
+                    user.featured.should.equal(false);
+                    done();
+                });
+            });
+
+            it('should have an empty string as the default bio', function(done) {
+                user.save(function() {
+                    user.bio.should.equal('');
+                    done();
+                });
+            });
         });
 
         after(function(done) {
