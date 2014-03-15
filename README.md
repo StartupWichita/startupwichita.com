@@ -32,6 +32,10 @@ type `rs` and Enter to restart the server.
 
 In a web browser open `http://localhost:3000`.
 
+## Contributing
+To contribute to the development of startupwichita.com, please read the [guide
+to contributing][contributing-doc].
+
 ## Attributions
 This site is built on the [MEAN Stack](http://www.mean.io). Details of the
 stack are outlined below.
@@ -147,3 +151,5 @@ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
 CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[contributing-doc]: https://github.com/devict/startupwichita.com/blob/master/CONTRIBUTING.md
