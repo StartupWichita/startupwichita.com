@@ -41,5 +41,17 @@
                 expect(tag[0].name).toEqual('Tag 1');
             }));
         });
+
+        describe('tagsService', function () {
+            it ('should issue GET request to /api/v1/tags/507f1f77bcf86cd799439011', inject(function(Tags, $httpBackend) {
+                $httpBackend.when('GET', '/api/v1/tags/507f1f77bcf86cd799439011').respond({id: '507f1f77bcf86cd799439011', name: 'Tag 1'});
+
+                var tag = Tags.get({id: '507f1f77bcf86cd799439011'});
+
+                $httpBackend.flush();
+                expect(tag.id).toEqual('507f1f77bcf86cd799439011');
+                expect(tag.name).toEqual('Tag 1');
+            }));
+        });
     });
 })();
