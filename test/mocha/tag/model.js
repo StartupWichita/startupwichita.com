@@ -22,6 +22,13 @@ describe('<Unit Test>', function() {
            
         });
 
+        describe('Attributes', function() {
+            it('should initialize with a default value of 0 for primary', function(done) {
+                tag.primary.should.equal(false);
+                done();
+            });
+        });
+
         describe('Method Save', function() {
 					
             it('should begin without the test tag', function(done) {
