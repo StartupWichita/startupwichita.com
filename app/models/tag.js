@@ -15,6 +15,10 @@ var TagSchema = new Schema({
         type: String,
         default: '',
         trim: true
+    },
+    primary: {
+        type: Boolean,
+        default: false
     }
 });
 
