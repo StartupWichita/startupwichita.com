@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/devict/startupwichita.com.png)](https://travis-ci.org/devict/startupwichita.com)
+
 # startupwichita.com
 A community site for bringing connection and awareness to the Tech and Startup
 Communities in Wichita, KS.
