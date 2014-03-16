@@ -19,7 +19,7 @@ describe('<Unit Test>', function() {
             });
             tag2 = new Tag(tag);
             done();
-           
+
         });
 
         describe('Attributes', function() {
@@ -30,22 +30,22 @@ describe('<Unit Test>', function() {
         });
 
         describe('Method Save', function() {
-					
+
             it('should begin without the test tag', function(done) {
                 Tag.find({ name: 'Tag name' }, function(err, tags) {
                     tags.should.have.length(0);
                     done();
                 });
-			});
-					
+            });
+
             it('should be able to save without problems', function(done) {
                 return tag.save(function(err) {
                     should.not.exist(err);
                     done();
                 });
             });
-						
-			it('should fail to save an existing tag', function(done) {
+
+            it('should fail to save an existing tag', function(done) {
                 tag.save();
                 return tag2.save(function(err) {
                     should.exist(err);

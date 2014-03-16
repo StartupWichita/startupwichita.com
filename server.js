@@ -8,6 +8,8 @@ var express = require('express'),
     passport = require('passport'),
     logger = require('mean-logger');
 
+require('express-namespace');
+
 /**
  * Main application entry file.
  * Please note that the order of loading is important.
