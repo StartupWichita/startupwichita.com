@@ -11,11 +11,11 @@
                     updateResource,
                     updateTimestamp = Date.now();
 
-                $httpBackend.expectPUT('/api/v1/resources/' + resourceId).respond({_id: resourceId, name: 'Labor Party', updated: updateTimestamp});
+                $httpBackend.expectPUT('/api/v1/resources/' + resourceId).respond({_id: resourceId, title: 'Labor Party', updated: updateTimestamp});
 
                 updateResource = new Resources({
                     _id: resourceId,
-                    name: 'Labor Party'
+                    title: 'Labor Party'
                 });
 
                 updateResource.$update();
@@ -23,13 +23,13 @@
                 $httpBackend.flush();
 
                 expect(updateResource._id).toEqual(resourceId);
-                expect(updateResource.name).toEqual('Labor Party');
+                expect(updateResource.title).toEqual('Labor Party');
                 expect(updateResource.updated).toEqual(updateTimestamp);
             }));
 
             it('should should issues GET request to /api/v1/resources?search=labor+party', inject(function(Resources, $httpBackend) {
                 $httpBackend.expectGET('/api/v1/resources?search=labor+party').respond([
-                    {_id: '3868196935174ebc27bfc86c60f95f01e18b66b4', name: 'Labor Party'}
+                    {_id: '3868196935174ebc27bfc86c60f95f01e18b66b4', title: 'Labor Party'}
                 ]);
 
                 var resources = Resources.search({search: 'labor party'});
@@ -37,7 +37,7 @@
                 $httpBackend.flush();
 
                 expect(resources[0]._id).toBe('3868196935174ebc27bfc86c60f95f01e18b66b4');
-                expect(resources[0].name).toBe('Labor Party');
+                expect(resources[0].title).toBe('Labor Party');
             }));
         });
     });

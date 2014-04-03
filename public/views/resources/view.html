@@ -1,0 +1,14 @@
+<section data-ng-controller="ResourcesController" data-ng-init="findOne()" class="row">
+    <span>{{resource.created_at | date:'medium'}}</span> /
+    <span>{{resource.user.name}}</span>
+    <h2>{{resource.title}}</h2>
+    <div data-ng-show="global.user._id == resource.user._id">
+        <a class="btn" href="/#!/resources/{{resource._id}}/edit">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>{{resource.content}}</div>
+</section>

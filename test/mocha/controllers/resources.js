@@ -29,7 +29,7 @@ describe('Resource routing', function() {
             tag_bar = new Tag({name: 'bar'});
         tag_foo.save();
         tag_bar.save();
-        var tags = [tag_foo.id, tag_bar.id];
+        var tags = [tag_foo._id, tag_bar._id];
 
         var author = new User({
             name: 'Some author',
@@ -69,7 +69,7 @@ describe('Resource routing', function() {
                 res.should.have.status(201);
                 persistedResource = res.body;
                 author._id.toString().should.be.eql(persistedResource.author);
-                tags.should.be.eql(persistedResource.tags);
+                tags.toString().should.be.eql(persistedResource.tags.toString());
                 done();
             });
         });
