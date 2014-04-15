@@ -2,23 +2,39 @@
 
 // User routes use users controller
 var users = require('../controllers/users');
+var authorization = require('./middlewares/authorization');
+
+// @TODO - Need to add Admin authorization
+var hasAuthorization = function(req, res, next) {
+    if (req.profile.id !== req.user.id) {
+        return res.send(401, 'User is not authorized');
+    }
+    next();
+};
 
 module.exports = function(app, passport) {
 
     app.get('/signin', users.signin);
     app.get('/signup', users.signup);
     app.get('/signout', users.signout);
-    app.get('/users/me', users.me);
 
     // Setting up the users api
-    app.post('/users', users.create);
+
+    app.namespace('/api/v1',  function() {
+        app.get('/users', users.all);
+        app.get('/users/me', users.me);
+        app.get('/users/:userId', users.show);
+        app.post('/users', users.create);
+        app.put('/users/:userId', authorization.requiresLogin, hasAuthorization, users.update);
+        app.del('/users/:userId', authorization.requiresLogin, hasAuthorization, users.destroy);
+    });
 
     // Setting up the userId param
     app.param('userId', users.user);
 
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('local', {
-        failureRedirect: '/signin',
+        successFlash: 'Logged in!',
         failureFlash: true
     }), users.session);
 
