@@ -91,7 +91,7 @@
                 scope.tags = [{id: tagId, name: 'Tag 2'}];
                 scope.tag = new Tags(putTagData);
 
-                $httpBackend.expectPUT('/api/v1/tags', putTagData).respond(putTagDataResponse);
+                $httpBackend.expectPUT('/api/v1/tags/' + tagId, putTagData).respond(putTagDataResponse);
 
                 // run controller
                 scope.update();
@@ -113,7 +113,7 @@
 
                 updateTag = new Tags(putTagData);
 
-                $httpBackend.expectPUT('/api/v1/tags', putTagData).respond(putTagDataResponse);
+                $httpBackend.expectPUT('/api/v1/tags/' + tagId, putTagData).respond(putTagDataResponse);
 
                 // run controller
                 scope.update(updateTag);

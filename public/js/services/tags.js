@@ -5,7 +5,7 @@
     var TagsService = [
         '$resource',
         function($resource) {
-            return $resource('/api/v1/tags/:id', null, {
+            return $resource('/api/v1/tags/:id', {id: '@id'}, {
                 update: {
                     method: 'PUT'
                 },
