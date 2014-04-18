@@ -5,18 +5,18 @@ var should = require('should'),
     mongoose = require('mongoose'),
     request = require('supertest'),
     agent = request.agent(app),
-    Resource = mongoose.model('Resource'),
+    Event = mongoose.model('Event'),
     Tag = mongoose.model('Tag'),
     User = mongoose.model('User');
 
-describe('Resource routing', function() {
+describe('Event routing', function() {
     var user,
         email = 'testing@example.com',
         password = 'test password';
 
     before(function(done) {
         user = new User({
-            name: 'test user',
+            name: 'Test User',
             email: email,
             username: 'tester',
             password: password
@@ -41,15 +41,18 @@ describe('Resource routing', function() {
         });
         author.save();
 
-        var resource = {
-            title: 'Resource Title',
+        var event = {
+            title: 'Event Title',
             tags: tags,
-            content: 'Here is my resource content',
+            content: 'This is my event description',
             author: author.id,
-            url: 'http://google.com'
+            startTime: new Date(),
+            endTime: new Date(),
+            address: '216 N Mosley, Wichita, KS 67202',
+            latlng: [37.68858, -97.32753]
         };
 
-        var persistedResource;
+        var persistedEvent;
 
         it('login', function(done) {
             agent
@@ -62,65 +65,66 @@ describe('Resource routing', function() {
             });
         });
 
-        it('should successfully insert a new resource', function(done) {
+        it('should successfully insert a new event', function(done) {
             agent
-            .post('/api/v1/resources')
-            .send(resource)
+            .post('/api/v1/events')
+            .send(event)
             .end(function(err, res) {
                 should.not.exist(err);
                 res.should.have.status(201);
-                persistedResource = res.body;
-                author.id.should.be.eql(persistedResource.author);
-                tags.should.be.eql(persistedResource.tags);
+                persistedEvent = res.body;
+                should.exist(persistedEvent.created_at);
+                author.id.should.be.eql(persistedEvent.author);
+                tags.should.be.eql(persistedEvent.tags);
                 done();
             });
         });
 
-        it('should successfully retrieve one resource', function(done) {
+        it('should successfully retrieve one event', function(done) {
             agent
-            .get('/api/v1/resources')
+            .get('/api/v1/events')
             .end(function(err, res) {
                 should.not.exist(err);
                 res.should.have.status(200);
                 res.body.length.should.eql(1);
-                res.body[0].should.be.eql(persistedResource);
+                res.body[0].should.be.eql(persistedEvent);
                 done();
             });
         });
 
-        it('should successfully retrieve the specified resource', function(done) {
+        it('should successfully retrieve the specified event', function(done) {
             agent
-            .get('/api/v1/resources/' + persistedResource._id)
+            .get('/api/v1/events/' + persistedEvent._id)
             .end(function(err, res) {
                 should.not.exist(err);
                 res.should.have.status(200);
-                res.body.should.be.eql(persistedResource);
+                res.body.should.be.eql(persistedEvent);
                 done();
             });
         });
 
-        it('should successfully update requested resource', function(done) {
-            var updatedResource = persistedResource;
-            updatedResource.content = 'Updated Content';
+        it('should successfully update requested event', function(done) {
+            var updatedEvent = persistedEvent;
+            updatedEvent.content = 'Updated Content';
 
             agent
-            .put('/api/v1/resources/' + persistedResource._id)
-            .send(updatedResource)
+            .put('/api/v1/events/' + persistedEvent._id)
+            .send(updatedEvent)
             .end(function(err, res) {
                 should.not.exist(err);
                 res.should.have.status(200);
-                res.body.content.should.be.eql(updatedResource.content);
-                res.body.updated_at.should.not.be.eql(updatedResource.updated_at);
+                res.body.content.should.be.eql(updatedEvent.content);
+                res.body.updated_at.should.not.be.eql(updatedEvent.updated_at);
                 done();
             });
         });
 
-        it('should successfully delete the specified resource', function(done) {
-            var updatedResource = persistedResource;
-            updatedResource.content = 'Updated Content';
+        it('should successfully delete the specified event', function(done) {
+            var updatedEvent = persistedEvent;
+            updatedEvent.content = 'Updated Content';
 
             agent
-            .del('/api/v1/resources/' + persistedResource._id)
+            .del('/api/v1/events/' + persistedEvent._id)
             .end(function(err, res) {
                 should.not.exist(err);
                 res.should.have.status(204);
@@ -130,7 +134,7 @@ describe('Resource routing', function() {
     });
 
     after(function(done) {
-        Resource.remove({}, function(err) {
+        Event.remove({}, function(err) {
             if (err) return done();
             User.remove({}, done);
         });
