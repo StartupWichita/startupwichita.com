@@ -7,14 +7,15 @@
         beforeEach(module('startupwichita'));
 
         describe('tagsService', function () {
-            it ('should issue PUT request to /api/v1/tags1', inject(function(Tags, $httpBackend) {
-                var updateTag,
+            it ('should issue PUT request to /api/v1/tags1/:id', inject(function(Tags, $httpBackend) {
+                var tagId = '507f1f77bcf86cd799439011',
+                    updateTag,
                     updateTimestamp = Date.now();
 
-                $httpBackend.when('PUT', '/api/v1/tags').respond({id: '507f1f77bcf86cd799439011', name: 'Tag 1', updated: updateTimestamp});
+                $httpBackend.when('PUT', '/api/v1/tags/' + tagId).respond({id: tagId, name: 'Tag 1', updated: updateTimestamp});
 
                 updateTag = new Tags({
-                    id: '507f1f77bcf86cd799439011',
+                    id: tagId,
                     name: 'Tag 1'
                 });
 
