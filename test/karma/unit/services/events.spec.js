@@ -6,21 +6,22 @@
         beforeEach(module('startupwichita'));
 
         describe('EventsService', function() {
-            it('should issue PUT request to /api/v1/events/1', inject(function(Events, $httpBackend) {
-                var updateEvent,
+            it('should issue PUT request to /api/v1/events/:id', inject(function(Events, $httpBackend) {
+                var eventId = '507f1f77bcf86cd799439011',
+                    updateEvent,
                     updateTimestamp = Date.now();
 
-                $httpBackend.when('PUT', '/api/v1/events').respond({id: '507f1f77bcf86cd799439011', title: 'Event 1', content: 'Event 1 Content Update', updated: updateTimestamp });
+                $httpBackend.expectPUT('/api/v1/events/' + eventId).respond({id: eventId, title: 'Event 1', content: 'Event 1 Content Update', updated: updateTimestamp});
 
                 updateEvent = new Events({
-                    id: '507f1f77bcf86cd799439011',
+                    id: eventId,
                     content: 'Event 1 Content Update'
                 });
 
                 updateEvent.$update();
 
                 $httpBackend.flush();
-                expect(updateEvent.id).toEqual('507f1f77bcf86cd799439011');
+                expect(updateEvent.id).toEqual(eventId);
                 expect(updateEvent.title).toEqual('Event 1');
                 expect(updateEvent.content).toEqual('Event 1 Content Update');
                 expect(updateEvent.updated).toEqual(updateTimestamp);
