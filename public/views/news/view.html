@@ -1,0 +1,14 @@
+<section data-ng-controller="NewsController" data-ng-init="findOne()">
+    <span>{{currentItem.created | date:'medium'}}</span> /
+    <span>{{currentItem.user.name}}</span>
+    <h2>{{currentItem.title}}</h2>
+    <div data-ng-show="global.user.id == currentItem.user.id">
+        <a class="btn" href="/#!/news/{{currentItem._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn" data-ng-click="remove();">
+            <i class="glyphicon glyphicon-trash"></i>
+        </a>
+    </div>
+    <div>{{currentItem.content}}</div>
+</section>

@@ -60,11 +60,8 @@
                     $httpBackend.flush();
 
                     // test scope value
-                    expect(scope.news).toEqualData([{
-                        title: 'An NewsItem about MEAN',
-                        content: 'MEAN rocks!'
-                    }]);
-
+                    expect(scope.news[0].title).toBe('An NewsItem about MEAN');
+                    expect(scope.news[0].content).toBe('MEAN rocks!');
                 });
 
             it('$scope.findOne() should create an array with one newsItem object fetched ' +
@@ -91,21 +88,13 @@
                     $httpBackend.flush();
 
                     // test scope value
-                    expect(scope.newsItem).toEqualData(testNewsData());
+                    expect(scope.currentItem).toEqualData(testNewsData());
 
                 });
 
             it('$scope.create() with valid form data should send a POST request ' +
                 'with the form input values and then ' +
                 'locate to new object URL', function() {
-
-                    // fixture expected POST data
-                    var postNewsData = function() {
-                        return {
-                            title: 'An NewsItem about MEAN',
-                            content: 'MEAN rocks!'
-                        };
-                    };
 
                     // fixture expected response data
                     var responseNewsData = function() {
@@ -121,15 +110,11 @@
                     scope.content = 'MEAN rocks!';
 
                     // test post request is sent
-                    $httpBackend.expectPOST('/api/v1/news', postNewsData()).respond(responseNewsData());
+                    $httpBackend.expectPOST('/api/v1/news').respond(responseNewsData());
 
                     // Run controller
                     scope.create();
                     $httpBackend.flush();
-
-                    // test form input(s) are reset
-                    expect(scope.title).toEqual('');
-                    expect(scope.content).toEqual('');
 
                     // test URL location to new object
                     expect($location.path()).toBe('/news/' + responseNewsData()._id);
@@ -151,7 +136,7 @@
                 var newsItem = new News(putNewsData());
 
                 // mock newsItem in scope
-                scope.newsItem = newsItem;
+                scope.currentItem = newsItem;
 
                 // test PUT happens correctly
                 $httpBackend.expectPUT('/api/v1/news/' + newsItemId).respond();

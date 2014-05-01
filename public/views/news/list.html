@@ -1,0 +1,12 @@
+<h1>News</h1>
+<section data-ng-controller="NewsController" data-ng-init="find()">
+    <ul class="articles unstyled">
+        <li data-ng-repeat="newsItem in news">
+            <span>{{newsItem.created | date:'medium'}}</span> /
+            <span>{{newsItem.user.name}}</span>
+            <h2><a data-ng-href="#!/news/{{newsItem._id}}">{{newsItem.title}}</a></h2>
+            <div>{{newsItem.content}}</div>
+        </li>
+    </ul>
+    <p data-ng-hide="!news || news.length">No news yet. Why don't you <a href="/#!/news/create">add some</a>?</p>
+</section>

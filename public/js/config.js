@@ -36,6 +36,22 @@
                     url: '/events/:eventId',
                     templateUrl: 'views/events/view.html'
                 })
+                .state('all news', {
+                    url: '/news',
+                    templateUrl: 'views/news/list.html'
+                })
+                .state('create news item', {
+                    url: '/news/create',
+                    templateUrl: 'views/news/create.html'
+                })
+                .state('edit news item', {
+                    url: '/news/:newsItemId/edit',
+                    templateUrl: 'views/news/edit.html'
+                })
+                .state('news item by id', {
+                    url: '/news/:newsItemId',
+                    templateUrl: 'views/news/view.html'
+                })
                 .state('all resources', {
                     url: '/resources',
                     templateUrl: 'views/resources/list.html'

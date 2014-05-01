@@ -9,14 +9,15 @@
             $scope.create = function() {
                 var newsItem = new News({
                     title: this.title,
-                    content: this.content
-                });
-                newsItem.$save(function(response) {
-                    $location.path('news/' + response._id);
+                    content: this.content,
+                    date: new Date()
                 });
 
-                this.title = '';
-                this.content = '';
+                newsItem.$save().then(function(response) {
+                    $location.path('news/' + response._id);
+                }, function () {
+                    // TODO [cah] Need to show validation errors
+                });
             };
 
             $scope.remove = function(newsItem) {
@@ -30,20 +31,22 @@
                     }
                 }
                 else {
-                    $scope.newsItem.$remove();
+                    $scope.currentItem.$remove();
                     $location.path('news');
                 }
             };
 
             $scope.update = function() {
-                var newsItem = $scope.newsItem;
+                var newsItem = $scope.currentItem;
                 if (!newsItem.updated) {
                     newsItem.updated = [];
                 }
                 newsItem.updated.push(new Date().getTime());
 
-                newsItem.$update(function() {
+                newsItem.$update().then(function() {
                     $location.path('news/' + newsItem._id);
+                }, function () {
+                    // TODO [cah] Handle errors
                 });
             };
 
@@ -57,7 +60,7 @@
                 News.get({
                     _id: $stateParams.newsItemId
                 }, function(newsItem) {
-                    $scope.newsItem = newsItem;
+                    $scope.currentItem = newsItem;
                 });
             };
         }
