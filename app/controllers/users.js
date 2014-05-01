@@ -115,7 +115,7 @@ exports.create = function(req, res, next) {
         req.logIn(user, function(err) {
             if (err) return next(err);
             return res.jsonp(201, {
-                user: user
+                user: sanitize(user, true)
             });
         });
     });
