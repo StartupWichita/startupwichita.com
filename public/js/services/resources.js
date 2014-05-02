@@ -5,9 +5,7 @@
     var resourcesFactory = [
         '$resource',
         function($resource) {
-            return $resource('/api/v1/resources/:id', {
-                id: '@_id'
-            }, {
+            return $resource('/api/v1/resources/:id', {id: '@id'}, {
                 update: {
                     method: 'PUT'
                 },

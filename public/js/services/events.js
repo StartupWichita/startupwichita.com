@@ -5,9 +5,7 @@
     var EventsService = [
         '$resource',
         function($resource) {
-            return $resource('/api/v1/events/:id', {
-                id: '@_id'
-            }, {
+            return $resource('/api/v1/events/:id', {id: '@id'}, {
                 update: {
                     method: 'PUT'
                 },
