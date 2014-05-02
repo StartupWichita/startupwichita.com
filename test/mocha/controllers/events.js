@@ -136,7 +136,10 @@ describe('Event routing', function() {
     after(function(done) {
         Event.remove({}, function(err) {
             if (err) return done();
-            User.remove({}, done);
+            User.remove({}, function (err) {
+                if (err) return done();
+                Tag.remove({}, done);
+            });
         });
     });
 });

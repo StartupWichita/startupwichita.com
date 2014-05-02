@@ -16,8 +16,8 @@ their GitHub issue.
 |UI                  |Multiple  |[#32][i32]|[#14][i14]|[#12][i12]|[#11][i11]|
 |Angular Controller  |Multiple  |✓         |[#14][i14]|[#12][i12]|✓         |
 |Angular Service     |[#08][i08]|✓         |✓         |✓         |✓         |
-|Express Route       |✓         |✓         |✓         |✓         |[#46][i46]|
-|Express Controller  |✓         |✓         |✓         |✓         |[#46][i46]|
+|Express Route       |✓         |✓         |✓         |✓         |✓         |
+|Express Controller  |✓         |✓         |✓         |✓         |✓         |
 |Mongoose Model      |✓         |✓         |✓         |✓         |✓         |
 
 [i08]: <https://github.com/devict/startupwichita.com/pull/08>  "Issue 08"
