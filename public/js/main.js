@@ -1,9 +1,15 @@
-var stickyEl= document.getElementById('stickyBar');
-window.addEventListener('scroll', function() {
-  'use strict';
-  var topBuffer = document.getElementById('logoTop').offsetHeight; 
+(function(angular) {
+    'use strict';
 
-  window.pageYOffset > topBuffer ?
-    stickyEl.classList.add('navbar-fixed-top') : 
-    stickyEl.classList.remove('navbar-fixed-top');
-});
+    angular.element(document).ready(function() {
+        var stickyEl= document.getElementById('stickyBar');
+        window.addEventListener('scroll', function() {
+            'use strict';
+            var topBuffer = document.getElementById('logoTop').offsetHeight;
+
+            window.pageYOffset > topBuffer ?
+                stickyEl.classList.add('navbar-fixed-top') :
+                stickyEl.classList.remove('navbar-fixed-top');
+        });
+    });
+})(window.angular);

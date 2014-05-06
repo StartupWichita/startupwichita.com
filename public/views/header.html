@@ -1,8 +1,7 @@
 <div class="" data-ng-controller="HeaderController">
-
-      <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
     <div class="container-fluid logoTop" id="logoTop">
       <div class="row">
@@ -29,30 +28,21 @@
             <li class="col-sm-2"><a href="#">events</a><div class="nav-icon ico-events"></div></li>
             <li class="col-sm-2"><a href="#">resources</a><div class="nav-icon ico-resources"></div></li>
           </ul>
-
-        <ul class="navbar-nav nav">
-          <li data-ng-repeat="item in menu" data-ng-show="global.user" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-            <a href="#!/{{item.link}}">{{item.title}}</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav nav pull-right" data-ng-hide="global.authenticated">
-          <li><a href="signup">Signup</a>
-          </li>
-          <li class="divider-vertical"></li>
-          <li><a href="signin">Signin</a>
-          </li>
-        </ul>
-              <ul class="navbar-nav nav pull-right" data-ng-show="global.authenticated">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				            {{global.user.name}} <b class="caret"></b>
-			            </a>
+          <ul class="navbar-nav nav navbar-right" data-ng-hide="global.authenticated">
+            <li><a href="signup">Signup</a></li>
+            <li class="divider-vertical"></li>
+            <li><a href="signin">Signin</a></li>
+          </ul>
+          <ul class="navbar-nav nav navbar-right" data-ng-show="global.authenticated">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                {{global.user.name}} <b class="caret"></b>
+              </a>
               <ul class="dropdown-menu">
-                <li><a href="/signout">Signout</a>
-                </li>
-            </ul>
-          </li>
-        </ul>
+                <li><a href="/signout">Signout</a></li>
+              </ul>
+            </li>
+          </ul>
       </div>
     </div>
   </div>
