@@ -9,3 +9,4 @@ test/coverage
 mean.iml
 .vagrant
 Vagrantfile.web
+*.swp
