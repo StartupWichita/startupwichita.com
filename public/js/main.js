@@ -3,7 +3,6 @@
 
     angular.element(document).ready(function() {
         window.addEventListener('scroll', function() {
-            'use strict';
             var stickyEl  = document.getElementById('stickyBar'),
                 topBuffer = document.getElementById('logoTop').offsetHeight;
 
