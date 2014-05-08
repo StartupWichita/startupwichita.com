@@ -58,7 +58,7 @@ Wait until you see the line `Express app started on port 3000`. Leave that
 terminal window open for as long as you want the server to be running. You can
 type `rs` and Enter to restart the server.
 
-In a web browser open `http://localhost:3000`.
+In a web browser open `http://10.10.100.100:3000`.
 
 ## Contributing
 To contribute to the development of startupwichita.com, please read the [guide
