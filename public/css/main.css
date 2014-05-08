@@ -340,10 +340,19 @@ line-height:1.25em;
 
 footer{
   padding-top:80px;
+  padding-bottom: 40px;
+    left:0px;
+    bottom:0px;
+    width:100%;
+    background:#ddd;
+    position:relative;
+
 }
 
 footer p{
-  padding:10px 20px;
+    padding:5px 0 12px 10px;
+    margin: 0px;	
+    text-align: center;
 }
 
 .arrow-down {
@@ -495,5 +504,46 @@ footer p{
       padding-bottom: 22%;
   }
 
+}
+
+div.row.signup {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+    background: #281816;
+    color: #ef592b;
+}
+
+.dropdown-menu>li>a {
+color: #281816;
+}
+
+.dropdown-menu {background-color: #ef592b;}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+color: #f8e4c5;
+background-color: #ef592b;
+}
+
+div.container-fluid.signup {
+  background-color: #f8e4c5; width: 100%;
+}
+.signup a { color: #ef592b;}
+
+.signup a:hover, .signup a:focus {
+color: #281816;}
+
+.signup .btn-primary {
+color: #f8e4c5;
+background-color: #ef592b;
+border-color: #ef592b;
+}
+
+.signup .btn-primary:hover, .signup .btn-primary:focus, .signup .btn-primary:active, .signup .btn-primary.active {
+color: #281816;
+background-color: #ef592b;
+border-color: #ef592b;
 }
 
