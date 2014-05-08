@@ -4,46 +4,46 @@
     <![endif]-->
 
     <div class="container-fluid logoTop" id="logoTop">
-      <div class="row">
-        <div class="col-sm-4 col-sm-offset-4"><a href="/"><img class="img-responsive center-block"  src="/img/tophandlogo-02.png"/></a></div>
-      </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4"><a href="/"><img class="img-responsive center-block"  src="/img/tophandlogo-02.png"/></a></div>
+        </div>
     </div>
 
     <div id="stickyBar" class="navbar masthead" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-ng-click="isCollapsed = !isCollapsed">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand visible-xs hidden-sm" href="#"><img src="/img/bottomlogo-01.png" class="img-responsive center-block" alt="Startup Wichita - Crafted in the Midwest" /></a>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-ng-click="isCollapsed = !isCollapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand visible-xs hidden-sm" href="#"><img src="/img/bottomlogo-01.png" class="img-responsive center-block" alt="Startup Wichita - Crafted in the Midwest" /></a>
+            </div>
+            <div class="navbar-collapse robotoSlab" collapse="isCollapsed">
+                <ul class="nav navbar-nav row">
+                    <li class="col-sm-4 col-sm-push-4 hidden-xs"><a href="/index.html" id="logoBottom"><img src="/img/bottomlogo-01.png" class="img-responsive center-block" alt="Startup Wichita - Crafted in the Midwest" /></a></li>
+                    <li class="active col-sm-2 col-sm-pull-4"><a href="#">people</a><div class="nav-icon ico-people"></div></li>
+                    <li class="col-sm-2 col-sm-pull-4"><a href="#">news</a><div class="nav-icon ico-news"></div></li>
+                    <li class="col-sm-2"><a href="#">events</a><div class="nav-icon ico-events"></div></li>
+                    <li class="col-sm-2"><a href="#">resources</a><div class="nav-icon ico-resources"></div></li>
+                </ul>
+                <ul class="navbar-nav nav navbar-right" data-ng-hide="global.authenticated">
+                    <li><a href="signup">sign up</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="signin">sign in</a></li>
+                </ul>
+                <ul class="navbar-nav nav navbar-right" data-ng-show="global.authenticated">
+                    <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{global.user.name}} <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/signout">sign out</a></li>
+                    </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="navbar-collapse robotoSlab" collapse="isCollapsed">
-          <ul class="nav navbar-nav row">
-            <li class="col-sm-4 col-sm-push-4 hidden-xs"><a href="/index.html" id="logoBottom"><img src="/img/bottomlogo-01.png" class="img-responsive center-block" alt="Startup Wichita - Crafted in the Midwest" /></a></li>
-            <li class="active col-sm-2 col-sm-pull-4"><a href="#">people</a><div class="nav-icon ico-people"></div></li>
-            <li class="col-sm-2 col-sm-pull-4"><a href="#">news</a><div class="nav-icon ico-news"></div></li>
-            <li class="col-sm-2"><a href="#">events</a><div class="nav-icon ico-events"></div></li>
-            <li class="col-sm-2"><a href="#">resources</a><div class="nav-icon ico-resources"></div></li>
-          </ul>
-          <ul class="navbar-nav nav navbar-right" data-ng-hide="global.authenticated">
-            <li><a href="signup">sign up</a></li>
-            <li class="divider-vertical"></li>
-            <li><a href="signin">sign in</a></li>
-          </ul>
-          <ul class="navbar-nav nav navbar-right" data-ng-show="global.authenticated">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {{global.user.name}} <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><a href="/signout">sign out</a></li>
-              </ul>
-            </li>
-          </ul>
-      </div>
     </div>
-  </div>
 </div>
