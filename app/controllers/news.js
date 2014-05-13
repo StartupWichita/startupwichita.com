@@ -9,12 +9,12 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Find newsItem by id
+ * Find newsItem by _id
  */
-exports.newsItem = function(req, res, next, id) {
-    News.findOne({ _id: id }, function(err, newsItem) {
+exports.newsItem = function(req, res, next, _id) {
+    News.findOne({ _id: _id }, function(err, newsItem) {
         if (err) return next(err);
-        if (!newsItem) return next(new Error('Failed to find newsItem ' + id));
+        if (!newsItem) return next(new Error('Failed to find newsItem ' + _id));
         req.newsItem = newsItem;
         next();
     });

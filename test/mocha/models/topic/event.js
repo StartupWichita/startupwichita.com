@@ -30,7 +30,7 @@ describe('Event', function() {
                 title: 'Example Event',
                 tags: [tag],
                 content: 'Here is some example content.',
-                author: author.id,
+                author: author._id,
                 startTime: new Date(),
                 endTime: new Date(),
                 address: '216 N Mosley, Wichita, KS 67202',

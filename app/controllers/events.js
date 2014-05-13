@@ -9,12 +9,12 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Find event by id
+ * Find event by _id
  */
-exports.event = function(req, res, next, id) {
-    Event.findOne({ _id: id }, function(err, event) {
+exports.event = function(req, res, next, _id) {
+    Event.findOne({ _id: _id }, function(err, event) {
         if (err) return next(err);
-        if (!event) return next(new Error('Failed to find event ' + id));
+        if (!event) return next(new Error('Failed to find event ' + _id));
         req.event = event;
         next();
     });

@@ -30,7 +30,7 @@ describe('News', function() {
                 title: 'Example News',
                 tags: [tag],
                 content: 'Here is some example content.',
-                author: author.id,
+                author: author._id,
                 date: new Date()
             });
 

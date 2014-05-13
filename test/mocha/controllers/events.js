@@ -45,7 +45,7 @@ describe('Event routing', function() {
             title: 'Event Title',
             tags: tags,
             content: 'This is my event description',
-            author: author.id,
+            author: author._id,
             startTime: new Date(),
             endTime: new Date(),
             address: '216 N Mosley, Wichita, KS 67202',
@@ -74,7 +74,7 @@ describe('Event routing', function() {
                 res.should.have.status(201);
                 persistedEvent = res.body;
                 should.exist(persistedEvent.created_at);
-                author.id.should.be.eql(persistedEvent.author);
+                author._id.toString().should.be.eql(persistedEvent.author);
                 tags.should.be.eql(persistedEvent.tags);
                 done();
             });
@@ -143,4 +143,3 @@ describe('Event routing', function() {
         });
     });
 });
-

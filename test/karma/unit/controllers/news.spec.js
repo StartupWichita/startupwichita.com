@@ -76,7 +76,7 @@
                     // fixture response object
                     var testNewsData = function() {
                         return {
-                            id: newsItemId,
+                            _id: newsItemId,
                             title: 'An News item about Start Up Wichita',
                             content: 'Start Up Wichita rocks!'
                         };
@@ -110,7 +110,7 @@
                     // fixture expected response data
                     var responseNewsData = function() {
                         return {
-                            id: '525cf20451979dea2c000001',
+                            _id: '525cf20451979dea2c000001',
                             title: 'An NewsItem about MEAN',
                             content: 'MEAN rocks!'
                         };
@@ -141,7 +141,7 @@
                 // fixture news item
                 var putNewsData = function() {
                     return {
-                        id: newsItemId,
+                        _id: newsItemId,
                         title: 'An NewsItem about Start Up Wichita',
                         to: 'Start Up Wichita is great!'
                     };
@@ -161,17 +161,17 @@
                 $httpBackend.flush();
 
                 // test URL location to new object
-                expect($location.path()).toBe('/news/' + putNewsData().id);
+                expect($location.path()).toBe('/news/' + putNewsData()._id);
 
             }));
 
-            it('$scope.remove() should send a DELETE request with a valid id' +
+            it('$scope.remove() should send a DELETE request with a valid _id' +
                 'and remove the newsItem from the scope', inject(function(News) {
                     var newsItemId = '525a8422f6d0f87f0e407a33';
 
                     // fixture news item
                     var newsItem = new News({
-                        id: newsItemId
+                        _id: newsItemId
                     });
 
                     // mock news items in scope

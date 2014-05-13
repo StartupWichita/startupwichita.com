@@ -20,7 +20,7 @@ var sanitize = function(u, self) {
 
         u.forEach(function(user) {
             var sanitizedUser = {
-                id: user._id,
+                _id: user._id,
                 name: user.name,
                 username: user.username,
                 role: user.role,
@@ -32,7 +32,7 @@ var sanitize = function(u, self) {
         });
     } else {
         result = {
-            id: u._id,
+            _id: u._id,
             name: u.name,
             username: u.username,
             role: u.role,
@@ -179,16 +179,16 @@ exports.all = function(req, res) {
 };
 
 /**
- * Find user by id
+ * Find user by _id
  */
-exports.user = function(req, res, next, id) {
+exports.user = function(req, res, next, _id) {
     User
         .findOne({
-            _id: id
+            _id: _id
         })
         .exec(function(err, user) {
             if (err) return next(err);
-            if (!user) return next(new Error('Failed to load User ' + id));
+            if (!user) return next(new Error('Failed to load User ' + _id));
             req.profile = user;
             next();
         });

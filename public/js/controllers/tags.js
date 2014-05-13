@@ -26,7 +26,7 @@
             $scope.remove = function(tag) {
                 var deleteTag = tag || $scope.tag;
 
-                Tags.remove({id: deleteTag.id}, function() {
+                Tags.remove({_id: deleteTag._id}, function() {
                     $scope.tags = _.filter($scope.tags, function (value) {
                         return value !== deleteTag;
                     });
@@ -38,7 +38,7 @@
 
                 updateTag.$update(function(response) {
                     _.forEach($scope.tags, function (value, index) {
-                        if (value.id === response.id) {
+                        if (value._id === response._id) {
                             $scope.tags[index] = response;
 
                             return false;
@@ -56,7 +56,7 @@
             };
 
             $scope.findOne = function() {
-                Tags.get({id: $stateParams.id}, function(tag) {
+                Tags.get({_id: $stateParams._id}, function(tag) {
                     $scope.tag = tag;
                 });
             };

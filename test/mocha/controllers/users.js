@@ -35,7 +35,7 @@ describe('User routing', function() {
             should.exist(res.body.user.bio);
             should.exist(res.body.user.role);
             should.exist(res.body.user.featured);
-            
+
             should.not.exist(res.body.user.hashed_password);
 
             done();
@@ -170,7 +170,7 @@ describe('User routing', function() {
                 should.not.exist(err);
 
                 agent
-                .get('/api/v1/users/' + u.id)
+                .get('/api/v1/users/' + u._id)
                 .end(function(err, res) {
                     should.not.exist(res.body.hashed_password);
                     should.not.exist(res.body.email);
@@ -182,7 +182,7 @@ describe('User routing', function() {
                     should.not.exist(res.body.google);
                     should.not.exist(res.body.linkedin);
 
-                    should.exist(res.body.id);
+                    should.exist(res.body._id);
                     should.exist(res.body.name);
                     should.exist(res.body.username);
                     should.exist(res.body.role);
@@ -211,7 +211,7 @@ describe('User routing', function() {
                     should.not.exist(res.body[0].google);
                     should.not.exist(res.body[0].linkedin);
 
-                    should.exist(res.body[0].id);
+                    should.exist(res.body[0]._id);
                     should.exist(res.body[0].name);
                     should.exist(res.body[0].username);
                     should.exist(res.body[0].role);
@@ -224,4 +224,3 @@ describe('User routing', function() {
         });
     });
 });
-
