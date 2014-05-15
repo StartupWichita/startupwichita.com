@@ -65,7 +65,9 @@
                 scope.getFeaturedUsers();
                 $httpBackend.flush();
 
-                expect(scope.featuredUsers).toEqual(peopleData);
+                expect(scope.featuredUsers[0].name).toEqual(peopleData[0].name);
+                expect(scope.featuredUsers[1].name).toEqual(peopleData[1].name);
+                expect(scope.featuredUsers[2].name).toEqual(peopleData[2].name);
             });
 
         });
