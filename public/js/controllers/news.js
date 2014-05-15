@@ -43,7 +43,7 @@
                 newsItem.updated.push(new Date().getTime());
 
                 newsItem.$update(function() {
-                    $location.path('news/' + newsItem.id);
+                    $location.path('news/' + newsItem._id);
                 });
             };
 
@@ -55,7 +55,7 @@
 
             $scope.findOne = function() {
                 News.get({
-                    id: $stateParams.newsItemId
+                    _id: $stateParams.newsItemId
                 }, function(newsItem) {
                     $scope.newsItem = newsItem;
                 });

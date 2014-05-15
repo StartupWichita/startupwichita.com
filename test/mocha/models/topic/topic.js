@@ -30,7 +30,7 @@ describe('Topic', function() {
                 title: 'Example Topic',
                 tags: [tag],
                 content: 'Here is some example content.',
-                author: author.id
+                author: author._id
             });
             topic2 = new Topic(topic);
 

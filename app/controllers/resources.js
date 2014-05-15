@@ -9,12 +9,12 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Find resource by id
+ * Find resource by _id
  */
-exports.resource = function(req, res, next, id) {
-    Resource.findOne({ _id: id }, function(err, resource) {
+exports.resource = function(req, res, next, _id) {
+    Resource.findOne({ _id: _id }, function(err, resource) {
         if (err) return next(err);
-        if (!resource) return next(new Error('Failed to find resource ' + id));
+        if (!resource) return next(new Error('Failed to find resource ' + _id));
         req.resource = resource;
         next();
     });

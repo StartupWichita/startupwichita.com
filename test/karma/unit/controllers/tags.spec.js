@@ -27,8 +27,8 @@
             it('$scope.find() should create an array with at least one tag object fetched from XHR',
                 inject(function ($httpBackend) {
                     var tagList = [
-                        {id: '507f1f77bcf86cd799439011', name: 'Tag 1', count: 100, primary: true},
-                        {id: '507f1f77bcf86cd799439012', name: 'Tag 2', count: 5, primary: false}
+                        {_id: '507f1f77bcf86cd799439011', name: 'Tag 1', count: 100, primary: true},
+                        {_id: '507f1f77bcf86cd799439012', name: 'Tag 2', count: 5, primary: false}
                     ];
 
                     $httpBackend.expectGET('/api/v1/tags').respond(tagList);
@@ -44,9 +44,9 @@
             it('$scope.findOne() should create a tag object fetched from XHR using a articleId URL parameter',
                 inject(function ($httpBackend, $stateParams) {
                     var tagId = '525a8422f6d0f87f0e407a33';
-                    var testTagData = {id: tagId, name: 'Tag 1', primary: true};
+                    var testTagData = {_id: tagId, name: 'Tag 1', primary: true};
 
-                    $stateParams.id = tagId;
+                    $stateParams._id = tagId;
 
                     // test expected GET request with response object
                     $httpBackend.expectGET('/api/v1/tags/' + tagId).respond(testTagData);
@@ -62,7 +62,7 @@
 
             it('$scope.create() with valid form data should send a POST request with the form input values and then locate to new object URL',
                 inject(function ($httpBackend) {
-                    var responseTagData = {id: '507f1f77bcf86cd799439011', name: 'Tag 1', primary: true};
+                    var responseTagData = {_id: '507f1f77bcf86cd799439011', name: 'Tag 1', primary: true};
 
                     // fixture mock form input values
                     scope.name = responseTagData.name;
@@ -85,10 +85,10 @@
 
             it('$scope.update() should update a valid tag', inject(function($httpBackend, Tags) {
                 var tagId = '507f1f77bcf86cd799439011',
-                    putTagData = {id: tagId, name: 'Tag 1'},
-                    putTagDataResponse = {id: tagId, name: 'Tag 1', updatedAt: Date.now()};
+                    putTagData = {_id: tagId, name: 'Tag 1'},
+                    putTagDataResponse = {_id: tagId, name: 'Tag 1', updatedAt: Date.now()};
 
-                scope.tags = [{id: tagId, name: 'Tag 2'}];
+                scope.tags = [{_id: tagId, name: 'Tag 2'}];
                 scope.tag = new Tags(putTagData);
 
                 $httpBackend.expectPUT('/api/v1/tags/' + tagId, putTagData).respond(putTagDataResponse);
@@ -104,11 +104,11 @@
 
             it('$scope.update(tag) should update a valid tag', inject(function($httpBackend, Tags) {
                 var tagId = '507f1f77bcf86cd799439011',
-                    putTagData = {id: tagId, name: 'Tag 1'},
-                    putTagDataResponse = {id: tagId, name: 'Tag 1', updatedAt: Date.now()},
+                    putTagData = {_id: tagId, name: 'Tag 1'},
+                    putTagDataResponse = {_id: tagId, name: 'Tag 1', updatedAt: Date.now()},
                     updateTag;
 
-                scope.tags = [{id: tagId, name: 'Tag 2'}];
+                scope.tags = [{_id: tagId, name: 'Tag 2'}];
                 scope.tag = null;
 
                 updateTag = new Tags(putTagData);
@@ -127,15 +127,15 @@
                 'and remove the article from the scope', inject(function($httpBackend, Tags) {
 
                 var tags = [
-                    new Tags({id: '507f1f77bcf86cd799439011', name: 'Tag 1'}),
-                    new Tags({id: '507f1f77bcf86cd799439012', name: 'Tag 1'})
+                    new Tags({_id: '507f1f77bcf86cd799439011', name: 'Tag 1'}),
+                    new Tags({_id: '507f1f77bcf86cd799439012', name: 'Tag 1'})
                 ];
 
                 scope.tags = [];
                 scope.tags.push(tags[0]);
                 scope.tags.push(tags[1]);
 
-                $httpBackend.expectDELETE('/api/v1/tags/' + tags[0].id).respond(204);
+                $httpBackend.expectDELETE('/api/v1/tags/' + tags[0]._id).respond(204);
 
                 // run controller
                 scope.remove(tags[0]);
@@ -145,7 +145,7 @@
 
                 scope.tag = tags[1];
 
-                $httpBackend.expectDELETE('/api/v1/tags/' + tags[1].id).respond(204);
+                $httpBackend.expectDELETE('/api/v1/tags/' + tags[1]._id).respond(204);
 
                 // run controller
                 scope.remove();

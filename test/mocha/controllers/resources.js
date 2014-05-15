@@ -45,7 +45,7 @@ describe('Resource routing', function() {
             title: 'Resource Title',
             tags: tags,
             content: 'Here is my resource content',
-            author: author.id,
+            author: author._id,
             url: 'http://google.com'
         };
 
@@ -70,7 +70,7 @@ describe('Resource routing', function() {
                 should.not.exist(err);
                 res.should.have.status(201);
                 persistedResource = res.body;
-                author.id.should.be.eql(persistedResource.author);
+                author._id.toString().should.be.eql(persistedResource.author);
                 tags.should.be.eql(persistedResource.tags);
                 done();
             });
@@ -139,4 +139,3 @@ describe('Resource routing', function() {
         });
     });
 });
-

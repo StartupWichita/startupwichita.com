@@ -5,7 +5,7 @@
     var NewsService = [
         '$resource',
         function($resource) {
-            return $resource('/api/v1/news/:id', {id: '@id'},
+            return $resource('/api/v1/news/:_id', {_id: '@_id'},
                 {
                     update: {
                         method: 'PUT'

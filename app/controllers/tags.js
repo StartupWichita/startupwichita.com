@@ -9,12 +9,12 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Find tag by id
+ * Find tag by _id
  */
-exports.tag = function(req, res, next, id) {
-    Tag.load(id, function(err, tag) {
+exports.tag = function(req, res, next, _id) {
+    Tag.load(_id, function(err, tag) {
         if (err) return next(err);
-        if (!tag) return next(new Error('Failed to load tag ' + id));
+        if (!tag) return next(new Error('Failed to load tag ' + _id));
         req.tag = tag;
         next();
     });
@@ -25,7 +25,7 @@ exports.tag = function(req, res, next, id) {
  */
 exports.create = function(req, res) {
     var tag = new Tag(req.body);
-    
+
     tag.save(function(err) {
         if (err) {
             return res.send('users/signup', {
