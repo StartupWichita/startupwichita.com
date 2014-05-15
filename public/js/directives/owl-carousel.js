@@ -1,9 +1,9 @@
-(function(angular) {
+(function(angular, Modernizr, $) {
     'use strict';
 
     // Get's the lat / long for a give address
     // Based on this gist https://gist.github.com/benmj/6380466
-    var owlCarousel = ['$timeout', function ($timeout) {
+    var owlCarousel = [function () {
         return {
             restrict: 'E',
             transclude: true,
@@ -22,9 +22,12 @@
                             navigation: !Modernizr.touch,
                             navText: ['',''],
                             lazyLoad: true,
-                            themeClass: '',
-                            responsive: customOwlWidthSetup(attrs.owlWidth)
+                            themeClass: ''
                         };
+
+                        if (attrs.owlWidth) {
+                            options.responsive = customOwlWidthSetup(attrs.owlWidth);
+                        }
 
                         if (scope.owlItems) {
                             options.items = scope.owlItems;
@@ -42,9 +45,9 @@
                     while((singleW*itemCount)+1<2000){
                         var start = (singleW*itemCount) + 1;
                         var tempCount = itemCount + 1;
-                        itemsCustom[start] ={
+                        itemsCustom[start] = {
                             items: tempCount
-                        }
+                        };
                         itemCount++;
                     }
                     return itemsCustom;
@@ -54,4 +57,4 @@
     }];
 
     angular.module('startupwichita.directives').directive('owlCarousel', owlCarousel);
-})(window.angular);
+})(window.angular, window.Modernizr, window.jQuery);

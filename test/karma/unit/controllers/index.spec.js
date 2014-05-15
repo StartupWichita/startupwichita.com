@@ -10,34 +10,34 @@
 
             peopleData = [
                 {
-                    "name": "Seth Etter",
-                    "emailHash": "98ausdp9f8jap98djfasdf",
-                    "featured": true,
-                    "tagline": "JavaScript Dude",
+                    'name': 'Seth Etter',
+                    'emailHash': '98ausdp9f8jap98djfasdf',
+                    'featured': true,
+                    'tagline': 'JavaScript Dude',
                 },
                 {
-                    "name": "Jacob Walker",
-                    "emailHash": "98ausdp9f8jap98djfasdf",
-                    "featured": true,
-                    "tagline": "PHP Dude",
+                    'name': 'Jacob Walker',
+                    'emailHash': '98ausdp9f8jap98djfasdf',
+                    'featured': true,
+                    'tagline': 'PHP Dude',
                 },
                 {
-                    "name": "Jonathan Van Winkle",
-                    "emailHash": "98ausdp9f8jap98djfasdf",
-                    "featured": true,
-                    "tagline": "Design Dude",
+                    'name': 'Jonathan Van Winkle',
+                    'emailHash': '98ausdp9f8jap98djfasdf',
+                    'featured': true,
+                    'tagline': 'Design Dude',
                 },
                 {
-                    "name": "Jim Rice",
-                    "emailHash": "98ausdp9f8jap98djfasdf",
-                    "featured": true,
-                    "tagline": "Growler Dude",
+                    'name': 'Jim Rice',
+                    'emailHash': '98ausdp9f8jap98djfasdf',
+                    'featured': true,
+                    'tagline': 'Growler Dude',
                 },
                 {
-                    "name": "Kenton Hansen",
-                    "emailHash": "98ausdp9f8jap98djfasdf",
-                    "featured": true,
-                    "tagline": "Startup Dude",
+                    'name': 'Kenton Hansen',
+                    'emailHash': '98ausdp9f8jap98djfasdf',
+                    'featured': true,
+                    'tagline': 'Startup Dude',
                 }
             ];
 
@@ -60,7 +60,7 @@
             });
 
             it('should have featured people', function() {
-                $httpBackend.expectGET('/api/v1/users').respond(peopleData);
+                $httpBackend.expectGET('/api/v1/users?featured=true').respond(peopleData);
 
                 scope.getFeaturedUsers();
                 $httpBackend.flush();

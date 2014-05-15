@@ -12,7 +12,7 @@
             <div>
                 <owl-carousel id="peopleCarousel" owl-width="292" class="owl-carousel" ng-transclude owl-ready="peopleReady">
                     <div ng-repeat="user in featuredUsers">
-                        <img class="lazyOwl" src="/img/seth.jpg" data-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}">
+                        <img class="lazyOwl" data-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}">
                         <div class="people-teaser white text-center"><h4>{{ user.name }}</h4><p>{{ user.tagline }}</p></div>
                     </div>
                 </owl-carousel>
@@ -83,7 +83,11 @@
         <div class="row">
             <div class="">
                 <h2 class="text-center robotoSlab">News</h2>
-                <div id="newsCarousel" class="owl-carousel"></div>
+                <owl-carousel id="newsCarousel" class="owl-carousel" ng-transclude owl-width="550" owl-ready="newsReady">
+                    <div ng-repeat="item in featuredNews">
+                        <div class="news-teaser white"><a href="#"><h3 class="text-center white">{{ news.title }}</h3><p class="white">{{ news.excerpt }}</p></a></div>
+                    </div>
+                </owl-carousel>
             </div>
         </div>
     </div>
@@ -94,7 +98,19 @@
         <div class="row">
             <div class="">
                 <h2 class="text-center robotoSlab grey">Resources</h2>
-                <div id="resourcesCarousel" class="owl-carousel"></div>
+                <owl-carousel id="resourcesCarousel" class="owl-carousel" ng-transclude owl-items="1" owl-ready="resourcesReady">
+
+                    <div class="col-sm-4 resource-wrapper" ng-repeat="resource in featuredResources">
+                        <div class="resources-teaser white">
+                            <a href="" class="white grey-bg">
+                                <h3 class="white">{{ resource.title }}</h3>
+                                <p class="date white">{{ resource.date }}</p>
+                                <p class="white sm-collapse">{{ resource.description }}</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </owl-carousel>
             </div>
         </div>
     </div>

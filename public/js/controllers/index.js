@@ -8,19 +8,21 @@
             $scope.gravatar = Gravatar;
 
             $scope.peopleReady = false;
+            $scope.newsReady = false;
+            $scope.resourcesReady = false;
 
             $scope.init = function() {
                 $scope.getFeaturedUsers();
             };
 
-            // This makes sure that the flag gets flipped on the
-            // next iteration of the event loop, so that the DOM
-            // has all the slides inserted before applying the
-            // slider directive to it.
-
             $scope.getFeaturedUsers = function() {
                 $http.get('/api/v1/users?featured=true').then(function(response) {
                     $scope.featuredUsers = response.data;
+
+                    // This makes sure that the flag gets flipped on the
+                    // next iteration of the event loop, so that the DOM
+                    // has all the slides inserted before applying the
+                    // slider directive to it.
 
                     $timeout(function() {
                         $scope.peopleReady = true;

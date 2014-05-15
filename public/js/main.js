@@ -6,9 +6,11 @@
             var stickyEl  = document.getElementById('stickyBar'),
                 topBuffer = document.getElementById('logoTop').offsetHeight;
 
-            window.pageYOffset > topBuffer ?
-                stickyEl.classList.add('navbar-fixed-top') :
+            if (window.pageYOffset > topBuffer) {
+                stickyEl.classList.add('navbar-fixed-top');
+            } else {
                 stickyEl.classList.remove('navbar-fixed-top');
+            }
         });
     });
 })(window.angular);
