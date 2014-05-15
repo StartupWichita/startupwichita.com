@@ -8,9 +8,11 @@
         'ui.bootstrap',
         'ui.router',
         'startupwichita.services',
-        'startupwichita.controllers'
+        'startupwichita.controllers',
+        'startupwichita.directives'
     ]);
 
     angular.module('startupwichita.services', []);
     angular.module('startupwichita.controllers', []);
+    angular.module('startupwichita.directives', []);
 })(window.angular);

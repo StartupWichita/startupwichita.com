@@ -9,8 +9,13 @@
     <!-- People section -->
     <div class="container-fluid people"> 
         <div class="row">
-            <div class="">
-                <div id="peopleCarousel" class="owl-carousel"></div>
+            <div>
+                <owl-carousel id="peopleCarousel" owl-width="292" class="owl-carousel" ng-transclude owl-ready="peopleReady">
+                    <div ng-repeat="person in people">
+                        <img class="lazyOwl" src="/img/seth.jpg" data-src="{{ person.img }}" alt="{{ person.imgAlt }}">
+                        <div class="people-teaser white text-center"><h4>{{ person.title }}</h4><h4>{{ person.fname }} {{ person.lname }}</h4><p>{{ person.description }}</p></div>
+                    </div>
+                </owl-carousel>
                 <h2 class="text-center robotoSlab cream">People that connect you</h2>
             </div>
         </div>
