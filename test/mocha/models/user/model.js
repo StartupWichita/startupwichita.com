@@ -74,6 +74,13 @@ describe('<Unit Test>', function() {
                     done();
                 });
             });
+
+            it('should have an empty string as the default tagline', function(done) {
+                user.save(function() {
+                    user.tagline.should.equal('');
+                    done();
+                });
+            });
         });
 
         after(function(done) {
