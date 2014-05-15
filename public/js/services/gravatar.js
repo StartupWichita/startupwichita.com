@@ -13,7 +13,8 @@
                         return defaultUrl;
                     }
 
-                    return 'http://www.gravatar.com/avatar/' + CryptoJS.MD5(email) + '.jpg?s=' + size + '&r=g';
+                    console.log('http://www.gravatar.com/avatar/' + CryptoJS.MD5(email).toString() + '.jpg?s=' + size + '&r=g');
+                    return 'http://www.gravatar.com/avatar/' + CryptoJS.MD5(email).toString() + '.jpg?s=' + size + '&r=g';
                 }
             };
         }

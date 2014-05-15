@@ -1,4 +1,4 @@
-<section data-ng-controller="IndexController">
+<section data-ng-controller="IndexController" ng-init="init()">
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
         <div class="container-fluid">
@@ -11,9 +11,9 @@
         <div class="row">
             <div>
                 <owl-carousel id="peopleCarousel" owl-width="292" class="owl-carousel" ng-transclude owl-ready="peopleReady">
-                    <div ng-repeat="person in people">
-                        <img class="lazyOwl" src="/img/seth.jpg" data-src="{{ person.img }}" alt="{{ person.imgAlt }}">
-                        <div class="people-teaser white text-center"><h4>{{ person.title }}</h4><h4>{{ person.fname }} {{ person.lname }}</h4><p>{{ person.description }}</p></div>
+                    <div ng-repeat="user in featuredUsers">
+                        <img class="lazyOwl" src="/img/seth.jpg" data-src="{{ gravatar.buildGravatarUrl(user.email, '292') }}" alt="{{ user.name }}">
+                        <div class="people-teaser white text-center"><h4>{{ user.name }}</h4><p>{{ user.tagline }}</p></div>
                     </div>
                 </owl-carousel>
                 <h2 class="text-center robotoSlab cream">People that connect you</h2>
