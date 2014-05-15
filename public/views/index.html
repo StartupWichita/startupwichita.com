@@ -12,7 +12,7 @@
             <div>
                 <owl-carousel id="peopleCarousel" owl-width="292" class="owl-carousel" ng-transclude owl-ready="peopleReady">
                     <div ng-repeat="user in featuredUsers">
-                        <img class="lazyOwl" src="/img/seth.jpg" data-src="{{ gravatar.buildGravatarUrl(user.email, '292') }}" alt="{{ user.name }}">
+                        <img class="lazyOwl" src="/img/seth.jpg" data-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}">
                         <div class="people-teaser white text-center"><h4>{{ user.name }}</h4><p>{{ user.tagline }}</p></div>
                     </div>
                 </owl-carousel>

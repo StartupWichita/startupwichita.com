@@ -11,31 +11,31 @@
             peopleData = [
                 {
                     "name": "Seth Etter",
-                    "email": "sethetter@gmail.com",
+                    "emailHash": "98ausdp9f8jap98djfasdf",
                     "featured": true,
                     "tagline": "JavaScript Dude",
                 },
                 {
                     "name": "Jacob Walker",
-                    "email": "jacobwalker0814@gmail.com",
+                    "emailHash": "98ausdp9f8jap98djfasdf",
                     "featured": true,
                     "tagline": "PHP Dude",
                 },
                 {
                     "name": "Jonathan Van Winkle",
-                    "email": "jonathan.vanwinkle@gmail.com",
+                    "emailHash": "98ausdp9f8jap98djfasdf",
                     "featured": true,
                     "tagline": "Design Dude",
                 },
                 {
                     "name": "Jim Rice",
-                    "email": "hitjim@gmail.com",
+                    "emailHash": "98ausdp9f8jap98djfasdf",
                     "featured": true,
                     "tagline": "Growler Dude",
                 },
                 {
                     "name": "Kenton Hansen",
-                    "email": "kenton@gobananago.com",
+                    "emailHash": "98ausdp9f8jap98djfasdf",
                     "featured": true,
                     "tagline": "Startup Dude",
                 }

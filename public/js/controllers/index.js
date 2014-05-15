@@ -19,9 +19,8 @@
             // slider directive to it.
 
             $scope.getFeaturedUsers = function() {
-                $http.get('/api/v1/users').then(function(response) {
+                $http.get('/api/v1/users?featured=true').then(function(response) {
                     $scope.featuredUsers = response.data;
-                    console.log(response.data);
 
                     $timeout(function() {
                         $scope.peopleReady = true;
