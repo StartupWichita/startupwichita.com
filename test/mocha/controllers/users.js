@@ -233,5 +233,47 @@ describe('User routing', function() {
                 });
             });
         });
+        it('should respond to a query for featured users', function(done) {
+            var u = new User(user);
+            u.save(function(err) {
+                should.not.exist(err);
+
+                agent
+                .get('/api/v1/users/?featured=false')
+                .end(function(err, res) {
+
+                    should.exist(res.body[0].username);
+                    res.body[0].featured.should.equal(false);
+
+                    agent
+                    .get('/api/v1/users/?featured=true')
+                    .end(function(err, res) {
+                        res.body.length.should.equal(0);
+                        done();
+                    });
+                });
+            });
+        });
+        it('should respond to a query for specific roles', function(done) {
+            var u = new User(user);
+            u.save(function(err) {
+                should.not.exist(err);
+
+                agent
+                .get('/api/v1/users/?role=Visitor')
+                .end(function(err, res) {
+
+                    should.exist(res.body[0].username);
+                    res.body[0].role.should.equal('Visitor');
+
+                    agent
+                    .get('/api/v1/users/?role=Administrator')
+                    .end(function(err, res) {
+                        res.body.length.should.equal(0);
+                        done();
+                    });
+                });
+            });
+        });
     });
 });

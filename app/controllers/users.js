@@ -172,7 +172,12 @@ exports.show = function(req, res) {
  * List of Users
  */
 exports.all = function(req, res) {
-    User.find().sort('-name').exec(function(err, users) {
+    var query = {};
+
+    if (req.query.featured) query.featured = req.query.featured;
+    if (req.query.role) query.role = req.query.role;
+
+    User.find(query).sort('-name').exec(function(err, users) {
         if (err) {
             res.render('error', {
                 status: 500
