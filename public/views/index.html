@@ -85,7 +85,7 @@
                 <h2 class="text-center robotoSlab">News</h2>
                 <owl-carousel id="newsCarousel" class="owl-carousel" ng-transclude owl-width="550" owl-ready="newsReady">
                     <div ng-repeat="item in featuredNews">
-                        <div class="news-teaser white"><a href="#"><h3 class="text-center white">{{ news.title }}</h3><p class="white">{{ news.excerpt }}</p></a></div>
+                        <div class="news-teaser white"><a href="#"><h3 class="text-center white">{{ news.title }}</h3><p class="white">{{ news.content }}</p></a></div>
                     </div>
                 </owl-carousel>
             </div>
@@ -104,8 +104,7 @@
                         <div class="resources-teaser white">
                             <a href="" class="white grey-bg">
                                 <h3 class="white">{{ resource.title }}</h3>
-                                <p class="date white">{{ resource.date }}</p>
-                                <p class="white sm-collapse">{{ resource.description }}</p>
+                                <p class="white sm-collapse">{{ resource.content }}</p>
                             </a>
                         </div>
                     </div>

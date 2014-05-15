@@ -6,7 +6,8 @@
             // Load the controllers module
             beforeEach(module('startupwichita'));
 
-            var scope, IndexController, $httpBackend, peopleData;
+            var scope, IndexController, $httpBackend,
+                peopleData, topicData;
 
             peopleData = [
                 {
@@ -20,24 +21,17 @@
                     'emailHash': '98ausdp9f8jap98djfasdf',
                     'featured': true,
                     'tagline': 'PHP Dude',
+                }
+            ];
+
+            topicData = [
+                {
+                    'title': 'Topic Item 1',
+                    'content': 'Yada yada stuff and more stuff'
                 },
                 {
-                    'name': 'Jonathan Van Winkle',
-                    'emailHash': '98ausdp9f8jap98djfasdf',
-                    'featured': true,
-                    'tagline': 'Design Dude',
-                },
-                {
-                    'name': 'Jim Rice',
-                    'emailHash': '98ausdp9f8jap98djfasdf',
-                    'featured': true,
-                    'tagline': 'Growler Dude',
-                },
-                {
-                    'name': 'Kenton Hansen',
-                    'emailHash': '98ausdp9f8jap98djfasdf',
-                    'featured': true,
-                    'tagline': 'Startup Dude',
+                    'title': 'Topic Item 2',
+                    'content': 'Yada yada stuff and more stuff'
                 }
             ];
 
@@ -67,7 +61,26 @@
 
                 expect(scope.featuredUsers[0].name).toEqual(peopleData[0].name);
                 expect(scope.featuredUsers[1].name).toEqual(peopleData[1].name);
-                expect(scope.featuredUsers[2].name).toEqual(peopleData[2].name);
+            });
+
+            it('should have news items', function() {
+                $httpBackend.expectGET('/api/v1/news').respond(topicData);
+
+                scope.getFeaturedNews();
+                $httpBackend.flush();
+
+                expect(scope.featuredNews[0].title).toEqual(topicData[0].title);
+                expect(scope.featuredNews[1].title).toEqual(topicData[1].title);
+            });
+
+            it('should have featured resources', function() {
+                $httpBackend.expectGET('/api/v1/resources').respond(topicData);
+
+                scope.getFeaturedResources();
+                $httpBackend.flush();
+
+                expect(scope.featuredResources[0].title).toEqual(topicData[0].title);
+                expect(scope.featuredResources[1].title).toEqual(topicData[1].title);
             });
 
         });

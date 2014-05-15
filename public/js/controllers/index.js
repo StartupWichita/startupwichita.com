@@ -2,8 +2,8 @@
     'use strict';
 
     var IndexController = [
-        '$scope', '$timeout', 'Global', 'Users', 'Gravatar',
-        function ($scope, $timeout, Global, Users, Gravatar) {
+        '$scope', '$timeout', 'Global', 'Users', 'Gravatar', 'News', 'Resources',
+        function ($scope, $timeout, Global, Users, Gravatar, News, Resources) {
             $scope.global = Global;
             $scope.gravatar = Gravatar;
 
@@ -13,6 +13,8 @@
 
             $scope.init = function() {
                 $scope.getFeaturedUsers();
+                $scope.getFeaturedNews();
+                $scope.getFeaturedResources();
             };
 
             $scope.getFeaturedUsers = function() {
@@ -28,8 +30,27 @@
                         $scope.peopleReady = true;
                     }, 0);
 
-                }, function(err) {
-                    console.log(err);
+                });
+            };
+
+            $scope.getFeaturedNews = function() {
+                News.query({}, function(news) {
+                    $scope.featuredNews = news;
+
+                    $timeout(function() {
+                        $scope.newsReady = true;
+                    }, 0);
+                });
+            };
+
+            $scope.getFeaturedResources = function() {
+                // TODO: should this query for "featured" resources?
+                Resources.query({}, function(resources) {
+                    $scope.featuredResources = resources;
+
+                    $timeout(function() {
+                        $scope.resourcesReady = true;
+                    }, 0);
                 });
             };
         }
