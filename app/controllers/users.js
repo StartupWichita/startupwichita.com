@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     _ = require('lodash'),
+    MD5 = require('crypto-js/md5'),
     User = mongoose.model('User');
 
 /**
@@ -23,6 +24,7 @@ var sanitize = function(u, self) {
                 _id: user._id,
                 name: user.name,
                 username: user.username,
+                emailHash: MD5(user.email).toString(),
                 role: user.role,
                 bio: user.bio,
                 tagline: user.tagline,
@@ -36,6 +38,7 @@ var sanitize = function(u, self) {
             _id: u._id,
             name: u.name,
             username: u.username,
+            emailHash: MD5(u.email).toString(),
             role: u.role,
             bio: u.bio,
             tagline: u.tagline,
@@ -155,7 +158,7 @@ exports.destroy = function(req, res) {
  * Send User
  */
 exports.me = function(req, res) {
-    res.jsonp(req.user || null);
+    res.jsonp(sanitize(req.user, true) || null);
 };
 
 /**
