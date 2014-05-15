@@ -33,6 +33,7 @@ describe('User routing', function() {
             res.body.user.name.should.equal(user.name);
             should.exist(res.body.user.name);
             should.exist(res.body.user.bio);
+            should.exist(res.body.user.tagline);
             should.exist(res.body.user.role);
             should.exist(res.body.user.featured);
 
@@ -126,6 +127,7 @@ describe('User routing', function() {
                 res.body.name.should.equal(u.name);
                 should.exist(res.body.name);
                 should.exist(res.body.bio);
+                should.exist(res.body.tagline);
                 should.exist(res.body.role);
                 should.exist(res.body.featured);
 
@@ -187,6 +189,7 @@ describe('User routing', function() {
                     should.exist(res.body.username);
                     should.exist(res.body.role);
                     should.exist(res.body.bio);
+                    should.exist(res.body.tagline);
                     should.exist(res.body.featured);
 
                     done();
@@ -216,6 +219,7 @@ describe('User routing', function() {
                     should.exist(res.body[0].username);
                     should.exist(res.body[0].role);
                     should.exist(res.body[0].bio);
+                    should.exist(res.body[0].tagline);
                     should.exist(res.body[0].featured);
 
                     done();

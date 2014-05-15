@@ -25,6 +25,7 @@ var sanitize = function(u, self) {
                 username: user.username,
                 role: user.role,
                 bio: user.bio,
+                tagline: user.tagline,
                 featured: user.featured
             };
             if (self) sanitizedUser.email = user.email;
@@ -37,6 +38,7 @@ var sanitize = function(u, self) {
             username: u.username,
             role: u.role,
             bio: u.bio,
+            tagline: u.tagline,
             featured: u.featured
         };
         if (self) result.email = u.email;
