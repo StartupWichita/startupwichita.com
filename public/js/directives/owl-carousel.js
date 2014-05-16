@@ -19,7 +19,7 @@
                         var options = {
                             dots: false,
                             loop: true,
-                            navigation: !Modernizr.touch,
+                            nav: !Modernizr.touch,
                             navText: ['',''],
                             lazyLoad: true,
                             themeClass: ''
