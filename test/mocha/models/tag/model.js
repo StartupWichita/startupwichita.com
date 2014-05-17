@@ -17,16 +17,7 @@ describe('<Unit Test>', function() {
             tag = new Tag({
                 name: 'Tag name'
             });
-            tag2 = new Tag(tag);
             done();
-
-        });
-
-        describe('Attributes', function() {
-            it('should initialize with a default value of 0 for primary', function(done) {
-                tag.primary.should.equal(false);
-                done();
-            });
         });
 
         describe('Method Save', function() {
@@ -45,7 +36,16 @@ describe('<Unit Test>', function() {
                 });
             });
 
+            it('should include an uppercase version of the name', function(done) {
+                return tag.save(function(err, tag) {
+                    should.not.exist(err);
+                    tag.name_upper.should.equal('TAG NAME');
+                    done();
+                });
+            });
+
             it('should fail to save an existing tag', function(done) {
+                tag2 = new Tag(tag);
                 tag.save();
                 return tag2.save(function(err) {
                     should.exist(err);
@@ -53,11 +53,50 @@ describe('<Unit Test>', function() {
                 });
             });
 
-            it('should be able to show an error when try to save without name', function(done) {
+            it('should show an error when try to save without name', function(done) {
                 tag.name = '';
 
                 return tag.save(function(err) {
                     should.exist(err);
+                    done();
+                });
+            });
+        });
+
+        describe('Method findOrCreate', function() {
+            it('should find existing instances by name', function(done) {
+                return tag.save(function (err, savedTag) {
+                    return Tag.findOrCreate(savedTag.name, function (err, foundTag) {
+                        should.not.exist(err);
+                        foundTag._id.toString().should.equal(savedTag._id.toString());
+                        done();
+                    });
+                });
+            });
+            it('should find existing instances by name (case insensitive)', function(done) {
+                return tag.save(function (err, savedTag) {
+                    return Tag.findOrCreate(savedTag.name.toLowerCase(), function (err, foundTag) {
+                        should.not.exist(err);
+                        foundTag._id.toString().should.equal(savedTag._id.toString());
+                        done();
+                    });
+                });
+            });
+            it('should return new instances for unknown names', function(done) {
+                return tag.save(function (err, savedTag) {
+                    return Tag.findOrCreate('Foo Tag', function (err, foundTag) {
+                        should.not.exist(err);
+                        foundTag.should.be.an.instanceOf(Tag);
+                        foundTag._id.toString().should.not.equal(savedTag._id.toString());
+                        foundTag.name.should.equal('Foo Tag');
+                        done();
+                    });
+                });
+            });
+            it('should handle missing values for name', function(done) {
+                return Tag.findOrCreate(undefined, function (err, foundTag) {
+                    should.exist(err);
+                    should.not.exist(foundTag);
                     done();
                 });
             });

@@ -7,12 +7,41 @@ var mongoose = require('mongoose'),
     Tag = mongoose.model('Tag'),
     _ = require('lodash');
 
+/**
+ * Sanitize tags before returning
+ */
+var sanitize = function(tag) {
+    var result;
+
+    if (tag && typeof tag.length !== 'undefined') {
+        result = [];
+
+        tag.forEach(function(tag) {
+            var sanitizedTag = {
+                _id: tag._id,
+                name: tag.name,
+                created_at: tag.created_at,
+                updated_at: tag.updated_at
+            };
+            result.push(sanitizedTag);
+        });
+    } else {
+        result = {
+            _id: tag._id,
+            name: tag.name,
+            created_at: tag.created_at,
+            updated_at: tag.updated_at
+        };
+    }
+
+    return result;
+};
 
 /**
  * Find tag by _id
  */
 exports.tag = function(req, res, next, _id) {
-    Tag.load(_id, function(err, tag) {
+    Tag.findOne({_id: _id}, function(err, tag) {
         if (err) return next(err);
         if (!tag) return next(new Error('Failed to load tag ' + _id));
         req.tag = tag;
@@ -21,19 +50,17 @@ exports.tag = function(req, res, next, _id) {
 };
 
 /**
- * Create a tag
+ * Create a tag. This attempts to be smart and will update an existing tag if
+ * you use an existing name.
  */
 exports.create = function(req, res) {
     var tag = new Tag(req.body);
 
     tag.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                tag: tag
-            });
+            res.send(500, { errors: err.errors, tag: sanitize(tag) });
         } else {
-            res.jsonp(tag);
+            res.jsonp(201, sanitize(tag));
         }
     });
 };
@@ -48,12 +75,9 @@ exports.update = function(req, res) {
 
     tag.save(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                tag: tag
-            });
+            res.send(500, { errors: err.errors, tag: sanitize(tag) });
         } else {
-            res.jsonp(tag);
+            res.jsonp(sanitize(tag));
         }
     });
 };
@@ -66,12 +90,9 @@ exports.destroy = function(req, res) {
 
     tag.remove(function(err) {
         if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                tag: tag
-            });
+            return res.send(500, { errors: err.errors, tag: sanitize(tag) });
         } else {
-            res.jsonp(tag);
+            res.jsonp(204, sanitize(tag));
         }
     });
 };
@@ -80,7 +101,7 @@ exports.destroy = function(req, res) {
  * Show a tag
  */
 exports.show = function(req, res) {
-    res.jsonp(req.tag);
+    res.jsonp(sanitize(req.tag));
 };
 
 /**
@@ -93,7 +114,7 @@ exports.all = function(req, res) {
                 status: 500
             });
         } else {
-            res.jsonp(tags);
+            res.jsonp(sanitize(tags));
         }
     });
 };

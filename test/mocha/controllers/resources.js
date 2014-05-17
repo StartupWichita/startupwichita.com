@@ -140,9 +140,6 @@ describe('Resource routing', function() {
         });
 
         it('should successfully delete the specified resource', function(done) {
-            var updatedResource = persistedResource;
-            updatedResource.content = 'Updated Content';
-
             agent
             .del('/api/v1/resources/' + persistedResource._id)
             .end(function(err, res) {
