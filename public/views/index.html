@@ -81,13 +81,17 @@
                 <h2 class="text-center robotoSlab grey">Resources</h2>
                 <owl-carousel id="resourcesCarousel" class="owl-carousel" ng-transclude owl-items="1" owl-ready="resourcesReady">
 
-                    <div class="col-sm-4 resource-wrapper" ng-repeat="resource in featuredResources">
-                        <div class="resources-teaser white">
-                            <a href="" class="white grey-bg">
-                                <h3 class="white">{{ resource.title }}</h3>
-                                <p class="white sm-collapse">{{ resource.content }}</p>
-                            </a>
+                    <div class="row" ng-repeat="row in featuredResources | partition:3">
+
+                        <div class="col-sm-4 resource-wrapper" ng-repeat="resource in row">
+                            <div class="resources-teaser white">
+                                <a href="" class="white grey-bg">
+                                    <h3 class="white">{{ resource.title }}</h3>
+                                    <p class="white sm-collapse">{{ resource.content }}</p>
+                                </a>
+                            </div>
                         </div>
+
                     </div>
 
                 </owl-carousel>
