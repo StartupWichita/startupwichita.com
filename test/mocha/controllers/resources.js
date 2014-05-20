@@ -46,7 +46,7 @@ describe('Resource routing', function() {
             tags: tags,
             content: 'Here is my resource content',
             author: author._id,
-            url: 'http://google.com'
+            url: 'http://startupwichita.com/resource/1'
         };
 
         var persistedResource;
@@ -73,6 +73,30 @@ describe('Resource routing', function() {
                 author._id.toString().should.be.eql(persistedResource.author);
                 tags.should.be.eql(persistedResource.tags);
                 done();
+            });
+        });
+
+        it('should successfully render an rss feed', function(done) {
+            agent
+            .get('/api/v1/resources.rss')
+            .end(function(err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
+
+                var xml2js = require('xml2js');
+                var parser = new xml2js.Parser();
+                parser.parseString(res.text, function(err, result) {
+                  result.rss.channel[0].item.length.should.eql(1);
+
+                  var item = result.rss.channel[0].item[0];
+
+                  item.title.should.be.eql(['Resource Title']);
+                  item.link.should.be.eql(['http://startupwichita.com/resource/1']);
+                  item.description.should.be.eql(['Here is my resource content']);
+                  item['content:encoded'].should.be.eql(['Here is my resource content']);
+
+                  done();
+                });
             });
         });
 

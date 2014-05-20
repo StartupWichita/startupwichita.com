@@ -5,7 +5,8 @@
  */
 var mongoose = require('mongoose'),
     News = mongoose.model('News'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    Feed = require('feed');
 
 
 /**
@@ -83,6 +84,32 @@ exports.all = function(req, res) {
             res.send(500, { errors: err.errors });
         } else {
             return res.jsonp(news);
+        }
+    });
+};
+
+exports.rss = function(req, res) {
+    var feed = new Feed({
+        title: 'Startup Wichita News',
+        description: 'The most recent news registered with the Startup Wichita site',
+        link: 'http://startupwichita.com'
+    });
+
+    News.find().sort('-created_at').limit(20).exec(function(err, news) {
+        if (err) {
+            res.send(500, { errors: err.errors });
+        } else {
+            news.forEach(function(newsItem) {
+                feed.addItem({
+                    title: newsItem.title,
+                    link: newsItem.url,
+                    description: newsItem.content.substr(0, 100),
+                    content: newsItem.content,
+                    date: newsItem.date
+                });
+            });
+
+            res.send(feed.render('rss-2.0'));
         }
     });
 };

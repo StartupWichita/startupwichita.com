@@ -16,6 +16,7 @@ module.exports = function(app) {
 
     app.namespace('/api/v1', function () {
         app.get('/resources', resources.all);
+        app.get('/resources.rss', resources.rss);
         app.post('/resources', authorization.requiresLogin, hasAuthorization, resources.create);
         app.get('/resources/:resourceId', resources.show);
         app.put('/resources/:resourceId', authorization.requiresLogin, hasAuthorization, resources.update);

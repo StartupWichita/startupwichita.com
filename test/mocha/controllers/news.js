@@ -63,7 +63,8 @@ describe('News routing', function() {
             tags: tags,
             people: people,
             date: new Date('1985-12-19 00:00:00'),
-            author: author.id
+            author: author.id,
+            url: 'http://startupwichita.com/news/1'
         };
 
         var persistedNewsItem;
@@ -92,6 +93,30 @@ describe('News routing', function() {
                 tags.should.be.eql(persistedNewsItem.tags);
                 people.should.be.eql(persistedNewsItem.people);
                 done();
+            });
+        });
+
+        it('should successfully render an rss feed', function(done) {
+            agent
+            .get('/api/v1/news.rss')
+            .end(function(err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
+
+                var xml2js = require('xml2js');
+                var parser = new xml2js.Parser();
+                parser.parseString(res.text, function(err, result) {
+                  result.rss.channel[0].item.length.should.eql(1);
+
+                  var item = result.rss.channel[0].item[0];
+
+                  item.title.should.be.eql(['News Title']);
+                  item.link.should.be.eql(['http://startupwichita.com/news/1']);
+                  item.description.should.be.eql(['This is my news description']);
+                  item['content:encoded'].should.be.eql(['This is my news description']);
+
+                  done();
+                });
             });
         });
 
@@ -158,4 +183,3 @@ describe('News routing', function() {
         });
     });
 });
-

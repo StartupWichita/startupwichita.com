@@ -49,7 +49,8 @@ describe('Event routing', function() {
             startTime: new Date(),
             endTime: new Date(),
             address: '216 N Mosley, Wichita, KS 67202',
-            latlng: [37.68858, -97.32753]
+            latlng: [37.68858, -97.32753],
+            url: 'http://startupwichita.com/event/1'
         };
 
         var persistedEvent;
@@ -77,6 +78,30 @@ describe('Event routing', function() {
                 author._id.toString().should.be.eql(persistedEvent.author);
                 tags.should.be.eql(persistedEvent.tags);
                 done();
+            });
+        });
+
+        it('should successfully render an rss feed', function(done) {
+            agent
+            .get('/api/v1/events.rss')
+            .end(function(err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
+
+                var xml2js = require('xml2js');
+                var parser = new xml2js.Parser();
+                parser.parseString(res.text, function(err, result) {
+                  result.rss.channel[0].item.length.should.eql(1);
+
+                  var item = result.rss.channel[0].item[0];
+
+                  item.title.should.be.eql(['Event Title']);
+                  item.link.should.be.eql(['http://startupwichita.com/event/1']);
+                  item.description.should.be.eql(['This is my event description']);
+                  item['content:encoded'].should.be.eql(['This is my event description']);
+
+                  done();
+                });
             });
         });
 
