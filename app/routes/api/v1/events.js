@@ -15,6 +15,7 @@ var hasAuthorization = function(req, res, next) {
 module.exports = function(app) {
     app.namespace('/api/v1', function () {
         app.get('/events', events.all);
+        app.get('/events.rss', events.rss);
         app.post('/events', authorization.requiresLogin, hasAuthorization, events.create);
         app.get('/events/:eventId', events.show);
         app.put('/events/:eventId', authorization.requiresLogin, hasAuthorization, events.update);
