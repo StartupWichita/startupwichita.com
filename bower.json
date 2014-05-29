@@ -13,7 +13,7 @@
     "angular-ui-router": "#master",
     "lodash": "2.4.1",
     "crypto-js": "http://crypto-js.googlecode.com/files/CryptoJS%20v3.1.2.zip",
-    "OwlCarousel": "http://github.com/OwlFonk/OwlCarousel2",
+    "owl.carousel": "latest",
     "modernizr": "~2.8.1",
     "jquery": "~2.1.1"
   }
