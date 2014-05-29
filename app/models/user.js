@@ -18,7 +18,7 @@ var UserSchema = new Schema({
     email: String,
     username: {
         type: String,
-        unique: true
+        index: { unique: true, dropDups: true }
     },
     role: {
         type: String,
