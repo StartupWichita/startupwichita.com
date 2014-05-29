@@ -18,7 +18,6 @@ module.exports = function(config) {
         files: [
             'public/lib/jquery/dist/jquery.js',
             'public/lib/angular/angular.js',
-            'public/lib/OwlCarousel/owl-carousel/owl.carousel.js',
             'public/lib/angular-mocks/angular-mocks.js',
             'public/lib/angular-cookies/angular-cookies.js',
             'public/lib/angular-resource/angular-resource.js',
