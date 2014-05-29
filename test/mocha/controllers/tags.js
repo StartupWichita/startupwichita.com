@@ -20,8 +20,7 @@ describe('Tag routing', function() {
             username: 'tester',
             password: password
         });
-        user.save();
-        done();
+        user.save(done);
     });
 
     describe('Handle CRUD', function () {

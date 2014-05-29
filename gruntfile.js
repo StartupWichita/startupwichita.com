@@ -83,14 +83,24 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-env');
 
-    //Making grunt default to force in order not to break the project.
-    grunt.option('force', true);
+    // Hack from http://bit.ly/1o9yHkT to allow us to enable/disable force for
+    // specific tasks. We want this on tasks like default so we can launch the
+    // server even while there are jshint errors (for example)
+    var previous_force_state = grunt.option('force');
+    grunt.registerTask('force',function(set){
+        if (set === 'on') {
+            grunt.option('force',true);
+        } else if (set === 'off') {
+            grunt.option('force',false);
+        } else if (set === 'restore') {
+            grunt.option('force',previous_force_state);
+        }
+    });
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent']);
+    grunt.registerTask('default', ['force:on', 'jshint', 'concurrent']);
 
     //Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+    grunt.registerTask('test', ['env:test', 'jshint:all', 'mochaTest', 'karma:unit']);
     grunt.registerTask('mocha', ['env:test', 'mochaTest']);
-    grunt.registerTask('check', ['env:test', 'jshint', 'mochaTest', 'karma:unit']);
 };
