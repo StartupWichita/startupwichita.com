@@ -1,3 +1,126 @@
-<section data-ng-controller="IndexController">
-	<h1>This is the home view</h1>
+<section data-ng-controller="IndexController" ng-init="init()">
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <h2 class="text-center robotoSlab cream">Bringing connections and collisions to the tech and startup community in Wichita.</h2>
+        </div>
+    </div>
+
+    <!-- People section -->
+    <div class="container-fluid people"> 
+        <div class="row">
+            <div>
+                <owl-carousel id="peopleCarousel" owl-width="292" class="owl-carousel" ng-transclude owl-ready="peopleReady">
+                    <div ng-repeat="user in featuredUsers">
+                        <img class="lazyOwl" ng-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}">
+                        <div class="people-teaser white text-center"><h4>{{ user.name }}</h4><p>{{ user.tagline }}</p></div>
+                    </div>
+                </owl-carousel>
+                <h2 class="text-center robotoSlab cream">People that connect you</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Events section -->
+    <div class="container-fluid events"> 
+        <div class="row">
+            <div class="col-md-4 col-md-push-4">
+                <div class="grey cream-bg title text-center">
+                    <h2 class="robotoSlab">Events</h2>
+                    <p>Keep up to date on the latest events revolving around startups in Wichita.</p>
+                </div>
+            </div>
+            <div class="col-md-4 col-md-pull-4">
+                <a class="white grey-bg">
+                    <h3>ICT Unconference</h3>
+                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
+                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a class="white grey-bg">
+                    <h3>ICT Unconference</h3>
+                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
+                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <a class="white grey-bg">
+                    <h3>ICT Unconference</h3>
+                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
+                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a class="white grey-bg">
+                    <h3>ICT Unconference</h3>
+                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
+                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a class="white grey-bg">
+                    <h3>ICT Unconference</h3>
+                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
+                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a class="white grey-bg">
+                    <h3>ICT Unconference</h3>
+                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
+                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- News section -->
+    <div class="container-fluid news white orange-bg"> 
+        <div class="arrow-down cream right"></div>
+        <div class="row">
+            <div class="">
+                <h2 class="text-center robotoSlab">News</h2>
+                <owl-carousel id="newsCarousel" class="owl-carousel" ng-transclude owl-width="550" owl-ready="newsReady">
+                    <div ng-repeat="item in featuredNews">
+                        <div class="news-teaser white">
+                            <a href="#"><h3 class="text-center white">{{ item.title }}</h3><p class="white">{{ item.content }}</p></a>
+                        </div>
+                    </div>
+                </owl-carousel>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources section -->
+    <div class="container-fluid resources white cream-bg"> 
+        <div class="arrow-down orange left"></div>
+        <div class="row">
+            <div class="">
+                <h2 class="text-center robotoSlab grey">Resources</h2>
+                <owl-carousel id="resourcesCarousel" class="owl-carousel" ng-transclude owl-items="1" owl-ready="resourcesReady">
+
+                    <div class="col-sm-4 resource-wrapper" ng-repeat="resource in featuredResources">
+                        <div class="resources-teaser white">
+                            <a href="" class="white grey-bg">
+                                <h3 class="white">{{ resource.title }}</h3>
+                                <p class="white sm-collapse">{{ resource.content }}</p>
+                            </a>
+                        </div>
+                    </div>
+
+                </owl-carousel>
+            </div>
+        </div>
+    </div>
+
+    <!-- Responsive iFrame -->
+    <div class="Flexible-map">
+        <!-- Responsive iFrame -->
+        <div class="Flexible-map">
+            <iframe id="googleMap" class="actAsDiv" width="1160" height="415" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;q=Wichita%2C%20KS&amp;aq=0&amp;ie=UTF8&amp;t=m&amp;z=12&amp;iwloc=A&amp;output=embed"></iframe>
+        </div>
+    </div>
 </section>

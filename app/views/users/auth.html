@@ -1,7 +1,8 @@
 {% extends '../layouts/default.html' %}
 
 {% block content %}
-    <div class="row">
+    <div class="container-fluid signup">
+      <div class="row signup">
         <div class="col-md-offset-1 col-md-5">
             <a href="/auth/facebook"><img src="/img/icons/facebook.png"></a>
             <a href="/auth/github"><img src="/img/icons/github.png"></a>
@@ -20,5 +21,6 @@
             {% endif %}
             {% block auth %}{% endblock %}
         </div>
+      </div>
     </div>
 {% endblock %}
