@@ -32,46 +32,25 @@
             </div>
             <div class="col-md-4 col-md-pull-4">
                 <a class="white grey-bg">
-                    <h3>ICT Unconference</h3>
-                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
-                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                    <h3>{{ firstTwoEvents[0].title }}</h3>
+                    <p class="date">{{ firstTwoEvents[0].startTime | date: 'M/d/yy h:mm a' }} at {{ firstTwoEvents[0].address }}</p>
+                    <p>{{ firstTwoEvents[0].content }}</p>
                 </a>
             </div>
             <div class="col-md-4">
                 <a class="white grey-bg">
-                    <h3>ICT Unconference</h3>
-                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
-                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                    <h3>{{ firstTwoEvents[1].title }}</h3>
+                    <p class="date">{{ firstTwoEvents[1].startTime | date: 'M/d/yy h:mm a' }} at {{ firstTwoEvents[1].address }}</p>
+                    <p>{{ firstTwoEvents[1].content }}</p>
                 </a>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div ng-repeat="event in featuredEvents" class="col-md-3">
                 <a class="white grey-bg">
-                    <h3>ICT Unconference</h3>
-                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
-                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a class="white grey-bg">
-                    <h3>ICT Unconference</h3>
-                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
-                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a class="white grey-bg">
-                    <h3>ICT Unconference</h3>
-                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
-                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
-                </a>
-            </div>
-            <div class="col-md-3">
-                <a class="white grey-bg">
-                    <h3>ICT Unconference</h3>
-                    <p class="date">April 22 at the Mariot Hotel, Wichita KS</p>
-                    <p>ICT Unconference is focused on creating collisions in between likeminded business entrepreneurs, makers, and movers in Wichita.</p>
+                    <h3>{{ event.title }}</h3>
+                    <p class="date">{{ event.startTime | date: 'M/d/yy h:mm a' }} at {{ event.address }}</p>
+                    <p>{{ event.content }}</p>
                 </a>
             </div>
         </div>

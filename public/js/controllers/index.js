@@ -2,8 +2,8 @@
     'use strict';
 
     var IndexController = [
-        '$scope', '$timeout', 'Global', 'Users', 'Gravatar', 'News', 'Resources',
-        function ($scope, $timeout, Global, Users, Gravatar, News, Resources) {
+        '$scope', '$timeout', 'Global', 'Users', 'Gravatar', 'News', 'Resources', 'Events',
+        function ($scope, $timeout, Global, Users, Gravatar, News, Resources, Events) {
             $scope.global = Global;
             $scope.gravatar = Gravatar;
 
@@ -15,6 +15,7 @@
                 $scope.getFeaturedUsers();
                 $scope.getFeaturedNews();
                 $scope.getFeaturedResources();
+                $scope.getFeaturedEvents();
             };
 
             $scope.getFeaturedUsers = function() {
@@ -30,6 +31,14 @@
                         $scope.peopleReady = true;
                     }, 0);
 
+                });
+            };
+
+            $scope.getFeaturedEvents = function() {
+                Events.query({}, function(events) {
+                    $scope.firstTwoEvents = events.slice(0, 2);
+                    $scope.featuredEvents = events.slice(2, 6);
+                    console.log($scope.featuredEvents);
                 });
             };
 
