@@ -13,8 +13,8 @@ their GitHub issue.
 
 |Component           |User      |Tag       |Events    |Resource  |News      |
 |--------------------|----------|----------|----------|----------|----------|
-|UI                  |Multiple  |[#32][i32]|[#14][i14]|[#12][i12]|[#11][i11]|
-|Angular Controller  |Multiple  |✓         |[#14][i14]|[#12][i12]|✓         |
+|UI                  |Multiple  |[#32][i32]|[#14][i14]|✓         |[#11][i11]|
+|Angular Controller  |Multiple  |✓         |[#14][i14]|✓         |✓         |
 |Angular Service     |[#08][i08]|✓         |✓         |✓         |✓         |
 |Express Route       |✓         |✓         |✓         |✓         |✓         |
 |Express Controller  |✓         |✓         |✓         |✓         |✓         |
@@ -22,7 +22,6 @@ their GitHub issue.
 
 [i08]: <https://github.com/devict/startupwichita.com/pull/08>  "Issue 08"
 [i11]: <https://github.com/devict/startupwichita.com/pull/11>  "Issue 11"
-[i12]: <https://github.com/devict/startupwichita.com/pull/12>  "Issue 12"
 [i14]: <https://github.com/devict/startupwichita.com/pull/14>  "Issue 14"
 [i32]: <https://github.com/devict/startupwichita.com/pull/32>  "Issue 32"
 [i46]: <https://github.com/devict/startupwichita.com/pull/46>  "Issue 46"
