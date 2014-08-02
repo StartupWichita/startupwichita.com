@@ -8,8 +8,8 @@
         "featured": true,
         "tagline": "JavaScript Dude",
         "provider": "local",
-        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
-        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+        "hashed_password" : "bvbP7SAUl+sApvUOr5LzJH7tQVHdC4wEDJ6A7c0VoQ5vUYrctg0M1lAeip02IS+Msst+Rj2daxECtWW1DBxvXw==",
+        "salt" : "RB2ilgXwNC5zVfjt2KUNow=="
     },
     {
         "name": "Jacob Walker",
@@ -20,8 +20,8 @@
         "featured": true,
         "tagline": "PHP Dude",
         "provider": "local",
-        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
-        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+        "hashed_password" : "bvbP7SAUl+sApvUOr5LzJH7tQVHdC4wEDJ6A7c0VoQ5vUYrctg0M1lAeip02IS+Msst+Rj2daxECtWW1DBxvXw==",
+        "salt" : "RB2ilgXwNC5zVfjt2KUNow=="
     },
     {
         "name": "Jonathan Van Winkle",
@@ -32,8 +32,8 @@
         "featured": true,
         "tagline": "Design Dude",
         "provider": "local",
-        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
-        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+        "hashed_password" : "bvbP7SAUl+sApvUOr5LzJH7tQVHdC4wEDJ6A7c0VoQ5vUYrctg0M1lAeip02IS+Msst+Rj2daxECtWW1DBxvXw==",
+        "salt" : "RB2ilgXwNC5zVfjt2KUNow=="
     },
     {
         "name": "Jim Rice",
@@ -44,8 +44,8 @@
         "featured": true,
         "tagline": "Growler Dude",
         "provider": "local",
-        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
-        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+        "hashed_password" : "bvbP7SAUl+sApvUOr5LzJH7tQVHdC4wEDJ6A7c0VoQ5vUYrctg0M1lAeip02IS+Msst+Rj2daxECtWW1DBxvXw==",
+        "salt" : "RB2ilgXwNC5zVfjt2KUNow=="
     },
     {
         "name": "Kenton Hansen",
@@ -56,7 +56,7 @@
         "featured": true,
         "tagline": "Startup Dude",
         "provider": "local",
-        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
-        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+        "hashed_password" : "bvbP7SAUl+sApvUOr5LzJH7tQVHdC4wEDJ6A7c0VoQ5vUYrctg0M1lAeip02IS+Msst+Rj2daxECtWW1DBxvXw==",
+        "salt" : "RB2ilgXwNC5zVfjt2KUNow=="
     }
 ]
