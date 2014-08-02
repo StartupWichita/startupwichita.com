@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Seth Etter",
+        "email": "sethetter@gmail.com",
+        "username": "sethetter",
+        "role": "Visitor",
+        "bio": "Things and stuff and some other things as well.",
+        "featured": true,
+        "tagline": "JavaScript Dude",
+        "provider": "local",
+        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
+        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+    },
+    {
+        "name": "Jacob Walker",
+        "email": "jacobwalker0814@gmail.com",
+        "username": "jacobwalker0814",
+        "role": "Visitor",
+        "bio": "Things and stuff and some other things as well.",
+        "featured": true,
+        "tagline": "PHP Dude",
+        "provider": "local",
+        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
+        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+    },
+    {
+        "name": "Jonathan Van Winkle",
+        "email": "jonathan.vanwinkle@gmail.com",
+        "username": "jonathanvw",
+        "role": "Visitor",
+        "bio": "Things and stuff and some other things as well.",
+        "featured": true,
+        "tagline": "Design Dude",
+        "provider": "local",
+        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
+        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+    },
+    {
+        "name": "Jim Rice",
+        "email": "hitjim@gmail.com",
+        "username": "jimrice",
+        "role": "Visitor",
+        "bio": "Things and stuff and some other things as well.",
+        "featured": true,
+        "tagline": "Growler Dude",
+        "provider": "local",
+        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
+        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+    },
+    {
+        "name": "Kenton Hansen",
+        "email": "kenton@gobananago.com",
+        "username": "kentonh",
+        "role": "Visitor",
+        "bio": "Things and stuff and some other things as well.",
+        "featured": true,
+        "tagline": "Startup Dude",
+        "provider": "local",
+        "hashed_password" : "4H3mPb+SDLmsLh2e4d+qrBU6xbr8mqkdy14u4YreAiJVxYUz25fI4hEhqdWKr7rAD4W4pJIOO3EqK7iiFtoUSw==",
+        "salt" : "05pYr+aw6oRgfajjg3cmiQ=="
+    }
+]
