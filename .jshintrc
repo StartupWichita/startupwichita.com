@@ -17,8 +17,10 @@
     "strict": true, // Require `use strict` pragma in every file.
     "trailing": true, // Prohibit trailing whitespaces.
     "smarttabs": false, // Suppresses warnings about mixed tabs and spaces
+    "eqnull": true,     // Tolerate use of `== null`
     "globals": { // Globals variables.
-        "angular": true
+        "angular": true,
+        "_": true
     },
     "predef": [ // Extra globals.
         "define",
@@ -35,6 +37,6 @@
         "expect"
     ],
     "indent": 4, // Specify indentation spacing
-    "devel": true, // Allow development statements e.g. `console.log();`.
+    "devel": false, // Allow development statements e.g. `console.log();`.
     "noempty": true // Prohibit use of empty blocks.
 }
