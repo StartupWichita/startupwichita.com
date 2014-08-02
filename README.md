@@ -53,6 +53,13 @@ grunt                          # This will run the default grunt task which
                                # will start the server
 ~~~
 
+~~~bash
+# Seed the dev mongo collections
+for file in `ls seed`; do
+  mongoimport --db mean-dev --collection ${file/%-*/} --jsonArray < seed/${file};
+done;
+~~~
+
 Wait until you see the line `Express app started on port 3000`. Leave that
 terminal window open for as long as you want the server to be running. You can
 type `rs` and Enter to restart the server.

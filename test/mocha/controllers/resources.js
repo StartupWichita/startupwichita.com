@@ -84,16 +84,16 @@ describe('Resource routing', function() {
                 var xml2js = require('xml2js');
                 var parser = new xml2js.Parser();
                 parser.parseString(res.text, function(err, result) {
-                  result.rss.channel[0].item.length.should.eql(1);
+                    result.rss.channel[0].item.length.should.eql(1);
 
-                  var item = result.rss.channel[0].item[0];
+                    var item = result.rss.channel[0].item[0];
 
-                  item.title.should.be.eql(['Resource Title']);
-                  item.link.should.be.eql(['http://startupwichita.com/resource/1']);
-                  item.description.should.be.eql(['Here is my resource content']);
-                  item['content:encoded'].should.be.eql(['Here is my resource content']);
+                    item.title.should.be.eql(['Resource Title']);
+                    item.link.should.be.eql(['http://startupwichita.com/resource/1']);
+                    item.description.should.be.eql(['Here is my resource content']);
+                    item['content:encoded'].should.be.eql(['Here is my resource content']);
 
-                  done();
+                    done();
                 });
             });
         });
