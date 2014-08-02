@@ -7,13 +7,13 @@
     <!-- People section -->
     <div class="row people">
           <div>
+              <h2 class="text-center robotoSlab cream">People that connect you</h2>
               <owl-carousel id="peopleCarousel" owl-width="292" class="owl-carousel" ng-transclude owl-ready="peopleReady">
                   <div ng-repeat="user in featuredUsers">
                       <img class="lazyOwl" ng-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}">
                       <div class="people-teaser white text-center"><h4>{{ user.name }}</h4><p>{{ user.tagline }}</p></div>
                   </div>
               </owl-carousel>
-              <h2 class="text-center robotoSlab cream">People that connect you</h2>
           </div>
     </div>
 
