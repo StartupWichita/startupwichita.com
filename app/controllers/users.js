@@ -112,7 +112,7 @@ exports.create = function(req, res, next) {
                     message = 'Please fill all the required fields';
             }
 
-            return res.jsonp(500, {
+            return res.render('users/signup', {
                 message: message,
                 user: sanitize(user, true)
             });
