@@ -55,9 +55,10 @@ grunt                          # This will run the default grunt task which
 
 ~~~bash
 # Seed the dev mongo collections
-for file in `ls seed`; do
-  mongoimport --db mean-dev --collection ${file/%-*/} --jsonArray < seed/${file};
-done;
+mongoimport --db mean-dev --collection topics --file seed/events-data.json --jsonArray
+mongoimport --db mean-dev --collection topics --file seed/news-data.json --jsonArray
+mongoimport --db mean-dev --collection topics --file seed/resource-data.json --jsonArray
+mongoimport --db mean-dev --collection users --file seed/users-data.json --jsonArray
 ~~~
 
 Wait until you see the line `Express app started on port 3000`. Leave that

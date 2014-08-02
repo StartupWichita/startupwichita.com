@@ -48,8 +48,7 @@ describe('User routing', function() {
                 .send(user)
                 .end(function(err, res) {
                     should.not.exist(err);
-                    res.should.have.status(500);
-                    res.body.message.should.equal('Username already exists');
+                    res.text.should.match(/Username already exists/);
                     done();
                 });
             });
@@ -63,8 +62,7 @@ describe('User routing', function() {
             .send(user)
             .end(function(err, res) {
                 should.not.exist(err);
-                res.should.have.status(500);
-                res.body.message.should.equal('Please fill all the required fields');
+                res.text.should.match(/Please fill all the required fields/);
                 done();
             });
         });
