@@ -2,9 +2,10 @@
     'use strict';
 
     var UsersController = [
-        '$scope', '$stateParams', '$location', 'Global', 'Users',
-        function ($scope, $stateParams, $location, Global, Users) {
+        '$scope', '$stateParams', '$location', 'Global', 'Users', 'Gravatar',
+        function ($scope, $stateParams, $location, Global, Users, Gravatar) {
             $scope.global = Global;
+            $scope.gravatar = Gravatar;
 
             $scope.update = function() {
                 var user = $scope.user;

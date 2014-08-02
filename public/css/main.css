@@ -88,7 +88,6 @@ a {
     background: url("../img/icon_Resources.png") 50% 50% no-repeat;
 }
 
-
 .nav > li > a{
   z-index: 10;
   padding:15px 15px;
@@ -110,6 +109,11 @@ a {
 
 .nav>li>a>img.img-responsive{
   max-width:100%;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 #logoBottom{
