@@ -8,5 +8,5 @@ services:
 notifications:
   slack: thelaborparty:F8sIulfJ68UaZ3NhteTx1mu7
   irc: "chat.freenode.net#devict"
-  on_success: always # [always|never|change] # default: change
+  on_success: change # [always|never|change] # default: change
   on_failure: always # [always|never|change] # default: always
