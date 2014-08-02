@@ -1,0 +1,57 @@
+<section data-ng-controller="EventsController">
+	<form class="form-horizontal col-md-6" role="form" data-ng-submit="create()">
+		<div class="form-group">
+			<label for="title" class="col-md-2 control-label">Title</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="title" id="title" placeholder="Title" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="content" class="col-md-2 control-label">Content</label>
+			<div class="col-md-10">
+				<textarea data-ng-model="content" id="content" cols="30" rows="10" placeholder="Content" class="form-control" required></textarea>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="startTime" class="col-md-2 control-label">Start Time</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="startTime" id="startTime" placeholder="Start Time" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="endTime" class="col-md-2 control-label">End Time</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="endTime" id="endTime" placeholder="End Time" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="address" class="col-md-2 control-label">Address</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="address" id="address" placeholder="Address" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="author" class="col-md-2 control-label">Author</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="author" id="author" placeholder="Author" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="tags" class="col-md-2 control-label">Tags</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="tags" id="tags" placeholder="Tags" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="latlng" class="col-md-2 control-label">Lat / Long</label>
+			<div class="col-md-10">
+				<input type="text" class="form-control" data-ng-model="latlng" id="latlng" placeholder="" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<button type="submit" class="btn btn-default">Submit</button>
+			</div>
+		</div>
+	</form>
+</section>
