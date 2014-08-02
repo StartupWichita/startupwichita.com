@@ -23,6 +23,10 @@ a {
 	color: #f8e4c5;
 }
 
+.container-fluid {
+  padding: 0;
+}
+
 .navbar-brand{
   margin:0 auto;
   float:none; 
@@ -300,7 +304,6 @@ line-height:1.25em;
 }
 
 .news{
-  border-top:2px solid #FFFFFF;
   position:relative;
 }
 
@@ -529,6 +532,7 @@ background-color: #ef592b;
 
 div.container-fluid.signup {
   background-color: #f8e4c5; width: 100%;
+  padding: 0 1em;
 }
 .signup a { color: #ef592b;}
 
