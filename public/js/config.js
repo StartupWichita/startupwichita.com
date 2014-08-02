@@ -16,11 +16,21 @@
                 })
                 .state('create article', {
                     url: '/events/create',
-                    templateUrl: 'views/events/create.html'
+                    templateUrl: 'views/events/create.html',
+                    data: {
+                        authorization: {
+                            required: true
+                        }
+                    }
                 })
                 .state('edit article', {
                     url: '/events/:eventId/edit',
-                    templateUrl: 'views/events/edit.html'
+                    templateUrl: 'views/events/edit.html',
+                    data: {
+                        authorization: {
+                            required: true
+                        }
+                    }
                 })
                 .state('article by id', {
                     url: '/events/:eventId',
@@ -32,11 +42,21 @@
                 })
                 .state('create resource', {
                     url: '/resources/create',
-                    templateUrl: 'views/resources/create.html'
+                    templateUrl: 'views/resources/create.html',
+                    data: {
+                        authorization: {
+                            required: true
+                        }
+                    }
                 })
                 .state('edit resource', {
                     url: '/resources/:resourceId/edit',
-                    templateUrl: 'views/resources/edit.html'
+                    templateUrl: 'views/resources/edit.html',
+                    data: {
+                        authorization: {
+                            required: true
+                        }
+                    }
                 })
                 .state('resource by id', {
                     url: '/resources/:resourceId',
@@ -57,7 +77,31 @@
         }
     ];
 
+    var AuthenticatedRouteProvider = [
+        '$rootScope', '$window', 'Global',
+        function ($rootScope, $window, Global) {
+            $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+                if (toState.data != null && toState.data.authorization != null) {
+                    var authRequired = toState.data.authorization.required,
+                        returnUrl = '';
+
+                    if (authRequired && !Global.authenticated) {
+                        event.preventDefault();
+                        returnUrl = toState.url;
+                        _.forEach(toStateParams, function (value, key) {
+                            returnUrl = returnUrl.replace(':' + key, value);
+                        });
+
+                        // now, send them to the signin state so they can log in
+                        $window.location = '/signin?returnUrl=' + returnUrl;
+                    }
+                }
+            });
+        }
+    ];
+
     angular.module('startupwichita')
         .config(RouteProvider)
-        .config(LocationProvider);
+        .config(LocationProvider)
+        .run(AuthenticatedRouteProvider);
 })(window.angular);
