@@ -52,6 +52,14 @@
                     url: '/news/:newsItemId',
                     templateUrl: 'views/news/view.html'
                 })
+                .state('all people', {
+                    url: '/people',
+                    templateUrl: 'views/people/list.html'
+                })
+                .state('people by id', {
+                    url: '/resources/:resourceId',
+                    templateUrl: 'views/resources/view.html'
+                })
                 .state('all resources', {
                     url: '/resources',
                     templateUrl: 'views/resources/list.html'

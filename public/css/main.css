@@ -1,3 +1,5 @@
+@import url("views/people.css");
+
 /*Color codes
 #281816 charcoal
 #ef592b orange
@@ -537,5 +539,11 @@ border-color: #ef592b;
 color: #281816;
 background-color: #ef592b;
 border-color: #ef592b;
+}
+
+.util-bar{
+  background: #A3917E;
+  color: #FFF8e8;
+  padding:.75em 5em;
 }
 
