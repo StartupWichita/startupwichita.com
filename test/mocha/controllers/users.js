@@ -77,7 +77,7 @@ describe('User routing', function() {
         .send({email: 'wrong@email.com', password: password})
         .end(function(err, res) {
             should.not.exist(err);
-            res.should.have.status(401);
+            res.should.have.status(302);
             done();
         });
     });

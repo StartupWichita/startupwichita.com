@@ -35,7 +35,8 @@ module.exports = function(app, passport) {
     // Setting the local strategy route
     app.post('/users/session', passport.authenticate('local', {
         successFlash: 'Logged in!',
-        failureFlash: true
+        failureFlash: true,
+        failureRedirect: '/signin'
     }), users.session);
 
     // Setting the facebook oauth routes
