@@ -13,12 +13,14 @@ var mongoose = require('mongoose'),
  * Find newsItem by _id
  */
 exports.newsItem = function(req, res, next, _id) {
-    News.findOne({ _id: _id }, function(err, newsItem) {
-        if (err) return next(err);
-        if (!newsItem) return next(new Error('Failed to find newsItem ' + _id));
-        req.newsItem = newsItem;
-        next();
-    });
+    News.findOne({ _id: _id })
+        .populate('author')
+        .exec(function(err, newsItem) {
+            if (err) return next(err);
+            if (!newsItem) return next(new Error('Failed to find newsItem ' + _id));
+            req.newsItem = newsItem;
+            next();
+        });
 };
 
 /**
@@ -79,13 +81,16 @@ exports.show = function(req, res) {
  * List of News items
  */
 exports.all = function(req, res) {
-    News.find().sort('-title').exec(function(err, news) {
-        if (err) {
-            res.send(500, { errors: err.errors });
-        } else {
-            return res.jsonp(news);
-        }
-    });
+    News.find()
+        .populate('author')
+        .sort('-title')
+        .exec(function(err, news) {
+            if (err) {
+                res.send(500, { errors: err.errors });
+            } else {
+                return res.jsonp(news);
+            }
+        });
 };
 
 exports.rss = function(req, res) {
@@ -95,21 +100,25 @@ exports.rss = function(req, res) {
         link: 'http://startupwichita.com'
     });
 
-    News.find().sort('-created_at').limit(20).exec(function(err, news) {
-        if (err) {
-            res.send(500, { errors: err.errors });
-        } else {
-            news.forEach(function(newsItem) {
-                feed.addItem({
-                    title: newsItem.title,
-                    link: newsItem.url,
-                    description: newsItem.content.substr(0, 100),
-                    content: newsItem.content,
-                    date: newsItem.date
+    News.find()
+        .populate('author')
+        .sort('-created_at')
+        .limit(20)
+        .exec(function(err, news) {
+            if (err) {
+                res.send(500, { errors: err.errors });
+            } else {
+                news.forEach(function(newsItem) {
+                    feed.addItem({
+                        title: newsItem.title,
+                        link: newsItem.url,
+                        description: newsItem.content.substr(0, 100),
+                        content: newsItem.content,
+                        date: newsItem.date
+                    });
                 });
-            });
 
-            res.send(feed.render('rss-2.0'));
-        }
-    });
+                res.send(feed.render('rss-2.0'));
+            }
+        });
 };

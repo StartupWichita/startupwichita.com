@@ -10,7 +10,8 @@
                 var newsItem = new News({
                     title: this.title,
                     content: this.content,
-                    date: new Date()
+                    url: this.url,
+                    author: $scope.global.user._id
                 });
 
                 newsItem.$save().then(function(response) {

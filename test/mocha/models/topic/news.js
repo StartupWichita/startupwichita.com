@@ -3,8 +3,7 @@
 /**
  * Module dependencies.
  */
-var should = require('should'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
     News = mongoose.model('News'),
     Tag = mongoose.model('Tag'),
     User = mongoose.model('User');
@@ -24,38 +23,23 @@ describe('News', function() {
                 provider: 'local'
             });
 
-            tag = new Tag({'name': 'example'});
+            tag = new Tag({name: 'example'});
 
-            news = new News({
-                title: 'Example News',
-                tags: [tag],
-                content: 'Here is some example content.',
-                author: author._id,
-                date: new Date()
+            author.save(function() {
+                news = new News({
+                    title: 'Example News',
+                    tags: [tag],
+                    content: 'Here is some example content.',
+                    author: author._id,
+                });
+
+                done();
             });
-
-            done();
         });
 
         describe('Method Save', function() {
             it('should be able to save without problems', function(done) {
                 news.save(done);
-            });
-
-            it('should show an error when try to save without date', function(done) {
-                news.date = '';
-                return news.save(function(err) {
-                    should.exist(err);
-                    done();
-                });
-            });
-
-            it('should show an error when try to save without a valid date', function(done) {
-                news.date = 'This is not a date';
-                return news.save(function(err) {
-                    should.exist(err);
-                    done();
-                });
             });
         });
 

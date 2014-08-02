@@ -23,6 +23,8 @@
             // Initialize the controller and a mock scope
             var NewsController,
                 scope,
+                Global,
+                user,
                 $httpBackend,
                 $stateParams,
                 $location;
@@ -33,9 +35,16 @@
             beforeEach(inject(function($controller, $rootScope, _$location_, _$stateParams_, _$httpBackend_) {
 
                 scope = $rootScope.$new();
+                user = {
+                    _id: 'abcdef123456',
+                    name: 'User McUserton'
+                };
+
+                Global = {user: user};
 
                 NewsController = $controller('NewsController', {
-                    $scope: scope
+                    $scope: scope,
+                    Global: Global
                 });
 
                 $stateParams = _$stateParams_;
@@ -51,8 +60,9 @@
 
                     // test expected GET request
                     $httpBackend.expectGET('/api/v1/news').respond([{
-                        title: 'An NewsItem about MEAN',
-                        content: 'MEAN rocks!'
+                        title: 'An NewsItem about Startup Wichita',
+                        content: 'Startup Wichita rocks!',
+                        author: user
                     }]);
 
                     // run controller
@@ -60,8 +70,9 @@
                     $httpBackend.flush();
 
                     // test scope value
-                    expect(scope.news[0].title).toBe('An NewsItem about MEAN');
-                    expect(scope.news[0].content).toBe('MEAN rocks!');
+                    expect(scope.news[0].title).toBe('An NewsItem about Startup Wichita');
+                    expect(scope.news[0].content).toBe('Startup Wichita rocks!');
+                    expect(scope.news[0].author._id).toBe('abcdef123456');
                 });
 
             it('$scope.findOne() should create an array with one newsItem object fetched ' +
@@ -74,8 +85,8 @@
                     var testNewsData = function() {
                         return {
                             _id: newsItemId,
-                            title: 'An News item about Start Up Wichita',
-                            content: 'Start Up Wichita rocks!'
+                            title: 'An News item about Startup Wichita',
+                            content: 'Startup Wichita rocks!'
                         };
                     };
 
@@ -89,7 +100,6 @@
 
                     // test scope value
                     expect(scope.currentItem).toEqualData(testNewsData());
-
                 });
 
             it('$scope.create() with valid form data should send a POST request ' +
@@ -127,8 +137,8 @@
                 var putNewsData = function() {
                     return {
                         _id: newsItemId,
-                        title: 'An NewsItem about Start Up Wichita',
-                        to: 'Start Up Wichita is great!'
+                        title: 'An NewsItem about Startup Wichita',
+                        to: 'Startup Wichita is great!'
                     };
                 };
 
@@ -147,34 +157,32 @@
 
                 // test URL location to new object
                 expect($location.path()).toBe('/news/' + putNewsData()._id);
-
             }));
 
             it('$scope.remove() should send a DELETE request with a valid _id' +
                 'and remove the newsItem from the scope', inject(function(News) {
-                    var newsItemId = '525a8422f6d0f87f0e407a33';
+                var newsItemId = '525a8422f6d0f87f0e407a33';
 
-                    // fixture news item
-                    var newsItem = new News({
-                        _id: newsItemId
-                    });
+                // fixture news item
+                var newsItem = new News({
+                    _id: newsItemId
+                });
 
-                    // mock news items in scope
-                    scope.news = [];
-                    scope.news.push(newsItem);
+                // mock news items in scope
+                scope.news = [];
+                scope.news.push(newsItem);
 
-                    // test expected news item DELETE request
-                    $httpBackend.expectDELETE('/api/v1/news/' + newsItemId).respond(204);
+                // test expected news item DELETE request
+                $httpBackend.expectDELETE('/api/v1/news/' + newsItemId).respond(204);
 
-                    // run controller
-                    scope.remove(newsItem);
-                    $httpBackend.flush();
+                // run controller
+                scope.remove(newsItem);
+                $httpBackend.flush();
 
-                    // test after successful delete URL location news lis
-                    //expect($location.path()).toBe('/news');
-                    expect(scope.news.length).toBe(0);
-
-                }));
+                // test after successful delete URL location news lis
+                //expect($location.path()).toBe('/news');
+                expect(scope.news.length).toBe(0);
+            }));
         });
     });
 }());

@@ -12,7 +12,9 @@ var should = require('should'),
 describe('News routing', function() {
     var user,
         email = 'testing@example.com',
-        password = 'test password';
+        password = 'test password',
+        people,
+        newsItem;
 
     before(function(done) {
         user = new User({
@@ -21,50 +23,36 @@ describe('News routing', function() {
             username: 'tester',
             password: password
         });
-        user.save(done);
+        user.save(function() {
+            var person_1 = new User({
+                name: 'Some person',
+                email: 'person_1@foobar.com',
+                username: 'person_1',
+                password: 'password1234'
+            });
+            person_1.save(function() {
+                var person_2 = new User({
+                    name: 'Some person',
+                    email: 'person_2@foobar.com',
+                    username: 'person_2',
+                    password: 'password1234'
+                });
+                person_2.save(function() {
+                    people = [person_1._id.toString(), person_2._id.toString()];
+                    newsItem = {
+                        title: 'News Title',
+                        content: 'This is my news description',
+                        people: people,
+                        author: user._id,
+                        url: 'http://site.news.fake/story/42'
+                    };
+                    done();
+                });
+            });
+        });
     });
 
     describe('Handle CRUD', function () {
-        var tag_foo = new Tag({name: 'foo'}),
-            tag_bar = new Tag({name: 'bar'});
-        tag_foo.save();
-        tag_bar.save();
-        var tags = [tag_foo.id, tag_bar.id];
-
-        var author = new User({
-            name: 'Some author',
-            email: 'foo@bar.com',
-            username: 'author',
-            password: 'password1234'
-        });
-        author.save();
-
-        var person_1 = new User({
-            name: 'Some person',
-            email: 'person_1@foobar.com',
-            username: 'person_1',
-            password: 'password1234'
-        });
-        person_1.save();
-        var person_2 = new User({
-            name: 'Some person',
-            email: 'person_2@foobar.com',
-            username: 'person_2',
-            password: 'password1234'
-        });
-        person_2.save();
-        var people = [person_1.id, person_2.id];
-
-        var newsItem = {
-            title: 'News Title',
-            content: 'This is my news description',
-            tags: tags,
-            people: people,
-            date: new Date('1985-12-19 00:00:00'),
-            author: author.id,
-            url: 'http://startupwichita.com/news/1'
-        };
-
         var persistedNewsItem;
 
         it('login', function(done) {
@@ -85,10 +73,15 @@ describe('News routing', function() {
             .end(function(err, res) {
                 should.not.exist(err);
                 res.should.have.status(201);
+                // We get the item back in the response from POST. We use
+                // that in future tests. Right now "author" is not
+                // populated with the user object so test that the ID is
+                // there then inject it ourselves
                 persistedNewsItem = res.body;
+                user._id.toString().should.be.eql(persistedNewsItem.author);
+                persistedNewsItem.author = user;
+
                 should.exist(persistedNewsItem.created_at);
-                author.id.should.be.eql(persistedNewsItem.author);
-                tags.should.be.eql(persistedNewsItem.tags);
                 people.should.be.eql(persistedNewsItem.people);
                 done();
             });
@@ -109,7 +102,7 @@ describe('News routing', function() {
                     var item = result.rss.channel[0].item[0];
 
                     item.title.should.be.eql(['News Title']);
-                    item.link.should.be.eql(['http://startupwichita.com/news/1']);
+                    item.link.should.be.eql(['http://site.news.fake/story/42']);
                     item.description.should.be.eql(['This is my news description']);
                     item['content:encoded'].should.be.eql(['This is my news description']);
 
@@ -125,7 +118,8 @@ describe('News routing', function() {
                 should.not.exist(err);
                 res.should.have.status(200);
                 res.body.length.should.eql(1);
-                res.body[0].should.be.eql(persistedNewsItem);
+                var responseObject = res.body[0];
+                responseObject._id.should.be.eql(persistedNewsItem._id);
                 done();
             });
         });
@@ -136,7 +130,8 @@ describe('News routing', function() {
             .end(function(err, res) {
                 should.not.exist(err);
                 res.should.have.status(200);
-                res.body.should.be.eql(persistedNewsItem);
+                var responseObject = res.body;
+                responseObject._id.should.be.eql(persistedNewsItem._id);
                 done();
             });
         });
