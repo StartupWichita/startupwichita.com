@@ -42,6 +42,10 @@
                     url: '/resources/:resourceId',
                     templateUrl: 'views/resources/view.html'
                 })
+                .state('edit user', {
+                    url: '/users/:userId/edit',
+                    templateUrl: 'views/users/edit.html'
+                })
                 .state('home', {
                     url: '/',
                     templateUrl: 'views/index.html'

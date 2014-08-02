@@ -39,6 +39,14 @@
                 expect(users[0].name).toEqual('Bob Smith');
                 expect(users[1].name).toEqual('Harold Johnson');
             });
+            it('should find one user', function() {
+                $httpBackend.when('GET', '/api/v1/users/1').respond(userData[0]);
+
+                var user = Users.get({ _id: 1 });
+                $httpBackend.flush();
+
+                expect(user.name).toEqual('Bob Smith');
+            });
         });
     });
 })();

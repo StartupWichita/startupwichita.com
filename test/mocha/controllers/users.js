@@ -127,6 +127,28 @@ describe('User routing', function() {
             });
         });
 
+        it('should return all properties of logged in user from show', function(done) {
+            agent
+            .get('/api/v1/users/' + u._id)
+            .end(function(err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
+
+                should.exist(res.body.email);
+
+                res.body.email.should.equal(u.email);
+                res.body.name.should.equal(u.name);
+                should.exist(res.body.name);
+                should.exist(res.body.bio);
+                should.exist(res.body.tagline);
+                should.exist(res.body.emailHash);
+                should.exist(res.body.role);
+                should.exist(res.body.featured);
+
+                done();
+            });
+        });
+
         describe('Update and deletion', function() {
             it('should allow update of logged in user', function(done) {
                 var newEmail = 'new@email.com',
@@ -158,6 +180,7 @@ describe('User routing', function() {
     });
 
     describe('Requests of not logged in user', function() {
+
         it('should exclude sensitive properties for individual request', function(done) {
             var u = new User(user);
             u.save(function(err) {

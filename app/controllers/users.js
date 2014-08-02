@@ -163,7 +163,8 @@ exports.me = function(req, res) {
  * Show a user
  */
 exports.show = function(req, res) {
-    res.jsonp(sanitize(req.profile));
+    var authorized = (req.isAuthenticated() && req.profile.id === req.user.id);
+    res.jsonp(sanitize(req.profile, authorized));
 };
 
 /**
