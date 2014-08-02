@@ -104,16 +104,16 @@ describe('News routing', function() {
                 var xml2js = require('xml2js');
                 var parser = new xml2js.Parser();
                 parser.parseString(res.text, function(err, result) {
-                  result.rss.channel[0].item.length.should.eql(1);
+                    result.rss.channel[0].item.length.should.eql(1);
 
-                  var item = result.rss.channel[0].item[0];
+                    var item = result.rss.channel[0].item[0];
 
-                  item.title.should.be.eql(['News Title']);
-                  item.link.should.be.eql(['http://startupwichita.com/news/1']);
-                  item.description.should.be.eql(['This is my news description']);
-                  item['content:encoded'].should.be.eql(['This is my news description']);
+                    item.title.should.be.eql(['News Title']);
+                    item.link.should.be.eql(['http://startupwichita.com/news/1']);
+                    item.description.should.be.eql(['This is my news description']);
+                    item['content:encoded'].should.be.eql(['This is my news description']);
 
-                  done();
+                    done();
                 });
             });
         });
