@@ -1,0 +1,56 @@
+/*
+ Orange: #EF592B;
+ Salmon: #ff7449;
+ Graphite: #271816;
+ Gray: #281816;
+
+ Cream: #F7E4C1;
+ Lighter Cream: #fff8e8;
+*/
+.people{
+  clear:both;
+}
+.people li:nth-child(odd) {
+  text-align:left;
+}
+.people li:nth-child(even) {
+  text-align:right;
+}
+.people li:nth-child(4n+1) {
+  background: #EF592B;
+  color: #F7E4C1;
+}
+.people li:nth-child(4n+2) {
+  background: #ff7449;
+  color: #F7E4C1;
+}
+.people li:nth-child(4n+3) {
+  background: #fff8e8;
+  color: #271816;
+}
+.people li:nth-child(4n+4) {
+  background: #F7E4C1;
+  color: #271816;
+}
+.people li:nth-child(4n+3) a, ul.people li:nth-child(4n+4) a{
+  color: #271816;
+}
+.people li{
+  width:50%;
+  float:left;
+}
+.peopleWrapper{
+  max-height: 17em;
+}
+.people li:nth-child(odd) .peopleWrapper{
+  float:left;
+  margin-right: 1em;
+}
+.people li:nth-child(even) .peopleWrapper{
+  float:right;
+  margin-left: 1em;
+}
+.workplace{
+  font-weight:lighter;
+  font-size:2em;
+}
