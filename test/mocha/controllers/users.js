@@ -28,18 +28,7 @@ describe('User routing', function() {
         .send(user)
         .end(function(err, res) {
             should.not.exist(err);
-            res.should.have.status(201);
-
-            res.body.user.email.should.equal(user.email);
-            res.body.user.name.should.equal(user.name);
-            should.exist(res.body.user.name);
-            should.exist(res.body.user.bio);
-            should.exist(res.body.user.tagline);
-            should.exist(res.body.user.emailHash);
-            should.exist(res.body.user.role);
-            should.exist(res.body.user.featured);
-
-            should.not.exist(res.body.user.hashed_password);
+            res.should.have.status(302);
 
             done();
         });
