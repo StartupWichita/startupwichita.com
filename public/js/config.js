@@ -52,13 +52,17 @@
                     url: '/news/:newsItemId',
                     templateUrl: 'views/news/view.html'
                 })
-                .state('all people', {
-                    url: '/people',
-                    templateUrl: 'views/people/list.html'
+                .state('all users', {
+                    url: '/users',
+                    templateUrl: 'views/users/list.html'
                 })
-                .state('people by id', {
-                    url: '/resources/:resourceId',
-                    templateUrl: 'views/resources/view.html'
+                .state('user by id', {
+                    url: '/user/:userId',
+                    templateUrl: 'views/users/view.html'
+                })
+                .state('edit user', {
+                    url: '/users/:userId/edit',
+                    templateUrl: 'views/users/edit.html'
                 })
                 .state('all resources', {
                     url: '/resources',
@@ -85,10 +89,6 @@
                 .state('resource by id', {
                     url: '/resources/:resourceId',
                     templateUrl: 'views/resources/view.html'
-                })
-                .state('edit user', {
-                    url: '/users/:userId/edit',
-                    templateUrl: 'views/users/edit.html'
                 })
                 .state('home', {
                     url: '/',

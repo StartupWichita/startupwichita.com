@@ -1,4 +1,4 @@
-@import url("views/people.css");
+@import url("views/users.css");
 
 /*Color codes
 #281816 charcoal
@@ -6,7 +6,7 @@
 #a3917e grey
 #f8e4c5 cream
 #a7def6
-#17A3BF turquise
+#17A3BF turquoise
 */
 
 body{
@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p{
 }
 
 a {
-	color: #f8e4c5;
+  color: #f8e4c5;
 }
 
 .navbar-brand{
@@ -34,7 +34,7 @@ a {
   box-shadow:none;
 }
 .masthead {
-	background-color: #281816;
+  background-color: #281816;
   border-radius: 0;
 }
 
