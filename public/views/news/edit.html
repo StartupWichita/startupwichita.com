@@ -1,4 +1,17 @@
 <section data-ng-controller="NewsController" data-ng-init="findOne()">
+    <form class="form-inline util-bar" role="form">
+        <a class="btn pull-right" href="/#!/news/create">
+            Add News <i class="glyphicon glyphicon-plus"></i>
+        </a>
+        <div data-ng-show="global.user._id == currentItem.author._id">
+            <a class="btn pull-right" data-ng-click="remove();">
+                Remove <i class="glyphicon glyphicon-trash"></i>
+            </a>
+            <a class="btn btn-cancel pull-right" href="/#!/news/{{currentItem._id}}">
+                Cancel <i class="glyphicon glyphicon-ban-circle"></i>
+            </a>
+        </div>
+    </form>
     <form class="form-horizontal col-md-6" role="form" data-ng-submit="update()">
         <div class="form-group">
             <label for="title" class="col-md-2 control-label">Title</label>
