@@ -8,7 +8,9 @@
   <ul class="people list-unstyled">
     <li data-ng-repeat="user in users">
       <img class="peopleWrapper" ng-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}" />
-      <h2 class="robotoSlab"><a>{{ user.name }}</a></h2>
+      <h2 class="robotoSlab">
+          <a href="/#!/users/{{user._id}}">{{ user.name }}</a>
+      </h2>
       <p class="catchphrase">{{ user.tagline }}</p>
       <p>{{ user.bio }}</p>
     </li>

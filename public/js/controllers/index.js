@@ -38,7 +38,6 @@
                 Events.query({}, function(events) {
                     $scope.firstTwoEvents = events.slice(0, 2);
                     $scope.featuredEvents = events.slice(2, 6);
-                    console.log($scope.featuredEvents);
                 });
             };
 

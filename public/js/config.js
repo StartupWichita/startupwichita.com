@@ -57,7 +57,7 @@
                     templateUrl: 'views/users/list.html'
                 })
                 .state('user by id', {
-                    url: '/user/:userId',
+                    url: '/users/:userId',
                     templateUrl: 'views/users/view.html'
                 })
                 .state('edit user', {
