@@ -67,7 +67,7 @@
 
             $scope.findOne = function() {
                 Events.get({
-                    eventId: $stateParams.eventId
+                    _id: $stateParams.eventId
                 }, function(event) {
                     $scope.event = event;
                 });

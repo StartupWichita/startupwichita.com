@@ -1,22 +1,23 @@
-<section data-ng-controller="NewsController" data-ng-init="findOne()">
-    <form class="form-inline util-bar" role="form">
-        <a class="btn pull-right" href="/#!/news/create">
-            Add News <i class="glyphicon glyphicon-plus"></i>
-        </a>
-        <div data-ng-show="global.user._id == currentItem.author._id">
-            <a class="btn pull-right" data-ng-click="remove();">
-                Remove <i class="glyphicon glyphicon-trash"></i>
-            </a>
-            <a class="btn pull-right" href="/#!/news/{{currentItem._id}}/edit">
-                Edit <i class="glyphicon glyphicon-edit"></i>
-            </a>
-        </div>
-    </form>
-    <h2>{{currentItem.title}}</h2>
+<section data-ng-controller="NewsController" data-ng-init="findOne()" class="alternate">
+  <form class="form-inline util-bar" role="form">
+    <a class="btn pull-right" href="/#!/news/create">
+      Add News <i class="glyphicon glyphicon-plus"></i>
+    </a>
+    <div data-ng-show="global.user._id == currentItem.author._id">
+      <a class="btn pull-right" data-ng-click="remove();">
+        Remove <i class="glyphicon glyphicon-trash"></i>
+      </a>
+      <a class="btn pull-right" href="/#!/news/{{currentItem._id}}/edit">
+        Edit <i class="glyphicon glyphicon-edit"></i>
+      </a>
+    </div>
+  </form>
+  <div class="row">
+    <h2 class="robotoSlab">{{currentItem.title}}</h2>
     <span>Posted by: {{currentItem.author.name}}</span> /
     <span>{{currentItem.created_at | date:'short'}}</span>
-    <h3 data-ng-show="currentItem.url" href="{{currentItem.url}}">
-        <a href="{{currentItem.url}}">Original Article <i class="glyphicon glyphicon-link"></i> </a>
-    </h3>
-    <div class="well">{{currentItem.content}}</div>
+  </div>
+  <div class="row">
+    <p>{{currentItem.content}}</p>
+  </div>
 </section>
