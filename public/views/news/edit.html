@@ -1,34 +1,23 @@
 <section data-ng-controller="NewsController" data-ng-init="findOne()">
-    <form class="form-inline util-bar" role="form">
-        <a class="btn pull-right" href="/#!/news/create">
-            Add News <i class="glyphicon glyphicon-plus"></i>
-        </a>
-        <div data-ng-show="global.user._id == currentItem.author._id">
-            <a class="btn pull-right" data-ng-click="remove();">
-                Remove <i class="glyphicon glyphicon-trash"></i>
-            </a>
-            <a class="btn btn-cancel pull-right" href="/#!/news/{{currentItem._id}}">
-                Cancel <i class="glyphicon glyphicon-ban-circle"></i>
-            </a>
-        </div>
-    </form>
-    <form class="form-horizontal col-md-6" role="form" data-ng-submit="update()">
+  <div class="row topic-form">
+    <h1 class="robotoSlab">Edit News Item</h1>
+    <form class="form-horizontal col-md-offset-3 col-md-6" role="form" data-ng-submit="update()">
         <div class="form-group">
             <label for="title" class="col-md-2 control-label">Title</label>
             <div class="col-md-10">
-                <input data-ng-model="currentItem.title" id="title" placeholder="Title" type="text" class="form-control" required />
+                <input data-ng-model="currentItem.title" id="title" type="text" class="form-control" required />
             </div>
         </div>
         <div class="form-group">
             <label for="content" class="col-md-2 control-label">Content</label>
             <div class="col-md-10">
-                <textarea data-ng-model="currentItem.content" id="content" placeholder="Content" cols="30" rows="10" class="form-control" required></textarea>
+                <textarea data-ng-model="currentItem.content" id="content" cols="30" rows="10" class="form-control" required></textarea>
             </div>
         </div>
         <div class="form-group">
             <label for="content" class="col-md-2 control-label">URL</label>
             <div class="col-md-10">
-                <input data-ng-model="currentItem.url" id="url" placeholder="URL of Original Story if appropriate" type="text" class="form-control" />
+                <input data-ng-model="currentItem.url" id="url" type="text" class="form-control" />
             </div>
         </div>
         <div class="form-group">
@@ -37,4 +26,5 @@
             </div>
         </div>
     </form>
+  </div>
 </section>

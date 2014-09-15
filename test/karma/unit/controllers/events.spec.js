@@ -99,7 +99,7 @@
                     };
 
                     // test expected GET request with response object
-                    $httpBackend.expectGET(/api\/v1\/events\?eventId=([0-9a-fA-F]{24})$/).respond(testEventData());
+                    $httpBackend.expectGET(/api\/v1\/events\/([0-9a-fA-F]{24})$/).respond(testEventData());
 
                     // run controller
                     scope.findOne();
