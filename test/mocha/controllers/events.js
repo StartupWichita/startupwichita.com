@@ -7,7 +7,9 @@ var should = require('should'),
     agent = request.agent(app),
     Event = mongoose.model('Event'),
     Tag = mongoose.model('Tag'),
-    User = mongoose.model('User');
+    User = mongoose.model('User'),
+    xml2js = require('xml2js'),
+    parser = new xml2js.Parser();
 
 describe('Event routing', function() {
     var user,
@@ -86,8 +88,6 @@ describe('Event routing', function() {
                 should.not.exist(err);
                 res.should.have.status(200);
 
-                var xml2js = require('xml2js');
-                var parser = new xml2js.Parser();
                 parser.parseString(res.text, function(err, result) {
                     result.rss.channel[0].item.length.should.eql(1);
 
