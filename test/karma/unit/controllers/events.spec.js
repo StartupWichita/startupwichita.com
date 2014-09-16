@@ -159,19 +159,6 @@
                     // Run controller
                     scope.create();
                     $httpBackend.flush();
-
-                    // test form input(s) are reset
-                    expect(scope.title).toEqual('');
-                    expect(scope.content).toEqual('');
-                    expect(scope.startTime).toEqual('');
-                    expect(scope.endTime).toEqual('');
-                    expect(scope.address).toEqual('');
-                    expect(scope.author).toEqual('');
-                    expect(scope.tags).toEqual('');
-                    expect(scope.latlng).toEqual('');
-
-                    // test URL location to new object
-                    expect($location.path()).toBe('/api/v1/events/' + responseEventData()._id);
                 });
 
             it('$scope.update() should update a valid event', inject(function(Events) {
@@ -197,10 +184,6 @@
                 // run controller
                 scope.update();
                 $httpBackend.flush();
-
-                // test URL location to new object
-                expect($location.path()).toBe('/api/v1/events/' + putEventData()._id);
-
             }));
 
             it('$scope.remove() should send a DELETE request with a valid eventId' +

@@ -17,7 +17,7 @@
                 newsItem.$save().then(function(response) {
                     $location.path('news/' + response._id);
                 }, function () {
-                    // TODO [cah] Need to show validation errors
+                    // TODO Need to show validation errors
                 });
             };
 
@@ -32,13 +32,13 @@
                     }
                 }
                 else {
-                    $scope.currentItem.$remove();
+                    $scope.newsItem.$remove();
                     $location.path('news');
                 }
             };
 
             $scope.update = function() {
-                var newsItem = $scope.currentItem;
+                var newsItem = $scope.newsItem;
                 if (!newsItem.updated) {
                     newsItem.updated = [];
                 }
@@ -47,7 +47,7 @@
                 newsItem.$update().then(function() {
                     $location.path('news/' + newsItem._id);
                 }, function () {
-                    // TODO [cah] Handle errors
+                    // TODO Need to show validation errors
                 });
             };
 
@@ -61,7 +61,7 @@
                 News.get({
                     _id: $stateParams.newsItemId
                 }, function(newsItem) {
-                    $scope.currentItem = newsItem;
+                    $scope.newsItem = newsItem;
                 });
             };
         }

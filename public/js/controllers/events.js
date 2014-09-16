@@ -17,18 +17,12 @@
                     tags: this.tags,
                     latlng: this.latlng
                 });
-                event.$save(function(response) {
-                    $location.path('/api/v1/events/' + response._id);
-                });
 
-                this.title = '';
-                this.content = '';
-                this.startTime = '';
-                this.endTime = '';
-                this.address = '';
-                this.author = '';
-                this.tags = '';
-                this.latlng = '';
+                event.$save(function(response) {
+                    $location.path('events/' + response._id);
+                }, function () {
+                    // TODO Need to show validation errors
+                });
             };
 
             $scope.remove = function(event) {
@@ -42,8 +36,8 @@
                     }
                 }
                 else {
-                    $scope.events.$remove();
-                    $location.path('/api/v1/events');
+                    $scope.event.$remove();
+                    $location.path('events');
                 }
             };
 
@@ -55,7 +49,9 @@
                 event.updated.push(new Date().getTime());
 
                 event.$update(function() {
-                    $location.path('/api/v1/events/' + event._id);
+                    $location.path('events/' + event._id);
+                }, function () {
+                    // TODO Need to show validation errors
                 });
             };
 
