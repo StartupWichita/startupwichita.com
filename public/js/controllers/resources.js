@@ -16,13 +16,9 @@
                 });
                 resource.$save(function(response) {
                     $location.path('resources/' + response._id);
+                }, function () {
+                    // TODO Need to show validation errors
                 });
-
-                this.title   = '';
-                this.content = '';
-                this.tags    = '';
-                this.url     = '';
-                this.image   = '';
             };
 
             $scope.remove = function(resource) {
@@ -36,20 +32,17 @@
                     }
                 } else {
                     $scope.resource.$remove();
+                    $location.path('resources');
                 }
-
-                $location.path('resources');
             };
 
             $scope.update = function() {
                 var resource = $scope.resource;
-                if (!resource.updated_at) {
-                    resource.updated_at = [];
-                }
-                resource.updated_at.push(new Date().getTime());
 
                 resource.$update(function() {
                     $location.path('resources/' + resource._id);
+                }, function () {
+                    // TODO Need to show validation errors
                 });
             };
 

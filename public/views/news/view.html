@@ -3,21 +3,21 @@
     <a class="btn pull-right" href="/#!/news/create">
       Add News <i class="glyphicon glyphicon-plus"></i>
     </a>
-    <div data-ng-show="global.user._id == currentItem.author._id">
+    <div data-ng-show="global.user._id == newsItem.author._id">
       <a class="btn pull-right" data-ng-click="remove();">
         Remove <i class="glyphicon glyphicon-trash"></i>
       </a>
-      <a class="btn pull-right" href="/#!/news/{{currentItem._id}}/edit">
+      <a class="btn pull-right" href="/#!/news/{{newsItem._id}}/edit">
         Edit <i class="glyphicon glyphicon-edit"></i>
       </a>
     </div>
   </form>
   <div class="row">
-    <h2 class="robotoSlab">{{currentItem.title}}</h2>
-    <span>Posted by: {{currentItem.author.name}}</span> /
-    <span>{{currentItem.created_at | date:'short'}}</span>
+    <h2 class="robotoSlab">{{newsItem.title}}</h2>
+    <span>Posted by: {{newsItem.author.name}}</span> /
+    <span>{{newsItem.created_at | date:'short'}}</span>
   </div>
   <div class="row">
-    <p>{{currentItem.content}}</p>
+    <p>{{newsItem.content}}</p>
   </div>
 </section>

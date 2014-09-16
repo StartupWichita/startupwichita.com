@@ -99,7 +99,7 @@
                     $httpBackend.flush();
 
                     // test scope value
-                    expect(scope.currentItem).toEqualData(testNewsData());
+                    expect(scope.newsItem).toEqualData(testNewsData());
                 });
 
             it('$scope.create() with valid form data should send a POST request ' +
@@ -146,7 +146,7 @@
                 var newsItem = new News(putNewsData());
 
                 // mock newsItem in scope
-                scope.currentItem = newsItem;
+                scope.newsItem = newsItem;
 
                 // test PUT happens correctly
                 $httpBackend.expectPUT('/api/v1/news/' + newsItemId).respond();

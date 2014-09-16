@@ -1,4 +1,17 @@
 <section data-ng-controller="EventsController" data-ng-init="findOne()" class="alternate">
+  <form class="form-inline util-bar" role="form">
+    <a class="btn pull-right" href="/#!/events/create">
+      Add Event <i class="glyphicon glyphicon-plus"></i>
+    </a>
+    <div data-ng-show="global.user._id == event.author._id">
+      <a class="btn pull-right" data-ng-click="remove();">
+        Remove <i class="glyphicon glyphicon-trash"></i>
+      </a>
+      <a class="btn pull-right" href="/#!/events/{{event._id}}/edit">
+        Edit <i class="glyphicon glyphicon-edit"></i>
+      </a>
+    </div>
+  </form>
   <div class="row">
     <h2 class="robotoSlab">{{event.title}}</h2>
   </div>
