@@ -26,19 +26,9 @@
             };
 
             $scope.remove = function(event) {
-                if (event) {
-                    event.$remove();
-
-                    for (var i in $scope.events) {
-                        if ($scope.events[i] === event) {
-                            $scope.events.splice(i, 1);
-                        }
-                    }
-                }
-                else {
-                    $scope.event.$remove();
+                event.$remove(null, function () {
                     $location.path('events');
-                }
+                });
             };
 
             $scope.update = function() {
