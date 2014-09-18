@@ -168,20 +168,12 @@
                     _id: newsItemId
                 });
 
-                // mock news items in scope
-                scope.news = [];
-                scope.news.push(newsItem);
-
                 // test expected news item DELETE request
                 $httpBackend.expectDELETE('/api/v1/news/' + newsItemId).respond(204);
 
                 // run controller
                 scope.remove(newsItem);
                 $httpBackend.flush();
-
-                // test after successful delete URL location news lis
-                //expect($location.path()).toBe('/news');
-                expect(scope.news.length).toBe(0);
             }));
         });
     });

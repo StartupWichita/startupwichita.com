@@ -22,19 +22,9 @@
             };
 
             $scope.remove = function(newsItem) {
-                if (newsItem) {
-                    newsItem.$remove();
-
-                    for (var i in $scope.news) {
-                        if ($scope.news[i] === newsItem) {
-                            $scope.news.splice(i, 1);
-                        }
-                    }
-                }
-                else {
-                    $scope.newsItem.$remove();
+                newsItem.$remove(null, function () {
                     $location.path('news');
-                }
+                });
             };
 
             $scope.update = function() {

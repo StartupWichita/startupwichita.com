@@ -4,7 +4,7 @@
       Add Resource <i class="glyphicon glyphicon-plus"></i>
     </a>
     <div data-ng-show="global.user._id == resource.author._id">
-      <a class="btn pull-right" data-ng-click="remove();">
+      <a class="btn pull-right" confirmed-click="remove(resource);" ng-confirm-click="Are you sure you want to delete this resource?">
         Remove <i class="glyphicon glyphicon-trash"></i>
       </a>
       <a class="btn pull-right" href="/#!/resources/{{resource._id}}/edit">

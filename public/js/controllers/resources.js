@@ -22,18 +22,9 @@
             };
 
             $scope.remove = function(resource) {
-                if (resource) {
-                    resource.$remove();
-
-                    for (var i in $scope.resources) {
-                        if ($scope.resources[i] === resource) {
-                            $scope.resources.splice(i, 1);
-                        }
-                    }
-                } else {
-                    $scope.resource.$remove();
+                resource.$remove(null, function () {
                     $location.path('resources');
-                }
+                });
             };
 
             $scope.update = function() {

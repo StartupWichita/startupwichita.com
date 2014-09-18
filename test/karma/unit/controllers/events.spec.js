@@ -194,21 +194,12 @@
                         _id: '525a8422f6d0f87f0e407a33'
                     });
 
-                    // mock rideshares in scope
-                    scope.events = [];
-                    scope.events.push(event);
-
                     // test expected rideshare DELETE request
                     $httpBackend.expectDELETE(/api\/v1\/events\/([0-9a-fA-F]{24})$/).respond(204);
 
                     // run controller
                     scope.remove(event);
                     $httpBackend.flush();
-
-                    // test after successful delete URL location events lis
-                    //expect($location.path()).toBe('/api/v1/events');
-                    expect(scope.events.length).toBe(0);
-
                 }));
         });
     });
