@@ -28,7 +28,7 @@ describe('User routing', function() {
         .send(user)
         .end(function(err, res) {
             should.not.exist(err);
-            res.should.have.status(302);
+            res.should.have.status(201);
 
             done();
         });
@@ -62,7 +62,7 @@ describe('User routing', function() {
             .send(user)
             .end(function(err, res) {
                 should.not.exist(err);
-                res.text.should.match(/Please fill all the required fields/);
+                res.text.should.match(/Please fill in all the required fields/);
                 done();
             });
         });

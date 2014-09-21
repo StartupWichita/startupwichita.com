@@ -16,17 +16,9 @@
     <h2 class="robotoSlab">{{resource.title}}</h2>
     <span>{{resource.created_at | date:'medium'}}</span> /
     <span>{{resource.user.name}}</span>
-    <div data-ng-show="global.user._id == resource.user._id">
-      <a class="btn" href="/#!/resources/{{resource._id}}/edit">
-        <i class="glyphicon glyphicon-edit"></i>
-      </a>
-      <a class="btn" data-ng-click="remove();">
-        <i class="glyphicon glyphicon-trash"></i>
-      </a>
-    </div>
   </div>
   <div class="row">
     <p>{{resource.content}}</p>
   </div>
-  <div ng-view="views/partials/disqus.html"></div>
+  <div data-ng-include="'views/partials/disqus.html'"></div>
 </section>
