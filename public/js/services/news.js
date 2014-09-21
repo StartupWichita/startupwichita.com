@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    // News service used for articles REST endpoint
+    // News service used for news REST endpoint
     var NewsService = [
         '$resource',
         function($resource) {

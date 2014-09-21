@@ -18,6 +18,7 @@ module.exports = function(config) {
         files: [
             'public/lib/jquery/dist/jquery.js',
             'public/lib/angular/angular.js',
+            'public/lib/angular-route/angular-route.min.js',
             'public/lib/OwlCarousel/owlcarousel/owl.carousel.js',
             'public/lib/angular-mocks/angular-mocks.js',
             'public/lib/angular-cookies/angular-cookies.js',

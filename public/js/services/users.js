@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
 
-    // Users service used for articles REST endpoint
+    // Users service used for users REST endpoint
     var UserService = [
         '$resource',
         function($resource) {
@@ -13,6 +13,10 @@
                     search: {
                         method: 'GET',
                         isArray: true
+                    },
+                    signin: {
+                        method: 'POST',
+                        url: '/users/session'
                     }
                 }
             );

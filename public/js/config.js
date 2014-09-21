@@ -10,6 +10,14 @@
 
             // states for my app
             $stateProvider
+                .state('signin', {
+                    url: '/signin',
+                    templateUrl: 'views/users/signin.html'
+                })
+                .state('signup', {
+                    url: '/signup',
+                    templateUrl: 'views/users/signup.html'
+                })
                 .state('all articles', {
                     url: '/events',
                     templateUrl: 'views/events/list.html'
@@ -121,7 +129,7 @@
                         });
 
                         // now, send them to the signin state so they can log in
-                        $window.location = '/signin?returnUrl=' + returnUrl;
+                        $window.location = '/#!/signin?returnUrl=' + returnUrl;
                     }
                 }
             });

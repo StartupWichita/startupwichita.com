@@ -26,6 +26,8 @@ a {
   color: #f8e4c5;
 }
 
+.alert { margin-top: 1em; }
+
 .navbar-brand{
   margin:0 auto;
   float:none;

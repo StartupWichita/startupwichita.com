@@ -57,23 +57,12 @@ exports.authCallback = function(req, res) {
     res.redirect('/');
 };
 
-/**
- * Show login form
- */
 exports.signin = function(req, res) {
-    res.render('users/signin', {
-        title: 'Signin',
-        message: req.flash('error')
-    });
-};
+    var user = new User(req.body);
 
-/**
- * Show sign up form
- */
-exports.signup = function(req, res) {
-    res.render('users/signup', {
-        title: 'Sign up',
-        user: new User()
+    req.logIn(user, function(err) {
+        if (err) return res.send(401, { errors: ['That email address could not be found, or the password is incorrect.'], user: user });
+        return res.status(201).jsonp(sanitize(user, true));
     });
 };
 
@@ -109,17 +98,15 @@ exports.create = function(req, res, next) {
                     message = 'Username already exists';
                     break;
                 default:
-                    message = 'Please fill all the required fields';
+                    message = 'Please fill in all the required fields';
             }
 
-            return res.render('users/signup', {
-                message: message,
-                user: sanitize(user, true)
-            });
+            return res.send(401, { errors: [message], user: user });
         }
+
         req.logIn(user, function(err) {
             if (err) return next(err);
-            return res.redirect('/');
+            return res.status(201).jsonp(sanitize(user, true));
         });
     });
 };
