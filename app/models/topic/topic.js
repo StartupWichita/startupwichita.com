@@ -10,7 +10,7 @@ function BaseTopicSchema() {
 
     this.add({
         title: { type: String, required: true },
-        tags: { type: [Schema.Types.ObjectId], ref: 'Tag' },
+        tags: { type: [String] },
         content: { type: String, required: true },
         author: { type: Schema.Types.ObjectId, ref: 'User' },
         created_at: { type: Date, default: Date.now },

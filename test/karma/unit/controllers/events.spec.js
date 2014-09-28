@@ -49,6 +49,8 @@
             it('$scope.find() should create an array with at least one event object ' +
                 'fetched from XHR', function() {
 
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
+
                     // test expected GET request
                     $httpBackend.expectGET('/api/v1/events').respond([{
                         title: 'An Event',
@@ -84,6 +86,8 @@
                     // fixture URL parament
                     $stateParams.eventId = '525a8422f6d0f87f0e407a33';
 
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
+
                     // fixture response object
                     var testEventData = function() {
                         return {
@@ -113,6 +117,7 @@
             it('$scope.create() with valid form data should send a POST request ' +
                 'with the form input values and then ' +
                 'locate to new object URL', function() {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                     // fixture expected POST data
                     var postEventData = function() {
@@ -144,14 +149,14 @@
                     };
 
                     // fixture mock form input values
-                    scope.title = 'An Event about MEAN';
-                    scope.content = 'MEAN rocks!';
-                    scope.startTime = '3/15/2014 00:00:00';
-                    scope.endTime = '3/15/2014 00:00:00';
-                    scope.address = '123 Mosely Dr Wichita, KS 67209';
-                    scope.author = 'Erik Rodriguez';
-                    scope.tags = ['Tag'];
-                    scope.latlng = [0, 0];
+                    scope.newEvent.title = 'An Event about MEAN';
+                    scope.newEvent.content = 'MEAN rocks!';
+                    scope.newEvent.startTime = '3/15/2014 00:00:00';
+                    scope.newEvent.endTime = '3/15/2014 00:00:00';
+                    scope.newEvent.address = '123 Mosely Dr Wichita, KS 67209';
+                    scope.newEvent.author = 'Erik Rodriguez';
+                    scope.newEvent.tags = ['Tag'];
+                    scope.newEvent.latlng = [0, 0];
 
                     // test post request is sent
                     $httpBackend.expectPOST('/api/v1/events', postEventData()).respond(responseEventData());
@@ -163,6 +168,7 @@
 
             it('$scope.update() should update a valid event', inject(function(Events) {
 
+                $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
                 // fixture rideshare
                 var putEventData = function() {
                     return {
@@ -188,6 +194,7 @@
 
             it('$scope.remove() should send a DELETE request with a valid eventId' +
                 'and remove the event from the scope', inject(function(Events) {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                     // fixture rideshare
                     var event = new Events({

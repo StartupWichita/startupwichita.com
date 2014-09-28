@@ -18,11 +18,11 @@
                     url: '/signup',
                     templateUrl: 'views/users/signup.html'
                 })
-                .state('all articles', {
+                .state('all events', {
                     url: '/events',
                     templateUrl: 'views/events/list.html'
                 })
-                .state('create article', {
+                .state('create event', {
                     url: '/events/create',
                     templateUrl: 'views/events/create.html',
                     data: {
@@ -31,7 +31,7 @@
                         }
                     }
                 })
-                .state('edit article', {
+                .state('edit event', {
                     url: '/events/:eventId/edit',
                     templateUrl: 'views/events/edit.html',
                     data: {
@@ -40,7 +40,7 @@
                         }
                     }
                 })
-                .state('article by id', {
+                .state('event by id', {
                     url: '/events/:eventId',
                     templateUrl: 'views/events/view.html'
                 })

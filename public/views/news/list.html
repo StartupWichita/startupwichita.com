@@ -1,22 +1,26 @@
 <section data-ng-controller="NewsController" data-ng-init="find()">
-    <form class="form-inline util-bar" role="form">
-        <a class="btn pull-right" href="/#!/news/create">Add News <i class="glyphicon glyphicon-plus"></i></a>
-    </form>
-    <ul class="alternate list-unstyled">
-        <li data-ng-repeat="newsItem in news">
-          <div class="row">
-            <div class="col-md-2">
-              <h2 class="robotoSlab">
-                <a data-ng-href="#!/news/{{newsItem._id}}">{{newsItem.title}}</a>
-              </h2>
-              <span>{{newsItem.created_at | date:'medium'}}</span> /
-              <span>{{newsItem.author.name}}</span>
-            </div>
-            <div class="col-md-10">
-              <p>{{newsItem.content}}</p>
-            </div>
-          </div>
-        </li>
-    </ul>
-    <p data-ng-hide="!news || news.length">No news yet. Why don't you <a href="/#!/news/create">add some</a>?</p>
+  <form class="form-inline util-bar" role="form">
+    <a class="btn pull-right" href="/#!/news/create">Add News <i class="glyphicon glyphicon-plus"></i></a>
+  </form>
+  <ul class="alternate list-unstyled">
+    <li data-ng-repeat="newsItem in news">
+      <div class="row">
+        <div class="col-md-2">
+          <h2 class="robotoSlab">
+            <a data-ng-href="#!/news/{{newsItem._id}}">{{newsItem.title}}</a>
+          </h2>
+          <span>{{newsItem.created_at | date:'medium'}}</span> /
+          <span>{{newsItem.author.name}}</span>
+        </div>
+        <div class="col-md-10">
+          <p>{{newsItem.content}}</p>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <div class="alternate">
+    <p data-ng-hide="!news || news.length" class="row">
+      No news yet. Why don't you <a href="/#!/news/create">add some</a>?
+    </p>
+  </div>
 </section>

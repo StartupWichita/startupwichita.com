@@ -2,20 +2,23 @@
     'use strict';
 
     var EventsController = [
-        '$scope', '$stateParams', '$location', 'Global', 'Events',
-        function ($scope, $stateParams, $location, Global, Events) {
+        '$scope', '$stateParams', '$location', 'Global', 'Events', 'Tags',
+        function ($scope, $stateParams, $location, Global, Events, Tags) {
+            $scope.tagOptions = Tags.query();
+
             $scope.global = Global;
+            $scope.newEvent = {};
 
             $scope.create = function() {
                 var event = new Events({
-                    title: this.title,
-                    content: this.content,
-                    startTime: this.startTime,
-                    endTime: this.endTime,
-                    address: this.address,
-                    author: this.author,
-                    tags: this.tags,
-                    latlng: this.latlng
+                    title: $scope.newEvent.title,
+                    content: $scope.newEvent.content,
+                    startTime: $scope.newEvent.startTime,
+                    endTime: $scope.newEvent.endTime,
+                    address: $scope.newEvent.address,
+                    author: $scope.newEvent.author,
+                    tags: $scope.newEvent.tags,
+                    latlng: $scope.newEvent.latlng
                 });
 
                 event.$save(function(response) {
@@ -52,6 +55,8 @@
             };
 
             $scope.findOne = function() {
+                $scope.event = {};
+
                 Events.get({
                     _id: $stateParams.eventId
                 }, function(event) {

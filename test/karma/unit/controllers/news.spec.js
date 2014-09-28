@@ -57,6 +57,7 @@
 
             it('$scope.find() should create an array with at least one newsItem object ' +
                 'fetched from XHR', function() {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                     // test expected GET request
                     $httpBackend.expectGET('/api/v1/news').respond([{
@@ -77,6 +78,8 @@
 
             it('$scope.findOne() should create an array with one newsItem object fetched ' +
                 'from XHR using a newsId URL parameter', function() {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
+
                     var newsItemId = '525a8422f6d0f87f0e407a33';
                     // fixture URL parament
                     $stateParams.newsItemId = newsItemId;
@@ -105,6 +108,7 @@
             it('$scope.create() with valid form data should send a POST request ' +
                 'with the form input values and then ' +
                 'locate to new object URL', function() {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                     // fixture expected response data
                     var responseNewsData = function() {
@@ -131,6 +135,8 @@
                 });
 
             it('$scope.update() should update a valid newsItem', inject(function(News) {
+                $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
+
                 var newsItemId = '525a8422f6d0f87f0e407a33';
 
                 // fixture news item
@@ -161,6 +167,8 @@
 
             it('$scope.remove() should send a DELETE request with a valid _id' +
                 'and remove the newsItem from the scope', inject(function(News) {
+                $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
+
                 var newsItemId = '525a8422f6d0f87f0e407a33';
 
                 // fixture news item

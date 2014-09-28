@@ -6,7 +6,6 @@ var should = require('should'),
     request = require('supertest'),
     agent = request.agent(app),
     Event = mongoose.model('Event'),
-    Tag = mongoose.model('Tag'),
     User = mongoose.model('User'),
     xml2js = require('xml2js'),
     parser = new xml2js.Parser();
@@ -27,11 +26,7 @@ describe('Event routing', function() {
     });
 
     describe('Handle CRUD', function () {
-        var tag_foo = new Tag({name: 'foo'}),
-            tag_bar = new Tag({name: 'bar'});
-        tag_foo.save();
-        tag_bar.save();
-        var tags = [tag_foo.id, tag_bar.id];
+        var tags = ['tag1', 'tag2'];
 
         var author = new User({
             name: 'Some author',
@@ -76,6 +71,7 @@ describe('Event routing', function() {
                 persistedEvent = res.body;
                 should.exist(persistedEvent.created_at);
                 author._id.toString().should.be.eql(persistedEvent.author);
+
                 tags.should.be.eql(persistedEvent.tags);
                 done();
             });
@@ -159,9 +155,8 @@ describe('Event routing', function() {
     after(function(done) {
         Event.remove({}, function(err) {
             if (err) return done();
-            User.remove({}, function (err) {
-                if (err) return done();
-                Tag.remove({}, done);
+            User.remove({}, function () {
+                done();
             });
         });
     });

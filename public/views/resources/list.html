@@ -1,22 +1,26 @@
 <section data-ng-controller="ResourcesController" data-ng-init="find()">
-    <form class="form-inline util-bar" role="form">
-        <a class="btn pull-right" href="/#!/resources/create">Add Resource <i class="glyphicon glyphicon-plus"></i></a>
-    </form>
-	<ul class="alternate list-unstyled">
-		<li data-ng-repeat="resource in resources">
+  <form class="form-inline util-bar" role="form">
+    <a class="btn pull-right" href="/#!/resources/create">Add Resource <i class="glyphicon glyphicon-plus"></i></a>
+  </form>
+  <ul class="alternate list-unstyled">
+    <li data-ng-repeat="resource in resources">
       <div class="row">
         <div class="col-md-2">
-			    <h2 class="robotoSlab">
+          <h2 class="robotoSlab">
             <a data-ng-href="#!/resources/{{resource._id}}">{{resource.title}}</a>
           </h2>
-			    <span>{{resource.created_at | date:'medium'}}</span> /
-			    <span>{{resource.user.name}}</span>
+          <span>{{resource.created_at | date:'medium'}}</span> /
+          <span>{{resource.user.name}}</span>
         </div>
         <div class="col-md-10">
-			    <p>{{resource.content}}</p>
+          <p>{{resource.content}}</p>
         </div>
       </div>
-		</li>
-	</ul>
-	<p data-ng-hide="!resources || resources.length">No resources yet. <br> Why don't you <a href="/#!/resources/create">Create One</a>?</p>
+    </li>
+  </ul>
+  <div class="alternate">
+    <p data-ng-hide="!resources || resources.length" class="row">
+      No resources yet. Why don't you <a href="/#!/resources/create">add some</a>?
+    </p>
+  </div>
 </section>
