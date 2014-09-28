@@ -18,29 +18,21 @@
                     url: '/signup',
                     templateUrl: 'views/users/signup.html'
                 })
-                .state('all articles', {
+                .state('all events', {
                     url: '/events',
                     templateUrl: 'views/events/list.html'
                 })
-                .state('create article', {
+                .state('create event', {
                     url: '/events/create',
                     templateUrl: 'views/events/create.html',
-                    data: {
-                        authorization: {
-                            required: true
-                        }
-                    }
+                    data: { authorization: { required: true } }
                 })
-                .state('edit article', {
+                .state('edit event', {
                     url: '/events/:eventId/edit',
                     templateUrl: 'views/events/edit.html',
-                    data: {
-                        authorization: {
-                            required: true
-                        }
-                    }
+                    data: { authorization: { required: true } },
                 })
-                .state('article by id', {
+                .state('event by id', {
                     url: '/events/:eventId',
                     templateUrl: 'views/events/view.html'
                 })
@@ -50,11 +42,13 @@
                 })
                 .state('create news item', {
                     url: '/news/create',
-                    templateUrl: 'views/news/create.html'
+                    templateUrl: 'views/news/create.html',
+                    data: { authorization: { required: true } }
                 })
                 .state('edit news item', {
                     url: '/news/:newsItemId/edit',
-                    templateUrl: 'views/news/edit.html'
+                    templateUrl: 'views/news/edit.html',
+                    data: { authorization: { required: true } }
                 })
                 .state('news item by id', {
                     url: '/news/:newsItemId',
@@ -70,7 +64,11 @@
                 })
                 .state('edit user', {
                     url: '/users/:userId/edit',
-                    templateUrl: 'views/users/edit.html'
+                    templateUrl: 'views/users/edit.html',
+                    data: {
+                        authorization: { required: true },
+                        protected : { userKey: 'userId', redirectTo: '/#!/users' }
+                    }
                 })
                 .state('all resources', {
                     url: '/resources',
@@ -79,20 +77,12 @@
                 .state('create resource', {
                     url: '/resources/create',
                     templateUrl: 'views/resources/create.html',
-                    data: {
-                        authorization: {
-                            required: true
-                        }
-                    }
+                    data: { authorization: { required: true } }
                 })
                 .state('edit resource', {
                     url: '/resources/:resourceId/edit',
                     templateUrl: 'views/resources/edit.html',
-                    data: {
-                        authorization: {
-                            required: true
-                        }
-                    }
+                    data: { authorization: { required: true } }
                 })
                 .state('resource by id', {
                     url: '/resources/:resourceId',
@@ -110,6 +100,21 @@
         '$locationProvider',
         function($locationProvider) {
             $locationProvider.hashPrefix('!');
+        }
+    ];
+
+    var ProtectedResourceProvider = [
+        '$rootScope', '$window', 'Global',
+        function ($rootScope, $window, Global) {
+            $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+                if (toState.data == null || toState.data.protected == null) {
+                    return;
+                }
+
+                if (toStateParams[toState.data.protected.userKey] !== Global.user._id) {
+                    $window.location = toState.data.protected.redirectTo;
+                }
+            });
         }
     ];
 
@@ -139,5 +144,6 @@
     angular.module('startupwichita')
         .config(RouteProvider)
         .config(LocationProvider)
-        .run(AuthenticatedRouteProvider);
+        .run(AuthenticatedRouteProvider)
+        .run(ProtectedResourceProvider);
 })(window.angular);
