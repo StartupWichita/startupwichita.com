@@ -600,7 +600,8 @@ border-color: #ef592b;
 .alternate li:nth-child(odd) span,
 .alternate li:nth-child(odd) p,
 .alternate li:nth-child(odd) a,
-.alternate li:nth-child(odd) div {
+.alternate li:nth-child(odd) div,
+.alternate a {
     color: #a3917e;
 }
 
@@ -633,15 +634,21 @@ border-color: #ef592b;
 
 .topic-form input,
 .topic-form textarea,
-.topic-form button {
+.topic-form button,
+.ui-select-multiple {
+    background-image: none !important;
     box-sizing: border-box;
     border-radius: 0px;
-    background-color: #f26e47;
-    border: none;
-    box-shadow: none;
-    color: #f8e4c5;
+    background-color: #f26e47 !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #f8e4c5 !important;
     font-size: 1.5em;
 }
+
+.ui-select-choices.dropdown-menu { background-color: #f8e4c5; }
+.ui-select-match-item { background-color: #f8e4c5 !important; font-size: 1em !important; }
+.ui-select-match-item .close { font-size: 1em; }
 
 .topic-form input { height: 49px; }
 

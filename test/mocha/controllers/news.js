@@ -6,7 +6,6 @@ var should = require('should'),
     request = require('supertest'),
     agent = request.agent(app),
     News = mongoose.model('News'),
-    Tag = mongoose.model('Tag'),
     User = mongoose.model('User'),
     xml2js = require('xml2js'),
     parser = new xml2js.Parser();
@@ -169,9 +168,8 @@ describe('News routing', function() {
     after(function(done) {
         News.remove({}, function(err) {
             if (err) return done();
-            User.remove({}, function (err) {
-                if (err) return done();
-                Tag.remove({}, done);
+            User.remove({}, function () {
+                done();
             });
         });
     });

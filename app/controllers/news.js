@@ -18,8 +18,9 @@ exports.newsItem = function(req, res, next, _id) {
         .exec(function(err, newsItem) {
             if (err) return next(err);
             if (!newsItem) return next(new Error('Failed to find newsItem ' + _id));
+
             req.newsItem = newsItem;
-            next();
+            return next();
         });
 };
 
@@ -30,11 +31,9 @@ exports.create = function(req, res) {
     var newsItem = new News(req.body);
 
     newsItem.save(function(err) {
-        if (err) {
-            res.send(500, { errors: err.errors, newsItem: newsItem });
-        } else {
-            res.jsonp(201, newsItem);
-        }
+        if (err) return res.send(500, { errors: err.errors, newsItem: newsItem });
+
+        return res.jsonp(201, newsItem);
     });
 };
 
@@ -47,11 +46,9 @@ exports.update = function(req, res) {
     newsItem = _.extend(newsItem, req.body);
 
     newsItem.save(function(err) {
-        if (err) {
-            res.send(500, { errors: err.errors, newsItem: newsItem });
-        } else {
-            res.jsonp(newsItem);
-        }
+        if (err) return res.send(500, { errors: err.errors, newsItem: newsItem });
+
+        return res.jsonp(newsItem);
     });
 };
 
@@ -62,11 +59,9 @@ exports.destroy = function(req, res) {
     var newsItem = req.newsItem;
 
     newsItem.remove(function(err) {
-        if (err) {
-            res.send(500, { errors: err.errors, newsItem: newsItem });
-        } else {
-            res.jsonp(204, newsItem);
-        }
+        if (err) return res.send(500, { errors: err.errors, newsItem: newsItem });
+
+        return res.jsonp(204, newsItem);
     });
 };
 
@@ -85,11 +80,9 @@ exports.all = function(req, res) {
         .populate('author')
         .sort('-title')
         .exec(function(err, news) {
-            if (err) {
-                res.send(500, { errors: err.errors });
-            } else {
-                return res.jsonp(news);
-            }
+            if (err) return res.send(500, { errors: err.errors });
+
+            return res.jsonp(news);
         });
 };
 
@@ -105,20 +98,18 @@ exports.rss = function(req, res) {
         .sort('-created_at')
         .limit(20)
         .exec(function(err, news) {
-            if (err) {
-                res.send(500, { errors: err.errors });
-            } else {
-                news.forEach(function(newsItem) {
-                    feed.addItem({
-                        title: newsItem.title,
-                        link: newsItem.url,
-                        description: newsItem.content.substr(0, 100),
-                        content: newsItem.content,
-                        date: newsItem.date
-                    });
-                });
+            if (err) return res.send(500, { errors: err.errors });
 
-                res.send(feed.render('rss-2.0'));
-            }
+            news.forEach(function(newsItem) {
+                feed.addItem({
+                    title: newsItem.title,
+                    link: newsItem.url,
+                    description: newsItem.content.substr(0, 100),
+                    content: newsItem.content,
+                    date: newsItem.date
+                });
+            });
+
+            return res.send(feed.render('rss-2.0'));
         });
 };

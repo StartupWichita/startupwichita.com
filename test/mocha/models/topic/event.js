@@ -6,7 +6,6 @@
 var should = require('should'),
     mongoose = require('mongoose'),
     Event = mongoose.model('Event'),
-    Tag = mongoose.model('Tag'),
     User = mongoose.model('User');
 
 //Globals
@@ -24,7 +23,7 @@ describe('Event', function() {
                 provider: 'local'
             });
 
-            tag = new Tag({'name': 'example'});
+            tag = 'tag1';
 
             testEvent = new Event({
                 title: 'Example Event',

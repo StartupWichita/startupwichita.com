@@ -1,18 +1,19 @@
 <section data-ng-controller="UsersController" data-ng-init="find()">
   <form class="form-inline util-bar" role="form">
-    <!--<div class="form-group">-->
-      <!--<label class="sr-only" for="searchPeople">Search:</label>-->
-      <!--<input type="text" class="form-control" id="searchPeople" placeholder="Search People">-->
-    <!--</div>-->
   </form>
   <ul class="people list-unstyled">
     <li data-ng-repeat="user in users">
       <img class="peopleWrapper" ng-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}" />
       <h2 class="robotoSlab">
-          <a href="/#!/users/{{user._id}}">{{ user.name }}</a>
+        <a href="/#!/users/{{user._id}}">{{ user.name }}</a>
       </h2>
       <p class="catchphrase">{{ user.tagline }}</p>
       <p>{{ user.bio }}</p>
     </li>
   </ul>
+  <div class="alternate">
+    <p data-ng-hide="!users || users.length" class="row">
+      No users yet. Why don't you <a href="/#!/signup">sign up</a>?
+    </p>
+  </div>
 </section>

@@ -5,6 +5,7 @@
         'ngCookies',
         'ngResource',
         'ngRoute',
+        'ngSanitize',
         'ngStorage',
         'ui.bootstrap',
         'ui.router',
@@ -15,7 +16,7 @@
     ]);
 
     angular.module('startupwichita.services', []);
-    angular.module('startupwichita.controllers', []);
+    angular.module('startupwichita.controllers', ['ui.select']);
     angular.module('startupwichita.directives', []);
     angular.module('startupwichita.filters', []);
 })(window.angular);

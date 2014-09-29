@@ -6,7 +6,6 @@
 var should = require('should'),
     mongoose = require('mongoose'),
     Topic = mongoose.model('Topic'),
-    Tag = mongoose.model('Tag'),
     User = mongoose.model('User');
 
 //Globals
@@ -24,7 +23,7 @@ describe('Topic', function() {
                 provider: 'local'
             });
 
-            tag = new Tag({'name': 'example'});
+            tag = 'tag1';
 
             topic = new Topic({
                 title: 'Example Topic',

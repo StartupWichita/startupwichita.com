@@ -1,20 +1,24 @@
 <section data-ng-controller="EventsController" data-ng-init="find()">
-    <form class="form-inline util-bar" role="form">
-        <a class="btn pull-right" href="/#!/events/create">Add Event <i class="glyphicon glyphicon-plus"></i></a>
-    </form>
-    <ul class="alternate list-unstyled">
-        <li data-ng-repeat="event in events">
-          <div class="row">
-            <div class="col-md-2">
-              <h2 class="robotoSlab">
-                <a data-ng-href="#!/events/{{event._id}}">{{event.title}}</a>
-              </h2>
-              <span>{{event.startTime | date:'medium'}}</span>
-            </div>
-            <div class="col-md-10">
-              <p>{{event.content}}</p>
-            </div>
-        </li>
-    </ul>
-    <h1 data-ng-hide="!events || events.length">No events yet. <br> Why don't you <a href="/#!/events/create">Create One</a>?</h1>
+  <form class="form-inline util-bar" role="form">
+    <a class="btn pull-right" href="/#!/events/create">Add Event <i class="glyphicon glyphicon-plus"></i></a>
+  </form>
+  <ul class="alternate list-unstyled">
+    <li data-ng-repeat="event in events">
+      <div class="row">
+        <div class="col-md-2">
+          <h2 class="robotoSlab">
+            <a data-ng-href="#!/events/{{event._id}}">{{event.title}}</a>
+          </h2>
+          <span>{{event.startTime | date:'medium'}}</span>
+        </div>
+        <div class="col-md-10">
+          <p>{{event.content}}</p>
+        </div>
+    </li>
+  </ul>
+  <div class="alternate">
+    <p data-ng-hide="!events || events.length" class="row">
+      No events yet. Why don't you <a href="/#!/events/create">add some</a>?
+    </p>
+  </div>
 </section>

@@ -16,8 +16,9 @@ exports.resource = function(req, res, next, _id) {
     Resource.findOne({ _id: _id }, function(err, resource) {
         if (err) return next(err);
         if (!resource) return next(new Error('Failed to find resource ' + _id));
+
         req.resource = resource;
-        next();
+        return next();
     });
 };
 
@@ -28,11 +29,9 @@ exports.create = function(req, res) {
     var resource = new Resource(req.body);
 
     resource.save(function(err) {
-        if (err) {
-            res.send(500, { errors: err.errors, resource: resource });
-        } else {
-            res.jsonp(201, resource);
-        }
+        if (err) return res.send(500, { errors: err.errors, resource: resource });
+
+        return res.jsonp(201, resource);
     });
 };
 
@@ -45,11 +44,9 @@ exports.update = function(req, res) {
     resource = _.extend(resource, req.body);
 
     resource.save(function(err) {
-        if (err) {
-            res.send(500, { errors: err.errors, resource: resource });
-        } else {
-            res.jsonp(resource);
-        }
+        if (err) return res.send(500, { errors: err.errors, resource: resource });
+
+        return res.jsonp(resource);
     });
 };
 
@@ -60,11 +57,9 @@ exports.destroy = function(req, res) {
     var resource = req.resource;
 
     resource.remove(function(err) {
-        if (err) {
-            res.send(500, { errors: err.errors, resource: resource });
-        } else {
-            res.jsonp(204, resource);
-        }
+        if (err) return res.send(500, { errors: err.errors, resource: resource });
+
+        return res.jsonp(204, resource);
     });
 };
 
@@ -80,11 +75,9 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     Resource.find().sort('-title').exec(function(err, resources) {
-        if (err) {
-            res.send(500, { errors: err.errors });
-        } else {
-            return res.jsonp(resources);
-        }
+        if (err) return res.send(500, { errors: err.errors });
+
+        return res.jsonp(resources);
     });
 };
 
@@ -96,20 +89,18 @@ exports.rss = function(req, res) {
     });
 
     Resource.find().sort('-created_at').limit(20).exec(function(err, resources) {
-        if (err) {
-            res.send(500, { errors: err.errors });
-        } else {
-            resources.forEach(function(resource) {
-                feed.addItem({
-                    title: resource.title,
-                    link: resource.url,
-                    description: resource.content.substr(0, 100),
-                    content: resource.content,
-                    date: resource.created_at
-                });
-            });
+        if (err) return res.send(500, { errors: err.errors });
 
-            res.send(feed.render('rss-2.0'));
-        }
+        resources.forEach(function(resource) {
+            feed.addItem({
+                title: resource.title,
+                link: resource.url,
+                description: resource.content.substr(0, 100),
+                content: resource.content,
+                date: resource.created_at
+            });
+        });
+
+        return res.send(feed.render('rss-2.0'));
     });
 };

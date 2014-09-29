@@ -6,7 +6,6 @@ var should = require('should'),
     request = require('supertest'),
     agent = request.agent(app),
     Resource = mongoose.model('Resource'),
-    Tag = mongoose.model('Tag'),
     User = mongoose.model('User'),
     xml2js = require('xml2js'),
     parser = new xml2js.Parser();
@@ -27,11 +26,7 @@ describe('Resource routing', function() {
     });
 
     describe('Handle CRUD', function () {
-        var tag_foo = new Tag({name: 'foo'}),
-            tag_bar = new Tag({name: 'bar'});
-        tag_foo.save();
-        tag_bar.save();
-        var tags = [tag_foo._id, tag_bar._id];
+        var tags = ['tag1', 'tag2'];
 
         var author = new User({
             name: 'Some author',
@@ -151,9 +146,8 @@ describe('Resource routing', function() {
     after(function(done) {
         Resource.remove({}, function(err) {
             if (err) return done();
-            User.remove({}, function (err) {
-                if (err) return done();
-                Tag.remove({}, done);
+            User.remove({}, function () {
+                done();
             });
         });
     });

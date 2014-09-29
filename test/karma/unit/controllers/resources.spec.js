@@ -50,6 +50,7 @@
 
             it('$scope.find() should create an array with at least one resource object ' +
                 'fetched from XHR', function() {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                     var testResourceData = function () {
                         return [{
@@ -74,6 +75,8 @@
 
             it('$scope.findOne() should create an array with one article object fetched ' +
                 'from XHR using a resourceId URL parameter', function() {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
+
                     // fixture URL parameter
                     $stateParams.resourceId = '525a8422f6d0f87f0e407a33';
 
@@ -101,6 +104,7 @@
             it('$scope.create() with valid form data should send a POST request ' +
                 'with the form input values and then ' +
                 'locate to new object URL', function() {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                     // fixture expected POST data
                     var postResourceData = function() {
@@ -120,8 +124,8 @@
                     };
 
                     // fixture mock form input values
-                    scope.title = 'An Article about MEAN';
-                    scope.content = 'MEAN rocks!';
+                    scope.newResource.title = 'An Article about MEAN';
+                    scope.newResource.content = 'MEAN rocks!';
 
                     // test post request is sent
                     $httpBackend.expectPOST('/api/v1/resources', postResourceData()).respond(responseResourceData());
@@ -132,6 +136,7 @@
                 });
 
             it('$scope.update() should update a valid resource', inject(function(Resources) {
+                $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                 // fixture rideshare
                 var putResourceData = function() {
@@ -170,6 +175,7 @@
 
             it('$scope.remove() should send a DELETE request with a valid resourceId' +
                 ' and remove the resource from the scope', inject(function(Resources) {
+                    $httpBackend.expectGET('/api/v1/tags').respond(['tag1', 'tag2']);
 
                     // fixture rideshare
                     var resource = new Resources({

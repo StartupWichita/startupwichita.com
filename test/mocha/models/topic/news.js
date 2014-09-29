@@ -5,7 +5,6 @@
  */
 var mongoose = require('mongoose'),
     News = mongoose.model('News'),
-    Tag = mongoose.model('Tag'),
     User = mongoose.model('User');
 
 //Globals
@@ -23,7 +22,7 @@ describe('News', function() {
                 provider: 'local'
             });
 
-            tag = new Tag({name: 'example'});
+            tag = 'tag1';
 
             author.save(function() {
                 news = new News({
