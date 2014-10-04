@@ -119,6 +119,10 @@ a {
   padding-right: 0px;
 }
 
+.logos { text-align: center; }
+
+.logos a { padding-right: 2em; }
+
 #logoBottom{
   padding:12px 0 0 0;
 }
@@ -151,6 +155,10 @@ a {
 
 .charcoal{
   color:#281816;
+}
+
+.charcoal-top-border {
+    border-top: 5px solid #281816;
 }
 
 .charcoal-bg{
@@ -347,14 +355,13 @@ line-height:1.25em;
 }
 
 footer{
-  padding-top:80px;
-  padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     left:0px;
     bottom:0px;
     width:100%;
     background:#ddd;
     position:relative;
-
 }
 
 footer p{
