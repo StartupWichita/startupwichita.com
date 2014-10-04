@@ -56,6 +56,12 @@
                     $scope.resource = resource;
                 });
             };
+
+            $scope.spam = function(resource) {
+                resource.$spam(null, function () {
+                    $location.path('resources');
+                });
+            };
         }
     ];
 

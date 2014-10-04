@@ -12,6 +12,10 @@
                 search: {
                     method: 'GET',
                     isArray: true
+                },
+                spam: {
+                    method: 'PUT',
+                    url: '/api/v1/resources/:_id/spam'
                 }
             });
         }

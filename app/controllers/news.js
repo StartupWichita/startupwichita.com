@@ -66,6 +66,19 @@ exports.destroy = function(req, res) {
 };
 
 /**
+ * Flag the newsItem as a spam entry
+ */
+exports.spam = function(req, res) {
+    var newsItem = req.newsItem;
+
+    News.update({ _id: newsItem._id }, { $set: { spam: true } }, function(error) {
+        if (error) return res.send(500, { errors: error.errors, newsItem: newsItem });
+
+        return res.jsonp(newsItem);
+    });
+};
+
+/**
  * Show a newsItem
  */
 exports.show = function(req, res) {
@@ -76,7 +89,7 @@ exports.show = function(req, res) {
  * List of News items
  */
 exports.all = function(req, res) {
-    News.find()
+    News.find({ spam: { $ne: true }})
         .populate('author')
         .sort('-title')
         .exec(function(err, news) {
@@ -93,7 +106,7 @@ exports.rss = function(req, res) {
         link: 'http://startupwichita.com'
     });
 
-    News.find()
+    News.find({ spam: { $ne: true }})
         .populate('author')
         .sort('-created_at')
         .limit(20)

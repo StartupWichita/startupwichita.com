@@ -63,6 +63,12 @@
                     $scope.event = event;
                 });
             };
+
+            $scope.spam = function(event) {
+                event.$spam(null, function () {
+                    $location.path('events');
+                });
+            };
         }
     ];
 

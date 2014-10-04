@@ -17,6 +17,7 @@ function BaseTopicSchema() {
         updated_at: { type: Date, default: Date.now },
         url: String,
         image: String,
+        spam: Boolean
     });
 }
 

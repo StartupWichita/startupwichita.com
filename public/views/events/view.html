@@ -3,12 +3,17 @@
     <a class="btn pull-right" href="/#!/events/create">
       Add Event <i class="glyphicon glyphicon-plus"></i>
     </a>
-    <div data-ng-show="global.user._id == event.author._id">
+    <div data-ng-show="global.user._id == event.author._id || global.admin">
       <a class="btn pull-right" confirmed-click="remove(event);" ng-confirm-click="Are you sure you want to delete this event?">
         Remove <i class="glyphicon glyphicon-trash"></i>
       </a>
       <a class="btn pull-right" href="/#!/events/{{event._id}}/edit">
         Edit <i class="glyphicon glyphicon-edit"></i>
+      </a>
+    </div>
+    <div data-ng-show="global.admin">
+      <a class="btn pull-right" confirmed-click="spam(event);" ng-confirm-click="Are you sure you want to flag this event as spam?">
+        Flag as Spam <i class="glyphicon glyphicon-flag"></i>
       </a>
     </div>
   </form>

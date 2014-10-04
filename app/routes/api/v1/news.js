@@ -20,6 +20,7 @@ module.exports = function(app) {
         app.get('/news/:newsItemId', news.show);
         app.put('/news/:newsItemId', authorization.requiresLogin, hasAuthorization, news.update);
         app.del('/news/:newsItemId', authorization.requiresLogin, hasAuthorization, news.destroy);
+        app.put('/news/:newsItemId/spam', authorization.requiresLogin, authorization.isAdmin, hasAuthorization, news.spam);
 
         // Finish with setting up the newsItemId param
         app.param('newsItemId', news.newsItem);

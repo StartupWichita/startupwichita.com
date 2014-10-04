@@ -20,7 +20,8 @@ describe('Event routing', function() {
             name: 'Test User',
             email: email,
             username: 'tester',
-            password: password
+            password: password,
+            role: 'Admin'
         });
         user.save(done);
     });
@@ -134,6 +135,17 @@ describe('Event routing', function() {
                 res.should.have.status(200);
                 res.body.content.should.be.eql(updatedEvent.content);
                 res.body.updated_at.should.not.be.eql(updatedEvent.updated_at);
+                done();
+            });
+        });
+
+        it('should successfully mark the event as spam', function(done) {
+            agent
+            .put('/api/v1/events/' + persistedEvent._id + '/spam')
+            .send(persistedEvent)
+            .end(function(err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
                 done();
             });
         });

@@ -64,6 +64,20 @@ exports.destroy = function(req, res) {
 };
 
 /**
+ * Flag the resource as a spam entry
+ */
+exports.spam = function(req, res) {
+    var resource = req.resource;
+
+    Resource.update({ _id: resource._id }, { $set: { spam: true } }, function(error) {
+        if (error) return res.send(500, { errors: error.errors, resource: resource });
+
+        return res.jsonp(resource);
+    });
+};
+
+
+/**
  * Show a resource
  */
 exports.show = function(req, res) {
@@ -74,7 +88,7 @@ exports.show = function(req, res) {
  * List of Resources
  */
 exports.all = function(req, res) {
-    Resource.find().sort('-title').exec(function(err, resources) {
+    Resource.find({ spam: { $ne: true }}).sort('-title').exec(function(err, resources) {
         if (err) return res.send(500, { errors: err.errors });
 
         return res.jsonp(resources);
@@ -88,7 +102,7 @@ exports.rss = function(req, res) {
         link: 'http://startupwichita.com'
     });
 
-    Resource.find().sort('-created_at').limit(20).exec(function(err, resources) {
+    Resource.find({ spam: { $ne: true }}).sort('-created_at').limit(20).exec(function(err, resources) {
         if (err) return res.send(500, { errors: err.errors });
 
         resources.forEach(function(resource) {

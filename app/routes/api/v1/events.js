@@ -20,6 +20,7 @@ module.exports = function(app) {
         app.get('/events/:eventId', events.show);
         app.put('/events/:eventId', authorization.requiresLogin, hasAuthorization, events.update);
         app.del('/events/:eventId', authorization.requiresLogin, hasAuthorization, events.destroy);
+        app.put('/events/:eventId/spam', authorization.requiresLogin, authorization.isAdmin, hasAuthorization, events.spam);
 
         // Finish with setting up the eventId param
         app.param('eventId', events.event);
