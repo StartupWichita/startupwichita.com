@@ -9,6 +9,7 @@
         'ngStorage',
         'ui.bootstrap',
         'ui.router',
+        'datePicker',
         'startupwichita.services',
         'startupwichita.controllers',
         'startupwichita.directives',

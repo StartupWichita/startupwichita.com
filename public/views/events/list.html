@@ -9,7 +9,10 @@
           <h2 class="robotoSlab">
             <a data-ng-href="#!/events/{{event._id}}">{{event.title}}</a>
           </h2>
-          <span>{{event.startTime | date:'medium'}}</span>
+          <span>
+            {{event.startTime | date:'medium'}} -
+            {{event.endTime | date:'medium'}}
+          </span>
         </div>
         <div class="col-md-10">
           <p>{{event.content}}</p>

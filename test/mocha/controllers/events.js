@@ -45,7 +45,6 @@ describe('Event routing', function() {
             startTime: new Date(),
             endTime: new Date(),
             address: '216 N Mosley, Wichita, KS 67202',
-            latlng: [37.68858, -97.32753],
             url: 'http://startupwichita.com/event/1'
         };
 
@@ -116,6 +115,8 @@ describe('Event routing', function() {
             agent
             .get('/api/v1/events/' + persistedEvent._id)
             .end(function(err, res) {
+                persistedEvent.author = res.body.author;
+
                 should.not.exist(err);
                 res.should.have.status(200);
                 res.body.should.be.eql(persistedEvent);

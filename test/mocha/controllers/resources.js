@@ -110,6 +110,8 @@ describe('Resource routing', function() {
             agent
             .get('/api/v1/resources/' + persistedResource._id)
             .end(function(err, res) {
+                persistedResource.author = res.body.author;
+
                 should.not.exist(err);
                 res.should.have.status(200);
                 res.body.should.be.eql(persistedResource);

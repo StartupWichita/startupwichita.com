@@ -23,6 +23,8 @@
             // Initialize the controller and a mock scope
             var EventsController,
                 scope,
+                Global,
+                user,
                 $httpBackend,
                 $stateParams,
                 $location;
@@ -34,8 +36,16 @@
 
                 scope = $rootScope.$new();
 
+                user = {
+                    _id: 'abcdef123456',
+                    name: 'User McUserton'
+                };
+
+                Global = {user: user};
+
                 EventsController = $controller('EventsController', {
-                    $scope: scope
+                    $scope: scope,
+                    Global: Global
                 });
 
                 $stateParams = _$stateParams_;
@@ -59,8 +69,7 @@
                         endTime: '3/15/2014 00:00:00',
                         address: '123 Mosely Dr Wichita, KS 67209',
                         author: 'Erik Rodriguez',
-                        tags: ['Tag'],
-                        latlng: [0, 0]
+                        tags: ['Tag']
                     }]);
 
                     // run controller
@@ -75,8 +84,7 @@
                         endTime: '3/15/2014 00:00:00',
                         address: '123 Mosely Dr Wichita, KS 67209',
                         author: 'Erik Rodriguez',
-                        tags: ['Tag'],
-                        latlng: [0, 0]
+                        tags: ['Tag']
                     }]);
 
                 });
@@ -97,8 +105,7 @@
                             endTime: '3/15/2014 00:00:00',
                             address: '123 Mosely Dr Wichita, KS 67209',
                             author: 'Erik Rodriguez',
-                            tags: ['Tag'],
-                            latlng: [0, 0]
+                            tags: ['Tag']
                         };
                     };
 
@@ -127,9 +134,8 @@
                             startTime: '3/15/2014 00:00:00',
                             endTime: '3/15/2014 00:00:00',
                             address: '123 Mosely Dr Wichita, KS 67209',
-                            author: 'Erik Rodriguez',
-                            tags: ['Tag'],
-                            latlng: [0, 0]
+                            author: 'abcdef123456',
+                            tags: ['Tag']
                         };
                     };
 
@@ -143,8 +149,7 @@
                             endTime: '3/15/2014 00:00:00',
                             address: '123 Mosely Dr Wichita, KS 67209',
                             author: 'Erik Rodriguez',
-                            tags: ['Tag'],
-                            latlng: [0, 0]
+                            tags: ['Tag']
                         };
                     };
 
@@ -156,7 +161,6 @@
                     scope.newEvent.address = '123 Mosely Dr Wichita, KS 67209';
                     scope.newEvent.author = 'Erik Rodriguez';
                     scope.newEvent.tags = ['Tag'];
-                    scope.newEvent.latlng = [0, 0];
 
                     // test post request is sent
                     $httpBackend.expectPOST('/api/v1/events', postEventData()).respond(responseEventData());

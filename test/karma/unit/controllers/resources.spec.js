@@ -25,6 +25,8 @@
             // Initialize the controller and a mock scope
             var ResourcesController,
                 scope,
+                Global,
+                user,
                 $httpBackend,
                 $stateParams,
                 $location;
@@ -36,8 +38,16 @@
 
                 scope = $rootScope.$new();
 
+                user = {
+                    _id: 'abcdef123456',
+                    name: 'User McUserton'
+                };
+
+                Global = {user: user};
+
                 ResourcesController = $controller('ResourcesController', {
-                    $scope: scope
+                    $scope: scope,
+                    Global: Global
                 });
 
                 $stateParams = _$stateParams_;
@@ -110,7 +120,8 @@
                     var postResourceData = function() {
                         return {
                             title: 'An Article about MEAN',
-                            content: 'MEAN rocks!'
+                            content: 'MEAN rocks!',
+                            author: 'abcdef123456'
                         };
                     };
 

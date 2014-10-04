@@ -28,6 +28,7 @@ module.exports = function(config) {
             'public/lib/angular-ui-router/release/angular-ui-router.js',
             'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
             'public/lib/angular-bootstrap/ui-bootstrap.js',
+            'public/lib/angular-datepicker/dist/index.min.js',
             'public/lib/ngstorage/ngStorage.min.js',
             'public/lib/lodash/dist/lodash.min.js',
             'public/lib/crypto-js/rollups/md5.js',
