@@ -13,6 +13,11 @@
                     search: {
                         method: 'GET',
                         isArray: true
+
+                    },
+                    spam: {
+                        method: 'PUT',
+                        url: '/api/v1/news/:_id/spam'
                     }
                 }
             );

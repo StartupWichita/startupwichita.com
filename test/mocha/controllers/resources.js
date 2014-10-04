@@ -20,7 +20,8 @@ describe('Resource routing', function() {
             name: 'test user',
             email: email,
             username: 'tester',
-            password: password
+            password: password,
+            role: 'Admin'
         });
         user.save(done);
     });
@@ -128,6 +129,17 @@ describe('Resource routing', function() {
                 res.should.have.status(200);
                 res.body.content.should.be.eql(updatedResource.content);
                 res.body.updated_at.should.not.be.eql(updatedResource.updated_at);
+                done();
+            });
+        });
+
+        it('should successfully mark the resource as spam', function(done) {
+            agent
+            .put('/api/v1/resources/' + persistedResource._id + '/spam')
+            .send(persistedResource)
+            .end(function(err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
                 done();
             });
         });

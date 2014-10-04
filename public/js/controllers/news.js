@@ -60,6 +60,12 @@
                     $scope.newsItem = newsItem;
                 });
             };
+
+            $scope.spam = function(newsItem) {
+                newsItem.$spam(null, function () {
+                    $location.path('news');
+                });
+            };
         }
     ];
 

@@ -22,7 +22,8 @@ describe('News routing', function() {
             name: 'Test User',
             email: email,
             username: 'tester',
-            password: password
+            password: password,
+            role: 'Admin'
         });
         user.save(function() {
             var person_1 = new User({
@@ -147,6 +148,17 @@ describe('News routing', function() {
                 res.should.have.status(200);
                 res.body.content.should.be.eql(updatedNewsItem.content);
                 res.body.updated_at.should.not.be.eql(updatedNewsItem.updated_at);
+                done();
+            });
+        });
+
+        it('should successfully mark the news item as spam', function(done) {
+            agent
+            .put('/api/v1/news/' + persistedNewsItem._id + '/spam')
+            .send(persistedNewsItem)
+            .end(function(err, res) {
+                should.not.exist(err);
+                res.should.have.status(200);
                 done();
             });
         });

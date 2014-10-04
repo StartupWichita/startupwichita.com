@@ -66,6 +66,19 @@ exports.destroy = function(req, res) {
 };
 
 /**
+ * Flag the event as a spam entry
+ */
+exports.spam = function(req, res) {
+    var event = req.event;
+
+    Event.update({ _id: event._id }, { $set: { spam: true } }, function(error) {
+        if (error) return res.send(500, { errors: error.errors, event: event });
+
+        return res.jsonp(event);
+    });
+};
+
+/**
  * Show an event
  */
 exports.show = function(req, res) {
@@ -76,7 +89,7 @@ exports.show = function(req, res) {
  * List of Events
  */
 exports.all = function(req, res) {
-    Event.find().sort('-title').exec(function(err, events) {
+    Event.find({ spam: { $ne: true }}).sort('-title').exec(function(err, events) {
         if (err) return res.send(500, { errors: err.errors });
 
         return res.jsonp(events);
@@ -90,7 +103,7 @@ exports.rss = function(req, res) {
         link: 'http://startupwichita.com'
     });
 
-    Event.find().sort('-created_at').limit(20).exec(function(err, events) {
+    Event.find({ spam: { $ne: true }}).sort('-created_at').limit(20).exec(function(err, events) {
         if (err) return res.send(500, { errors: err.errors });
 
         events.forEach(function(event) {

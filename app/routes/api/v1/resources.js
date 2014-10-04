@@ -21,6 +21,7 @@ module.exports = function(app) {
         app.get('/resources/:resourceId', resources.show);
         app.put('/resources/:resourceId', authorization.requiresLogin, hasAuthorization, resources.update);
         app.del('/resources/:resourceId', authorization.requiresLogin, hasAuthorization, resources.destroy);
+        app.put('/resources/:resourceId/spam', authorization.requiresLogin, authorization.isAdmin, hasAuthorization, resources.spam);
 
         // Finish with setting up the resourceId param
         app.param('resourceId', resources.resource);

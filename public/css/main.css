@@ -555,6 +555,10 @@ border-color: #ef592b;
   min-height: 3.5em;
 }
 
+.util-bar a {
+    color: #f8e4c5 !important;
+}
+
 .view .row {
     margin: 0 auto;
     padding: 2em;

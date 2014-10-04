@@ -11,6 +11,11 @@
         Edit <i class="glyphicon glyphicon-edit"></i>
       </a>
     </div>
+    <div data-ng-show="global.admin">
+      <a class="btn pull-right" confirmed-click="spam(newsItem);" ng-confirm-click="Are you sure you want to flag this news item as spam?">
+        Flag as Spam <i class="glyphicon glyphicon-flag"></i>
+      </a>
+    </div>
   </form>
   <div class="row">
     <h2 class="robotoSlab">{{newsItem.title}}</h2>
