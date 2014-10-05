@@ -46,7 +46,7 @@
                 var user = $scope.user;
 
                 user.$update(function() {
-                    $location.path('/api/v1/users/' + user._id);
+                    $location.path('/#!/users/' + user._id);
                 });
             };
 

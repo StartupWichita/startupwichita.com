@@ -6,8 +6,8 @@
 var mongoose = require('mongoose'),
     Event = mongoose.model('Event'),
     _ = require('lodash'),
-    Feed = require('feed');
-
+    Feed = require('feed'),
+    Formatter = require('../util/formatter');
 
 /**
  * Find event by _id
@@ -32,7 +32,7 @@ exports.create = function(req, res) {
     var event = new Event(req.body);
 
     event.save(function(err) {
-        if (err) return res.send(500, { errors: err.errors, event: event });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), event: event });
 
         event.tags = req.body.tags;
         return res.jsonp(201, event);
@@ -47,8 +47,8 @@ exports.update = function(req, res) {
 
     event = _.extend(event, req.body);
 
-    event.save(function(error) {
-        if (error) return res.send(500, { errors: error.errors, event: event });
+    event.save(function(err) {
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), event: event });
 
         return res.jsonp(event);
     });
@@ -61,7 +61,7 @@ exports.destroy = function(req, res) {
     var event = req.event;
 
     event.remove(function(err) {
-        if (err) return res.send(500, { errors: err.errors, event: event });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), event: event });
 
         return res.jsonp(204, event);
     });
@@ -73,8 +73,8 @@ exports.destroy = function(req, res) {
 exports.spam = function(req, res) {
     var event = req.event;
 
-    Event.update({ _id: event._id }, { $set: { spam: true } }, function(error) {
-        if (error) return res.send(500, { errors: error.errors, event: event });
+    Event.update({ _id: event._id }, { $set: { spam: true } }, function(err) {
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), event: event });
 
         return res.jsonp(event);
     });
@@ -92,7 +92,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     Event.find({ spam: { $ne: true }}).sort('-title').exec(function(err, events) {
-        if (err) return res.send(500, { errors: err.errors });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors) });
 
         return res.jsonp(events);
     });
@@ -106,7 +106,7 @@ exports.rss = function(req, res) {
     });
 
     Event.find({ spam: { $ne: true }}).sort('-created_at').limit(20).exec(function(err, events) {
-        if (err) return res.send(500, { errors: err.errors });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors) });
 
         events.forEach(function(event) {
             feed.addItem({

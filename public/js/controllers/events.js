@@ -22,14 +22,16 @@
 
                 event.$save(function(response) {
                     $location.path('events/' + response._id);
-                }, function () {
-                    // TODO Need to show validation errors
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
             $scope.remove = function(event) {
-                event.$remove(null, function () {
+                event.$remove(function () {
                     $location.path('events');
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
@@ -42,8 +44,8 @@
 
                 event.$update(function() {
                     $location.path('events/' + event._id);
-                }, function () {
-                    // TODO Need to show validation errors
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
@@ -64,8 +66,10 @@
             };
 
             $scope.spam = function(event) {
-                event.$spam(null, function () {
+                event.$spam(function () {
                     $location.path('events');
+                }, function(response) {
+                    $scope.errors = response.data.errors;
                 });
             };
         }

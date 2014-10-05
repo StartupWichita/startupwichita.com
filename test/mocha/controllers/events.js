@@ -20,8 +20,7 @@ describe('Event routing', function() {
             name: 'Test User',
             email: email,
             username: 'tester',
-            password: password,
-            role: 'Admin'
+            password: password
         });
         user.save(done);
     });
@@ -31,9 +30,9 @@ describe('Event routing', function() {
 
         var author = new User({
             name: 'Some author',
-            email: 'foo@bar.com',
+            email: email,
             username: 'author',
-            password: 'password1234'
+            password: password
         });
         author.save();
 
@@ -71,7 +70,6 @@ describe('Event routing', function() {
                 persistedEvent = res.body;
                 should.exist(persistedEvent.created_at);
                 author._id.toString().should.be.eql(persistedEvent.author);
-
                 tags.should.be.eql(persistedEvent.tags);
                 done();
             });
@@ -140,21 +138,17 @@ describe('Event routing', function() {
             });
         });
 
-        it('should successfully mark the event as spam', function(done) {
+        it('should fail to mark the event as spam if not admin', function(done) {
             agent
             .put('/api/v1/events/' + persistedEvent._id + '/spam')
             .send(persistedEvent)
             .end(function(err, res) {
-                should.not.exist(err);
-                res.should.have.status(200);
+                res.should.have.status(401);
                 done();
             });
         });
 
         it('should successfully delete the specified event', function(done) {
-            var updatedEvent = persistedEvent;
-            updatedEvent.content = 'Updated Content';
-
             agent
             .del('/api/v1/events/' + persistedEvent._id)
             .end(function(err, res) {

@@ -3,13 +3,15 @@
 // User routes use users controller
 var users = require('../controllers/users');
 var authorization = require('./middlewares/authorization');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
-// @TODO - Need to add Admin authorization
 var hasAuthorization = function(req, res, next) {
-    if (req.profile.id !== req.user.id) {
-        return res.send(401, 'User is not authorized');
-    }
-    next();
+    User.findOne({ _id: req.user._id }).exec(function(err, user) {
+        if (err || !user) return res.send(401, 'Unable to authorize this request');
+
+        return authorization.protectedResource(req, res, next, user._id);
+    });
 };
 
 module.exports = function(app, passport) {

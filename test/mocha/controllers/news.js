@@ -22,8 +22,7 @@ describe('News routing', function() {
             name: 'Test User',
             email: email,
             username: 'tester',
-            password: password,
-            role: 'Admin'
+            password: password
         });
         user.save(function() {
             var person_1 = new User({
@@ -152,13 +151,12 @@ describe('News routing', function() {
             });
         });
 
-        it('should successfully mark the news item as spam', function(done) {
+        it('should fail to mark news item as spam if not admin', function(done) {
             agent
             .put('/api/v1/news/' + persistedNewsItem._id + '/spam')
             .send(persistedNewsItem)
             .end(function(err, res) {
-                should.not.exist(err);
-                res.should.have.status(200);
+                res.should.have.status(401);
                 done();
             });
         });

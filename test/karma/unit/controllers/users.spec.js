@@ -127,7 +127,7 @@
                 $httpBackend.flush();
 
                 // test URL location to new object
-                expect($location.path()).toBe('/api/v1/users/' + putUserData()._id);
+                expect($location.path()).toBe('/#!/users/' + putUserData()._id);
 
             }));
 

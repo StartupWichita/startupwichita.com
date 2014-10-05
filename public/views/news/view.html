@@ -18,6 +18,7 @@
     </div>
   </form>
   <div class="row">
+    <div data-ng-include="'views/partials/errors.html'"></div>
     <h2 class="robotoSlab">{{newsItem.title}}</h2>
     <span>Posted by: {{newsItem.author.name}}</span> on
     <span>{{newsItem.created_at | date:'medium'}}</span>

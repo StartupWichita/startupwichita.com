@@ -13,38 +13,33 @@ var should = require('should'),
 describe('Resource routing', function() {
     var user,
         email = 'testing@example.com',
-        password = 'test password';
+        password = 'test password',
+        tags,
+        resource;
 
     before(function(done) {
+        tags = ['tag1', 'tag2'];
+
         user = new User({
             name: 'test user',
             email: email,
             username: 'tester',
-            password: password,
-            role: 'Admin'
+            password: password
         });
-        user.save(done);
+        user.save(function() {
+            resource = {
+                title: 'Resource Title',
+                content: 'Here is my resource content',
+                author: user._id,
+                url: 'http://startupwichita.com/resource/1',
+                tags: tags
+            };
+
+            done();
+        });
     });
 
     describe('Handle CRUD', function () {
-        var tags = ['tag1', 'tag2'];
-
-        var author = new User({
-            name: 'Some author',
-            email: 'foo@bar.com',
-            username: 'author',
-            password: 'password1234'
-        });
-        author.save();
-
-        var resource = {
-            title: 'Resource Title',
-            tags: tags,
-            content: 'Here is my resource content',
-            author: author._id,
-            url: 'http://startupwichita.com/resource/1'
-        };
-
         var persistedResource;
 
         it('login', function(done) {
@@ -66,8 +61,8 @@ describe('Resource routing', function() {
                 should.not.exist(err);
                 res.should.have.status(201);
                 persistedResource = res.body;
-                author._id.toString().should.be.eql(persistedResource.author);
-                tags.toString().should.be.eql(persistedResource.tags.toString());
+                user._id.toString().should.be.eql(persistedResource.author);
+                tags.should.be.eql(persistedResource.tags);
                 done();
             });
         });
@@ -135,13 +130,12 @@ describe('Resource routing', function() {
             });
         });
 
-        it('should successfully mark the resource as spam', function(done) {
+        it('should fail to mark the resource as spam if not admin', function(done) {
             agent
             .put('/api/v1/resources/' + persistedResource._id + '/spam')
             .send(persistedResource)
             .end(function(err, res) {
-                should.not.exist(err);
-                res.should.have.status(200);
+                res.should.have.status(401);
                 done();
             });
         });
