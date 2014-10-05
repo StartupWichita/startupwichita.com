@@ -6,8 +6,8 @@
 var mongoose = require('mongoose'),
     News = mongoose.model('News'),
     _ = require('lodash'),
-    Feed = require('feed');
-
+    Feed = require('feed'),
+    Formatter = require('../util/formatter');
 
 /**
  * Find newsItem by _id
@@ -31,7 +31,7 @@ exports.create = function(req, res) {
     var newsItem = new News(req.body);
 
     newsItem.save(function(err) {
-        if (err) return res.send(500, { errors: err.errors, newsItem: newsItem });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), newsItem: newsItem });
 
         return res.jsonp(201, newsItem);
     });
@@ -46,7 +46,7 @@ exports.update = function(req, res) {
     newsItem = _.extend(newsItem, req.body);
 
     newsItem.save(function(err) {
-        if (err) return res.send(500, { errors: err.errors, newsItem: newsItem });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), newsItem: newsItem });
 
         return res.jsonp(newsItem);
     });
@@ -59,7 +59,7 @@ exports.destroy = function(req, res) {
     var newsItem = req.newsItem;
 
     newsItem.remove(function(err) {
-        if (err) return res.send(500, { errors: err.errors, newsItem: newsItem });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), newsItem: newsItem });
 
         return res.jsonp(204, newsItem);
     });
@@ -71,8 +71,8 @@ exports.destroy = function(req, res) {
 exports.spam = function(req, res) {
     var newsItem = req.newsItem;
 
-    News.update({ _id: newsItem._id }, { $set: { spam: true } }, function(error) {
-        if (error) return res.send(500, { errors: error.errors, newsItem: newsItem });
+    News.update({ _id: newsItem._id }, { $set: { spam: true } }, function(err) {
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), newsItem: newsItem });
 
         return res.jsonp(newsItem);
     });
@@ -93,7 +93,7 @@ exports.all = function(req, res) {
         .populate('author')
         .sort('-title')
         .exec(function(err, news) {
-            if (err) return res.send(500, { errors: err.errors });
+            if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors) });
 
             return res.jsonp(news);
         });
@@ -111,7 +111,7 @@ exports.rss = function(req, res) {
         .sort('-created_at')
         .limit(20)
         .exec(function(err, news) {
-            if (err) return res.send(500, { errors: err.errors });
+            if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors) });
 
             news.forEach(function(newsItem) {
                 feed.addItem({

@@ -3,24 +3,26 @@
 // Events routes use events controller
 var events = require('../../../controllers/events');
 var authorization = require('../../middlewares/authorization');
+var mongoose = require('mongoose');
+var Event = mongoose.model('Event');
 
-// @TODO - Need to add Admin authorization only
 var hasAuthorization = function(req, res, next) {
-    if (req.user.id !== req.user.id) {
-        return res.send(401, 'User is not authorized');
-    }
-    next();
+    Event.findOne({ _id: req.event._id }).exec(function(err, event) {
+        if (err || !event) return res.send(401, 'Unable to authorize this request');
+
+        return authorization.protectedResource(req, res, next, event.author);
+    });
 };
 
 module.exports = function(app) {
     app.namespace('/api/v1', function () {
         app.get('/events', events.all);
         app.get('/events.rss', events.rss);
-        app.post('/events', authorization.requiresLogin, hasAuthorization, events.create);
+        app.post('/events', authorization.requiresLogin, events.create);
         app.get('/events/:eventId', events.show);
         app.put('/events/:eventId', authorization.requiresLogin, hasAuthorization, events.update);
         app.del('/events/:eventId', authorization.requiresLogin, hasAuthorization, events.destroy);
-        app.put('/events/:eventId/spam', authorization.requiresLogin, authorization.isAdmin, hasAuthorization, events.spam);
+        app.put('/events/:eventId/spam', authorization.requiresLogin, authorization.isAdmin, events.spam);
 
         // Finish with setting up the eventId param
         app.param('eventId', events.event);

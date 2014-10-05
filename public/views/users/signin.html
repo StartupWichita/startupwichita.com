@@ -1,7 +1,5 @@
 <div class="container-fluid signup" ng-controller="UsersController">
-  <div class="alert alert-danger" ng-repeat="error in errors">
-    {{ error }}
-  </div>
+  <div data-ng-include="'views/partials/errors.html'"></div>
 
   <div class="row signup">
     <div data-ng-include="'views/partials/auth-providers.html'"></div>

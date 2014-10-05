@@ -20,14 +20,16 @@
 
                 resource.$save(function(response) {
                     $location.path('resources/' + response._id);
-                }, function () {
-                    // TODO Need to show validation errors
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
             $scope.remove = function(resource) {
-                resource.$remove(null, function () {
+                resource.$remove(function () {
                     $location.path('resources');
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
@@ -36,8 +38,8 @@
 
                 resource.$update(function() {
                     $location.path('resources/' + resource._id);
-                }, function () {
-                    // TODO Need to show validation errors
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
@@ -58,8 +60,10 @@
             };
 
             $scope.spam = function(resource) {
-                resource.$spam(null, function () {
+                resource.$spam(function () {
                     $location.path('resources');
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
         }

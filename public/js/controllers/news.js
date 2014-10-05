@@ -20,14 +20,16 @@
 
                 newsItem.$save().then(function(response) {
                     $location.path('news/' + response._id);
-                }, function () {
-                    // TODO Need to show validation errors
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
             $scope.remove = function(newsItem) {
-                newsItem.$remove(null, function () {
+                newsItem.$remove(function () {
                     $location.path('news');
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
@@ -40,8 +42,8 @@
 
                 newsItem.$update().then(function() {
                     $location.path('news/' + newsItem._id);
-                }, function () {
-                    // TODO Need to show validation errors
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
 
@@ -62,8 +64,10 @@
             };
 
             $scope.spam = function(newsItem) {
-                newsItem.$spam(null, function () {
+                newsItem.$spam(function () {
                     $location.path('news');
+                }, function (response) {
+                    $scope.errors = response.data.errors;
                 });
             };
         }

@@ -6,8 +6,8 @@
 var mongoose = require('mongoose'),
     Resource = mongoose.model('Resource'),
     _ = require('lodash'),
-    Feed = require('feed');
-
+    Feed = require('feed'),
+    Formatter = require('../util/formatter');
 
 /**
  * Find resource by _id
@@ -31,7 +31,7 @@ exports.create = function(req, res) {
     var resource = new Resource(req.body);
 
     resource.save(function(err) {
-        if (err) return res.send(500, { errors: err.errors, resource: resource });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), resource: resource });
 
         return res.jsonp(201, resource);
     });
@@ -46,7 +46,7 @@ exports.update = function(req, res) {
     resource = _.extend(resource, req.body);
 
     resource.save(function(err) {
-        if (err) return res.send(500, { errors: err.errors, resource: resource });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), resource: resource });
 
         return res.jsonp(resource);
     });
@@ -59,7 +59,7 @@ exports.destroy = function(req, res) {
     var resource = req.resource;
 
     resource.remove(function(err) {
-        if (err) return res.send(500, { errors: err.errors, resource: resource });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), resource: resource });
 
         return res.jsonp(204, resource);
     });
@@ -71,8 +71,8 @@ exports.destroy = function(req, res) {
 exports.spam = function(req, res) {
     var resource = req.resource;
 
-    Resource.update({ _id: resource._id }, { $set: { spam: true } }, function(error) {
-        if (error) return res.send(500, { errors: error.errors, resource: resource });
+    Resource.update({ _id: resource._id }, { $set: { spam: true } }, function(err) {
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors), resource: resource });
 
         return res.jsonp(resource);
     });
@@ -91,7 +91,7 @@ exports.show = function(req, res) {
  */
 exports.all = function(req, res) {
     Resource.find({ spam: { $ne: true }}).sort('-title').exec(function(err, resources) {
-        if (err) return res.send(500, { errors: err.errors });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors) });
 
         return res.jsonp(resources);
     });
@@ -105,7 +105,7 @@ exports.rss = function(req, res) {
     });
 
     Resource.find({ spam: { $ne: true }}).sort('-created_at').limit(20).exec(function(err, resources) {
-        if (err) return res.send(500, { errors: err.errors });
+        if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors) });
 
         resources.forEach(function(resource) {
             feed.addItem({
