@@ -16,9 +16,8 @@
                     startTime: $scope.newEvent.startTime,
                     endTime: $scope.newEvent.endTime,
                     address: $scope.newEvent.address,
-                    author: $scope.newEvent.author,
-                    tags: $scope.newEvent.tags,
-                    latlng: $scope.newEvent.latlng
+                    author: $scope.global.user._id,
+                    tags: $scope.newEvent.tags
                 });
 
                 event.$save(function(response) {

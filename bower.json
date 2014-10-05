@@ -17,6 +17,7 @@
     "modernizr": "~2.8.1",
     "jquery": "~2.1.1",
     "angular-ui-select": "~0.7.0",
-    "angular-sanitize": "~1.2.25"
+    "angular-sanitize": "~1.2.25",
+    "angular-datepicker": "~1.0.3"
   }
 }

@@ -19,25 +19,19 @@
       <div class="form-group">
         <label for="startTime" class="col-md-2 control-label">Start Time</label>
         <div class="col-md-10">
-          <input type="text" class="form-control" data-ng-model="newEvent.startTime" id="startTime" required>
+          <input type="datetime" date-time class="form-control" data-ng-model="newEvent.startTime" id="startTime" required>
         </div>
       </div>
       <div class="form-group">
         <label for="endTime" class="col-md-2 control-label">End Time</label>
         <div class="col-md-10">
-          <input type="text" class="form-control" data-ng-model="newEvent.endTime" id="endTime" required>
+          <input type="datetime" date-time class="form-control" data-ng-model="newEvent.endTime" id="endTime" required>
         </div>
       </div>
       <div class="form-group">
         <label for="address" class="col-md-2 control-label">Address</label>
         <div class="col-md-10">
           <input type="text" class="form-control" data-ng-model="newEvent.address" id="address" required>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="author" class="col-md-2 control-label">Author</label>
-        <div class="col-md-10">
-          <input type="text" class="form-control" data-ng-model="newEvent.author" id="author" required>
         </div>
       </div>
       <div class="form-group">
@@ -49,12 +43,6 @@
               <div ng-bind-html="tagOption | highlight: $select.search"></div>
             </ui-select-choices>
           </ui-select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="latlng" class="col-md-2 control-label">Lat / Long</label>
-        <div class="col-md-10">
-          <input type="text" class="form-control" data-ng-model="newEvent.latlng" id="latlng" required>
         </div>
       </div>
       <div class="form-group">

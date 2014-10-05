@@ -13,7 +13,9 @@ var mongoose = require('mongoose'),
  * Find resource by _id
  */
 exports.resource = function(req, res, next, _id) {
-    Resource.findOne({ _id: _id }, function(err, resource) {
+    Resource.findOne({ _id: _id })
+    .populate('author')
+    .exec(function(err, resource) {
         if (err) return next(err);
         if (!resource) return next(new Error('Failed to find resource ' + _id));
 

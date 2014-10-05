@@ -33,7 +33,6 @@ describe('Event', function() {
                 startTime: new Date(),
                 endTime: new Date(),
                 address: '216 N Mosley, Wichita, KS 67202',
-                latlng: [37.68858, -97.32753]
             });
 
             done();
@@ -78,22 +77,6 @@ describe('Event', function() {
 
             it('should show an error when try to save without address', function(done) {
                 testEvent.address = '';
-                return testEvent.save(function(err) {
-                    should.exist(err);
-                    done();
-                });
-            });
-
-            it('should show an error when try to save without latlng', function(done) {
-                testEvent.latlng = '';
-                return testEvent.save(function(err) {
-                    should.exist(err);
-                    done();
-                });
-            });
-
-            it('should show an error when try to save with invalid latlng values', function(done) {
-                testEvent.latlng = ['not numeric', 'not numeric'];
                 return testEvent.save(function(err) {
                     should.exist(err);
                     done();

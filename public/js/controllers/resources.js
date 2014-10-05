@@ -15,7 +15,7 @@
                     content: $scope.newResource.content,
                     tags: $scope.newResource.tags,
                     url: $scope.newResource.url,
-                    image: $scope.newResource.image
+                    author: $scope.global.user._id
                 });
 
                 resource.$save(function(response) {

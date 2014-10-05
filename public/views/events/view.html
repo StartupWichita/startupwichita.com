@@ -19,9 +19,18 @@
   </form>
   <div class="row">
     <h2 class="robotoSlab">{{event.title}}</h2>
+    <span>Posted by: {{event.author.name}}</span> on
+    <span>{{event.created_at | date:'medium'}}</span>
+  </div>
+  <div class="row">
+    <p>
+      Event runs from {{event.startTime | date:'medium'}} until {{event.endTime
+      | date:'medium'}}
+    </p>
   </div>
   <div class="row">
     <p>{{event.content}}</p>
   </div>
+  <div data-ng-include="'views/partials/tags.html'" onload="tags=event.tags"></div>
   <div data-ng-include="'views/partials/disqus.html'"></div>
 </section>
