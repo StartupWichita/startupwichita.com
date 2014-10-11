@@ -23,7 +23,6 @@ describe('Resource routing', function() {
         user = new User({
             name: 'test user',
             email: email,
-            username: 'tester',
             password: password
         });
         user.save(function() {

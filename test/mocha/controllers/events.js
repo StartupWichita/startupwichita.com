@@ -19,7 +19,6 @@ describe('Event routing', function() {
         user = new User({
             name: 'Test User',
             email: email,
-            username: 'tester',
             password: password
         });
         user.save(done);
@@ -31,7 +30,6 @@ describe('Event routing', function() {
         var author = new User({
             name: 'Some author',
             email: email,
-            username: 'author',
             password: password
         });
         author.save();

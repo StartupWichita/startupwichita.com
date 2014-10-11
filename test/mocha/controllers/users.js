@@ -14,7 +14,6 @@ describe('User routing', function() {
     var user = {
         name: 'Test User',
         email: email,
-        username: 'testuser1',
         password: password
     };
 
@@ -35,24 +34,6 @@ describe('User routing', function() {
     });
 
     describe('Creation failures', function() {
-
-        it('should reject user with taken username', function(done) {
-            var u = new User(user);
-            u.save(function(err) {
-                should.not.exist(err);
-
-                user.email = 'testing2@example.com';
-
-                agent
-                .post('/api/v1/users')
-                .send(user)
-                .end(function(err, res) {
-                    should.not.exist(err);
-                    res.text.should.match(/Username already exists/);
-                    done();
-                });
-            });
-        });
 
         it('should reject user without provided name', function(done) {
             user.name = undefined;
@@ -199,7 +180,6 @@ describe('User routing', function() {
 
                     should.exist(res.body._id);
                     should.exist(res.body.name);
-                    should.exist(res.body.username);
                     should.exist(res.body.role);
                     should.exist(res.body.bio);
                     should.exist(res.body.tagline);
@@ -232,7 +212,6 @@ describe('User routing', function() {
 
                     should.exist(res.body[0]._id);
                     should.exist(res.body[0].name);
-                    should.exist(res.body[0].username);
                     should.exist(res.body[0].role);
                     should.exist(res.body[0].bio);
                     should.exist(res.body[0].tagline);
@@ -252,7 +231,6 @@ describe('User routing', function() {
                 .get('/api/v1/users/?featured=false')
                 .end(function(err, res) {
 
-                    should.exist(res.body[0].username);
                     res.body[0].featured.should.equal(false);
 
                     agent
@@ -273,7 +251,6 @@ describe('User routing', function() {
                 .get('/api/v1/users/?role=Visitor')
                 .end(function(err, res) {
 
-                    should.exist(res.body[0].username);
                     res.body[0].role.should.equal('Visitor');
 
                     agent

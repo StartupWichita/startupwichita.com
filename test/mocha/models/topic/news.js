@@ -17,7 +17,6 @@ describe('News', function() {
             author = new User({
                 name: 'Full name',
                 email: 'test@test.com',
-                username: 'user',
                 password: 'password',
                 provider: 'local'
             });

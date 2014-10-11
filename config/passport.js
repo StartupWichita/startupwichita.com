@@ -70,7 +70,6 @@ module.exports = function(passport) {
                 if (!user) {
                     user = new User({
                         name: profile.displayName,
-                        username: profile.username,
                         provider: 'twitter',
                         twitter: profile._json
                     });
@@ -102,7 +101,6 @@ module.exports = function(passport) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        username: profile.username,
                         provider: 'facebook',
                         facebook: profile._json
                     });
@@ -131,7 +129,6 @@ module.exports = function(passport) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        username: profile.username,
                         provider: 'github',
                         github: profile._json
                     });
@@ -160,7 +157,6 @@ module.exports = function(passport) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        username: profile.emails[0].value,
                         provider: 'google',
                         google: profile._json
                     });
@@ -190,7 +186,6 @@ module.exports = function(passport) {
                     user = new User({
                         name: profile.displayName,
                         email: profile.emails[0].value,
-                        username: profile.emails[0].value,
                         provider: 'linkedin'
                     });
                     user.save(function(err) {

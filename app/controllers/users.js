@@ -23,7 +23,6 @@ var sanitize = function(u, self) {
             var sanitizedUser = {
                 _id: user._id,
                 name: user.name,
-                username: user.username,
                 emailHash: MD5(user.email).toString(),
                 role: user.role,
                 bio: user.bio,
@@ -37,7 +36,6 @@ var sanitize = function(u, self) {
         result = {
             _id: u._id,
             name: u.name,
-            username: u.username,
             emailHash: MD5(u.email).toString(),
             role: u.role,
             bio: u.bio,
@@ -95,7 +93,7 @@ exports.create = function(req, res, next) {
             switch (err.code) {
                 case 11000:
                 case 11001:
-                    message = 'Username already exists';
+                    message = 'An account with this email already exists';
                     break;
                 default:
                     message = 'Please fill in all the required fields';

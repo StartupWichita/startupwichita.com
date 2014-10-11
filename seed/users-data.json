@@ -2,7 +2,6 @@
     {
         "name": "Seth Etter",
         "email": "sethetter@gmail.com",
-        "username": "sethetter",
         "role": "Visitor",
         "bio": "Things and stuff and some other things as well.",
         "featured": true,
@@ -14,7 +13,6 @@
     {
         "name": "Jacob Walker",
         "email": "jacobwalker0814@gmail.com",
-        "username": "jacobwalker0814",
         "role": "Visitor",
         "bio": "Things and stuff and some other things as well.",
         "featured": true,
@@ -26,7 +24,6 @@
     {
         "name": "Jonathan Van Winkle",
         "email": "jonathan.vanwinkle@gmail.com",
-        "username": "jonathanvw",
         "role": "Visitor",
         "bio": "Things and stuff and some other things as well.",
         "featured": true,
@@ -38,7 +35,6 @@
     {
         "name": "Jim Rice",
         "email": "hitjim@gmail.com",
-        "username": "jimrice",
         "role": "Visitor",
         "bio": "Things and stuff and some other things as well.",
         "featured": true,
@@ -50,7 +46,6 @@
     {
         "name": "Kenton Hansen",
         "email": "kenton@gobananago.com",
-        "username": "kentonh",
         "role": "Visitor",
         "bio": "Things and stuff and some other things as well.",
         "featured": true,
