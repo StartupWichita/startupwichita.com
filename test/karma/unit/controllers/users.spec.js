@@ -52,7 +52,6 @@
                     // test expected GET request
                     $httpBackend.expectGET('/api/v1/users').respond([{
                         name: 'Bob Smith',
-                        username: 'bobsmith',
                         email: 'bob@smith.com',
                         bio: 'My name is Bob Smith, what more do you need to know?',
                         tagline: 'The Smithinator'
@@ -65,7 +64,6 @@
                     // test scope value
                     expect(scope.users).toEqualData([{
                         name: 'Bob Smith',
-                        username: 'bobsmith',
                         email: 'bob@smith.com',
                         bio: 'My name is Bob Smith, what more do you need to know?',
                         tagline: 'The Smithinator'
@@ -82,7 +80,6 @@
                     var testUserData = function() {
                         return {
                             name: 'Bob Smith',
-                            username: 'bobsmith',
                             email: 'bob@smith.com',
                             bio: 'My name is Bob Smith, what more do you need to know?',
                             tagline: 'The Smithinator'
@@ -108,7 +105,6 @@
                 var putUserData = function() {
                     return {
                         _id: '525a8422f6d0f87f0e407a33',
-                        username: 'smithinator',
                         email: 'yeah@dude.com'
                     };
                 };

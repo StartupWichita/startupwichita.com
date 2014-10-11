@@ -21,21 +21,18 @@ describe('News routing', function() {
         user = new User({
             name: 'Test User',
             email: email,
-            username: 'tester',
             password: password
         });
         user.save(function() {
             var person_1 = new User({
                 name: 'Some person',
                 email: 'person_1@foobar.com',
-                username: 'person_1',
                 password: 'password1234'
             });
             person_1.save(function() {
                 var person_2 = new User({
                     name: 'Some person',
                     email: 'person_2@foobar.com',
-                    username: 'person_2',
                     password: 'password1234'
                 });
                 person_2.save(function() {

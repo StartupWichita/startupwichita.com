@@ -11,8 +11,8 @@
             userData;
 
         userData = [
-            { name: 'Bob Smith', username: 'bobsmith' },
-            { name: 'Harold Johnson', username: 'haroldjohnson' }
+            { name: 'Bob Smith' },
+            { name: 'Harold Johnson' }
         ];
 
         beforeEach(inject(function (_Users_, _$httpBackend_) {

@@ -28,7 +28,6 @@
                 var user = new Users({
                     name: this.name,
                     email: this.email,
-                    username: this.username,
                     password: this.password
                 });
 
