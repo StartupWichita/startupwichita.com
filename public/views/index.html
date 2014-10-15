@@ -10,7 +10,7 @@
               <h2 class="text-center robotoSlab cream">People that connect you</h2>
               <owl-carousel id="peopleCarousel" owl-width="292" class="owl-carousel" ng-transclude owl-ready="peopleReady">
                   <div ng-repeat="user in featuredUsers">
-                      <a href="/#!/users/{{user._id}}">
+                      <a href="/#!/users/{{ user._id }}">
                           <img class="lazyOwl" ng-src="{{ gravatar.buildGravatarUrl(user.emailHash, '292') }}" alt="{{ user.name }}">
                           <div class="people-teaser white text-center">
                               <h4>{{ user.name }}</h4>
@@ -33,14 +33,14 @@
             </div>
           </div>
           <div class="col-md-4 col-md-pull-4">
-            <a class="white grey-bg">
+            <a href="/#!/events/{{ firstTwoEvents[0]._id }}" class="white grey-bg">
               <h3>{{ firstTwoEvents[0].title }}</h3>
               <p class="date">{{ firstTwoEvents[0].startTime | date: 'M/d/yy h:mm a' }} at {{ firstTwoEvents[0].address }}</p>
               <p>{{ firstTwoEvents[0].content }}</p>
             </a>
           </div>
           <div class="col-md-4">
-            <a class="white grey-bg">
+            <a href="/#!/events/{{ firstTwoEvents[1]._id }}" class="white grey-bg">
               <h3>{{ firstTwoEvents[1].title }}</h3>
               <p class="date">{{ firstTwoEvents[1].startTime | date: 'M/d/yy h:mm a' }} at {{ firstTwoEvents[1].address }}</p>
               <p>{{ firstTwoEvents[1].content }}</p>
@@ -49,7 +49,7 @@
         </div>
         <div class="row">
           <div ng-repeat="event in featuredEvents" class="col-md-3">
-            <a class="white grey-bg">
+            <a href="/#!/events/{{ event._id }}" class="white grey-bg">
               <h3>{{ event.title }}</h3>
               <p class="date">{{ event.startTime | date: 'M/d/yy h:mm a' }} at {{ event.address }}</p>
               <p>{{ event.content }}</p>
@@ -66,7 +66,7 @@
         <owl-carousel id="newsCarousel" class="owl-carousel" ng-transclude owl-width="550" owl-ready="newsReady">
             <div ng-repeat="item in featuredNews">
                 <div class="news-teaser white">
-                    <a href="#"><h3 class="text-center white">{{ item.title }}</h3><p class="white">{{ item.content }}</p></a>
+                    <a href="/#!/news/{{ item._id }}"><h3 class="text-center white">{{ item.title }}</h3><p class="white">{{ item.content }}</p></a>
                 </div>
             </div>
         </owl-carousel>
@@ -80,7 +80,7 @@
             <div class="row" ng-repeat="row in featuredResources | partition:3">
                 <div class="col-sm-4 resource-wrapper" ng-repeat="resource in row">
                     <div class="resources-teaser white">
-                        <a href="" class="white grey-bg">
+                        <a href="/#!/resources/{{ resource._id }}" class="white grey-bg">
                             <h3 class="white">{{ resource.title }}</h3>
                             <p class="white sm-collapse">{{ resource.content }}</p>
                         </a>
