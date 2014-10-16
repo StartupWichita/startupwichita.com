@@ -10,3 +10,5 @@ mean.iml
 .vagrant
 Vagrantfile.web
 *.swp
+config/env/production.js
+tmp/
