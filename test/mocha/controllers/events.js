@@ -13,38 +13,35 @@ var should = require('should'),
 describe('Event routing', function() {
     var user,
         email = 'testing@example.com',
-        password = 'test password';
+        password = 'test password',
+        tags,
+        event;
 
     before(function(done) {
+        tags = ['tag1', 'tag2'];
+
         user = new User({
             name: 'Test User',
             email: email,
             password: password
         });
-        user.save(done);
+        user.save(function() {
+            event = {
+                title: 'Event Title',
+                tags: tags,
+                content: 'This is my event description',
+                author: user._id,
+                startTime: new Date(),
+                endTime: new Date(),
+                address: '216 N Mosley, Wichita, KS 67202',
+                url: 'http://startupwichita.com/event/1'
+            };
+
+            done();
+        });
     });
 
     describe('Handle CRUD', function () {
-        var tags = ['tag1', 'tag2'];
-
-        var author = new User({
-            name: 'Some author',
-            email: email,
-            password: password
-        });
-        author.save();
-
-        var event = {
-            title: 'Event Title',
-            tags: tags,
-            content: 'This is my event description',
-            author: author._id,
-            startTime: new Date(),
-            endTime: new Date(),
-            address: '216 N Mosley, Wichita, KS 67202',
-            url: 'http://startupwichita.com/event/1'
-        };
-
         var persistedEvent;
 
         it('login', function(done) {
@@ -67,7 +64,7 @@ describe('Event routing', function() {
                 res.should.have.status(201);
                 persistedEvent = res.body;
                 should.exist(persistedEvent.created_at);
-                author._id.toString().should.be.eql(persistedEvent.author);
+                user._id.toString().should.be.eql(persistedEvent.author);
                 tags.should.be.eql(persistedEvent.tags);
                 done();
             });
