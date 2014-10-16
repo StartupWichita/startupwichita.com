@@ -6,7 +6,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         watch: {
             js: {
-                files: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
+                files: ['gruntfile.js', 'app.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js'],
                 tasks: ['jshint', 'test'],
                 options: {
                     livereload: true
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
         },
         jshint: {
             all: {
-                src: ['gruntfile.js', 'server.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js', '!test/coverage/**/*.js'],
+                src: ['gruntfile.js', 'app.js', 'app/**/*.js', 'public/js/**', 'test/**/*.js', '!test/coverage/**/*.js'],
                 options: {
                     jshintrc: true
                 }
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
         },
         nodemon: {
             dev: {
-                script: 'server.js',
+                script: 'app.js',
                 options: {
                     args: [],
                     ignore: ['public/**'],
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
         mochaTest: {
             options: {
                 reporter: 'spec',
-                require: 'server.js'
+                require: 'app.js'
             },
             src: ['test/mocha/**/*.js']
         },
