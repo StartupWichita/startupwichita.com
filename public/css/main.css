@@ -322,12 +322,23 @@ line-height:1.25em;
   cursor:pointer;
 }
 
+.event-first-box {
+  max-height: 250px;
+  overflow: hidden;
+}
+
+.event-featured {
+  max-height: 350px;
+  overflow: hidden;
+}
+
 .date{
   font-style:italic;
 }
 
 .news{
   position:relative;
+  padding-bottom: 30px;
 }
 
 .news .row{
@@ -337,7 +348,7 @@ line-height:1.25em;
 
 .news .owl-item a{
   display:block;
-  padding:10px;
+  padding: 10px 10px 10px 30px;
   border:1px solid transparent;
 }
 
@@ -351,6 +362,11 @@ line-height:1.25em;
   margin-top:20px;
 }
 
+.news-teaser {
+  max-height: 350px;
+  overflow: hidden;
+}
+
 #resourcesCarousel{
   margin-top:40px;
 }
@@ -362,6 +378,11 @@ line-height:1.25em;
 
 .resources h3{
   margin-bottom:2px;
+}
+
+.resources-teaser {
+  max-height: 300px;
+  overflow: hidden;
 }
 
 footer{

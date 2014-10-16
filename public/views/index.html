@@ -33,26 +33,26 @@
             </div>
           </div>
           <div class="col-md-4 col-md-pull-4">
-            <a href="/#!/events/{{ firstTwoEvents[0]._id }}" class="white grey-bg">
+            <a href="/#!/events/{{ firstTwoEvents[0]._id }}" class="white grey-bg event-first-box">
               <h3>{{ firstTwoEvents[0].title }}</h3>
               <p class="date">{{ firstTwoEvents[0].startTime | date: 'M/d/yy h:mm a' }} at {{ firstTwoEvents[0].address }}</p>
-              <p>{{ firstTwoEvents[0].content }}</p>
+              <p>{{ firstTwoEvents[0].content.substring(0, 220) }} ...</p>
             </a>
           </div>
           <div class="col-md-4">
-            <a href="/#!/events/{{ firstTwoEvents[1]._id }}" class="white grey-bg">
+            <a href="/#!/events/{{ firstTwoEvents[1]._id }}" class="white grey-bg event-first-box">
               <h3>{{ firstTwoEvents[1].title }}</h3>
               <p class="date">{{ firstTwoEvents[1].startTime | date: 'M/d/yy h:mm a' }} at {{ firstTwoEvents[1].address }}</p>
-              <p>{{ firstTwoEvents[1].content }}</p>
+              <p>{{ firstTwoEvents[1].content.substring(0, 220) }} ...</p>
             </a>
           </div>
         </div>
         <div class="row">
           <div ng-repeat="event in featuredEvents" class="col-md-3">
-            <a href="/#!/events/{{ event._id }}" class="white grey-bg">
+            <a href="/#!/events/{{ event._id }}" class="white grey-bg event-featured">
               <h3>{{ event.title }}</h3>
               <p class="date">{{ event.startTime | date: 'M/d/yy h:mm a' }} at {{ event.address }}</p>
-              <p>{{ event.content }}</p>
+              <p>{{ event.content.substring(0, 300) }} ...</p>
             </a>
           </div>
         </div>
@@ -66,7 +66,10 @@
         <owl-carousel id="newsCarousel" class="owl-carousel" ng-transclude owl-width="550" owl-ready="newsReady">
             <div ng-repeat="item in featuredNews">
                 <div class="news-teaser white">
-                    <a href="/#!/news/{{ item._id }}"><h3 class="text-center white">{{ item.title }}</h3><p class="white">{{ item.content }}</p></a>
+                    <a href="/#!/news/{{ item._id }}">
+                      <h3 class="text-center white">{{ item.title }}</h3>
+                      <p class="white">{{ item.content.substring(0, 280) }} ...</p>
+                    </a>
                 </div>
             </div>
         </owl-carousel>
@@ -82,7 +85,7 @@
                     <div class="resources-teaser white">
                         <a href="/#!/resources/{{ resource._id }}" class="white grey-bg">
                             <h3 class="white">{{ resource.title }}</h3>
-                            <p class="white sm-collapse">{{ resource.content }}</p>
+                            <p class="white sm-collapse">{{ resource.content.substring(0, 230) }} ...</p>
                         </a>
                     </div>
                 </div>
