@@ -5,16 +5,11 @@
   <ul class="alternate list-unstyled">
     <li data-ng-repeat="resource in resources">
       <div class="row">
-        <div class="col-md-2">
-          <h2 class="robotoSlab">
-            <a data-ng-href="#!/resources/{{resource._id}}">{{resource.title}}</a>
-          </h2>
-          <span>{{resource.created_at | date:'medium'}}</span> /
-          <span>{{resource.user.name}}</span>
-        </div>
-        <div class="col-md-10">
-          <p>{{resource.content}}</p>
-        </div>
+        <h2 class="robotoSlab">
+          <a data-ng-href="#!/resources/{{resource._id}}">{{resource.title}}</a>
+        </h2>
+        <p>Posted {{resource.created_at | date:'medium'}}</p>
+        <p class="description">{{resource.content}}</p>
       </div>
     </li>
   </ul>

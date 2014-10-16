@@ -385,7 +385,11 @@ line-height:1.25em;
   overflow: hidden;
 }
 
-footer{
+.description {
+  white-space: pre-line;
+}
+
+footer {
     padding-top: 40px;
     padding-bottom: 40px;
     left:0px;

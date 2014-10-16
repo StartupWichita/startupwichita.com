@@ -25,7 +25,7 @@
     <p ng-show="newsItem.url"><a href="{{newsItem.url}}">{{newsItem.url}}</a></p>
   </div>
   <div class="row">
-    <p>{{newsItem.content}}</p>
+    <p class="description">{{newsItem.content}}</p>
   </div>
   <div data-ng-include="'views/partials/tags.html'" onload="tags=newsItem.tags"></div>
   <div data-ng-include="'views/partials/disqus.html'"></div>

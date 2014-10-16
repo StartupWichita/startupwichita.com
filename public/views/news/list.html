@@ -5,16 +5,11 @@
   <ul class="alternate list-unstyled">
     <li data-ng-repeat="newsItem in news">
       <div class="row">
-        <div class="col-md-2">
           <h2 class="robotoSlab">
             <a data-ng-href="#!/news/{{newsItem._id}}">{{newsItem.title}}</a>
           </h2>
-          <span>{{newsItem.created_at | date:'medium'}}</span> /
-          <span>{{newsItem.author.name}}</span>
-        </div>
-        <div class="col-md-10">
-          <p>{{newsItem.content}}</p>
-        </div>
+          Posted <span>{{newsItem.created_at | date:'medium'}}</span> by <span>{{newsItem.author.name}}</span>
+          <p class="description">{{newsItem.content}}</p>
       </div>
     </li>
   </ul>
