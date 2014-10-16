@@ -40,14 +40,10 @@ module.exports = function(passport) {
                     return done(err);
                 }
                 if (!user) {
-                    return done(null, false, {
-                        message: 'Unknown user'
-                    });
+                    return done({ message: 'Unknown user' }, false);
                 }
                 if (!user.authenticate(password)) {
-                    return done(null, false, {
-                        message: 'Invalid password'
-                    });
+                  return done({ message: 'Invalid password.' }, false);
                 }
                 return done(null, user);
             });

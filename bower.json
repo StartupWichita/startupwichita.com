@@ -19,5 +19,8 @@
     "angular-ui-select": "~0.7.0",
     "angular-sanitize": "~1.2.25",
     "angular-datepicker": "~1.0.3"
+  },
+  "resolutions": {
+    "angular": "1.3.0"
   }
 }
