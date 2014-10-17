@@ -9,6 +9,9 @@
     <div class="row userProfile">
         <div class="col-md-4 userCard">
             <img class="gravatar img-rounded" ng-src="{{ gravatar.buildGravatarUrl(user.emailHash, '111') }}" alt="{{ user.name }}" />
+            <div data-ng-show="global.user._id == user._id">
+                Update your picture on <a href="http://gravatar.com">Gravatar</a>
+            </div>
             <h2 class="robotoSlab">{{ user.name }}</h2>
             <p class="catchphrase">{{ user.tagline }}</p>
         </div>

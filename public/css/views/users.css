@@ -37,9 +37,14 @@
 .people li:nth-child(4n+3) a, ul.people li:nth-child(4n+4) a{
   color: #271816;
 }
+.people li:nth-child(4n+3) a:hover, ul.people li:nth-child(4n+4) a:hover {
+  color: #2a6496;
+}
 .people li{
   width:50%;
   float:left;
+  max-height: 17em;
+  display: block;
 }
 .peopleWrapper{
   max-height: 17em;
