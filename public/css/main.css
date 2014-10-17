@@ -26,6 +26,8 @@ a {
   color: #f8e4c5;
 }
 
+.row { margin-left: 0px; margin-right: 0px; }
+
 .tag {
     padding: 2px 10px;
     background-color: #a3917e;
