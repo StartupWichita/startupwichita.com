@@ -3,6 +3,6 @@
     <section data-ui-view class="container-fluid"></section>
     <!-- Logged in user -->
     <script type="text/javascript">
-        window.user = {{user|safe}};
+        window.user = JSON.parse('{{user|escape("js")}}');
     </script>
 {% endblock %}
