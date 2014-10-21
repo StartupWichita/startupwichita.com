@@ -91,7 +91,7 @@ exports.show = function(req, res) {
  * List of Events
  */
 exports.all = function(req, res) {
-    Event.find({ spam: { $ne: true }}).sort('-title').exec(function(err, events) {
+    Event.find({ spam: { $ne: true }}).sort('+startTime').exec(function(err, events) {
         if (err) return res.send(500, { errors: Formatter.errorsToArray(err.errors) });
 
         return res.jsonp(events);
