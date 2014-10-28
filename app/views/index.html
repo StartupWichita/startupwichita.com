@@ -1,8 +1,0 @@
-{% extends 'layouts/default.html' %}
-{% block content %}
-    <section data-ui-view class="container-fluid"></section>
-    <!-- Logged in user -->
-    <script type="text/javascript">
-        window.user = JSON.parse('{{user|escape("js")}}');
-    </script>
-{% endblock %}
