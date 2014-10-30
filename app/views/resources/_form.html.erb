@@ -4,12 +4,14 @@
       <h2><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</h2>
 
       <ul>
-      <% @resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+
+  <%= render partial: 'topics/form', locals: { f: f } %>
 
   <div class="actions">
     <%= f.submit %>
