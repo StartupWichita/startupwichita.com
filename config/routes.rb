@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :news
+
   resources :events
 
   get 'welcome/index'
