@@ -1,6 +1,6 @@
 class CreateTopics < ActiveRecord::Migration
   def change
-    create_table :topics, :as_relation_superclass => true do |t|
+    create_table :topics do |t|
       t.string :title
       t.string :content
       t.string :url
@@ -8,6 +8,7 @@ class CreateTopics < ActiveRecord::Migration
       t.belongs_to :user
 
       t.timestamps
+      t.actable
     end
   end
 end

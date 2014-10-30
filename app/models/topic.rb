@@ -1,5 +1,5 @@
 class Topic < ActiveRecord::Base
-  acts_as_superclass
+  actable
 
   belongs_to :user
 end

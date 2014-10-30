@@ -40,4 +40,4 @@ gem 'spring',        group: :development
 
 gem 'devise'
 
-gem 'acts_as_relation', '~> 1.0'
+gem 'active_record-acts_as'

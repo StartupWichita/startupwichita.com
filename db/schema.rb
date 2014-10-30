@@ -11,19 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030202431) do
+ActiveRecord::Schema.define(version: 20141030202831) do
 
   create_table "events", force: true do |t|
-    t.date     "startTime"
-    t.date     "endTime"
-    t.string   "address"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.date   "startTime"
+    t.date   "endTime"
+    t.string "address"
+  end
+
+  create_table "news", force: true do |t|
+  end
+
+  create_table "resources", force: true do |t|
   end
 
   create_table "topics", force: true do |t|
-    t.integer  "as_topic_id"
-    t.string   "as_topic_type"
     t.string   "title"
     t.string   "content"
     t.string   "url"
@@ -31,9 +33,9 @@ ActiveRecord::Schema.define(version: 20141030202431) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "actable_id"
+    t.string   "actable_type"
   end
-
-  add_index "topics", ["as_topic_id", "as_topic_type"], name: "topics_as_topic_index"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
