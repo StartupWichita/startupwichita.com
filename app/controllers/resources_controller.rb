@@ -1,6 +1,8 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
 
+  respond_to :html
+
   def index
     @resources = Resource.all
     respond_with(@resources)
