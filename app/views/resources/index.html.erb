@@ -1,23 +1,40 @@
-<h1>Listing resources</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @resources.each do |resource| %>
-      <tr>
-        <td><%= link_to 'Show', resource %></td>
-        <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-        <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<section>
+  <div class="form-inline util-bar">
+    <%= link_to new_resource_path, :class => "btn pull-right" do %>
+      Add Resource <i class="glyphicon glyphicon-plus"></i>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New Resource', new_resource_path %>
+  <% if @resources.size > 0 %>
+    <ul class="alternate list-unstyled">
+      <% @resources.each do |resource| %>
+        <li data-ng-repeat="resource in resources">
+          <div class="row">
+            <h2 class="robotoSlab">
+              <%= link_to resource_path(resource) do %>
+                <%= resource.title %>
+              <% end %>
+            </h2>
+            <div class="col-md-2">
+              <span>
+                <%= resource.startTime %><br/>
+                <%= resource.endTime %><br/>
+              </span>
+            </div>
+            <div class="col-md-10">
+              <p class="description">
+                <%= resource.content %>
+              </p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="alternate">
+      <p class="row">
+        No resources yet. Why don't you <%= link_to "add some", new_resource_path %>?
+      </p>
+    </div>
+  <% end %>
+</section>
