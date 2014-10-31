@@ -177,19 +177,19 @@ a {
 }
 
 .ico-people{
-    background: url("../img/icon_People.png") 50% 50% no-repeat;
+    background: url(asset-path("icon_People.png")) 50% 50% no-repeat;
 }
 
 .ico-news{
-    background: url("../img/icon_News.png") 50% 50% no-repeat;
+    background: url(asset-path("icon_News.png")) 50% 50% no-repeat;
 }
 
 .ico-events{
-    background: url("../img/icon_Events.png") 50% 50% no-repeat;
+    background: url(asset-path("icon_Events.png")) 50% 50% no-repeat;
 }
 
 .ico-resources{
-    background: url("../img/icon_Resources.png") 50% 50% no-repeat;
+    background: url(asset-path("icon_Resources.png")) 50% 50% no-repeat;
 }
 
 .nav > li > a{
