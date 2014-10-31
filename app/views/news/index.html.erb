@@ -1,23 +1,37 @@
-<h1>Listing news</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @news.each do |news| %>
-      <tr>
-        <td><%= link_to 'Show', news %></td>
-        <td><%= link_to 'Edit', edit_news_path(news) %></td>
-        <td><%= link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<section>
+  <div class="form-inline util-bar">
+    <%= link_to new_news_path, :class => "btn pull-right" do %>
+      Add News <i class="glyphicon glyphicon-plus"></i>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
-
-<%= link_to 'New News', new_news_path %>
+  <% if @news.size > 0 %>
+    <ul class="alternate list-unstyled">
+      <% @news.each do |newsItem| %>
+        <li data-ng-repeat="newsItem in news">
+          <div class="row">
+            <div class="col-md-2">
+              <h2 class="robotoSlab">
+                <%= link_to news_path(newsItem) do %>
+                  <%= newsItem.title %>
+                <% end %>
+                </a>
+              </h2>
+            </div>
+            <div class="col-md-10">
+              <p class="description">
+                <%= newsItem.content %>
+              </p>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="alternate">
+      <p class="row">
+        No news yet. Why don't you <%= link_to "add some", new_news_path %>?
+      </p>
+    </div>
+  <% end %>
+</section>
