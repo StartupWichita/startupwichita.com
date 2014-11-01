@@ -16,10 +16,28 @@ gem 'jquery-turbolinks'
 # Authentication
 gem 'devise'
 
+# Misc
+gem 'activeadmin', github: 'activeadmin/activeadmin'
+
 group :development, :test do
   gem 'spring'
   gem 'sqlite3'
 
   gem 'annotate'
   gem 'pry'
+
+  gem 'spring-commands-rspec'
+
+  # Testing
+  gem 'rspec'
+  gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
+  gem 'rspec-nc'
+  gem 'minitest'
+  gem 'capybara'
+  gem 'formulaic'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+  gem 'database_cleaner'
+  gem 'fuubar'
 end

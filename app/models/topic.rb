@@ -15,10 +15,10 @@
 #
 
 class Topic < ActiveRecord::Base
+  belongs_to :user
+
   actable
 
   validates :title, presence: true
   validates :content, presence: true
-
-  belongs_to :user
 end
