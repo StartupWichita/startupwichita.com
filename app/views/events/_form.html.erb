@@ -16,16 +16,16 @@
     <%= render partial: 'topics/form', locals: { f: f } %>
 
     <div class="form-group">
-      <%= f.label :startTime, "Start Date", :class => "col-md-3 control-label" %>
+      <%= f.label :starts_at, "Start Date", :class => "col-md-3 control-label" %>
       <div class="col-md-9">
-        <%= f.date_select :startTime, :class => "form-control" %>
+        <%= f.date_select :starts_at, :class => "form-control" %>
       </div>
     </div>
 
     <div class="form-group">
-      <%= f.label :endTime, "End Date", :class => "col-md-3 control-label" %>
+      <%= f.label :ends_at, "End Date", :class => "col-md-3 control-label" %>
       <div class="col-md-9">
-        <%= f.date_select :endTime, :class => "form-control" %>
+        <%= f.date_select :ends_at, :class => "form-control" %>
       </div>
     </div>
 

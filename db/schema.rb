@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20141030202831) do
 
   create_table "events", force: true do |t|
-    t.date   "startTime"
-    t.date   "endTime"
-    t.string "address"
+    t.datetime "starts_at"
+    t.datetime "ends_at"
+    t.string   "address"
   end
 
   create_table "news", force: true do |t|
@@ -26,11 +26,11 @@ ActiveRecord::Schema.define(version: 20141030202831) do
   end
 
   create_table "topics", force: true do |t|
+    t.integer  "user_id"
     t.string   "title"
     t.string   "content"
     t.string   "url"
     t.boolean  "spam"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "actable_id"
