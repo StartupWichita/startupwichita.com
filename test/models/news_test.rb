@@ -1,3 +1,10 @@
+# == Schema Information
+#
+# Table name: news
+#
+#  id :integer          not null, primary key
+#
+
 require 'test_helper'
 
 class NewsTest < ActiveSupport::TestCase
