@@ -37,11 +37,12 @@ class NewsController < ApplicationController
   end
 
   private
-    def set_news
-      @news = News.find(params[:id])
-    end
 
-    def news_params
-      params.require(:news).permit(:title, :content, :url)
-    end
+  def set_news
+    @news = News.find(params[:id])
+  end
+
+  def news_params
+    params.require(:news).permit(:title, :content, :url)
+  end
 end
