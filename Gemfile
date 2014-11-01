@@ -40,4 +40,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'fuubar'
+
+  # Static Analysis
+  gem 'rubocop'
+  gem 'rubocop-rspec'
 end
