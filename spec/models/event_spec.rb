@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id        :integer          not null, primary key
+#  starts_at :datetime
+#  ends_at   :datetime
+#  address   :string(255)
+#
+
 require 'spec_helper'
 
 describe Event, type: :model do
