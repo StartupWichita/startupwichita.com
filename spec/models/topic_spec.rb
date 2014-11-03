@@ -14,11 +14,11 @@
 #  actable_type :string(255)
 #
 
-class Topic < ActiveRecord::Base
-  belongs_to :user
+require 'spec_helper'
 
-  actable
+describe Topic, type: :model do
+  let(:topic) { FactoryGirl.create(:topic) }
 
-  validates :title, presence: true
-  validates :content, presence: true
+  it { expect validate_presence_of(:title) }
+  it { expect validate_presence_of(:content) }
 end

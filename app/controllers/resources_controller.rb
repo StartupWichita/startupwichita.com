@@ -37,11 +37,12 @@ class ResourcesController < ApplicationController
   end
 
   private
-    def set_resource
-      @resource = Resource.find(params[:id])
-    end
 
-    def resource_params
-      params.require(:resource).permit(:title, :content, :url)
-    end
+  def set_resource
+    @resource = Resource.find(params[:id])
+  end
+
+  def resource_params
+    params.require(:resource).permit(:title, :content, :url)
+  end
 end
