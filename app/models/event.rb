@@ -11,6 +11,8 @@
 class Event < ActiveRecord::Base
   acts_as :topic
 
+  scope :coming_soon, -> { where("ends_at >= ?", Time.now.utc) }
+
   validates :starts_at, presence: true
   validates :ends_at, presence: true
   validates :address, presence: true

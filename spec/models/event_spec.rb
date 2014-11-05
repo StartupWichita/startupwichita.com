@@ -16,4 +16,13 @@ describe Event, type: :model do
   it { expect validate_presence_of(:starts_at) }
   it { expect validate_presence_of(:ends_at) }
   it { expect validate_presence_of(:address) }
+
+  describe '.coming_soon' do
+    let(:event_one) { FactoryGirl.create(:event, starts_at: 24.hours.ago, ends_at: 1.hour.ago) }
+    let(:event_two) { FactoryGirl.create(:event, starts_at: 24.hours.ago, ends_at: 1.hour.from_now) }
+
+    it 'should only return current and future Events' do
+      expect(Event.coming_soon).to eq [ event_two ]
+    end
+  end
 end
