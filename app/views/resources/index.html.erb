@@ -5,7 +5,7 @@
     <% end %>
   </div>
 
-  <% if @resources.size > 0 %>
+  <% unless @resources.blank? %>
     <ul class="alternate list-unstyled">
       <% @resources.each do |resource| %>
         <li data-ng-repeat="resource in resources">

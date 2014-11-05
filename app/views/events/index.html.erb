@@ -5,7 +5,7 @@
     <% end %>
   </div>
 
-  <% if @events.size > 0 %>
+  <% unless @events.blank? %>
     <ul class="alternate list-unstyled">
       <% @events.each do |event| %>
         <li data-ng-repeat="event in events">
