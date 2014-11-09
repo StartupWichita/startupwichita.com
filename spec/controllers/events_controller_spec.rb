@@ -4,7 +4,13 @@ describe EventsController, type: :controller do
   render_views
 
   context "unauthenticated" do
+    describe "#index" do
+      it "shows a list of current and future Events" do
+        expect(Event).to receive(:coming_soon)
 
+        get :index
+      end
+    end
   end
 
   context "authenticated" do
