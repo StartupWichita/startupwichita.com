@@ -1,0 +1,26 @@
+<section>
+  <div class="form-inline util-bar">
+  </div>
+
+  <% unless @users.blank? %>
+    <ul class="people list-unstyled">
+      <% @users.each do |user| %>
+        <li>
+          <%= link_to person_path(user) do %>
+            <%= gravatar_image_tag(user.email, :size => 292, :alt => user.name, :class => "peopleWrapper") %>
+          <% end %>
+          <h2 class="robotoSlab">
+            <%= link_to person_path(user) do %><%= user.name %><% end %>
+          </h2>
+          <p class="catchphrase"><%= user.tagline %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <div class="alternate">
+      <p class="row">
+        No users yet. Why don't you <%= link_to 'sign up', new_user_session_path %>?
+      </p>
+    </div>
+  <% end %>
+</section>

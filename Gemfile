@@ -18,6 +18,7 @@ gem 'devise'
 
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'gravatar_image_tag'
 
 group :development, :test do
   gem 'spring'

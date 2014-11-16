@@ -1,4 +1,5 @@
 class NewsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_news, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
