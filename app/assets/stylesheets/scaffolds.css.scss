@@ -18,6 +18,15 @@ pre {
   font-size: 11px;
 }
 
+.navbar {
+    a {
+        color: #f8e4c5;
+        &:visited {
+            color: #f8e4c5;
+        }
+    }
+}
+
 a {
   color: #000;
   &:visited {
