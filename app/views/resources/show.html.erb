@@ -1,5 +1,5 @@
 <section class="alternate">
-  <div class="form-inline util-bar">
+  <% content_for :utility_bar do %>
     <%= link_to new_resource_path, :class => "btn pull-right" do %>
       Add Resource <i class="glyphicon glyphicon-plus"></i>
     <% end %>
@@ -11,8 +11,7 @@
     <%= link_to edit_resource_path(@resource), :class => "btn pull-right" do %>
       Edit Resource <i class="glyphicon glyphicon-edit"></i>
     <% end %>
-  </div>
-
+  <% end %>
 
   <div class="row">
     <h2 class="robotoSlab"><%= @resource.title %></h2>

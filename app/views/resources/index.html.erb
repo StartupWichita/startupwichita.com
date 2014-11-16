@@ -1,9 +1,9 @@
 <section>
-  <div class="form-inline util-bar">
+  <% content_for :utility_bar do %>
     <%= link_to new_resource_path, :class => "btn pull-right" do %>
       Add Resource <i class="glyphicon glyphicon-plus"></i>
     <% end %>
-  </div>
+  <% end %>
 
   <% unless @resources.blank? %>
     <ul class="alternate list-unstyled">

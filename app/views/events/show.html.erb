@@ -1,5 +1,5 @@
 <section class="alternate">
-  <div class="form-inline util-bar">
+  <% content_for :utility_bar do %>
     <%= link_to new_event_path, :class => "btn pull-right" do %>
       Add Event <i class="glyphicon glyphicon-plus"></i>
     <% end %>
@@ -11,8 +11,7 @@
     <%= link_to edit_event_path(@event), :class => "btn pull-right" do %>
       Edit Event <i class="glyphicon glyphicon-edit"></i>
     <% end %>
-  </div>
-
+  <% end %>
 
   <div class="row">
     <h2 class="robotoSlab"><%= @event.title %></h2>

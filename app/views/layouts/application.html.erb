@@ -93,6 +93,12 @@
       </div>
     </div>
 
+    <% if content_for?(:utility_bar) %>
+      <div class="form-inline util-bar">
+        <%= yield :utility_bar %>
+      </div>
+    <% end %>
+
     <% unless notice.blank? %>
       <div class="alert alert-success"><%= notice %></div>
     <% end %>
