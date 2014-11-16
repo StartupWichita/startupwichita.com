@@ -23,6 +23,7 @@ class ResourcesController < ApplicationController
 
   def create
     @resource = Resource.new(resource_params)
+    @resource.user = current_user
     @resource.save
     respond_with(@resource)
   end

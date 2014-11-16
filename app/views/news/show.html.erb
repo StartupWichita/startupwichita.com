@@ -17,7 +17,7 @@
 
   <div class="row">
     <h2 class="robotoSlab"><%= @news.title %></h2>
-    <span>Posted by: AUTHOR-NAME-HERE</span> on
+    <span>Posted by: <%= @news.user.name %></span> on
     <span><%= @news.created_at %></span>
   </div>
 

@@ -23,6 +23,7 @@ class NewsController < ApplicationController
 
   def create
     @news = News.new(news_params)
+    @news.user = current_user
     @news.save
     respond_with(@news)
   end
