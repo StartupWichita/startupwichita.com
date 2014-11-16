@@ -1,5 +1,5 @@
 <section class="alternate">
-  <div class="form-inline util-bar">
+  <% content_for :utility_bar do %>
     <%= link_to new_news_path, :class => "btn pull-right" do %>
       Add News <i class="glyphicon glyphicon-plus"></i>
     <% end %>
@@ -11,13 +11,11 @@
     <%= link_to edit_news_path(@news), :class => "btn pull-right" do %>
       Edit News <i class="glyphicon glyphicon-edit"></i>
     <% end %>
-  </div>
-
-  <p id="notice"><%= notice %></p>
+  <% end %>
 
   <div class="row">
     <h2 class="robotoSlab"><%= @news.title %></h2>
-    <span>Posted by: AUTHOR-NAME-HERE</span> on
+    <span>Posted by: <%= @news.user.name %></span> on
     <span><%= @news.created_at %></span>
   </div>
 

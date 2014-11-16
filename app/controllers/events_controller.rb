@@ -23,17 +23,21 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
     @event.save
+    flash[:notice] = "Event successfully created"
     respond_with(@event)
   end
 
   def update
     @event.update(event_params)
+    flash[:notice] = "Event successfully updated"
     respond_with(@event)
   end
 
   def destroy
     @event.destroy
+    flash[:notice] = "Event successfully deleted"
     respond_with(@event)
   end
 

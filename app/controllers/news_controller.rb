@@ -23,17 +23,21 @@ class NewsController < ApplicationController
 
   def create
     @news = News.new(news_params)
+    @news.user = current_user
     @news.save
+    flash[:notice] = "News Item successfully created"
     respond_with(@news)
   end
 
   def update
     @news.update(news_params)
+    flash[:notice] = "News Item successfully updated"
     respond_with(@news)
   end
 
   def destroy
     @news.destroy
+    flash[:notice] = "News Item successfully deleted"
     respond_with(@news)
   end
 

@@ -23,17 +23,21 @@ class ResourcesController < ApplicationController
 
   def create
     @resource = Resource.new(resource_params)
+    @resource.user = current_user
     @resource.save
+    flash[:notice] = "Resource successfully created"
     respond_with(@resource)
   end
 
   def update
     @resource.update(resource_params)
+    flash[:notice] = "Resource successfully updated"
     respond_with(@resource)
   end
 
   def destroy
     @resource.destroy
+    flash[:notice] = "Resource successfully deleted"
     respond_with(@resource)
   end
 

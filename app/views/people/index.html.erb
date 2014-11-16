@@ -1,6 +1,7 @@
 <section>
-  <div class="form-inline util-bar">
-  </div>
+  <% content_for :utility_bar do %>
+    &nbsp;
+  <% end %>
 
   <% unless @users.blank? %>
     <ul class="people list-unstyled">
