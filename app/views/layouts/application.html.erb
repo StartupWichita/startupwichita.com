@@ -93,8 +93,13 @@
       </div>
     </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% unless notice.blank? %>
+      <div class="alert alert-success"><%= notice %></div>
+    <% end %>
+
+    <% unless alert.blank? %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
 
     <%= yield %>
 
