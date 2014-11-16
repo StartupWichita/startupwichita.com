@@ -8,7 +8,7 @@
   <% unless @events.blank? %>
     <ul class="alternate list-unstyled">
       <% @events.each do |event| %>
-        <li data-ng-repeat="event in events">
+        <li>
           <div class="row">
             <h2 class="robotoSlab">
               <%= link_to event_path(event) do %>

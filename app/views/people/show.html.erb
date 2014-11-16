@@ -1,0 +1,24 @@
+<section>
+  <form class="form-inline util-bar" role="form">
+    <% if user_signed_in? && current_user == @user %>
+      <div>
+        <%= link_to edit_user_registration_path(@user), :class => "btn pull-right" do %>
+          Edit <i class="glyphicon glyphicon-edit"></i>
+        <% end %>
+      </div>
+    <% end %>
+  </form>
+  <div class="row userProfile">
+    <div class="col-md-4 userCard">
+      <%= gravatar_image_tag(@user.email, :size => 111, :alt => @user.name, :class => "peopleWrapper") %>
+      <% if user_signed_in? && current_user == @user %>
+        <div>
+          Update your picture on <a href="http://gravatar.com">Gravatar</a>
+        </div>
+      <% end %>
+      <h2 class="robotoSlab"><%= @user.name %></h2>
+      <p class="catchphrase"><%= @user.tagline %></p>
+    </div>
+    <div class="col-md-8 userBio h3"><%= @user.bio %></div>
+  </div>
+</section>

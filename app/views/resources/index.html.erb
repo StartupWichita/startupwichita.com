@@ -8,7 +8,7 @@
   <% unless @resources.blank? %>
     <ul class="alternate list-unstyled">
       <% @resources.each do |resource| %>
-        <li data-ng-repeat="resource in resources">
+        <li>
           <div class="row">
             <h2 class="robotoSlab">
               <%= link_to resource_path(resource) do %>
