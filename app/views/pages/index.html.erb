@@ -38,3 +38,22 @@
             </div>
         </div>
     <% end %>
+    <!-- News section -->
+    <% unless @newsItems.blank? %>
+        <div class="row news white orange-bg">
+            <div class="arrow-down cream right"></div>
+            <h2 class="text-center robotoSlab">News</h2>
+            <div id="newsCarousel" class="owl-carousel" owl-width="550" owl-ready="newsReady">
+                <% @newsItems.each do |newsItem| %>
+                    <div>
+                        <div class="news-teaser white">
+                            <%= link_to news_path(newsItem) do %>
+                                <h3 class="text-center white"><%= newsItem.title %></h3>
+                                <p class="white"><%= newsItem.content.truncate 280 %>...</p>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>

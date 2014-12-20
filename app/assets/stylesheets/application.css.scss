@@ -12,6 +12,8 @@
  *
  *= require_tree .
  *= require_self
+ *= require owl.carousel
+ *= require owl.theme
  */
 
 a:hover {
@@ -256,7 +258,7 @@ a {
 }
 
 .white{
-    color: #FFFFFF;
+    color: #FFFFFF !important;
 }
 
 .grey{
@@ -356,16 +358,16 @@ a {
 }
 
 .owl-prev:hover, .owl-next:hover{
-                     opacity:0.8;
-                 }
+    opacity:0.8;
+}
 
 .owl-prev{
-    background:url("/img/arrow-prev.png") 50% 50% no-repeat;
+    background: image-url("icons/arrow-prev.png") 50% 50% no-repeat !important;
     left:0;
 }
 
 .owl-next{
-    background:url("/img/arrow-next.png") 50% 50% no-repeat;
+    background: image-url("icons/arrow-next.png") 50% 50% no-repeat !important;
     right:0;
 }
 
