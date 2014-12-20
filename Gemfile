@@ -19,6 +19,7 @@ gem 'devise'
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'gravatar_image_tag'
+gem 'owlcarousel-rails'
 
 group :development, :test do
   gem 'spring'

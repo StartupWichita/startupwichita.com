@@ -1,1 +1,109 @@
-<h1>Welcome</h1>
+<section>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="row jumbotron">
+        <h2 class="text-center robotoSlab cream">Bringing connections and collisions to the entrepreneur, startup, and tech communities in Wichita, Kansas.</h2>
+    </div>
+
+    <!-- People section -->
+    <% unless @users.blank? %>
+        <div class="row people">
+            <div>
+                <h2 class="text-center robotoSlab cream">People that connect you</h2>
+                <div id="peopleCarousel" class="owl-carousel">
+                    <% @users.each do |user| %>
+                        <div>
+                            <%= link_to person_path(user) do %>
+                                <img src="<%= gravatar_image_url(user.email, size: 272, filetype: :jpg) %>" alt="<%= user.name %>" />
+                                <div class="people-teaser white text-center">
+                                    <h4><%= user.name %></h4>
+                                    <p><%= user.tagline %></p>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+
+    <!-- Events section -->
+    <% unless @featuredEvents.blank? || @featuredEvents.size < 2 %>
+        <div class="row events">
+            <div classs="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 col-md-push-4">
+                        <div class="grey cream-bg title text-center">
+                            <h2 class="robotoSlab">Events</h2>
+                            <p>Keep up to date on the latest events revolving around startups in Wichita.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-pull-4">
+                        <%= link_to event_path(@featuredEvents[0]), :class => "white grey-bg event-first-box" do %>
+                            <h3><%= @featuredEvents[0].title %></h3>
+                            <p class="date"><%= @featuredEvents[0].starts_at %> at <%= @featuredEvents[0].address %></p>
+                            <p><%= @featuredEvents[0].content.truncate 220%></p>
+                        <% end %>
+                    </div>
+                    <div class="col-md-4">
+                        <%= link_to event_path(@featuredEvents[1]), :class => "white grey-bg event-first-box" do %>
+                            <h3><%= @featuredEvents[1].title %></h3>
+                            <p class="date"><%= @featuredEvents[1].starts_at %> at <%= @featuredEvents[1].address %></p>
+                            <p><%= @featuredEvents[1].content.truncate 220%></p>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="row">
+                    <% @featuredEvents.drop(2).each do |event| %>
+                        <div class="col-md-3">
+                            <%= link_to event_path(event), :class => "white grey-bg event-feature" do %>
+                                <h3><%= event.title %></h3>
+                                <p class="date"><%= event.starts_at %> at <%= event.address %></p>
+                                <p><%= event.content.truncate 300 %> ...</p>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+
+    <!-- News section -->
+    <% unless @newsItems.blank? %>
+        <div class="row news white orange-bg">
+            <div class="arrow-down cream right"></div>
+            <h2 class="text-center robotoSlab">News</h2>
+            <div id="newsCarousel" class="owl-carousel">
+                <% @newsItems.each do |newsItem| %>
+                    <div>
+                        <div class="news-teaser white">
+                            <%= link_to news_path(newsItem) do %>
+                                <h3 class="text-center white"><%= newsItem.title %></h3>
+                                <p class="white"><%= newsItem.content.truncate 280 %>...</p>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    <!-- Resources section -->
+    <% unless @resources.blank? %>
+        <div class="row resources white cream-bg">
+            <div class="arrow-down orange left"></div>
+            <h2 class="text-center robotoSlab grey">Resources</h2>
+            <div id="resourcesCarousel" class="owl-carousel">
+                <% @resources.each do |resource| %>
+                    <div class="resource-wrapper">
+                        <div class="resources-teaser white">
+                            <%= link_to resource_path(resource), :class => "white grey-bg"  do %>
+                                <h3 class="white"><%= resource.title %></h3>
+                                <p class="white sm-collapse"><%= resource.content.truncate 230 %></p>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</section>
