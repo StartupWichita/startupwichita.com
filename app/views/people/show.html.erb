@@ -20,6 +20,6 @@
       <h2 class="robotoSlab"><%= @user.name %></h2>
       <p class="catchphrase"><%= @user.tagline %></p>
     </div>
-    <div class="col-md-8 userBio h3"><%= @user.bio %></div>
+    <div class="col-md-8 userBio"><%= simple_format(@user.bio) %></div>
   </div>
 </section>

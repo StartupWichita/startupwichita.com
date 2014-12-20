@@ -20,6 +20,10 @@ a:hover {
     background: none;
 }
 
+a:visited {
+    color: #fff;
+}
+
 section {
     overflow: auto;
 }
@@ -76,6 +80,7 @@ section {
 .catchphrase{
     font-weight:lighter;
     font-size:2em;
+    line-height: 1.1em;
 }
 
 .userProfile {
@@ -86,7 +91,6 @@ section {
 .userProfile .userCard {
     text-align: center;
     padding-top: 3em;
-    background-color: #EF592B;
     height: 100%;
 }
 
@@ -97,6 +101,11 @@ section {
 
 .userProfile .userBio {
     padding: 3em 4em 2em 4em;
+
+    p {
+        font-size: 2.0em;
+        line-height: 1.2em;
+    }
 }
 
 @media (max-width: 990px) {
@@ -344,6 +353,8 @@ a {
     border-radius: 3px;
     text-align: center;
 }
+
+#peopleCarousel .owl-item { width: 272px !important; }
 
 .owl-prev, .owl-next{
     padding:0;

@@ -4,6 +4,28 @@
         <h2 class="text-center robotoSlab cream">Bringing connections and collisions to the entrepreneur, startup, and tech communities in Wichita, Kansas.</h2>
     </div>
 
+    <!-- People section -->
+    <% unless @users.blank? %>
+        <div class="row people">
+            <div>
+                <h2 class="text-center robotoSlab cream">People that connect you</h2>
+                <div id="peopleCarousel" class="owl-carousel">
+                    <% @users.each do |user| %>
+                        <div>
+                            <%= link_to person_path(user) do %>
+                                <img src="<%= gravatar_image_url(user.email, size: 272, filetype: :jpg) %>" alt="<%= user.name %>" />
+                                <div class="people-teaser white text-center">
+                                    <h4><%= user.name %></h4>
+                                    <p><%= user.tagline %></p>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+
     <!-- Events section -->
     <% unless @featuredEvents.blank? || @featuredEvents.size < 2 %>
         <div class="row events">
