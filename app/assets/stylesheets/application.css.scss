@@ -16,6 +16,10 @@
  *= require owl.theme
  */
 
+.form-horizontal .form-group {
+    margin-right: 0;
+}
+
 a:hover {
     background: none;
 }
