@@ -1,22 +1,22 @@
 <div class="row topic-form">
-  <h1 class="robotoSlab">Add News Item</h1>
-  <%= form_for(@news, :html => {:class => "form-horizontal col-md-offset-3 col-md-6" }) do |f| %>
-    <% if @news.errors.any? %>
-      <div id="row">
-        <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
+    <h1 class="robotoSlab">Add News Item</h1>
+    <%= form_for(@news, :html => {:class => "form-horizontal col-md-offset-3 col-md-6" }) do |f| %>
+        <% if @news.errors.any? %>
+            <div id="row">
+                <h2><%= pluralize(@news.errors.count, "error") %> prohibited this news from being saved:</h2>
 
-        <ul>
-          <% @news.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+                <ul>
+                    <% @news.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <%= render partial: 'topics/form', locals: { f: f } %>
+
+        <div class="form-group">
+            <%= f.submit :class => "control-label" %>
+        </div>
     <% end %>
-
-    <%= render partial: 'topics/form', locals: { f: f } %>
-
-    <div class="form-group">
-      <%= f.submit :class => "control-label" %>
-    </div>
-  <% end %>
 </div>

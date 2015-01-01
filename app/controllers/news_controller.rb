@@ -1,6 +1,7 @@
 class NewsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_filter :can_edit_news?, :only => [:edit, :update, :destroy]
 
   respond_to :html
 
@@ -42,6 +43,12 @@ class NewsController < ApplicationController
   end
 
   private
+
+  def can_edit_news?
+    return if can_edit? @news
+
+    redirect_to news_path(@news), alert: "You do not have access to this news item"
+  end
 
   def set_news
     @news = News.find(params[:id])

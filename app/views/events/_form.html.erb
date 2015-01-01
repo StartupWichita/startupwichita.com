@@ -1,43 +1,43 @@
 <div class="row topic-form">
-  <h1 class="robotoSlab">Add Event</h1>
-  <%= form_for(@event, :html => {:class => "form-horizontal col-md-offset-3 col-md-6" }) do |f| %>
-    <% if @event.errors.any? %>
-      <div class="row">
-        <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+    <h1 class="robotoSlab">Add Event</h1>
+    <%= form_for(@event, :html => {:class => "form-horizontal col-md-offset-3 col-md-6" }) do |f| %>
+        <% if @event.errors.any? %>
+            <div class="row">
+                <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-        <ul>
-          <% @event.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
+                <ul>
+                    <% @event.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <%= render partial: 'topics/form', locals: { f: f } %>
+
+        <div class="form-group">
+            <%= f.label :starts_at, "Start Date", :class => "col-md-3 control-label" %>
+            <div class="col-md-9">
+                <%= f.date_select :starts_at, :class => "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :ends_at, "End Date", :class => "col-md-3 control-label" %>
+            <div class="col-md-9">
+                <%= f.date_select :ends_at, :class => "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= f.label :address, :class => "col-md-3 control-label" %>
+            <div class="col-md-9">
+                <%= f.text_field :address, :class => "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <%= f.submit :class => "control-label" %>
+        </div>
     <% end %>
-
-    <%= render partial: 'topics/form', locals: { f: f } %>
-
-    <div class="form-group">
-      <%= f.label :starts_at, "Start Date", :class => "col-md-3 control-label" %>
-      <div class="col-md-9">
-        <%= f.date_select :starts_at, :class => "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :ends_at, "End Date", :class => "col-md-3 control-label" %>
-      <div class="col-md-9">
-        <%= f.date_select :ends_at, :class => "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :address, :class => "col-md-3 control-label" %>
-      <div class="col-md-9">
-        <%= f.text_field :address, :class => "form-control" %>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <%= f.submit :class => "control-label" %>
-    </div>
-  <% end %>
 </div>

@@ -1,29 +1,32 @@
 <section class="alternate">
-  <% content_for :utility_bar do %>
-    <%= link_to new_event_path, :class => "btn pull-right" do %>
-      Add Event <i class="glyphicon glyphicon-plus"></i>
+    <% content_for :utility_bar do %>
+        <%= link_to new_event_path, :class => "btn pull-right" do %>
+            Add Event <i class="glyphicon glyphicon-plus"></i>
+        <% end %>
+
+        <% if can_edit?(@event) %>
+            <%= link_to event_path(@event), :data => { :confirm => "Are you sure you want to delete this event?" }, :method => :delete, :class => "btn pull-right" do %>
+                Remove Event <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+
+            <%= link_to edit_event_path(@event), :class => "btn pull-right" do %>
+                Edit Event <i class="glyphicon glyphicon-edit"></i>
+            <% end %>
+        <% end %>
+
     <% end %>
 
-    <%= link_to event_path(@event), :data => { :confirm => "Are you sure you want to delete this event?" }, :method => :delete, :class => "btn pull-right" do %>
-      Remove Event <i class="glyphicon glyphicon-trash"></i>
-    <% end %>
-
-    <%= link_to edit_event_path(@event), :class => "btn pull-right" do %>
-      Edit Event <i class="glyphicon glyphicon-edit"></i>
-    <% end %>
-  <% end %>
-
-  <div class="row">
-    <h2 class="robotoSlab"><%= @event.title %></h2>
-    <span>Posted by: <%= @event.user.name %></span> on
-    <span><%= @event.created_at %></span>
-  </div>
-  <div class="row">
-    <p>
-      Event runs from <%= @event.starts_at %> until <%= @event.ends_at %>
-    </p>
-  </div>
-  <div class="row">
-    <p class="description"><%= @event.content %></p>
-  </div>
+    <div class="row">
+        <h2 class="robotoSlab"><%= @event.title %></h2>
+        <span>Posted by: <%= @event.user.name %></span> on
+        <span><%= @event.created_at %></span>
+    </div>
+    <div class="row">
+        <p>
+            Event runs from <%= @event.starts_at %> until <%= @event.ends_at %>
+        </p>
+    </div>
+    <div class="row">
+        <p class="description"><%= @event.content %></p>
+    </div>
 </section>

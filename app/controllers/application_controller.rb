@@ -4,10 +4,18 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :can_edit?, :can_edit?
+
   protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) << :bio << :tagline << :name
     devise_parameter_sanitizer.for(:sign_up) << :name
+  end
+
+  def can_edit?(resource)
+    return true if current_user.admin?
+
+    return resource.user.id == current_user.id
   end
 end
