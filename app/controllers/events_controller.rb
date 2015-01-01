@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_filter :can_edit_event?, :only => [:edit, :update, :destroy]
 
   respond_to :html
 
@@ -42,6 +43,12 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def can_edit_event?
+    return if can_edit? @event
+
+    redirect_to event_path(@event), alert: "You do not have access to this event"
+  end
 
   def set_event
     @event = Event.find(params[:id])
