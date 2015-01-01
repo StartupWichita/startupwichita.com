@@ -1,39 +1,39 @@
 <section>
-  <% content_for :utility_bar do %>
-    <%= link_to new_resource_path, :class => "btn pull-right" do %>
-      Add Resource <i class="glyphicon glyphicon-plus"></i>
+    <% content_for :utility_bar do %>
+        <%= link_to new_resource_path, :class => "btn pull-right" do %>
+            Add Resource <i class="glyphicon glyphicon-plus"></i>
+        <% end %>
     <% end %>
-  <% end %>
 
-  <% unless @resources.blank? %>
-    <ul class="alternate list-unstyled">
-      <% @resources.each do |resource| %>
-        <li>
-          <div class="row">
-            <h2 class="robotoSlab">
-              <%= link_to resource_path(resource) do %>
-                <%= resource.title %>
-              <% end %>
-            </h2>
-            <div class="col-md-2">
-              <span>
-                <%= resource.created_at %>
-              </span>
-            </div>
-            <div class="col-md-10">
-              <p class="description">
-                <%= resource.content %>
-              </p>
-            </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <div class="alternate">
-      <p class="row">
-        No resources yet. Why don't you <%= link_to "add some", new_resource_path %>?
-      </p>
-    </div>
-  <% end %>
+    <% unless @resources.blank? %>
+        <ul class="alternate list-unstyled">
+            <% @resources.each do |resource| %>
+                <li>
+                    <div class="row">
+                        <h2 class="robotoSlab">
+                            <%= link_to resource_path(resource) do %>
+                                <%= resource.title %>
+                            <% end %>
+                        </h2>
+                        <div class="col-md-2">
+                            <span>
+                                <%= resource.created_at %>
+                            </span>
+                        </div>
+                        <div class="col-md-10">
+                            <p class="description">
+                                <%= resource.content %>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <div class="alternate">
+            <p class="row">
+                No resources yet. Why don't you <%= link_to "add some", new_resource_path %>?
+            </p>
+        </div>
+    <% end %>
 </section>
