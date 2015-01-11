@@ -20,6 +20,8 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'gravatar_image_tag'
 gem 'owlcarousel-rails'
+gem "select2-rails"
+gem "acts-as-taggable-on"
 
 group :development, :test do
   gem 'spring'

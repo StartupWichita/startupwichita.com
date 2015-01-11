@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def can_edit?(resource)
+    return false if not user_signed_in?
     return true if current_user.admin?
 
     return resource.user.id == current_user.id

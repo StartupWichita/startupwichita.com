@@ -14,6 +14,8 @@
  *= require_self
  *= require owl.carousel
  *= require owl.theme
+ *= require select2
+ *= require select2-bootstrap
  */
 
 .form-horizontal .form-group {
@@ -798,7 +800,8 @@ div.container-fluid.signup {
 .topic-form input,
 .topic-form textarea,
 .topic-form button,
-.ui-select-multiple {
+.ui-select-multiple,
+.select2-choices {
     background-image: none !important;
     box-sizing: border-box;
     border-radius: 0px;
@@ -806,8 +809,9 @@ div.container-fluid.signup {
     border: none !important;
     box-shadow: none !important;
     color: #f8e4c5 !important;
-    font-size: 1.5em;
 }
+
+.select2-container { border: none; }
 
 .ui-select-choices.dropdown-menu { background-color: #f8e4c5; }
 .ui-select-match-item { background-color: #f8e4c5 !important; font-size: 1em !important; }

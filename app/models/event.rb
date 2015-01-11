@@ -10,6 +10,7 @@
 
 class Event < ActiveRecord::Base
   acts_as :topic
+  acts_as_taggable
 
   scope :coming_soon, -> { where("ends_at >= ?", Time.now.utc) }
   scope :featured, -> { coming_soon.limit(8) }

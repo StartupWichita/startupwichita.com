@@ -7,4 +7,5 @@
 
 class Resource < ActiveRecord::Base
   acts_as :topic
+  acts_as_taggable
 end
