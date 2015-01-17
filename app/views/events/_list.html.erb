@@ -9,16 +9,20 @@
                             <%= event.title %>
                         <% end %>
                     </h2>
+                </div>
+                <div class="row">
                     <div class="col-md-2">
-                        <span>
-                            <%= event.starts_at %><br/>
-                            <%= event.ends_at %><br/>
-                        </span>
+                        <dl>
+                            <dt>Location</dt>
+                            <dd><%= event.address %></dd>
+                            <dt>Starting At</dt>
+                            <dd><%= event.starts_at %></dd>
+                            <dt>Ending At</dt>
+                            <dd><%= event.ends_at %></dd>
+                        </dl>
                     </div>
                     <div class="col-md-10">
-                        <p class="description">
-                            <%= event.content %>
-                        </p>
+                        <%= simple_format(event.content) %>
                     </div>
                 </div>
             </li>
