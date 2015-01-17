@@ -1,3 +1,33 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.event-tabs {
+    border: none;
+
+    li {
+        width: 50%;
+        margin-bottom: 0px;
+
+        &.active {
+            a {
+                background-color: #EF6032 !important;
+                color: #fff;
+                border: none;
+
+                &:hover,
+                &:focus {
+                    border: none;
+                    color: #fff;
+                }
+            }
+        }
+
+        a {
+            background-color: #fff8e8 !important;
+            color: #281816;
+            border: none;
+            border-radius: 0px;
+            margin-right: 0px;
+        }
+    }
+}

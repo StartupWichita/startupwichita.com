@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    @users = User.all
+    @users = User.featured
     @featuredEvents = Event.featured
     @newsItems = News.all
     @resources = Resource.all

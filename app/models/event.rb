@@ -12,8 +12,9 @@ class Event < ActiveRecord::Base
   acts_as :topic
   acts_as_taggable
 
-  scope :coming_soon, -> { where("ends_at >= ?", Time.now.utc) }
-  scope :featured, -> { coming_soon.limit(8) }
+  scope :upcoming, -> { where("ends_at >= ?", Time.now.utc).order("ends_at") }
+  scope :recent, -> { where("ends_at < ?", Time.now.utc).order("ends_at") }
+  scope :featured, -> { upcoming.limit(8) }
 
   validates :starts_at, presence: true
   validates :ends_at, presence: true
