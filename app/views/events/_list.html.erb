@@ -1,0 +1,34 @@
+<% unless events.blank? %>
+
+    <ul class="alternate list-unstyled">
+        <% events.each do |event| %>
+            <li>
+                <div class="row">
+                    <h2 class="robotoSlab">
+                        <%= link_to event_path(event) do %>
+                            <%= event.title %>
+                        <% end %>
+                    </h2>
+                    <div class="col-md-2">
+                        <span>
+                            <%= event.starts_at %><br/>
+                            <%= event.ends_at %><br/>
+                        </span>
+                    </div>
+                    <div class="col-md-10">
+                        <p class="description">
+                            <%= event.content %>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+
+<% else %>
+    <div class="alternate">
+        <p class="row">
+            No events yet. Why don't you <%= link_to "add some", new_event_path %>?
+        </p>
+    </div>
+<% end %>
