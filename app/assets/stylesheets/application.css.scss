@@ -22,6 +22,10 @@
     margin-right: 0;
 }
 
+.form-group {
+    overflow: auto;
+}
+
 a:hover {
     background: none;
 }
@@ -49,7 +53,7 @@ section {
     color: #F7E4C1;
 }
 .people li:nth-child(4n+2) {
-    background: #EF6032;
+    background: #ef592b;
     color: #F7E4C1;
 }
 .people li:nth-child(4n+3) {
@@ -90,7 +94,7 @@ section {
 }
 
 .userProfile {
-    background-color: #EF6032;
+    background-color: #ef592b;
     color: #fff8e8;
 }
 

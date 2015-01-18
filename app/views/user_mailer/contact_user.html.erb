@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+      <p>Hey <%= @user.name %>!</p>
+
+      <p>
+          You have received a contact request through the StartupWichita
+          website from <%= @name %>.  The message body follows:
+      </p>
+
+      <%= simple_format(@message) %>
+  </body>
+</html>

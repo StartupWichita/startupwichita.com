@@ -1,25 +1,34 @@
 <section>
-  <% content_for :utility_bar do %>
-    <% if user_signed_in? && current_user == @user %>
-      <div>
-        <%= link_to edit_user_registration_path(@user), :class => "btn pull-right" do %>
-          Edit <i class="glyphicon glyphicon-edit"></i>
+    <% content_for :utility_bar do %>
+        <% if user_signed_in? && current_user == @user %>
+            <div>
+                <%= link_to edit_user_registration_path(@user), :class => "btn pull-right" do %>
+                    Edit <i class="glyphicon glyphicon-edit"></i>
+                <% end %>
+            </div>
         <% end %>
-      </div>
     <% end %>
-  <% end %>
 
-  <div class="row userProfile">
-    <div class="col-md-4 userCard">
-      <%= gravatar_image_tag(@user.email, :size => 111, :alt => @user.name, :class => "peopleWrapper") %>
-      <% if user_signed_in? && current_user == @user %>
-        <div>
-          Update your picture on <a href="http://gravatar.com">Gravatar</a>
+    <div class="row userProfile">
+        <div class="col-md-4 userCard">
+            <%= gravatar_image_tag(@user.email, :size => 111, :alt => @user.name, :class => "peopleWrapper") %>
+            <% if user_signed_in? && current_user == @user %>
+                <div>
+                    Update your picture on <a href="http://gravatar.com">Gravatar</a>
+                </div>
+            <% end %>
+            <h2 class="robotoSlab"><%= @user.name %></h2>
+            <p class="catchphrase"><%= @user.tagline %></p>
+
+            <% if @user.allow_contact %>
+                <div class="topic-form">
+                    <%= render partial: 'contact_form', locals: { user: @user, contact: @contact } %>
+                </div>
+            <% end %>
         </div>
-      <% end %>
-      <h2 class="robotoSlab"><%= @user.name %></h2>
-      <p class="catchphrase"><%= @user.tagline %></p>
+
+        <div class="col-md-8 userBio"><%= simple_format(@user.bio) %></div>
+
     </div>
-    <div class="col-md-8 userBio"><%= simple_format(@user.bio) %></div>
-  </div>
+
 </section>

@@ -22,6 +22,7 @@ gem 'gravatar_image_tag'
 gem 'owlcarousel-rails'
 gem "select2-rails"
 gem "acts-as-taggable-on"
+gem 'sendgrid', '~> 1.2.0'
 
 group :development, :test do
   gem 'spring'
