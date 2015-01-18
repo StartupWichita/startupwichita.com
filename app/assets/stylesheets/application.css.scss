@@ -824,3 +824,13 @@ div.container-fluid.signup {
 .topic-form input { height: 49px; }
 
 .git-msg img{ max-width: 90%;}
+
+.devise_links {
+    li {
+        display: inline-block;
+
+        a {
+            color: #000;
+        }
+    }
+}
