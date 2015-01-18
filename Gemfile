@@ -23,6 +23,8 @@ gem 'owlcarousel-rails'
 gem "select2-rails"
 gem "acts-as-taggable-on"
 gem 'sendgrid', '~> 1.2.0'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'spring'

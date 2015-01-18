@@ -41,6 +41,10 @@ section {
 .people{
     clear:both;
     background: red;
+
+    li {
+        min-height: 111px;
+    }
 }
 .people li:nth-child(odd) {
     text-align:left;

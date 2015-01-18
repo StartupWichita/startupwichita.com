@@ -11,12 +11,7 @@
 
     <div class="row userProfile">
         <div class="col-md-4 userCard">
-            <%= gravatar_image_tag(@user.email, :size => 111, :alt => @user.name, :class => "peopleWrapper") %>
-            <% if user_signed_in? && current_user == @user %>
-                <div>
-                    Update your picture on <a href="http://gravatar.com">Gravatar</a>
-                </div>
-            <% end %>
+            <%= avatar(@user, :thumb) %>
             <h2 class="robotoSlab"><%= @user.name %></h2>
             <p class="catchphrase"><%= @user.tagline %></p>
 
