@@ -7,4 +7,11 @@ class UserMailer < ActionMailer::Base
     @message = message
     mail(to: @user.email, subject: "StartupWichita: Contact Request from " + name)
   end
+
+  def password_reset(user, password)
+    @user = user
+    @password = password
+    mail(:to => user.email,
+         :subject => 'Password Reset Notification')
+  end
 end
