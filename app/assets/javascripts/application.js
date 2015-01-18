@@ -15,3 +15,7 @@
 //= require owl.carousel
 //= require select2
 //= require_tree .
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
