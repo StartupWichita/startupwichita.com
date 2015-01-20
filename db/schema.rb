@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111101423) do
+ActiveRecord::Schema.define(version: 20150118121140) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20150111101423) do
     t.text     "bio"
     t.string   "name"
     t.boolean  "admin",                  default: false
+    t.boolean  "allow_contact",          default: true
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

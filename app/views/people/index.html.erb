@@ -8,7 +8,7 @@
       <% @users.each do |user| %>
         <li>
           <%= link_to person_path(user) do %>
-            <%= gravatar_image_tag(user.email, :size => 292, :alt => user.name, :class => "peopleWrapper") %>
+            <%= avatar(user, :thumb, "peopleWrapper") %>
           <% end %>
           <h2 class="robotoSlab">
             <%= link_to person_path(user) do %><%= user.name %><% end %>

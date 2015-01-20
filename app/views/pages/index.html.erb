@@ -13,7 +13,7 @@
                     <% @users.each do |user| %>
                         <div>
                             <%= link_to person_path(user) do %>
-                                <img src="<%= gravatar_image_url(user.email, size: 272, filetype: :jpg) %>" alt="<%= user.name %>" />
+                                <%= avatar(user, :display) %>
                                 <div class="people-teaser white text-center">
                                     <h4><%= user.name %></h4>
                                     <p><%= user.tagline %></p>
