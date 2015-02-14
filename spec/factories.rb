@@ -1,4 +1,16 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :person do
+    user nil
+first_name "MyString"
+last_name "MyString"
+email "MyString"
+website "MyString"
+company_name "MyString"
+title "MyString"
+twitter_username "MyString"
+bio "MyText"
+avatar ""
+  end
+
   factory :user do
     sequence(:email) { |n| "test-#{n}@startupwichita.com" }
     password 'f4k3p455w0rd'

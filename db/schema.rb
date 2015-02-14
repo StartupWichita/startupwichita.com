@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030202831) do
+ActiveRecord::Schema.define(version: 20150214222655) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
@@ -22,8 +22,48 @@ ActiveRecord::Schema.define(version: 20141030202831) do
   create_table "news", force: true do |t|
   end
 
+  create_table "people", force: true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "website"
+    t.string   "company_name"
+    t.string   "title"
+    t.string   "twitter_username"
+    t.text     "bio"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "people", ["user_id"], name: "index_people_on_user_id"
+
   create_table "resources", force: true do |t|
   end
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tagger_id"
+    t.string   "tagger_type"
+    t.string   "context",       limit: 128
+    t.datetime "created_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+
+  create_table "tags", force: true do |t|
+    t.string  "name"
+    t.integer "taggings_count", default: 0
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
   create_table "topics", force: true do |t|
     t.integer  "user_id"

@@ -12,16 +12,15 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
+gem 'bootstrap-sass', '~> 3.3.3'
 
 # Authentication
 gem 'devise'
 
-gem 'paperclip'
-
-gem 'bootstrap-sass', '~> 3.3.3'
-
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'paperclip'
+gem 'acts-as-taggable-on'
 
 group :development, :test do
   gem 'spring'
