@@ -16,6 +16,10 @@ gem 'jquery-turbolinks'
 # Authentication
 gem 'devise'
 
+gem 'paperclip'
+
+gem 'bootstrap-sass', '~> 3.3.3'
+
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 
