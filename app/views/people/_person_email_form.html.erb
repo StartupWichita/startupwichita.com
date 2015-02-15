@@ -1,3 +1,8 @@
+<div class="panel-heading">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Have questions for me? Want to meet? Feel free to contact me.</h4>
+</div>
+
 <%= form_for @person_email, :url => { action: :send_message } do |f| %>
   <% if f.object.errors.any? %>
     <div id="error_explanation">
@@ -13,20 +18,30 @@
 
   <%= f.hidden_field :person_id %>
 
-  <div class="field">
-    <%= f.text_field :sender_name, placeholder: "Your Name" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :sender_email, placeholder: "Your Email" %>
-  </div>
-  <div class="field">
-    <%= f.text_field :sender_phone, placeholder: "Your Phone #" %>
-  </div>
-  <div class="field">
-    <%= f.text_area :message, placeholder: "Your Message" %>
+  <div class="modal-body" style="padding: 5px;">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+        <%= f.text_field :sender_name, placeholder: "Your Name", class: "form-control", autofocus: true %>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+        <%= f.text_field :sender_email, placeholder: "Your Email", class: "form-control" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+        <%= f.text_field :sender_phone, placeholder: "Your Phone #", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <%= f.text_area :message, placeholder: "Your Message", class: "form-control" %>
+      </div>
+    </div>  
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send Message" %>
-  </div>
+    <div class="panel-footer" style="margin-bottom:-14px;">
+      <%= f.submit "Send", class: "btn btn-success" %>
+      <button style="float: right;" type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+    </div>  
 <% end %>

@@ -2,7 +2,14 @@ Rails.application.routes.draw do
   resources :resources
   resources :news
   resources :events
-  resources :people
+  resources :people do
+    collection do
+      post :send_message
+      
+      get  :claim
+      post :claim
+    end
+  end
 
   devise_for :users
 

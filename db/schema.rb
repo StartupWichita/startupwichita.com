@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215063530) do
+ActiveRecord::Schema.define(version: 20150215175758) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150215063530) do
     t.datetime "updated_at"
     t.boolean  "featured",            default: false
     t.string   "slug"
+    t.string   "phone"
   end
 
   add_index "people", ["slug"], name: "index_people_on_slug", unique: true

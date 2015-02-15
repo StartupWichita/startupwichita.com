@@ -1,58 +1,246 @@
-<p id="notice"><%= notice %></p>
+<style type='text/css'>
+  @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+  body
+  {
+    font-family: 'Lato', 'sans-serif';
+  }
+  .profile 
+  {
+    min-height: 255px;
+    display: inline-block;
+  }
+  figcaption.ratings
+  {
+    margin-top:20px;
+  }
+  figcaption.ratings a
+  {
+    color:#f1c40f;
+    font-size:11px;
+  }
+  figcaption.ratings a:hover
+  {
+    color:#f39c12;
+    text-decoration:none;
+  }
+  .divider 
+  {
+    border-top:1px solid rgba(0,0,0,0.1);
+  }
+  .emphasis 
+  {
+    border-top: 4px solid transparent;
+  }
+  .emphasis:hover 
+  {
+    border-top: 4px solid #1abc9c;
+  }
+  .emphasis h2
+  {
+    margin-bottom:0;
+  }
+  span.tags 
+  {
+    background: #1abc9c;
+    border-radius: 2px;
+    color: #f5f5f5;
+    font-weight: bold;
+    padding: 2px 4px;
+  }
+  .dropdown-menu 
+  {
+    background-color: #34495e;    
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    width: 250px;
+    margin-left: -125px;
+    left: 50%;
+  }
+  .dropdown-menu .divider 
+  {
+    background:none;    
+  }
+  .dropdown-menu>li>a
+  {
+    color:#f5f5f5;
+  }
+  .dropup .dropdown-menu 
+  {
+    margin-bottom:10px;
+  }
+  .dropup .dropdown-menu:before 
+  {
+    content: "";
+    border-top: 10px solid #34495e;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -10px;
+    z-index: 10;
+  }
+  .well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #fff6c6;
+    border: 1px solid #fff393;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    background-image: none;
+  }
+  .well a{
+    color: #333;
+  }
+  .featured{
+    background-color: #fff393;
+    border: 1px solid #fff060;
+  }
+</style>
 
-<p>
-  <strong>User:</strong>
-  <%= @person.user %>
-</p>
+<style type='text/css'>
+.modal-body:not(.two-col) { padding:0px }
+.glyphicon { margin-right:5px; }
+.glyphicon-new-window { margin-left:5px; }
+.modal-body .radio,.modal-body .checkbox {margin-top: 0px;margin-bottom: 0px;}
+.modal-body .list-group {margin-bottom: 0;}
+.margin-bottom-none { margin-bottom: 0; }
+.modal-body .radio label,.modal-body .checkbox label { display:block; }
+.modal-footer {margin-top: 0px;}
+@media screen and (max-width: 325px){
+    .btn-close {
+        margin-top: 5px;
+        width: 100%;
+    }
+    .btn-results {
+        margin-top: 5px;
+        width: 100%;
+    }
+    .btn-vote{
+        margin-top: 5px;
+        width: 100%;
+    }
+    
+}
+.modal-footer .btn+.btn {
+    margin-left: 0px;
+}
+.progress {
+    margin-right: 10px;
+}
+</style>
 
-<p>
-  <strong>First name:</strong>
-  <%= @person.first_name %>
-</p>
+<style type='text/css'>
+.btn-claim{
+  background-color: #EF592B;
+}
+.btn-contact{
+  background-color: #EF592B;
+}
+.btn-call{
+  background-color: #EF592B;
+}
+</style>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @person.last_name %>
-</p>
+<div class="container">
+  <div class="row">
+  
+    <div class="col-md-2">
+      <% if claimable(@person) %>
+        <%= link_to 'Claim This Profile', claim_people_path(@person), class: "btn btn-sm btn-claim" %>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @person.email %>
-</p>
+    <div class="col-md-6">
+      <%= render partial: "shared/profile", locals: { person: @person, featured: false } %>
+    </div>
+    
+    <div class='col-md-2'>
+      <% if @person.email.present? %>
+        <div class="row" style='margin-bottom: 5px;'>
+          <div class='col-md-12'>
+            <a class="btn btn-contact btn-lg" data-toggle="modal" data-target="#contact" data-original-title>
+              Contact
+            </a>
+          </div>
+        </div>
+      <% end %>
+      <% if @person.phone.present? %>
+        <div class="row">
+          <div class='col-md-12'>
+            <a class="btn btn-call btn-lg" data-toggle="modal" data-target="#call" data-original-title>
+              Call
+            </a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-2">
+      <% if owned_by_current_user(@person) %>
+        <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-primary" %>
+      <% end %>
+    </div>
 
-<p>
-  <strong>Website:</strong>
-  <%= @person.website %>
-</p>
 
-<p>
-  <strong>Company name:</strong>
-  <%= @person.company_name %>
-</p>
+    <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="panel panel-primary">
 
-<p>
-  <strong>Title:</strong>
-  <%= @person.title %>
-</p>
+          <%= render partial: "person_email_form" %>
 
-<p>
-  <strong>Twitter username:</strong>
-  <%= @person.twitter_username %>
-</p>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Bio:</strong>
-  <%= @person.bio %>
-</p>
+    <div class="modal fade" id="call" tabindex="-1" role="dialog" aria-labelledby="voteLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="panel-title" id="voteLabel"><span class="glyphicon glyphicon-arrow-right"></span> Feel free to call me</h4>
+          </div>
+          <div class="modal-body" style='padding: 10px 20px 20px 20px;'>
+            <h3>Phone Number</h3>
+            <%= @person.phone %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= @person.avatar %>
-</p>
+  </div>
+</div>
 
-<% if @person.email.present? %>
-  <%= render partial: "person_email_form" %>
-<% end %>
+<script type='text/javascript'>
+$(document).ready(function() {
+    var panels = $('.vote-results');
+    var panelsButton = $('.dropdown-results');
+    panels.hide();
 
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+    //Click dropdown
+    panelsButton.click(function() {
+        //get data-for attribute
+        var dataFor = $(this).attr('data-for');
+        var idFor = $(dataFor);
+
+        //current button
+        var currentButton = $(this);
+        idFor.slideToggle(400, function() {
+            //Completed slidetoggle
+            if(idFor.is(':visible'))
+            {
+                currentButton.html('Hide Results');
+            }
+            else
+            {
+                currentButton.html('View Results');
+            }
+        })
+    });
+});
+</script>
+

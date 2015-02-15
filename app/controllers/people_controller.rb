@@ -12,7 +12,7 @@ class PeopleController < InheritedResources::Base
 
   def show
     @person = Person.friendly.find(params[:slug])
-    @person_email = PersonEmail.new(person_id: @person)
+    @person_email = PersonEmail.new(person_id: @person.id)
   end
 
   def send_message
@@ -23,7 +23,7 @@ class PeopleController < InheritedResources::Base
 
     if @person_email.save
       flash[:message] = "Your message was sent."
-      redirect_to :index
+      redirect_to action: :index
     else
       render :action => "show"
     end 
@@ -41,7 +41,7 @@ class PeopleController < InheritedResources::Base
   private
 
   def person_email_params
-    params.require(:person_email).permit(:recipient_email, :sender_email, :message, :sender_phone)
+    params.require(:person_email).permit(:recipient_email, :sender_email, :message, :sender_phone, :person_id, :sender_name)
   end
 
   def person_params
