@@ -1,88 +1,102 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
-<script type='text/css'>
+<style type='text/css'>
   @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
   body
   {
-      font-family: 'Lato', 'sans-serif';
-      }
+    font-family: 'Lato', 'sans-serif';
+  }
   .profile 
   {
-      min-height: 355px;
-      display: inline-block;
-      }
+    min-height: 255px;
+    display: inline-block;
+  }
   figcaption.ratings
   {
-      margin-top:20px;
-      }
+    margin-top:20px;
+  }
   figcaption.ratings a
   {
-      color:#f1c40f;
-      font-size:11px;
-      }
+    color:#f1c40f;
+    font-size:11px;
+  }
   figcaption.ratings a:hover
   {
-      color:#f39c12;
-      text-decoration:none;
-      }
+    color:#f39c12;
+    text-decoration:none;
+  }
   .divider 
   {
-      border-top:1px solid rgba(0,0,0,0.1);
-      }
+    border-top:1px solid rgba(0,0,0,0.1);
+  }
   .emphasis 
   {
-      border-top: 4px solid transparent;
-      }
+    border-top: 4px solid transparent;
+  }
   .emphasis:hover 
   {
-      border-top: 4px solid #1abc9c;
-      }
+    border-top: 4px solid #1abc9c;
+  }
   .emphasis h2
   {
-      margin-bottom:0;
-      }
+    margin-bottom:0;
+  }
   span.tags 
   {
-      background: #1abc9c;
-      border-radius: 2px;
-      color: #f5f5f5;
-      font-weight: bold;
-      padding: 2px 4px;
-      }
+    background: #1abc9c;
+    border-radius: 2px;
+    color: #f5f5f5;
+    font-weight: bold;
+    padding: 2px 4px;
+  }
   .dropdown-menu 
   {
-      background-color: #34495e;    
-      box-shadow: none;
-      -webkit-box-shadow: none;
-      width: 250px;
-      margin-left: -125px;
-      left: 50%;
-      }
+    background-color: #34495e;    
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    width: 250px;
+    margin-left: -125px;
+    left: 50%;
+  }
   .dropdown-menu .divider 
   {
-      background:none;    
-      }
+    background:none;    
+  }
   .dropdown-menu>li>a
   {
-      color:#f5f5f5;
-      }
+    color:#f5f5f5;
+  }
   .dropup .dropdown-menu 
   {
-      margin-bottom:10px;
-      }
+    margin-bottom:10px;
+  }
   .dropup .dropdown-menu:before 
   {
-      content: "";
-      border-top: 10px solid #34495e;
-      border-right: 10px solid transparent;
-      border-left: 10px solid transparent;
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      margin-left: -10px;
-      z-index: 10;
+    content: "";
+    border-top: 10px solid #34495e;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -10px;
+    z-index: 10;
   }
-</script>
+  .well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #fff6c6;
+    border: 1px solid #fff393;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    background-image: none;
+  }
+  .well a{
+    color: #333;
+  }
+</style>
 
 <div class="container">
 
@@ -99,19 +113,19 @@
               <div class="well profile">
                 <div class="col-sm-12">
                   <div class="col-xs-12 col-sm-8">
-                    <h2><%= "#{person.first_name} #{person.last_name}" %></h2>
+                    <h2><%= link_to "#{person.first_name} #{person.last_name}", person_path(person) %></h2>
                     <p><strong></strong> <%= person.bio %> </p>
                     <% if person.skill_list && person.skill_list.size > 0 %>
                       <p><strong>Skills: </strong>
                         <% person.skill_list.each do |skill| %>
-                          <span class="tags"><%= skill %></span>
+                          <span class="tags"><%= link_to skill, people_with_skills_path(tag: skill) %></span>
                         <% end %>
                       </p>
                     <% end %>
                     <% if person.interest_list && person.interest_list.size > 0 %>
                       <p><strong>Interests: </strong>
                         <% person.interest_list.each do |interest| %>
-                          <span class="tags"><%= interest %></span>
+                          <span class="tags"><%= link_to interest, people_with_interests_path(tag: interest) %></span>
                         <% end %>
                       </p>
                     <% end %>
@@ -120,8 +134,7 @@
                     <figure>
                       <img src="<%= profile_image(person) %>" alt="" class="img-circle img-responsive">
 
-                      <% if false # hide ratings %>
-                      
+                      <% if false %>
                         <figcaption class="ratings">
                           <p>Ratings
                             <a href="#">
@@ -141,51 +154,11 @@
                             </a> 
                           </p>
                         </figcaption>
-                      
                       <% end %>
-
                     </figure>
                   </div>
                 </div>
-
-                <% if false # hide ratings %>
-
-                  <div class="col-xs-12 divider text-center">
-                    <div class="col-xs-12 col-sm-4 emphasis">
-                      <h2><strong> 20,7K </strong></h2>
-                      <p><small>Followers</small></p>
-                      <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 emphasis">
-                      <h2><strong>245</strong></h2>
-                      <p><small>Following</small></p>
-                      <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 emphasis">
-                      <h2><strong>43</strong></h2>
-                      <p><small>Snippets</small></p>
-                      <div class="btn-group dropup btn-block">
-                        <button type="button" class="btn btn-primary"><span class="fa fa-gear"></span> Options </button>
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu text-left" role="menu">
-                          <li><a href="#"><span class="fa fa-envelope pull-right"></span> Send an email </a></li>
-                          <li><a href="#"><span class="fa fa-list pull-right"></span> Add or remove from a list  </a></li>
-                          <li class="divider"></li>
-                          <li><a href="#"><span class="fa fa-warning pull-right"></span>Report this user for spam</a></li>
-                          <li class="divider"></li>
-                          <li><a href="#" class="btn disabled" role="button"> Unfollow </a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                <% end %>
-                
-                <div style='clear:both;'></div>
-              </div>
+              </div>                
             </div>
 
           <% end %>

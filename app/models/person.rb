@@ -1,8 +1,5 @@
 class Person < ActiveRecord::Base
-  acts_as_ordered_taggable
   acts_as_ordered_taggable_on :skills, :interests
-
-  attr_accessor :skill_list, :interest_list
 
   # this user relationship is optional (admins can edit people, and so can users who are attached to people)  
   belongs_to :user 
@@ -25,11 +22,4 @@ class Person < ActiveRecord::Base
     medium: '300x300>'
   }
   do_not_validate_attachment_file_type :avatar
-
-  after_create :reconcile_tags
-  after_update :reconcile_tags
-
-  def reconcile_tags
-    if self.skill_list
-  end
 end
