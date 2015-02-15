@@ -17,6 +17,13 @@
           <% end %>
         </p>
       <% end %>
+      <% if person.role_list && person.role_list.size > 0 %>
+        <p><strong>Roles: </strong>
+          <% person.role_list.each do |role| %>
+            <span class="tags"><%= link_to role, people_with_role_path(tag: role) %></span>
+          <% end %>
+        </p>
+      <% end %>
     </div>
     <div class="col-xs-12 col-sm-4 text-center">
       <figure>

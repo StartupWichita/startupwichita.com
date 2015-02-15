@@ -1,3 +1,5 @@
+<% @person.role_list_tags = @person.role_list %>
+
 <%= form_for(@person) do |f| %>
   <% if @person.errors.any? %>
     <div id="error_explanation">
@@ -57,6 +59,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :role_list %><br>
+
+    <% PersonRole.all.each do |person_role| %>
+      <%= f.check_box :role_list_tags, { :multiple => true }, person_role['name'], nil %> 
+      <%= person_role['name'] %>
+      <br/>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :featured %><br>
     <%= f.check_box :featured %>
   </div>
@@ -65,7 +77,7 @@
     <%= f.label :avatar %><br>
     <%= f.file_field :avatar %>
   </div>
-  
+
   <div class="actions">
     <%= f.submit %>
   </div>

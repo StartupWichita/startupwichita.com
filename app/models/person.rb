@@ -1,5 +1,7 @@
 class Person < ActiveRecord::Base
-  acts_as_ordered_taggable_on :skills, :interests
+  acts_as_ordered_taggable_on :skills, :interests, :roles
+
+  attr_accessor :role_list_tags
 
   # this user relationship is optional (admins can edit people, and so can users who are attached to people)  
   belongs_to :user 
@@ -23,11 +25,21 @@ class Person < ActiveRecord::Base
   }
   do_not_validate_attachment_file_type :avatar
 
+  before_validation :assign_role_list
+
+  def assign_role_list
+    self.role_list = role_list_tags.join(",")
+  end
+
   def self.all_skill_tags
     ActsAsTaggableOn::Tagging.all.where(context: "skills").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
   end
 
   def self.all_interest_tags
     ActsAsTaggableOn::Tagging.all.where(context: "interests").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
+  end
+
+  def self.all_person_role_tags
+    PersonRole.all.map {|role| { "id" => "#{role.id}", "name" => role.name } }
   end
 end

@@ -103,20 +103,29 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <h3>Find people by common skills and interests</h3>
+      <div class="col-md-12">
+        <h4>Skills</h4>
+        <% Person.all_skill_tags.each do |tag| %>
+          <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+        <% end %>
+      </div>
+      <div class="col-md-12">
+        <h4>Interests</h4>
+        <% Person.all_interest_tags.each do |tag| %>
+          <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+        <% end %>
+      </div>
     </div>
-    <div class="col-md-12">
-      <h4>Skills</h4>
-      <% Person.all_skill_tags.each do |tag| %>
-        <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
-      <% end %>
-    </div>
-    <div class="col-md-12">
-      <h4>Interests</h4>
-      <% Person.all_interest_tags.each do |tag| %>
-        <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
-      <% end %>
+    <div class="col-md-6">
+      <h3>Search by category instead</h3>
+      <div class="col-md-12">
+        <h4>Categories</h4>
+        <% Person.all_person_role_tags.each do |tag| %>
+          <span class="tags"><%= link_to tag['name'], people_with_role_path(tag: tag['name']) %></span>
+        <% end %>
+      </div>
     </div>
   </div>
 

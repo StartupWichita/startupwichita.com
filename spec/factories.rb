@@ -1,4 +1,7 @@
-FactoryGirl.define do  factory :person do
+FactoryGirl.define do  factory :person_role do
+    name "MyString"
+  end
+  factory :person do
     user nil
 first_name "MyString"
 last_name "MyString"
