@@ -102,9 +102,29 @@
 
 <div class="container">
 
-  <% unless @people.blank? %>
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Find people by common skills and interests</h3>
+    </div>
+    <div class="col-md-12">
+      <h4>Skills</h4>
+      <% Person.all_skill_tags.each do |tag| %>
+        <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+      <% end %>
+    </div>
+    <div class="col-md-12">
+      <h4>Interests</h4>
+      <% Person.all_interest_tags.each do |tag| %>
+        <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+      <% end %>
+    </div>
+  </div>
 
+
+  <% unless @people.blank? %>
     <% if @featured_people.size > 0 %>
+      <hr/>
+
       <div class="row">
         <div class="col-md-12">
           <h2>Featured People</h2>
@@ -121,8 +141,9 @@
           <% end %>
         </div>
       <% end %>
-      <hr/>
     <% end %>
+
+    <hr/>
     
     <% @people.in_groups_of(2).each do |people| %>
       <div class="row">
