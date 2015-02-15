@@ -144,9 +144,9 @@
 }
 </style>
 
-<div class="container">
+<div class="container" style='margin-bottom: 100px;'>
   <div class="row">
-  
+
     <div class="col-md-2">
       <% if claimable(@person) %>
         <%= link_to 'Claim This Profile', claim_people_path(@person), class: "btn btn-sm btn-claim" %>

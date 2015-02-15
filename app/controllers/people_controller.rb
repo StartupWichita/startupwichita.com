@@ -29,6 +29,10 @@ class PeopleController < InheritedResources::Base
     end 
   end
 
+  def new
+    @person = Person.new()
+  end
+
   def create
     @person = Person.new(person_params)
     if @person.save
