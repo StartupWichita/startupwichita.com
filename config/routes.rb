@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   match "/people/interests/:tag" => "people#index", as: :people_with_interests, :via => :get
   match "/people/roles/:tag" => "people#index", as: :people_with_role, :via => :get
 
+  match "/profile/:slug" => "people#show", as: :profile, :via => :get
+
   root 'pages#index'
 end

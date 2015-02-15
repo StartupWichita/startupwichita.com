@@ -21,6 +21,8 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'paperclip'
 gem 'acts-as-taggable-on'
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem 'configatron'
 
 group :development, :test do
   gem 'spring'

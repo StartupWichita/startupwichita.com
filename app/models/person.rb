@@ -1,4 +1,7 @@
 class Person < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :full_name, use: :slugged
+
   acts_as_ordered_taggable_on :skills, :interests, :roles
 
   attr_accessor :role_list_tags
@@ -27,10 +30,6 @@ class Person < ActiveRecord::Base
 
   before_validation :assign_role_list
 
-  def assign_role_list
-    self.role_list = role_list_tags.join(",")
-  end
-
   def self.all_skill_tags
     ActsAsTaggableOn::Tagging.all.where(context: "skills").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
   end
@@ -41,5 +40,15 @@ class Person < ActiveRecord::Base
 
   def self.all_person_role_tags
     PersonRole.all.map {|role| { "id" => "#{role.id}", "name" => role.name } }
+  end
+
+  def full_name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  private
+
+  def assign_role_list
+    self.role_list = role_list_tags.join(",") unless role_list_tags.blank?
   end
 end

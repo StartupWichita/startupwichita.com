@@ -10,6 +10,19 @@ class PeopleController < InheritedResources::Base
     end
   end
 
+  def show
+    @person = Person.friendly.find(params[:slug])
+  end
+
+  def create
+    @person = Person.new(person_params)
+    if @person.save
+      redirect_to profile_path(slug: @person.slug)
+    else
+      render :action => "new"
+    end
+  end
+
   private
 
   def person_params
