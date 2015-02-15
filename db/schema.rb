@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215055448) do
+ActiveRecord::Schema.define(version: 20150215063530) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
@@ -57,6 +57,19 @@ ActiveRecord::Schema.define(version: 20150215055448) do
 
   add_index "people", ["slug"], name: "index_people_on_slug", unique: true
   add_index "people", ["user_id"], name: "index_people_on_user_id"
+
+  create_table "person_emails", force: true do |t|
+    t.integer  "person_id"
+    t.string   "recipient_email"
+    t.string   "sender_name"
+    t.string   "sender_email"
+    t.string   "sender_phone"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "person_emails", ["person_id"], name: "index_person_emails_on_person_id"
 
   create_table "person_roles", force: true do |t|
     t.string   "name"

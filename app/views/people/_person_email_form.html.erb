@@ -1,0 +1,32 @@
+<%= form_for @person_email, :url => { action: :send_message } do |f| %>
+  <% if f.object.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(f.object.errors.count, "error") %> prohibited this from being saved:</h2>
+
+      <ul>
+      <% f.object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :person_id %>
+
+  <div class="field">
+    <%= f.text_field :sender_name, placeholder: "Your Name" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :sender_email, placeholder: "Your Email" %>
+  </div>
+  <div class="field">
+    <%= f.text_field :sender_phone, placeholder: "Your Phone #" %>
+  </div>
+  <div class="field">
+    <%= f.text_area :message, placeholder: "Your Message" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send Message" %>
+  </div>
+<% end %>

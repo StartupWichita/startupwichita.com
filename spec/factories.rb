@@ -1,4 +1,11 @@
-FactoryGirl.define do  factory :person_role do
+FactoryGirl.define do  factory :person_email do
+    person nil
+recipient_email "MyString"
+sender_email "MyString"
+message "MyText"
+sender_phone "MyString"
+  end
+  factory :person_role do
     name "MyString"
   end
   factory :person do
