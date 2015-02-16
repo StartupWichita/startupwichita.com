@@ -73,7 +73,7 @@
                 <li class="col-sm-2"><%= link_to 'sign in', new_user_session_path %></li>
               <% else %>
                 <!-- Show these two if they're logged in -->
-                <li class="col-sm-2"><%= link_to 'profile', edit_user_registration_path %></li>
+                <li class="col-sm-2"><%= link_to 'my profile', edit_user_registration_path %></li>
                 <li class="col-sm-2"><%= link_to 'sign out', destroy_user_session_path, :method => :delete %><li>
               <% end %>
 

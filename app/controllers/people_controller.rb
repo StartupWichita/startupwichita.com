@@ -1,4 +1,8 @@
 class PeopleController < InheritedResources::Base
+  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :get_person_and_verify_ownership, :only => [:edit, :update]
+  before_filter :verify_administrator, :only => [:create, :destroy]
+
 
   def index
     if params[:tag]
@@ -16,7 +20,6 @@ class PeopleController < InheritedResources::Base
   end
 
   def edit
-    @person = Person.friendly.find(params[:id])
   end
 
   def send_message
@@ -46,9 +49,7 @@ class PeopleController < InheritedResources::Base
     end
   end
 
-  def update
-    @person = Person.friendly.find(params[:id])
-   
+  def update   
     if @person.update(person_params)
       redirect_to profile_path(slug: @person.slug)
     else
@@ -64,6 +65,14 @@ class PeopleController < InheritedResources::Base
 
   def person_params
     params.require(:person).permit(:user_id, :first_name, :last_name, :email, :website, :company_name, :title, :twitter_username, :bio, :avatar, :skills, :interests, :skill_list, :interest_list, :role_list, :featured, :tag_list => [], :role_list_tags => [])
+  end
+
+  def get_person_and_verify_ownership
+    @person = Person.friendly.find(params[:id])
+    if !current_user.admin && @person.user_id != current_user.id
+      flash[:notice] = "Do do not own that record."
+      redirect_to action: :index
+    end 
   end
 end
 

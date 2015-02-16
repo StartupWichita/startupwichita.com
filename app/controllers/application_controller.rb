@@ -20,4 +20,13 @@ class ApplicationController < ActionController::Base
 
     return resource.user.id == current_user.id
   end
+
+  def verify_administrator
+    if !current_user.admin
+      flash[:notice] = "You do not have the necessary privileges for that"
+      redirect_to request.url
+    end
+  end
 end
+
+
