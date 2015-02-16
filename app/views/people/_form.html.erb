@@ -1,88 +1,25 @@
-<% @person.role_list_tags = @person.role_list %>
+<div class="row topic-form">
+  <h1 class="robotoSlab text-center">Edit <%= @person.first_name.present? ? @person.first_name : 'Person' %></h1>
 
-<%= form_for(@person) do |f| %>
-  <% if @person.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+  <% @person.role_list_tags = @person.role_list %>
 
-      <ul>
-      <% @person.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <%= form_for @person, html: { class: "form-horizontal col-md-offset-3 col-md-6" } do |f| %>
+    <% if @person.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:</h2>
+
+        <ul>
+        <% @person.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= render partial: "shared/person_edit_form", locals: { f: f } %>
+
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
-  </div>
-  <div class="field">
-    <%= f.label :company_name %><br>
-    <%= f.text_field :company_name %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :twitter_username %><br>
-    <%= f.text_field :twitter_username %>
-  </div>
-  <div class="field">
-    <%= f.label :bio %><br>
-    <%= f.text_area :bio %>
-  </div>
-  <div class="field">
-    <%= f.label :skill_list %><br>
-    <%= f.text_area :skill_list %>
-  </div>
-  <div class="field">
-    <%= f.label :interest_list %><br>
-    <%= f.text_area :interest_list %>
-  </div>
-
-  <div class="field">
-    <%= f.label :role_list %><br>
-
-    <% PersonRole.all.each do |person_role| %>
-      <%= f.check_box :role_list_tags, { :multiple => true }, person_role['name'], nil %> 
-      <%= person_role['name'] %>
-      <br/>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :featured %><br>
-    <%= f.check_box :featured %>
-  </div>
-
-  <div class="field">
-    <%= f.label :avatar %><br>
-    <%= f.file_field :avatar %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

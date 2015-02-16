@@ -15,6 +15,10 @@ class PeopleController < InheritedResources::Base
     @person_email = PersonEmail.new(person_id: @person.id)
   end
 
+  def edit
+    @person = Person.friendly.find(params[:id])
+  end
+
   def send_message
     @person_email = PersonEmail.new(person_email_params)
     @person = Person.find(@person_email.person_id)
@@ -39,6 +43,16 @@ class PeopleController < InheritedResources::Base
       redirect_to profile_path(slug: @person.slug)
     else
       render :action => "new"
+    end
+  end
+
+  def update
+    @person = Person.friendly.find(params[:id])
+   
+    if @person.update(person_params)
+      redirect_to profile_path(slug: @person.slug)
+    else
+      render 'edit'
     end
   end
 
