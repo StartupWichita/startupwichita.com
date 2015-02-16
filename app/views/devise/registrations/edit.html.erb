@@ -104,6 +104,32 @@
                 </div>
             </div>
 
+
+            <div class="form-group">
+                <%= ff.label :skill_list, :class => "col-md-2 control-label" %>
+                <div class="col-md-10">
+                    <%= ff.text_area :skill_list, autofocus: true, :class => "form-control" %>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <%= ff.label :interest_list, :class => "col-md-2 control-label" %>
+                <div class="col-md-10">
+                    <%= ff.text_area :interest_list, autofocus: true, :class => "form-control" %>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <%= ff.label :role_list, :class => "col-md-2 control-label" %>
+                <div class="col-md-10">
+                    <% PersonRole.all.each do |person_role| %>
+                      <%= ff.check_box :role_list_tags, { :multiple => true }, person_role['name'], nil %> 
+                      <%= person_role['name'] %>
+                      <br/>
+                    <% end %>              
+                </div>
+            </div>
+
             <div class="form-group">
                 <%= ff.label :avatar, :class => "col-md-2 control-label" %>
                 <div class="col-md-10">
