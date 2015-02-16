@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def owned_by_current_user(person)
-    return current_user && current_user.id == person.person_id
+    return current_user && current_user.id == person.user_id
   end
 
   def claimable(person)

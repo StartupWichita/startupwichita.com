@@ -142,49 +142,51 @@
 .btn-call{
   background-color: #EF592B;
 }
+.btn-edit{
+  background-color: #EF592B;
+}
 </style>
 
 <% content_for :utility_bar do %>
+  <% if claimable(@person) %>
+    <%= link_to 'Claim This Profile', claim_people_path(@person), class: "btn btn-sm btn-claim" %>
+  <% end %>
+  <% if owned_by_current_user(@person) %>
+    <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-edit" %>
+  <% end %>
 <% end %>
 
-<div class="container" style='margin-bottom: 100px;'>
+<div class="container" style='margin-bottom: 100px; margin-top: 20px;'>
   <div class="row">
 
     <div class="col-md-2">
-      <% if claimable(@person) %>
-        <%= link_to 'Claim This Profile', claim_people_path(@person), class: "btn btn-sm btn-claim" %>
-      <% end %>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-8">
       <%= render partial: "shared/profile", locals: { person: @person, featured: false } %>
-    </div>
-    
-    <div class='col-md-2'>
-      <% if @person.email.present? %>
-        <div class="row" style='margin-bottom: 5px;'>
-          <div class='col-md-12'>
-            <a class="btn btn-contact btn-lg" data-toggle="modal" data-target="#contact" data-original-title>
-              Contact
-            </a>
+
+      <div class='col-md-12'>
+        <% if @person.email.present? && @person.allow_contact %>
+          <div class="row" style='margin-bottom: 5px;'>
+            <div class='col-md-12'>
+              <a class="btn btn-contact btn-lg" data-toggle="modal" data-target="#contact" data-original-title>
+                Contact
+              </a>
+            </div>
           </div>
-        </div>
-      <% end %>
-      <% if @person.phone.present? %>
-        <div class="row">
-          <div class='col-md-12'>
-            <a class="btn btn-call btn-lg" data-toggle="modal" data-target="#call" data-original-title>
-              Call
-            </a>
+        <% end %>
+        <% if @person.phone.present? && @person.allow_contact %>
+          <div class="row">
+            <div class='col-md-12'>
+              <a class="btn btn-call btn-lg" data-toggle="modal" data-target="#call" data-original-title>
+                Call
+              </a>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-    <div class="col-md-2">
-      <% if owned_by_current_user(@person) %>
-        <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-primary" %>
-      <% end %>
-    </div>
+
 
 
     <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
