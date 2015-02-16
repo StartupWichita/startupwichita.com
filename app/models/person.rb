@@ -33,6 +33,8 @@ class Person < ActiveRecord::Base
   before_validation :assign_role_list
   before_validation { avatar.clear if delete_avatar == '1' }
 
+  validates_presence_of :first_name, :last_name
+
 
   def self.all_skill_tags
     ActsAsTaggableOn::Tagging.all.where(context: "skills").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
