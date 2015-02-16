@@ -1,7 +1,7 @@
 class PeopleController < InheritedResources::Base
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :get_person_and_verify_ownership, :only => [:edit, :update]
-  before_filter :verify_administrator, :only => [:create, :destroy]
+  before_filter :verify_administrator, :only => [:create, :destroy, :new]
 
 
   def index

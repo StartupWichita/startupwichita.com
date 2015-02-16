@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
   def verify_administrator
     if !current_user.admin
       flash[:notice] = "You do not have the necessary privileges for that"
-      redirect_to request.url
+      if !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
+        redirect_to :back
+      else
+        redirect_to action: :index
+      end
     end
   end
 end
