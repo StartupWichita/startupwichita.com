@@ -22,7 +22,6 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800' rel='stylesheet' type='text/css'>
@@ -62,29 +61,49 @@
           </div>
           <div class="navbar-collapse robotoSlab" collapse="isCollapsed">
             <ul class="nav navbar-nav row">
-              <li class="col-sm-2"><a href="/people">people</a><div class="nav-icon ico-people"></div></li>
-              <li class="col-sm-2"><a href="/#!/news">news</a><div class="nav-icon ico-news"></div></li>
+
+              <li class="col-sm-2"><%= link_to 'people', people_path %><div class="nav-icon ico-people"></div></li>
+              <li class="col-sm-2">
+                <%= link_to 'news', news_index_path %> <div class="nav-icon ico-news"></div>
+              </li>
 
               <!-- Show these two if they're logged out -->
-              <% if user_signed_in? %>
-                <li class="col-sm-2" data-ng-hide="global.authenticated"><a href="/#!/signup">sign up</a></li>
-                <li class="col-sm-2" data-ng-hide="global.authenticated"><a href="/#!/signin">sign in</a></li>
+              <% if ! user_signed_in? %>
+                <li class="col-sm-2"><%= link_to 'sign up', new_user_registration_path %></li>
+                <li class="col-sm-2"><%= link_to 'sign in', new_user_session_path %></li>
               <% else %>
                 <!-- Show these two if they're logged in -->
-                <li class="col-sm-2" data-ng-show="global.authenticated"><a href="/#!/users/{{ global.user._id }}/edit">profile</a></li>
-                <li class="col-sm-2" data-ng-show="global.authenticated"><a href="/signout">sign out</a></li>
+                <li class="col-sm-2"><%= link_to 'profile', edit_user_registration_path %></li>
+                <li class="col-sm-2"><%= link_to 'sign out', destroy_user_session_path, :method => :delete %><li>
               <% end %>
 
-              <li class="col-sm-2"><a href="/#!/events">events</a><div class="nav-icon ico-events"></div></li>
-              <li class="col-sm-2"><a href="/#!/resources">resources</a><div class="nav-icon ico-resources"></div></li>
+              <li class="col-sm-2">
+                <%= link_to 'events', events_path %>
+                <div class="nav-icon ico-events"></div>
+              </li>
+              <li class="col-sm-2">
+                <%= link_to 'resources', resources_path %>
+                <div class="nav-icon ico-resources"></div>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
 
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if content_for?(:utility_bar) %>
+      <div class="form-inline util-bar">
+        <%= yield :utility_bar %>
+      </div>
+    <% end %>
+
+    <% unless notice.blank? %>
+      <div class="alert alert-success"><%= notice %></div>
+    <% end %>
+
+    <% unless alert.blank? %>
+      <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
 
     <%= yield %>
 
@@ -112,5 +131,6 @@
       </div>
     </footer>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   </body>
 </html>

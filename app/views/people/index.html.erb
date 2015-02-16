@@ -100,6 +100,20 @@
   }
 </style>
 
+<style type='text/css'>
+.btn-add-yourself{
+  background-color: #EF592B;
+  a{
+    color: white;
+  }
+}
+
+</style>
+
+<% content_for :utility_bar do %>
+  &nbsp;
+<% end %>
+
 <div class="container">
 
   <div class="row">
@@ -107,14 +121,22 @@
       <h3>Find people by common skills and interests</h3>
       <div class="col-md-12">
         <h4>Skills</h4>
-        <% Person.all_skill_tags.each do |tag| %>
-          <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+        <% if Person.all_skill_tags.size > 0 %>
+          <% Person.all_skill_tags.each do |tag| %>
+            <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+          <% end %>
+        <% else %>
+          No common skills found
         <% end %>
       </div>
       <div class="col-md-12">
         <h4>Interests</h4>
-        <% Person.all_interest_tags.each do |tag| %>
-          <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+        <% if Person.all_interest_tags.size > 0 %>
+          <% Person.all_interest_tags.each do |tag| %>
+            <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+          <% end %>
+        <% else %>
+          No common interests found
         <% end %>
       </div>
     </div>
@@ -178,13 +200,8 @@
 
   <div class="alternate">
     <p class="row">
-      <%= link_to 'Add Yourself', new_person_path, class: "btn btn-lg btn-primary" %>
+      <%= link_to 'Add Yourself', new_person_path, class: "btn btn-lg btn-add-yourself" %>
     </p>
   </div>
 </div>
-
-
-
-
-
 

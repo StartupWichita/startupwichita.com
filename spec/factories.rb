@@ -18,7 +18,7 @@ company_name "MyString"
 title "MyString"
 twitter_username "MyString"
 bio "MyText"
-avatar ""
+#avatar ""
   end
 
   factory :user do

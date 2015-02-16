@@ -1,40 +1,25 @@
 <section>
-  <div class="form-inline util-bar">
-    <%= link_to new_event_path, :class => "btn pull-right" do %>
-      Add Event <i class="glyphicon glyphicon-plus"></i>
+    <% content_for :utility_bar do %>
+        <%= link_to new_event_path, :class => "btn pull-right" do %>
+            Add Event <i class="glyphicon glyphicon-plus"></i>
+        <% end %>
     <% end %>
-  </div>
 
-  <% unless @events.blank? %>
-    <ul class="alternate list-unstyled">
-      <% @events.each do |event| %>
-        <li data-ng-repeat="event in events">
-          <div class="row">
-            <h2 class="robotoSlab">
-              <%= link_to event_path(event) do %>
-                <%= event.title %>
-              <% end %>
-            </h2>
-            <div class="col-md-2">
-              <span>
-                <%= event.starts_at %><br/>
-                <%= event.ends_at %><br/>
-              </span>
+    <div role="tabpanel">
+
+        <ul class="nav nav-tabs event-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#upcoming" aria-controls="upcoming" role="tab" data-toggle="tab">Upcoming</a></li>
+            <li role="presentation"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="upcoming">
+                <%= render partial: 'list', locals: { events: @upcoming } %>
             </div>
-            <div class="col-md-10">
-              <p class="description">
-                <%= event.content %>
-              </p>
+            <div role="tabpanel" class="tab-pane" id="recent">
+                <%= render partial: 'list', locals: { events: @recent } %>
             </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <div class="alternate">
-      <p class="row">
-        No events yet. Why don't you <%= link_to "add some", new_event_path %>?
-      </p>
+        </div>
+
     </div>
-  <% end %>
 </section>

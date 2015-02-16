@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :resources
   resources :news
   resources :events
+
   resources :people do
     collection do
       post :send_message
@@ -11,7 +12,10 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users
+  post '/people/:id/contact', to: 'people#contact', as: 'people_contact'
+  get '/people/:id/contact', to: 'people#show', as: 'people_contact_get'
+
+  devise_for :users, :controllers => { :registrations => "registrations" }
 
   match "/people/create_profile" => "people#new", as: :people_create_profile, :via => :get
 
@@ -22,4 +26,6 @@ Rails.application.routes.draw do
   match "/profile/:slug" => "people#show", as: :profile, :via => :get
 
   root 'pages#index'
+
+  get '/topics/tags', to: 'topics#tags', :defaults => { :format => :json }
 end

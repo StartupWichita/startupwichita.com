@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.2.0'
 
 gem 'rails', '4.1.6'
 gem 'active_record-acts_as'
@@ -19,10 +19,19 @@ gem 'devise'
 
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
+
 gem 'paperclip'
 gem 'acts-as-taggable-on'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'configatron'
+
+gem 'gravatar_image_tag'
+gem 'owlcarousel-rails'
+gem "select2-rails"
+gem "acts-as-taggable-on"
+gem 'sendgrid', '~> 1.2.0'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'spring'

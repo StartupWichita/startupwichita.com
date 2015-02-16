@@ -1,27 +1,29 @@
 <section class="alternate">
-  <div class="form-inline util-bar">
-    <%= link_to new_news_path, :class => "btn pull-right" do %>
-      Add News <i class="glyphicon glyphicon-plus"></i>
+    <% content_for :utility_bar do %>
+        <%= link_to new_news_path, :class => "btn pull-right" do %>
+            Add News <i class="glyphicon glyphicon-plus"></i>
+        <% end %>
+
+        <% if can_edit?(@news) %>
+            <%= link_to news_path(@news), :data => { :confirm => "Are you sure you want to delete this news?" }, :method => :delete, :class => "btn pull-right" do %>
+                Remove News <i class="glyphicon glyphicon-trash"></i>
+            <% end %>
+
+            <%= link_to edit_news_path(@news), :class => "btn pull-right" do %>
+                Edit News <i class="glyphicon glyphicon-edit"></i>
+            <% end %>
+        <% end %>
     <% end %>
 
-    <%= link_to news_path(@news), :data => { :confirm => "Are you sure you want to delete this news?" }, :method => :delete, :class => "btn pull-right" do %>
-      Remove News <i class="glyphicon glyphicon-trash"></i>
-    <% end %>
+    <div class="row">
+        <h2 class="robotoSlab"><%= @news.title %></h2>
+        <span>Posted by: <%= @news.user.name %></span> on
+        <span><%= @news.created_at %></span>
+    </div>
 
-    <%= link_to edit_news_path(@news), :class => "btn pull-right" do %>
-      Edit News <i class="glyphicon glyphicon-edit"></i>
-    <% end %>
-  </div>
+    <div class="row">
+        <p class="description"><%= @news.content %></p>
+    </div>
 
-  <p id="notice"><%= notice %></p>
-
-  <div class="row">
-    <h2 class="robotoSlab"><%= @news.title %></h2>
-    <span>Posted by: AUTHOR-NAME-HERE</span> on
-    <span><%= @news.created_at %></span>
-  </div>
-
-  <div class="row">
-    <p class="description"><%= @news.content %></p>
-  </div>
+    <%= render partial: 'topics/disqus' %>
 </section>

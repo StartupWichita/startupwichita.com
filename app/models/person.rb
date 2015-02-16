@@ -4,10 +4,12 @@ class Person < ActiveRecord::Base
 
   acts_as_ordered_taggable_on :skills, :interests, :roles
 
-  attr_accessor :role_list_tags
+  attr_accessor :role_list_tags, :delete_avatar
 
   # this user relationship is optional (admins can edit people, and so can users who are attached to people)  
-  belongs_to :user 
+  belongs_to :user
+
+  scope :featured, -> { where(featured: true) }
 
   # Results in the following colums
   #   avatar_file_name
@@ -29,6 +31,8 @@ class Person < ActiveRecord::Base
   do_not_validate_attachment_file_type :avatar
 
   before_validation :assign_role_list
+  before_validation { avatar.clear if delete_avatar == '1' }
+
 
   def self.all_skill_tags
     ActsAsTaggableOn::Tagging.all.where(context: "skills").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq

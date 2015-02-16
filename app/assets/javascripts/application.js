@@ -14,5 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require owl.carousel
+//= require select2
 //= require_tree .
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip({
+      container: '.form-group'
+  });
+});

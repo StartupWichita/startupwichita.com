@@ -9,15 +9,45 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
+*
+ *= require_tree .
+ *= require_self
+ *= require owl.carousel
+ *= require owl.theme
+ *= require select2
+ *= require select2-bootstrap
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.form-horizontal .form-group {
+    margin-right: 0;
+}
+
+.form-group {
+    overflow: auto;
+}
+
+a:hover {
+    background: none;
+}
+
+a:visited {
+    color: #fff;
+}
+
+section {
+    overflow: auto;
+}
+
 .people{
     clear:both;
     background: red;
+
+    li {
+        min-height: 111px;
+    }
 }
 .people li:nth-child(odd) {
     text-align:left;
@@ -30,7 +60,7 @@
     color: #F7E4C1;
 }
 .people li:nth-child(4n+2) {
-    background: #EF6032;
+    background: #ef592b;
     color: #F7E4C1;
 }
 .people li:nth-child(4n+3) {
@@ -67,17 +97,17 @@
 .catchphrase{
     font-weight:lighter;
     font-size:2em;
+    line-height: 1.1em;
 }
 
 .userProfile {
-    background-color: #EF6032;
+    background-color: #ef592b;
     color: #fff8e8;
 }
 
 .userProfile .userCard {
     text-align: center;
     padding-top: 3em;
-    background-color: #EF592B;
     height: 100%;
 }
 
@@ -88,6 +118,11 @@
 
 .userProfile .userBio {
     padding: 3em 4em 2em 4em;
+
+    p {
+        font-size: 2.0em;
+        line-height: 1.2em;
+    }
 }
 
 @media (max-width: 990px) {
@@ -249,7 +284,7 @@ a {
 }
 
 .white{
-    color: #FFFFFF;
+    color: #FFFFFF !important;
 }
 
 .grey{
@@ -336,6 +371,8 @@ a {
     text-align: center;
 }
 
+#peopleCarousel .owl-item { width: 272px !important; }
+
 .owl-prev, .owl-next{
     padding:0;
     margin:0;
@@ -349,16 +386,16 @@ a {
 }
 
 .owl-prev:hover, .owl-next:hover{
-                     opacity:0.8;
-                 }
+    opacity:0.8;
+}
 
 .owl-prev{
-    background:url("/img/arrow-prev.png") 50% 50% no-repeat;
+    background: image-url("icons/arrow-prev.png") 50% 50% no-repeat !important;
     left:0;
 }
 
 .owl-next{
-    background:url("/img/arrow-next.png") 50% 50% no-repeat;
+    background: image-url("icons/arrow-next.png") 50% 50% no-repeat !important;
     right:0;
 }
 
@@ -601,7 +638,7 @@ footer p{
     }
 
     .resource-wrapper{
-        margin-bottom:20px;
+        margin: 0 20px;
     }
 
     .sm-collapse{
@@ -774,7 +811,8 @@ div.container-fluid.signup {
 .topic-form input,
 .topic-form textarea,
 .topic-form button,
-.ui-select-multiple {
+.ui-select-multiple,
+.select2-choices {
     background-image: none !important;
     box-sizing: border-box;
     border-radius: 0px;
@@ -782,8 +820,9 @@ div.container-fluid.signup {
     border: none !important;
     box-shadow: none !important;
     color: #f8e4c5 !important;
-    font-size: 1.5em;
 }
+
+.select2-container { border: none; }
 
 .ui-select-choices.dropdown-menu { background-color: #f8e4c5; }
 .ui-select-match-item { background-color: #f8e4c5 !important; font-size: 1em !important; }
@@ -792,3 +831,13 @@ div.container-fluid.signup {
 .topic-form input { height: 49px; }
 
 .git-msg img{ max-width: 90%;}
+
+.devise_links {
+    li {
+        display: inline-block;
+
+        a {
+            color: #000;
+        }
+    }
+}

@@ -1,20 +1,27 @@
 <div class="form-group">
-  <%= f.label :title, :class => "col-md-3 control-label" %>
-  <div class="col-md-9">
-    <%= f.text_field :title, :class => "form-control" %>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :content, :class => "col-md-3 control-label" %>
-  <div class="col-md-9">
-    <%= f.text_area :content, :class => "form-control" %>
-  </div>
-</div>
-
-<div class="form-group">
-  <%= f.label :url, :class => "col-md-3 control-label" %>
+    <%= f.label :title, :class => "col-md-3 control-label" %>
     <div class="col-md-9">
-      <%= f.url_field :url, :class => "form-control" %>
+        <%= f.text_field :title, :class => "form-control" %>
+    </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :content, :class => "col-md-3 control-label" %>
+    <div class="col-md-9">
+        <%= f.text_area :content, :class => "form-control" %>
+    </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :url, :class => "col-md-3 control-label" %>
+    <div class="col-md-9">
+        <%= f.url_field :url, :class => "form-control" %>
+    </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :tag_list, :class => "col-md-3 control-label" %>
+    <div class="col-md-9">
+        <%= f.hidden_field :tag_list, :class => "form-control" %>
     </div>
 </div>

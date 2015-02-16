@@ -62,6 +62,15 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'http://startupwichita.com', port: 80 }
 
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.sendgrid.net",
+    :port => 25,
+    :domain => "domain_here",
+    :authentication => :plain,
+    :user_name => "username_here",
+    :password => "password_here"
+  }
+
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
