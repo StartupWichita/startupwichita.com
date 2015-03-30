@@ -27,8 +27,7 @@ gem 'configatron'
 
 gem 'gravatar_image_tag'
 gem 'owlcarousel-rails'
-gem "select2-rails"
-gem "acts-as-taggable-on"
+gem 'select2-rails'
 gem 'sendgrid', '~> 1.2.0'
 gem 'carrierwave'
 gem 'mini_magick'
