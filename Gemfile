@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.2.0'
 
-gem 'rails', '4.1.6'
+gem 'rails'#, '4.2.1'
 gem 'active_record-acts_as'
 
 # Asset Utilities - HTML / CSS / JS
@@ -57,4 +57,10 @@ group :development, :test do
   # Static Analysis
   gem 'rubocop'
   gem 'rubocop-rspec'
+end
+
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+  gem 'puma'
 end
