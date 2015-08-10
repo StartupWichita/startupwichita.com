@@ -2,9 +2,9 @@
   <% if claimable(@person) %>
     <%= link_to 'Claim This Profile', claim_people_path(@person), class: "btn btn-sm btn-claim" %>
   <% end %>
-  <% if owned_by_current_user(@person) || current_user.admin %>
+  <% # if owned_by_current_user(@person) || current_user.admin %>
     <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-edit" %>
-  <% end %>
+  <% # end %>
 <% end %>
 
 <div class="container" style='margin-bottom: 100px; margin-top: 20px;'>
@@ -35,4 +35,3 @@
     </div>
   </div>
 </div>
-
