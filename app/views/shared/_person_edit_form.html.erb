@@ -1,5 +1,16 @@
 <%= f.hidden_field :user_id %>
 
+<% if current_user.admin? %>
+  <div class="form-group">
+    <%= f.label :featured, :class => "col-md-4 control-label" do %>
+    Featured Person <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="This is only visible to Admins. Checking this box will put this user on the front page."></i>
+    <% end %>
+    <div class="col-md-8">
+      <%= f.check_box :featured %>
+    </div>
+  </div>
+<% end %>
+
 <div class="form-group">
     <%= f.label :first_name, :class => "col-md-4 control-label" %>
     <div class="col-md-8">
@@ -22,7 +33,9 @@
 </div>
 
 <div class="form-group">
-    <%= f.label :phone, :class => "col-md-4 control-label" %>
+    <%= f.label :phone, :class => "col-md-4 control-label" do %>
+    Phone <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="If you enter a phone number, and allow contact below, your phone number will be shown to other users."></i>
+    <% end %>
     <div class="col-md-8">
         <%= f.text_field :phone, autofocus: true, :class => "form-control" %>
     </div>
@@ -50,7 +63,9 @@
 </div>
 
 <div class="form-group">
-    <%= f.label :twitter_username, :class => "col-md-4 control-label" %>
+    <%= f.label :twitter_username, :class => "col-md-4 control-label" do %>
+    Twitter
+    <% end %>
     <div class="col-md-8">
         <%= f.text_field :twitter_username, autofocus: true, :class => "form-control" %>
     </div>
@@ -85,11 +100,11 @@
         <% PersonRole.all.in_groups_of(2).each do |person_role_groups| %>
           <% person_role_groups.each do |person_role| %>
             <div class='col-md-6'>
-              <%= f.check_box :role_list_tags, { :multiple => true }, person_role['name'].downcase, nil %> 
+              <%= f.check_box :role_list_tags, { :multiple => true }, person_role['name'].downcase, nil %>
               <%= person_role['name'] %>
             </div>
           <% end %>
-        <% end %>              
+        <% end %>
     </div>
 </div>
 
@@ -113,7 +128,7 @@
 
 <div class="form-group">
     <%= f.label :allow_contact, :class => "col-md-4 control-label" do %>
-        Allow Contact <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Allow people to use the web form to contact you via email.  Your email will not be displayed anywhere."></i>
+        Allow Contact <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Allow people to contact you via email. Your email will not be displayed anywhere. Your phone number will be shown to users if it is entered above."></i>
     <% end %>
     <div class="col-md-8">
         <%= f.check_box :allow_contact, autofocus: true %>

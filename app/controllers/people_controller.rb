@@ -33,7 +33,7 @@ class PeopleController < InheritedResources::Base
       redirect_to action: :index
     else
       render :action => "show"
-    end 
+    end
   end
 
   def new
@@ -49,7 +49,7 @@ class PeopleController < InheritedResources::Base
     end
   end
 
-  def update   
+  def update
     if @person.update(person_params)
       redirect_to profile_path(slug: @person.slug)
     else
@@ -72,8 +72,6 @@ class PeopleController < InheritedResources::Base
     if !current_user.admin && @person.user_id != current_user.id
       flash[:notice] = "Do do not own that record."
       redirect_to action: :index
-    end 
+    end
   end
 end
-
-

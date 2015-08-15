@@ -78,6 +78,7 @@
                         <div class="news-teaser white">
                             <%= link_to news_path(newsItem) do %>
                                 <h3 class="text-center white"><%= newsItem.title %></h3>
+                                <p class="text-center white"><%= newsItem.created_at.to_time.strftime('%B %d %I:%M %p') %></p>
                                 <p class="white"><%= newsItem.content.truncate 280 %>...</p>
                             <% end %>
                         </div>
