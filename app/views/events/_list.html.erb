@@ -4,26 +4,27 @@
         <% events.each do |event| %>
             <li>
                 <div class="row">
+                  <div class="col-sm-12 col-md-3">
                     <h2 class="robotoSlab">
                         <%= link_to event_path(event) do %>
                             <%= event.title %>
                         <% end %>
                     </h2>
-                </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <dl>
-                            <dt>Location</dt>
-                            <dd><%= event.address %></dd>
-                            <dt>Starting At</dt>
-                            <dd><%= event.starts_at %></dd>
-                            <dt>Ending At</dt>
-                            <dd><%= event.ends_at %></dd>
-                        </dl>
-                    </div>
-                    <div class="col-md-10">
-                        <%= simple_format(event.content) %>
-                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-2">
+                      <dl>
+                          <dt>Location:</dt>
+                          <dd><a target="_blank" href="http://maps.google.com/?q=<%= event.address %>"><%= event.address %></a></dd>
+                          <dt>Starting at:</dt>
+                          <dd><%= event.starts_at.to_time.strftime('%A, %B %d, %Y %I:%M %p') %></dd>
+                          <dt>Ending at:</dt>
+                          <dd><%= event.ends_at.to_time.strftime('%A, %B %d, %Y %I:%M %p') %></dd>
+                      </dl>
+                  </div>
+                  <div class="col-sm-12 col-md-4">
+                      <%= simple_format(event.content) %>
+
+                  </div>
                 </div>
             </li>
         <% end %>
