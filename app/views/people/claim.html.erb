@@ -1,0 +1,27 @@
+<div class="container" style='margin-bottom: 100px; margin-top: 20px;'>
+  <div class="row">
+
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-8">
+      <%= render partial: "shared/profile", locals: { person: @person, featured: false } %>
+
+      <div class='col-md-12'>
+        <%= form_tag people_claim_person_path(@person),  :html => { :class => 'form-horizontal' } do %>
+        <div class="form-group">
+           <h3> <%= check_box_tag :agree, true, false, :required => true %>
+           Yep, this is me!
+	   </h3>
+        </div>
+        <div class="form-group">
+            <div class="col-md-9">
+                <%= submit_tag "Claim Profile", :class => "btn btn-warning" %>
+            </div>
+        </div>
+		<% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

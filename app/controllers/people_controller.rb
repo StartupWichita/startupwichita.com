@@ -1,5 +1,5 @@
 class PeopleController < InheritedResources::Base
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :claim, :feed]
   before_filter :get_person_and_verify_ownership, :only => [:edit, :update]
   before_filter :verify_administrator, :only => [:create, :destroy, :new]
 
@@ -57,6 +57,43 @@ class PeopleController < InheritedResources::Base
     end
   end
 
+  def claim
+    @person = Person.friendly.find(params[:slug])
+  end
+
+  def claim_person
+    @current_person = Person.find(current_user.id)
+    if @current_person.nil?
+      return
+    end
+    
+    @current_person.user_id = nil
+    @current_person.save
+    
+    ### TODO Merge Profiles ###
+    
+    @person = Person.friendly.find(params[:slug])
+    if @person.user_id.nil?
+      @person.user_id = current_user.id
+      if @person.save
+        flash[:notice] = "Successfully claimed profile."
+        redirect_to action: :index
+      else
+        flash[:error] = "Something went wrong. Please try again."
+      end
+    else
+      flash[:notice] = "This person has already been claimed."
+      redirect_to action: :index
+    end
+  end
+
+  def feed
+    @people = Person.all
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+
   private
 
   def person_email_params
@@ -70,7 +107,7 @@ class PeopleController < InheritedResources::Base
   def get_person_and_verify_ownership
     @person = Person.friendly.find(params[:id])
     if !current_user.admin && @person.user_id != current_user.id
-      flash[:notice] = "Do do not own that record."
+      flash[:notice] = "You do not own that record."
       redirect_to action: :index
     end 
   end

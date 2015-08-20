@@ -1,5 +1,5 @@
 <% content_for :utility_bar do %>
-  <% if current_user.admin %>
+  <% if !current_user.nil? && current_user.admin %>
     <%= link_to 'Add a new person', new_person_path, class: "btn btn-lg btn-add-yourself" %>
   <% end %>
 <% end %>

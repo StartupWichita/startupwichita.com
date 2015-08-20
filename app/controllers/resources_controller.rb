@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :feed]
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_filter :can_edit_resource?, :only => [:edit, :update, :destroy]
 
@@ -40,6 +40,13 @@ class ResourcesController < ApplicationController
     @resource.destroy
     flash[:notice] = "Resource successfully deleted"
     respond_with(@resource)
+  end
+
+  def feed
+    @resources = Resource.all
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
   end
 
   private

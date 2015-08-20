@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :feed]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_filter :can_edit_event?, :only => [:edit, :update, :destroy]
 
@@ -42,6 +42,15 @@ class EventsController < ApplicationController
     flash[:notice] = "Event successfully deleted"
     respond_with(@event)
   end
+  
+  
+  def feed
+    @events = Event.all
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
 
   private
 
