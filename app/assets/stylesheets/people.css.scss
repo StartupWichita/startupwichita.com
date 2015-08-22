@@ -11,20 +11,17 @@ body
 {
   min-height: 255px;
   display: inline-block;
+  background: #ffffff;
+  padding: 1em;
 }
-figcaption.ratings
-{
-  margin-top:20px;
+.profile{
+  a, a:visited{
+    color: #a3917e;
+  }
 }
-figcaption.ratings a
-{
-  color:#f1c40f;
-  font-size:11px;
-}
-figcaption.ratings a:hover
-{
-  color:#f39c12;
-  text-decoration:none;
+.bio-box{
+  max-height: 130px;
+  overflow: hidden;
 }
 .divider
 {
