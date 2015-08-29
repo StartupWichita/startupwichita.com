@@ -16,6 +16,9 @@ gem 'bootstrap-sass', '~> 3.3.3'
 
 # Authentication
 gem 'devise'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+
 
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
