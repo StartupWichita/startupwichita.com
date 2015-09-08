@@ -1,8 +1,8 @@
 <% content_for :utility_bar do %>
   <% if claimable(@person) %>
-    <%= link_to 'Claim This Profile', claim_people_path(@person), class: "btn btn-sm btn-claim" %>
+    <%= link_to 'Claim This Profile', people_claim_path(@person), class: "btn btn-sm btn-claim" %>
   <% end %>
-  <% if owned_by_current_user(@person) || current_user.admin %>
+  <% if owned_by_current_user(@person) || (!current_user.nil? && current_user.admin) %>
     <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-edit" %>
   <%  end %>
 <% end %>

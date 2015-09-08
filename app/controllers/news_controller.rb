@@ -1,5 +1,5 @@
 class NewsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :feed]
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   before_filter :can_edit_news?, :only => [:edit, :update, :destroy]
 
@@ -40,6 +40,13 @@ class NewsController < ApplicationController
     @news.destroy
     flash[:notice] = "News Item successfully deleted"
     respond_with(@news)
+  end
+
+  def feed
+    @news = News.all
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
   end
 
   private
