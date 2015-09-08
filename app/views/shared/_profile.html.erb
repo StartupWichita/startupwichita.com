@@ -1,34 +1,12 @@
-<div class="well profile <%= person.featured ? 'featured' : nil %>">
+<div class="profile <%= person.featured ? 'featured' : nil %>">
   <div class="col-sm-12">
-    <div class="col-xs-12 col-sm-8">
+    <div class="col-xs-12 col-sm-8 bio-box">
       <h2><%= link_to "#{person.first_name} #{person.last_name}", profile_path(slug: person.friendly_id) %></h2>
-      <p><strong></strong> <%= person.bio %> </p>
+      <p><%= person.bio %></p>
     </div>
     <div class="col-xs-12 col-sm-4 text-center">
       <figure>
         <img src="<%= profile_image(person) %>" alt="" class="img-circle img-responsive">
-
-        <% if false %>
-          <figcaption class="ratings">
-            <p>Ratings
-              <a href="#">
-              <span class="fa fa-star"></span>
-              </a>
-              <a href="#">
-              <span class="fa fa-star"></span>
-              </a>
-              <a href="#">
-              <span class="fa fa-star"></span>
-              </a>
-              <a href="#">
-              <span class="fa fa-star"></span>
-              </a>
-              <a href="#">
-              <span class="fa fa-star-o"></span>
-              </a>
-            </p>
-          </figcaption>
-        <% end %>
       </figure>
     </div>
     <div class="col-sm-12">
