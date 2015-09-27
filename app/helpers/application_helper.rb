@@ -32,7 +32,7 @@ module ApplicationHelper
   def avatar_url(email)
     default_url = "#{configatron.app_url}/assets/missing.png"
     gravatar_id = Digest::MD5::hexdigest(email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}"
+    "//gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}"
   end
 
 end
