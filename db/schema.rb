@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824142451) do
+ActiveRecord::Schema.define(version: 20150927184023) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 20150824142451) do
   create_table "topics", force: true do |t|
     t.integer  "user_id"
     t.string   "title"
-    t.string   "content"
+    t.text     "content",      limit: 255
     t.string   "url"
     t.boolean  "spam"
     t.datetime "created_at"
