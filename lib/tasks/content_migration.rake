@@ -2,6 +2,11 @@ namespace :migration do
   task :content_data => :environment do
     require 'json'
 
+    News.all.destroy_all
+    Event.all.destroy_all
+    Resource.all.destroy_all
+    Topic.all.destroy_all
+
     def user_email_for_mongoid(id, records)
       user_json = records.find { |u| u['_id']['$oid'] == id }
       User.where(email: user_json['email']).first
