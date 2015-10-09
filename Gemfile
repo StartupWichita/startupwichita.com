@@ -44,6 +44,8 @@ group :development, :test do
 
   gem 'spring-commands-rspec'
 
+  gem 'letter_opener'
+
   # Testing
   gem 'rspec'
   gem 'rspec-rails'
