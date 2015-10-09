@@ -2,12 +2,12 @@
 /**
  * parallax.css
  * @Author Original @msurguy -> http://bootsnipp.com/snippets/featured/parallax-login-form
- * @Reworked By @kaptenn_com 
+ * @Reworked By @kaptenn_com
  * @package PARALLAX LOGIN.
- */    
+ */
   body {
       background-color: #444;
-      background: url(/assets/wichita_cloud.jpg);      
+      background: url(<%= asset_path 'wichita_cloud.jpg' %>);
   }
 
   .form-input{
@@ -57,7 +57,7 @@
       <div class="panel panel-default">
         <div class="panel">
           <div class="row-fluid user-row">
-            <img src="/assets/tophandlogo-02.png" class="img-responsive" alt="Console Login"/>
+            <%= image_tag 'tophandlogo-02.png', class: 'img-responsive' %>
           </div>
         </div>
         <div class="panel-body">
@@ -104,7 +104,7 @@
 
   $(document).ready(function() {
       $(document).mousemove(function(event) {
-          TweenLite.to($("body"), 
+          TweenLite.to($("body"),
           .5, {
               css: {
                   backgroundPosition: "" + parseInt(event.pageX / 8) + "px " + parseInt(event.pageY / '12') + "px, " + parseInt(event.pageX / '15') + "px " + parseInt(event.pageY / '15') + "px, " + parseInt(event.pageX / '30') + "px " + parseInt(event.pageY / '30') + "px",
