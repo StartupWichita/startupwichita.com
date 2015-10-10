@@ -10,19 +10,21 @@
             <% @news.each do |newsItem| %>
                 <li>
                     <div class="row">
-                        <div class="col-md-2">
+                        <div class="col-md-12">
                             <h2 class="robotoSlab">
                                 <%= link_to news_path(newsItem) do %>
                                     <%= newsItem.title %>
                                 <% end %>
-                </a>
                             </h2>
                         </div>
-                        <div class="col-md-10">
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
                             <p class="description">
                                 <%= newsItem.content %>
                             </p>
                         </div>
+                      </div>
                     </div>
                 </li>
             <% end %>
