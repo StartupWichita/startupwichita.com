@@ -18,14 +18,14 @@
         <div class="form-group">
             <%= f.label :starts_at, "Start Date", :class => "col-md-3 control-label" %>
             <div class="col-md-9">
-                <%= f.datetime_select :starts_at, :class => "form-control" %>
+                <%= f.datetime_select :starts_at, {:use_short_month => true, :order => [:month, :day, :year, :hour, :minute], ampm: true}, :class => "form-control date-select" %>
             </div>
         </div>
 
         <div class="form-group">
             <%= f.label :ends_at, "End Date", :class => "col-md-3 control-label" %>
             <div class="col-md-9">
-                <%= f.datetime_select :ends_at, :class => "form-control" %>
+                <%= f.datetime_select :ends_at, {:use_short_month => true, :order => [:month, :day, :year, :hour, :minute], ampm: true}, :class => "form-control date-select" %>
             </div>
         </div>
 
@@ -37,7 +37,9 @@
         </div>
 
         <div class="form-group">
-            <%= f.submit :class => "control-label" %>
+          <div class="col-md-2 col-md-offset-9">
+            <%= f.submit :class => "btn" %>
+          </div>
         </div>
     <% end %>
 </div>
