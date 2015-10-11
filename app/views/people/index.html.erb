@@ -49,7 +49,7 @@
   </div>
   </div>
 
-  <% unless @people.blank? %>
+  <% unless @people.blank? && @featured_people.blank? %>
     <% if @featured_people.size > 0 %>
       <hr/>
 
