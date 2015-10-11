@@ -16,7 +16,7 @@
     <% end %>
 
     <div class="row">
-        <h2 class="robotoSlab"><%= @news.title %></h2>
+        <h2 class="robotoSlab"><%= link_to @news.title, @news.url %></h2>
         <span>Posted by: <%= @news.user.person.full_name %></span> on
         <span><%= @news.created_at.strftime('%B %C, %Y') %></span>
     </div>
