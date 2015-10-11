@@ -16,13 +16,11 @@
                                     <%= newsItem.title %>
                                 <% end %>
                             </h2>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                            <p class="description">
-                                <%= newsItem.content %>
-                            </p>
+                            <h3 class="subtitle">
+                              <%= newsItem.created_at.strftime('%A, %B %d, %Y') %>
+                            </h3>
+                            <hr>
+                            <p class="description"><%= newsItem.content %></p>
                         </div>
                       </div>
                     </div>
