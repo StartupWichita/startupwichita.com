@@ -47,7 +47,7 @@
                     <div class="col-md-4">
                         <%= link_to event_path(@featuredEvents[1]), :class => "white grey-bg event-first-box" do %>
                             <h3><%= @featuredEvents[1].title %></h3>
-                            <p class="date"><%= @featuredEvents[1].starts_at.to_time.strftime('%B %d, %Y %I:%M %p') %> at <%= @featuredEvents[1].address %></p>
+                            <p class="date"><%= @featuredEvents[1].starts_at.to_time.strftime('%b %d, %Y %I:%M %p') %> at <%= @featuredEvents[1].address %></p>
                             <p><%= @featuredEvents[1].content.truncate 220%></p>
                         <% end %>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="col-md-3">
                             <%= link_to event_path(event), :class => "white grey-bg event-feature" do %>
                                 <h3><%= event.title %></h3>
-                                <p class="date"><%= event.starts_at %> at <%= event.address %></p>
+                                <p class="date"><%= event.starts_at.to_time.strftime('%b %d, %Y %I:%M %p') %> at <%= event.address %></p>
                                 <p><%= event.content.truncate 300 %> ...</p>
                             <% end %>
                         </div>
@@ -78,7 +78,7 @@
                         <div class="news-teaser white">
                             <%= link_to news_path(newsItem) do %>
                                 <h3 class="text-center white"><%= newsItem.title %></h3>
-                                <p class="text-center white"><%= newsItem.created_at.to_time.strftime('%B %d %I:%M %p') %></p>
+                                <p class="text-center white"><%= newsItem.created_at.to_time.strftime('%b %d %I:%M %p') %></p>
                                 <p class="white"><%= newsItem.content.truncate 280 %>...</p>
                             <% end %>
                         </div>

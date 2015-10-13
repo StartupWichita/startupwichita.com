@@ -23,7 +23,7 @@
           <span><%= @event.created_at.to_time.strftime('%B %d, %Y') %></span>
           <h3><%= @event.starts_at.to_time.strftime('%A, %B %d, %Y %I:%M %p') %> - <%= @event.ends_at.to_time.strftime('%A, %B %d, %Y %I:%M %p') %></h3>
           <h3>
-              <%= @event.address %>
+              <a target="_blank" href="http://maps.google.com/?q=<%= @event.address %>"><%= @event.address %></a>
           </h3>
       </div>
       <div class="row">

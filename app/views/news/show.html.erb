@@ -22,7 +22,14 @@
     </div>
 
     <div class="row">
+      <div class="col-md-12">
         <p class="description"><%= @news.content %></p>
+      </div>
+      <% unless @news.url.blank? %><br /><br />
+      <div class="col-md-2 col-md-offset-8">
+        <%= link_to @news.title, @news.url, :class => "btn btn-success pull-right" %>
+      </div>
+      <% end %>
     </div>
 
     <%= render partial: 'topics/disqus' %>
