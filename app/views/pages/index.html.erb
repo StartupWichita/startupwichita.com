@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <% @featuredEvents.drop(2).each do |event| %>
+                    <% @featuredEvents[3..6].each do |event| %>
                         <div class="col-md-3">
                             <%= link_to event_path(event), :class => "white grey-bg event-feature" do %>
                                 <h3><%= event.title %></h3>
