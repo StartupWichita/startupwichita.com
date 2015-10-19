@@ -10,6 +10,7 @@ class Person < ActiveRecord::Base
   belongs_to :user
 
   scope :featured, -> { where(featured: true) }
+  default_scope -> { order(:id) }
 
   # Results in the following colums
   #   avatar_file_name

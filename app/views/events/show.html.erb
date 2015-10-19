@@ -30,7 +30,10 @@
             <div class="body clearfix">
               <div class="description">
                 <h3><%= @event.starts_at.to_time.strftime('%b %d, %I:%M %p') %> &ndash; <%= @event.ends_at.to_time.strftime('%b %d, %I:%M %p') %></h3>
-                <p><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= @event.address %>"><%= @event.address %></a></p>
+                <p>
+                  <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= @event.address %>"><%= @event.address %></a></div>
+                  <div><span class="glyphicon glyphicon-link"></span> <a target="_blank" href="<%= @event.url %>">More Info</a></div>
+                </p>
                 <p><%= @event.content %></p>
               </div>
               <div class="meta font-heading">
@@ -39,21 +42,8 @@
               </div>
             </div>
           </div>
+          <%= render partial: 'topics/disqus' %>
         </div>
       </div>
     </div>
-      </div>
-      <div class="row">
-        
-      </div>
-      <div class="row">
-        <div class="col-sm-3 col-sm-offset-7">
-          <% unless @event.url.blank? %>
-            <a class="btn btn-success" href="<%= @event.url %>">Tell me more...</a>
-            <% end %>
-          </div>
-      </div>
-    </div>
-
-    <%= render partial: 'topics/disqus' %>
 </section>
