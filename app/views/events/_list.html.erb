@@ -1,38 +1,33 @@
 <% unless events.blank? %>
 
-    <ul class="alternate list-unstyled">
+    <% events.in_groups_of(2).each do |events| %>
+      <div class="row">
         <% events.each do |event| %>
-            <li>
-                <div class="row">
-                  <div class="col-sm-12 col-md-5">
-                    <h2 class="robotoSlab">
-                        <%= link_to event_path(event) do %>
-                            <%= event.title %>
-                        <% end %>
-                    </h2>
-                  </div>
-                  <div class="col-sm-12 col-md-3">
-                      <dl>
-                          <dt>Location:</dt>
-                          <dd><a target="_blank" href="http://maps.google.com/?q=<%= event.address %>"><%= event.address %></a></dd>
-                          <dt>Starting at:</dt>
-                          <dd><%= event.starts_at.to_time.strftime('%A, %B %d, %Y %I:%M %p') %></dd>
-                          <dt>Ending at:</dt>
-                          <dd><%= event.ends_at.to_time.strftime('%A, %B %d, %Y %I:%M %p') %></dd>
-                      </dl>
-                  </div>
-                  <div class="col-sm-12 col-md-4">
-                      <%= simple_format(event.content) %>
-                  </div>
+          <div class="col-md-6">
+            <div class="event-item">
+              <div class="head">
+                <div class="date">
+                  <div class="date-day"><%= event.starts_at.to_time.strftime('%d') %></div>
+                  <div class="date-month"><%= event.starts_at.to_time.strftime('%b') %></div>
+                  <div class="date-year"><%= event.starts_at.to_time.strftime('%Y') %></div>
                 </div>
-            </li>
+              </div>
+              <div class="body">
+                <h2 class="title"><%= link_to event_path(event) do %><%= event.title %><% end %></h2>
+                <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= event.address %>"><%= event.address %></a></div>
+                <div><span class="glyphicon glyphicon-time"></span> <%= event.starts_at.to_time.strftime('%b %d, %I:%M %p') %> &ndash; <%= event.ends_at.to_time.strftime('%b %d, %I:%M %p') %></div>
+  <!--          <div class="col-sm-12 col-md-4">
+                    <%= simple_format(event.content) %>
+                </div> -->
+              </div>
+            </div>
+          </div>
         <% end %>
-    </ul>
+    </div>
+   <% end %>
 
 <% else %>
-    <div class="alternate">
-        <p class="row">
-            No events yet. Why don't you <%= link_to "add some", new_event_path %>?
-        </p>
-    </div>
+  <p class="row">
+      No events yet. Why don't you <%= link_to "add some", new_event_path %>?
+  </p>
 <% end %>

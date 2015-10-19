@@ -3,87 +3,80 @@
     <%= link_to 'Add a new person', new_person_path, class: "btn btn-lg btn-add-yourself" %>
   <% end %>
 
+  <div class="util-head">
+      <div class="container">
+        <a class="btn" data-toggle="collapse" href="#f">Filter People</a>
+      </div>
+  </div>
+  <div class="util-body">
+    <div class="collapse" id="f">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h3>Find people by common skills and interests</h3>
+            <h4>Skills</h4>
+            <p>
+              <% if Person.all_skill_tags.size > 0 %>
+                <% Person.all_skill_tags.each do |tag| %>
+                  <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+                <% end %>
+              <% else %>
+                No common skills found
+              <% end %>
+            </p>
+            <h4>Interests</h4>
+            <p>
+              <% if Person.all_interest_tags.size > 0 %>
+                <% Person.all_interest_tags.each do |tag| %>
+                  <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+                <% end %>
+              <% else %>
+                No common interests found
+              <% end %>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <h3>Search by skill</h3>
+            <h4>Categories</h4>
+            <p>
+              <% Person.all_person_role_tags.each do |tag| %>
+                <span class="tags"><%= link_to tag['name'], people_with_role_path(tag: tag['name']) %></span>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
 
 <div class="container">
-  <div class="row">
-
-      <div class="col-md-2 col-md-offset-10"><h3>
-        <a class="btn btn-success" data-toggle="collapse" href="#f">Filter People</a>
-      </h3></div>
-  </div>
-  <div class="collapse" id="f">
-    <div class="row">
-    <div class="col-md-6">
-      <h3>Find people by common skills and interests</h3>
-      <div class="col-md-12">
-        <h4>Skills</h4>
-        <% if Person.all_skill_tags.size > 0 %>
-          <% Person.all_skill_tags.each do |tag| %>
-            <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
-          <% end %>
-        <% else %>
-          No common skills found
-        <% end %>
-      </div>
-      <div class="col-md-12">
-        <h4>Interests</h4>
-        <% if Person.all_interest_tags.size > 0 %>
-          <% Person.all_interest_tags.each do |tag| %>
-            <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
-          <% end %>
-        <% else %>
-          No common interests found
-        <% end %>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <h3>Search by skill</h3>
-      <div class="col-md-12">
-        <h4>Categories</h4>
-        <% Person.all_person_role_tags.each do |tag| %>
-          <span class="tags"><%= link_to tag['name'], people_with_role_path(tag: tag['name']) %></span>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  </div>
 
   <% unless @people.blank? && @featured_people.blank? %>
     <% if @featured_people.size > 0 %>
-      <hr/>
-
-      <div class="row">
+<!--       <div class="row">
         <div class="col-md-12">
           <h2>Featured People</h2>
         </div>
-      </div>
-      <% @featured_people.in_groups_of(2).each do |people| %>
-        <div class="row">
-          <% people.each do |person| %>
-            <% if person %>
-              <div class="col-md-6 short">
-                <%= render partial: "shared/profile", locals: { person: person, featured: true } %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
-      <% end %>
-    <% end %>
-
-    <hr/>
-
-    <% @people.in_groups_of(2).each do |people| %>
-      <div class="row">
-        <% people.each do |person| %>
+      </div> -->
+      <div class="row inline">
+        <% @featured_people.each do |person| %>
           <% if person %>
-            <div class="col-md-6 short">
-              <%= render partial: "shared/profile", locals: { person: person, featured: false } %>
+            <div class="col-sm-6 col-md-4 inline-block">
+              <%= render partial: "shared/profile", locals: { person: person, featured: true } %>
             </div>
           <% end %>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+
+      <% @people.each do |person| %>
+        <% if person %>
+          <div class="col-sm-6 col-md-4 inline-block">
+            <%= render partial: "shared/profile", locals: { person: person, featured: false } %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
 
   <% else %>
 

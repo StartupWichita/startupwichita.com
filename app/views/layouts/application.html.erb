@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
 
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,800' rel='stylesheet' type='text/css'>
 	
 	<link rel="alternate" type="application/rss+xml" title="Startup Wichita - Events" href="/events/feed?format=rss">
@@ -42,13 +42,9 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
       <![endif]-->
 
-      <div class="container-fluid logoTop" id="logoTop">
-        <div class="row">
-          <div class="col-sm-4 col-sm-offset-4"><a href="/#!/"><img class="img-responsive center-block" src="<%= image_path('tophandlogo-02.png') %>"/></a></div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4 col-sm-offset-4"><a href="/" id="logoBottom"><img class="img-responsive center-block" src="<%= image_path('bottomlogo-01.png') %>" alt="Startup Wichita - Crafted in the Midwest"/></a></div>
-        </div>
+      <div id="logo">
+        <div><a href="/" id="logoTop"><img class="img-responsive center-block" src="<%= image_path('tophandlogo-02.png') %>"/></a></div>
+        <div><a href="/" id="logoBottom"><img class="img-responsive center-block" src="<%= image_path('bottomlogo-01.png') %>" alt="Startup Wichita - Crafted in the Midwest"/></a></div>
       </div>
 
       <div id="stickyBar" class="navbar masthead" role="navigation">
@@ -97,7 +93,7 @@
     </div>
 
     <% if content_for?(:utility_bar) %>
-      <div class="form-inline util-bar">
+      <div class="form-inline util-bar" style="margin-bottom:30px;">
         <%= yield :utility_bar %>
       </div>
     <% end %>

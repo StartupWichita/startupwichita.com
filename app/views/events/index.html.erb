@@ -1,17 +1,19 @@
 <section>
     <% content_for :utility_bar do %>
-        <%= link_to new_event_path, :class => "btn pull-right" do %>
-            Add Event <i class="glyphicon glyphicon-plus"></i>
-        <% end %>
+        <div class="util-head">
+            <div class="container">
+                <%= link_to new_event_path, :class => "btn" do %>
+                    <span class="glyphicon glyphicon-plus"></span> Add Event
+                <% end %>
+                <ul class="list-unstyled" role="tablist">
+                    <li role="presentation" class="active"><a class="btn" href="#upcoming" aria-controls="upcoming" role="tab" data-toggle="tab">Upcoming</a></li>
+                    <li role="presentation"><a class="btn" href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li>
+                </ul>
+            </div>
+        </div>
     <% end %>
 
-    <div role="tabpanel">
-
-        <ul class="nav nav-tabs event-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#upcoming" aria-controls="upcoming" role="tab" data-toggle="tab">Upcoming</a></li>
-            <li role="presentation"><a href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li>
-        </ul>
-
+    <div class="container">
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="upcoming">
                 <%= render partial: 'list', locals: { events: @upcoming } %>
@@ -20,6 +22,5 @@
                 <%= render partial: 'list', locals: { events: @recent } %>
             </div>
         </div>
-
     </div>
 </section>

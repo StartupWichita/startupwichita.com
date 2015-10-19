@@ -1,45 +1,36 @@
-<div class="panel-heading">
-  <h4 class="panel-title" id="contactLabel"><span class="glyphicon glyphicon-info-sign"></span> Have questions for me? Want to meet? Feel free to contact me.</h4>
-</div>
-
-<%= form_for @person_email, :url => { action: :send_message } do |f| %>
-  <% if f.object.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(f.object.errors.count, "error") %> prohibited this from being saved:</h2>
-
-      <ul>
-      <% f.object.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="resource-item">
+  <div class="head">
+    <h4 id="contactLabel" class="charcoal"><span class="glyphicon glyphicon-info-sign"></span> Have questions for me? Want to meet? Feel free to contact me.</h4>
+  </div>
+  <div class="body">
+    <%= form_for @person_email, :url => { action: :send_message } do |f| %>
+      <% if f.object.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(f.object.errors.count, "error") %> prohibited this from being sent:</h2>
+          <ul>
+          <% f.object.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <%= f.hidden_field :person_id %>
+      <%= f.hidden_field :person_id %>
 
-  <div class="modal-body" style="padding: 5px;">
-    <div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+      <div class="col-sm-6 border-bottom" style="padding:0;">
         <%= f.text_field :sender_name, placeholder: "Your Name", class: "form-control", autofocus: true %>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+      <div class="col-sm-6 border-bottom border-left" style="padding:0;">
         <%= f.text_field :sender_email, placeholder: "Your Email", class: "form-control" %>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 10px;">
+
+      <div class="col-sm-12 border-bottom" style="padding:0;">
         <%= f.text_field :sender_phone, placeholder: "Your Phone #", class: "form-control" %>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="col-sm-12 border-bottom" style="padding:0;">
         <%= f.text_area :message, placeholder: "Your Message", class: "form-control" %>
       </div>
-    </div>  
+      <%= f.submit "Send", class: "btn btn-lg btn-block" %>
+    <% end %>
   </div>
-
-    <div class="panel-footer" style="margin-bottom:-14px;">
-      <%= f.submit "Send", class: "btn btn-success" %>
-    </div>  
-<% end %>
+</div>

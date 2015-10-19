@@ -1,39 +1,36 @@
 <section>
     <% content_for :utility_bar do %>
-        <%= link_to new_resource_path, :class => "btn pull-right" do %>
-            Add Resource <i class="glyphicon glyphicon-plus"></i>
-        <% end %>
-    <% end %>
-
-    <% unless @resources.blank? %>
-        <ul class="alternate list-unstyled">
-            <% @resources.each do |resource| %>
-                <li>
-                    <div class="row">
-                        <h2 class="robotoSlab">
-                            <%= link_to resource_path(resource) do %>
-                                <%= resource.title %>
-                            <% end %>
-                        </h2>
-                        <div class="col-md-2">
-                            <span>
-                                <%= resource.created_at %>
-                            </span>
-                        </div>
-                        <div class="col-md-10">
-                            <p class="description">
-                                <%= resource.content %>
-                            </p>
-                        </div>
-                    </div>
-                </li>
-            <% end %>
-        </ul>
-    <% else %>
-        <div class="alternate">
-            <p class="row">
-                No resources yet. Why don't you <%= link_to "add some", new_resource_path %>?
-            </p>
+        <div class="util-head">
+            <div class="container">
+                <%= link_to new_resource_path, :class => "btn" do %>
+                   <span class="glyphicon glyphicon-plus"></span> Add Resource 
+                <% end %>
+            </div>
         </div>
     <% end %>
+
+    <div class="container">
+        <% unless @resources.blank? %>
+            <div class="row inline">
+                <% @resources.each do |resource| %>
+                    <div class="col-sm-6 col-md-4 inline-block">
+                        <div class="resource-item font-reset">
+                            <%= link_to resource_path(resource), :class => "text-center head" do %>
+                                <h2 class="title"><%= resource.title %></h2>
+                            <% end %>
+                            <div class="body clearfix">
+                                <div class="description">
+                                    <p><%= resource.content %></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        <% else %>
+            <p>
+                No resources yet. Why don't you <%= link_to "add some", new_resource_path %>?
+            </p>
+        <% end %>
+    </div>
 </section>
