@@ -4,7 +4,7 @@
       <div class="row">
         <% events.each do |event| %>
           <div class="col-md-6">
-            <%= render partial: "shared/event", locals: { event: event } %>
+            <%= render partial: "shared/event", locals: { event: event } if !event.nil? %>
           </div>
         <% end %>
     </div>

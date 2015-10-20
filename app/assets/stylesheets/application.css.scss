@@ -20,7 +20,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@import "variables";
 @import "news";
 @import "events";
 @import "resources";
@@ -303,7 +302,7 @@ input[type="submit"].border-top-radius-none {
     max-width:100%;
 }
 
-.logos a { 
+.logos a {
   display: inline-block;
   padding: 0 1em;
   margin-bottom: 1rem;
@@ -313,7 +312,7 @@ input[type="submit"].border-top-radius-none {
     display: block;
     max-height: 64px;
     max-width: 230px;
-} 
+}
 
 #logoBottom {
     display: inline-block;

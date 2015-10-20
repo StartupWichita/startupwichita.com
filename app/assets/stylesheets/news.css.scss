@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "variables.css.scss";
+
 .news-item {
     display: table;
     border-radius: 4px;
