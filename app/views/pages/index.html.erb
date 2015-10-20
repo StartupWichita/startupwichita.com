@@ -13,7 +13,7 @@
         <% unless @featuredEvents.blank? || @featuredEvents.size < 2 %>
             <div class="container">
                 <div class="row inline">
-                    <% @featuredEvents.each do |event| %>
+                    <% @featuredEvents[0..5].each do |event| %>
                         <div class="col-md-6 inline-block">
                             <%= render partial: "shared/event", locals: { event: event } %>
                         </div>
@@ -29,7 +29,7 @@
         <% unless @newsItems.blank? %>
             <div class="container">
                 <div class="row inline">
-                    <% @newsItems.each do |newsItem| %>
+                    <% @newsItems[0..3].each do |newsItem| %>
                         <div class="col-md-6 inline-block">
                             <%= render partial: "shared/news", locals: { newsItem: newsItem } %>
                         </div>
@@ -61,7 +61,7 @@
         <% unless @resources.blank? %>
            <div class="container">
                 <div class="row inline">
-                    <% @resources.each do |resource| %>
+                    <% @resources[0..3].each do |resource| %>
                         <div class="col-md-6 inline-block">
                             <%= render partial: "shared/resource", locals: { resource: resource } %>
                         </div>
