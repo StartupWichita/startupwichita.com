@@ -320,8 +320,8 @@ button,
 input[type="submit"] {
     border-radius: $border-radius;
 }
-button .border-radius-top-none,
-input[type="submit"] .border-radius-top-none {
+button.border-top-radius-none,
+input[type="submit"].border-top-radius-none {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }

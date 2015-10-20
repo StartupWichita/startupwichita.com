@@ -1,43 +1,43 @@
-<section>
-    <% content_for :utility_bar do %>
-        <div class="util-head">
-            <div class="container">
-                <%= link_to new_resource_path, :class => "btn" do %>
-                    <span class="glyphicon glyphicon-plus"></span> Add Resource
+<% content_for :utility_bar do %>
+    <div class="util-head">
+        <div class="container">
+            <%= link_to new_resource_path, :class => "btn" do %>
+                <span class="glyphicon glyphicon-plus"></span> Add Resource
+            <% end %>
+
+            <% if can_edit?(@resource) %>
+                <%= link_to resource_path(@resource), :data => { :confirm => "Are you sure you want to delete this resource?" }, :method => :delete, :class => "btn" do %>
+                    <span class="glyphicon glyphicon-trash"></span> Remove Resource
                 <% end %>
 
-                <% if can_edit?(@resource) %>
-                    <%= link_to resource_path(@resource), :data => { :confirm => "Are you sure you want to delete this resource?" }, :method => :delete, :class => "btn" do %>
-                        <span class="glyphicon glyphicon-trash"></span> Remove Resource
-                    <% end %>
-
-                    <%= link_to edit_resource_path(@resource), :class => "btn" do %>
-                        <span class="glyphicon glyphicon-edit"></span> Edit Resource
-                    <% end %>
+                <%= link_to edit_resource_path(@resource), :class => "btn" do %>
+                    <span class="glyphicon glyphicon-edit"></span> Edit Resource
                 <% end %>
-            </div>
+            <% end %>
         </div>
-    <% end %>
+    </div>
+<% end %>
 
+<section class="section">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="resource-item">
-                <div class="head text-center">
-                    <h2 class="title"><%= @resource.title %></h2>
-                </div>
-                <div class="body">
-                    <div class="description">
-                        <p><%= @resource.content %></p>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="resource-item">
+                    <div class="head text-center">
+                        <h2 class="title"><%= @resource.title %></h2>
                     </div>
-                    <div class="meta font-heading">
-                        <h4 class="meta-title">Posted by</h4>
-                        <span><%= @resource.user.person.full_name %></span> on <span><%= @resource.created_at.strftime('%d %B %Y') %></span>
+                    <div class="body">
+                        <div class="description">
+                            <p><%= @resource.content %></p>
+                        </div>
+                        <div class="meta font-heading">
+                            <h4 class="meta-title">Posted by</h4>
+                            <span><%= @resource.user.person.full_name %></span> on <span><%= @resource.created_at.strftime('%d %B %Y') %></span>
+                        </div>
                     </div>
                 </div>
+                <%= render partial: 'topics/disqus' %>
             </div>
-            <%= render partial: 'topics/disqus' %>
         </div>
-      </div>
     </div>
 </section>
