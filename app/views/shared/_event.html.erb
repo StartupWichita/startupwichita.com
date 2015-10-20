@@ -1,0 +1,17 @@
+<div class="event-item font-reset">
+  <div class="head">
+    <div class="date">
+      <div class="date-day"><%= event.starts_at.to_time.strftime('%d') %></div>
+      <div class="date-month"><%= event.starts_at.to_time.strftime('%b') %></div>
+      <div class="date-year"><%= event.starts_at.to_time.strftime('%Y') %></div>
+    </div>
+  </div>
+  <div class="body">
+    <h2 class="title"><%= link_to event_path(event) do %><%= event.title %><% end %></h2>
+    <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= event.address %>"><%= event.address %></a></div>
+    <div><span class="glyphicon glyphicon-time"></span> <%= event.starts_at.to_time.strftime('%b %d, %I:%M %p') %> &ndash; <%= event.ends_at.to_time.strftime('%b %d, %I:%M %p') %></div>
+<!--          <div class="col-sm-12 col-md-4">
+        <%= simple_format(event.content) %>
+    </div> -->
+  </div>
+</div>

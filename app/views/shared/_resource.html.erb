@@ -1,0 +1,10 @@
+ <div class="resource-item font-reset">
+    <%= link_to resource_path(resource), :class => "text-center head" do %>
+        <h2 class="title"><%= resource.title %></h2>
+    <% end %>
+    <div class="body clearfix">
+        <div class="description">
+            <p><%= resource.content %></p>
+        </div>
+    </div>
+</div>

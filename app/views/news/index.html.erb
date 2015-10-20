@@ -1,37 +1,30 @@
-<section>
-    <% content_for :utility_bar do %>
-        <%= link_to new_news_path, :class => "btn pull-right" do %>
-            Add News <i class="glyphicon glyphicon-plus"></i>
-        <% end %>
-    <% end %>
-
-    <% unless @news.blank? %>
-        <ul class="alternate list-unstyled">
-            <% @news.each do |newsItem| %>
-                <li>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="robotoSlab">
-                                <%= link_to news_path(newsItem) do %>
-                                    <%= newsItem.title %>
-                                <% end %>
-                            </h2>
-                            <h3 class="subtitle">
-                              <%= newsItem.created_at.strftime('%A, %B %d, %Y') %>
-                            </h3>
-                            <hr>
-                            <p class="description"><%= newsItem.content %></p>
-                        </div>
-                      </div>
-                    </div>
-                </li>
+<% content_for :utility_bar do %>
+    <div class="util-head">
+        <div class="container">
+            <%= link_to new_news_path, :class => "btn" do %>
+                <span class="glyphicon glyphicon-plus"></span> Add News
             <% end %>
-        </ul>
-    <% else %>
-        <div class="alternate">
-            <p class="row">
-                No news yet. Why don't you <%= link_to "add some", new_news_path %>?
-            </p>
         </div>
-    <% end %>
+    </div>
+<% end %>
+<section class="section">
+    <div class="container">
+        <% unless @news.blank? %>
+            <% @news.in_groups_of(2).each do |news| %>
+                <div class="row">
+                    <% news.each do |newsItem| %>
+                        <div class="col-md-6">
+                           <%= render partial: "shared/news", locals: { newsItem: newsItem } %>
+                        </div>
+                    <% end %>
+                </div>
+             <% end %>
+        <% else %>
+            <div class="alternate">
+                <p>
+                    No news yet. Why don't you <%= link_to "add some", new_news_path %>?
+                </p>
+            </div>
+        <% end %>
+    </div>
 </section>

@@ -1,36 +1,39 @@
-<div class="profile <%= person.featured ? 'featured' : nil %>">
-  <div class="col-sm-12">
-    <div class="col-xs-12 col-sm-8 bio-box">
-      <h2><%= link_to "#{person.first_name} #{person.last_name}", profile_path(slug: person.friendly_id) %></h2>
-      <p><%= person.bio %></p>
-    </div>
-    <div class="col-xs-12 col-sm-4 text-center">
-      <figure>
-        <img src="<%= profile_image(person) %>" alt="" class="img-circle img-responsive">
+<div class="profile font-reset <%= person.featured ? 'featured' : nil %>">
+    <div class="text-center head">
+      <figure class="bg-cream">
+        <img src="<%= profile_image(person) %>" alt="" class="img-circle img-responsive" height="152" width="152">
       </figure>
+      <h2 class="title"><%= link_to "#{person.first_name} #{person.last_name}", profile_path(slug: person.friendly_id) %></h2>
     </div>
-    <div class="col-sm-12">
-      <% if person.skill_list && person.skill_list.size > 0 %>
-        <p><strong>Skills: </strong>
-          <% person.skill_list.each do |skill| %>
-            <span class="tags"><%= link_to skill, people_with_skills_path(tag: skill) %></span>
-          <% end %>
-        </p>
-      <% end %>
-      <% if person.interest_list && person.interest_list.size > 0 %>
-        <p><strong>Interests: </strong>
-          <% person.interest_list.each do |interest| %>
-            <span class="tags"><%= link_to interest, people_with_interests_path(tag: interest) %></span>
-          <% end %>
-        </p>
-      <% end %>
-      <% if person.role_list && person.role_list.size > 0 %>
-        <p><strong>Roles: </strong>
-          <% person.role_list.each do |role| %>
-            <span class="tags"><%= link_to role, people_with_role_path(tag: role) %></span>
-          <% end %>
-        </p>
+    <div class="body clearfix">
+      <div class="bio">
+        <p><%= person.bio %></p>
+      </div>
+      <% if !defined? preview %>
+        <% if person.skill_list && person.skill_list.size > 0 %>
+          <div class="meta">
+            <h4 class="meta-title">Skills</h4>
+            <% person.skill_list.each do |skill| %>
+              <span class="tags"><%= link_to skill, people_with_skills_path(tag: skill) %></span>
+            <% end %>
+          </div>
+        <% end %>
+        <% if person.interest_list && person.interest_list.size > 0 %>
+          <div class="meta">
+            <h4 class="meta-title">Interests</h4>
+            <% person.interest_list.each do |interest| %>
+              <span class="tags"><%= link_to interest, people_with_interests_path(tag: interest) %></span>
+            <% end %>
+          </div>
+        <% end %>
+        <% if person.role_list && person.role_list.size > 0 %>
+          <div class="meta">
+            <h4 class="meta-title">Roles</h4>
+            <% person.role_list.each do |role| %>
+              <span class="tags"><%= link_to role, people_with_role_path(tag: role) %></span>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-  </div>
 </div>
