@@ -2,6 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "variables.css.scss";
+
 .resource-item {
   border-radius: 4px;
   border-radius: $border-radius;

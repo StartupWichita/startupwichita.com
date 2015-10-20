@@ -7,6 +7,9 @@
 // {
 //   font-family: 'Lato', 'sans-serif';
 // }
+
+@import "variables.css.scss";
+
 .profile {
   border-radius: 4px;
   border-radius: $border-radius;
