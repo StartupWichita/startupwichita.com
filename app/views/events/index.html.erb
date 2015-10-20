@@ -1,4 +1,4 @@
-<section>
+
     <% content_for :utility_bar do %>
         <div class="util-head">
             <div class="container">
@@ -6,13 +6,14 @@
                     <span class="glyphicon glyphicon-plus"></span> Add Event
                 <% end %>
                 <ul class="list-unstyled" role="tablist">
-                    <li role="presentation" class="active"><a class="btn" href="#upcoming" aria-controls="upcoming" role="tab" data-toggle="tab">Upcoming</a></li>
-                    <li role="presentation"><a class="btn" href="#recent" aria-controls="recent" role="tab" data-toggle="tab">Recent</a></li>
+                    <li role="presentation" class="active"><a class="btn" href="#upcoming" aria-controls="upcoming" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-exclamation-sign"></span> Upcoming</a></li>
+                    <li role="presentation"><a class="btn" href="#recent" aria-controls="recent" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-ok-sign"></span> Recent</a></li>
                 </ul>
             </div>
         </div>
     <% end %>
 
+<section class="section">
     <div class="container">
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="upcoming">

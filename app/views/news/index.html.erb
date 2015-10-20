@@ -1,37 +1,20 @@
-<section>
-    <% content_for :utility_bar do %>
-        <div class="util-head">
-            <div class="container">
-                <%= link_to new_news_path, :class => "btn" do %>
-                    <span class="glyphicon glyphicon-plus"></span> Add News
-                <% end %>
-            </div>
+<% content_for :utility_bar do %>
+    <div class="util-head">
+        <div class="container">
+            <%= link_to new_news_path, :class => "btn" do %>
+                <span class="glyphicon glyphicon-plus"></span> Add News
+            <% end %>
         </div>
-    <% end %>
-
+    </div>
+<% end %>
+<section class="section">
     <div class="container">
         <% unless @news.blank? %>
             <% @news.in_groups_of(2).each do |news| %>
                 <div class="row">
                     <% news.each do |newsItem| %>
                         <div class="col-md-6">
-                            <div class="news-item">
-                                <div class="head">
-                                    <div class="date">
-                                      <div class="date-day"><%= newsItem.created_at.strftime('%d') %></div>
-                                      <div class="date-month"><%= newsItem.created_at.strftime('%b') %></div>
-                                      <div class="date-year"><%= newsItem.created_at.strftime('%Y') %></div>
-                                    </div>
-                                </div>
-                                <div class="body">
-                                    <h2 class="title">
-                                        <%= link_to news_path(newsItem) do %>
-                                            <%= newsItem.title %>
-                                        <% end %>
-                                    </h2>
-                                    <!-- <p class="description"><%= newsItem.content %></p> -->
-                                </div>
-                            </div>
+                           <%= render partial: "shared/news", locals: { newsItem: newsItem } %>
                         </div>
                     <% end %>
                 </div>

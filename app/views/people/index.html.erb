@@ -1,11 +1,10 @@
 <% content_for :utility_bar do %>
-  <% if !current_user.nil? && current_user.admin %>
-    <%= link_to 'Add a new person', new_person_path, class: "btn btn-lg btn-add-yourself" %>
-  <% end %>
-
   <div class="util-head">
       <div class="container">
-        <a class="btn" data-toggle="collapse" href="#f">Filter People</a>
+        <% if !current_user.nil? && current_user.admin %>
+          <%= link_to '<span class="glyphicon glyphicon-plus"></span> Add a new person', new_person_path, class: "btn" %>
+        <% end %>
+        <a class="btn" data-toggle="collapse" href="#f"><span class="glyphicon glyphicon-tag"></span> Filter People</a>
       </div>
   </div>
   <div class="util-body">
@@ -50,41 +49,43 @@
   </div>
 <% end %>
 
-<div class="container">
+<section class="section">
+  <div class="container">
 
-  <% unless @people.blank? && @featured_people.blank? %>
-    <% if @featured_people.size > 0 %>
-<!--       <div class="row">
-        <div class="col-md-12">
-          <h2>Featured People</h2>
-        </div>
-      </div> -->
-      <div class="row inline">
-        <% @featured_people.each do |person| %>
+    <% unless @people.blank? && @featured_people.blank? %>
+      <% if @featured_people.size > 0 %>
+  <!--       <div class="row">
+          <div class="col-md-12">
+            <h2>Featured People</h2>
+          </div>
+        </div> -->
+        <div class="row inline">
+          <% @featured_people.each do |person| %>
+            <% if person %>
+              <div class="col-sm-6 col-md-4 inline-block">
+                <%= render partial: "shared/profile", locals: { person: person, featured: true } %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <% @people.each do |person| %>
           <% if person %>
             <div class="col-sm-6 col-md-4 inline-block">
-              <%= render partial: "shared/profile", locals: { person: person, featured: true } %>
+              <%= render partial: "shared/profile", locals: { person: person, featured: false } %>
             </div>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
 
-      <% @people.each do |person| %>
-        <% if person %>
-          <div class="col-sm-6 col-md-4 inline-block">
-            <%= render partial: "shared/profile", locals: { person: person, featured: false } %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+    <% else %>
 
-  <% else %>
+      <div>
+        <p>
+          No people added yet.
+        </p>
+      </div>
 
-    <div class="alternate">
-      <p class="row">
-        No people added yet.
-      </p>
-    </div>
-
-  <% end %>
-</div>
+    <% end %>
+  </div>
+</section>

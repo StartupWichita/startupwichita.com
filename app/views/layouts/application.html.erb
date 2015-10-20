@@ -93,39 +93,37 @@
     </div>
 
     <% if content_for?(:utility_bar) %>
-      <div class="form-inline util-bar" style="margin-bottom:30px;">
+      <div class="form-inline util-bar">
         <%= yield :utility_bar %>
       </div>
     <% end %>
 
     <% unless notice.blank? %>
-      <div class="alert alert-success"><%= notice %></div>
+      <div class="alert alert-success text-center"><div class="container"><%= notice %></div></div>
     <% end %>
 
     <% unless alert.blank? %>
-      <div class="alert alert-danger"><%= alert %></div>
+      <div class="alert alert-danger text-center"><div class="container"><%= alert %></div></div>
     <% end %>
 
     <%= yield %>
 
-    <footer class="charcoal-top-border">
+    <footer class="foot bg-charcoal">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-offset-1 col-md-10 logos">
-            <a href="http://labor-party.com/">
-              <%= image_tag "logos/labor-party-sm.png", :alt => "The Labor Party" %>
+          <div class="logos text-center">
+            <a target="_blank" href="http://labor-party.com/">
+              <%= image_tag "logos/labor-party-flat.png", :alt => "The Labor Party" %>
             </a>
-            <a href="http://devict.org">
-              <%= image_tag "logos/devict-sm.png", :alt => "devICT" %>
+            <a target="_blank" href="http://devict.org">
+              <%= image_tag "logos/devict-flat.png", :alt => "devICT" %>
             </a>
-            <a href="http://www.wichitacf.org/">
-              <%= image_tag "logos/wichita-community-foundation-sm.png", :alt => "Wichita Community Foundation" %>
+            <a target="_blank" href="http://www.wichitacf.org/">
+              <%= image_tag "logos/wichita-community-foundation-flat.png", :alt => "Wichita Community Foundation" %>
             </a>
-            <a href="http://wichitachamber.org/">
-              <%= image_tag "logos/wichita-chamber-of-commerce-sm.png", :alt => "Wichita Chamber of Commerce" %>
+            <a target="_blank" href="http://wichitachamber.org/">
+              <%= image_tag "logos/wichita-chamber-of-commerce-flat.png", :alt => "Wichita Chamber of Commerce" %>
             </a>
           </div>
-        </div>
       </div>
     </footer>
 

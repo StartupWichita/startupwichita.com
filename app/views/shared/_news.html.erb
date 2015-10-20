@@ -1,0 +1,17 @@
+ <div class="news-item font-reset">
+    <div class="head">
+        <div class="date">
+          <div class="date-day"><%= newsItem.created_at.strftime('%d') %></div>
+          <div class="date-month"><%= newsItem.created_at.strftime('%b') %></div>
+          <div class="date-year"><%= newsItem.created_at.strftime('%Y') %></div>
+        </div>
+    </div>
+    <div class="body">
+        <h2 class="title">
+            <%= link_to news_path(newsItem) do %>
+                <%= newsItem.title %>
+            <% end %>
+        </h2>
+        <!-- <p class="description"><%= newsItem.content %></p> -->
+    </div>
+</div>

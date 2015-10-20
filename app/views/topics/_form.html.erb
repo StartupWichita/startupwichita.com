@@ -1,27 +1,31 @@
 <div class="form-group">
-    <%= f.label :title, :class => "col-md-3 control-label" %>
-    <div class="col-md-9">
+    <%= f.label :title, :class => "sr-only" %>
+    <div class="input-group">
+        <div class="input-group-addon">Title</div>
         <%= f.text_field :title, :class => "form-control" %>
     </div>
 </div>
 
 <div class="form-group">
-    <%= f.label :content, :class => "col-md-3 control-label" %>
-    <div class="col-md-9">
+    <%= f.label :content, :class => "sr-only" %>
+    <div class="input-group">
+        <div class="input-group-addon">Content</div>
         <%= f.text_area :content, :class => "form-control" %>
     </div>
 </div>
 
 <div class="form-group">
-    <%= f.label :url, :class => "col-md-3 control-label" %>
-    <div class="col-md-9">
+    <%= f.label :url, :class => "sr-only" %>
+    <div class="input-group">
+        <div class="input-group-addon">Url</div>
         <%= f.url_field :url, :class => "form-control" %>
     </div>
 </div>
 
 <div class="form-group">
-    <%= f.label :tag_list, :class => "col-md-3 control-label" %>
-    <div class="col-md-9">
+    <%= f.label :tag_list, :class => "sr-only" %>
+    <div class="input-group">
+        <div class="input-group-addon">Tag List</div>
         <%= f.hidden_field :tag_list, :class => "form-control" %>
     </div>
 </div>

@@ -1,29 +1,19 @@
-<section>
-    <% content_for :utility_bar do %>
-        <div class="util-head">
-            <div class="container">
-                <%= link_to new_resource_path, :class => "btn" do %>
-                   <span class="glyphicon glyphicon-plus"></span> Add Resource 
-                <% end %>
-            </div>
+<% content_for :utility_bar do %>
+    <div class="util-head">
+        <div class="container">
+            <%= link_to new_resource_path, :class => "btn" do %>
+               <span class="glyphicon glyphicon-plus"></span> Add Resource 
+            <% end %>
         </div>
-    <% end %>
-
+    </div>
+<% end %>
+<section class="section">
     <div class="container">
         <% unless @resources.blank? %>
             <div class="row inline">
                 <% @resources.each do |resource| %>
                     <div class="col-sm-6 col-md-4 inline-block">
-                        <div class="resource-item font-reset">
-                            <%= link_to resource_path(resource), :class => "text-center head" do %>
-                                <h2 class="title"><%= resource.title %></h2>
-                            <% end %>
-                            <div class="body clearfix">
-                                <div class="description">
-                                    <p><%= resource.content %></p>
-                                </div>
-                            </div>
-                        </div>
+                       <%= render partial: "shared/resource", locals: { resource: resource } %>
                     </div>
                 <% end %>
             </div>

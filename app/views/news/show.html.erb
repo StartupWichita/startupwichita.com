@@ -30,8 +30,7 @@
                         <div class="description">
                             <p><%= @news.content %></p>
                         </div>
-                         <!-- TODO: fix this in design -->
-                        <% unless @news.url.blank? %><br /><br />
+                        <% unless @news.url.blank? %>
                           <div class="meta font-heading">
                             <h4 class="meta-title">Source</h4>
                             <span><%= link_to @news.title, @news.url, :class => "" %></span>
