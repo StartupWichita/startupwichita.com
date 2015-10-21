@@ -2,7 +2,9 @@
   <div class="util-head">
       <div class="container">
         <% if !current_user.nil? && current_user.admin %>
-          <%= link_to '<span class="glyphicon glyphicon-plus"></span> Add a new person', new_person_path, class: "btn" %>
+          <%= link_to new_person_path, class: "btn" do %>
+          <span class="glyphicon glyphicon-plus"></span> Add a new person
+          <% end %>
         <% end %>
         <a class="btn" data-toggle="collapse" href="#f"><span class="glyphicon glyphicon-tag"></span> Filter People</a>
       </div>
