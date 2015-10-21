@@ -6,7 +6,7 @@ module ApplicationHelper
     elsif person.email.present?
       return avatar_url(person.email)
     else
-      return "/assets/missing.png"
+      return "https://cldup.com/DlSzJYRl0p.png"
     end
   end
 
