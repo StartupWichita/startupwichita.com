@@ -12,6 +12,10 @@ class PeopleController < InheritedResources::Base
       @featured_people = Person.where(featured: true)
       @people = Person.where(featured: false)
     end
+    respond_to do |format|
+      format.html
+      format.csv {render text: @people.to_csv}
+    end
   end
 
   def show
@@ -66,12 +70,12 @@ class PeopleController < InheritedResources::Base
     if @current_person.nil?
       return
     end
-    
+
     @current_person.user_id = nil
     @current_person.save
-    
+
     ### TODO Merge Profiles ###
-    
+
     @person = Person.friendly.find(params[:slug])
     if @person.user_id.nil?
       @person.user_id = current_user.id
