@@ -24,11 +24,14 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="resource-item">
                     <div class="head text-center">
-                        <h2 class="title"><%= @resource.title %></h2>
+                      <h2 class="title">
+                        <a href="<%= @resource.url %>" title="<%= @resource.title %>"><%= @resource.title %></a>
+                      </h2>
                     </div>
                     <div class="body">
                         <div class="description">
                             <p><%= @resource.content %></p>
+                            <p><a href="<%= @resource.url %>" title="<%= @resource.title %>"><%= @resource.url %></a>
                         </div>
                         <div class="meta font-heading">
                             <h4 class="meta-title">Posted by</h4>
