@@ -14,7 +14,7 @@
                 <div class="row">
                     <% news.each do |newsItem| %>
                         <div class="col-md-6">
-                           <%= render partial: "shared/news", locals: { newsItem: newsItem } %>
+                           <%= render partial: "shared/news", locals: { newsItem: newsItem } if newsItem %>
                         </div>
                     <% end %>
                 </div>

@@ -107,10 +107,12 @@
           <% f.object.role_list_tags = f.object.role_list.collect{|role| role} %>
             <% PersonRole.all.in_groups_of(2).each do |person_role_groups| %>
               <% person_role_groups.each do |person_role| %>
-                <div class='col-md-6'>
-                  <%= f.check_box :role_list_tags, { :multiple => true }, person_role['name'].downcase, nil %>
-                  <%= person_role['name'] %>
-                </div>
+                <% if person_role %>
+                  <div class='col-md-6'>
+                    <%= f.check_box :role_list_tags, { :multiple => true }, person_role['name'].downcase, nil %>
+                    <%= person_role['name'] %>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
         </div>
