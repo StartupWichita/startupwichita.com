@@ -18,7 +18,7 @@ xml.rss :version => "2.0" do
         end
         xml.author "Startup Wichita"
         xml.pubDate person.created_at.to_s(:rfc822)
-        xml.link ("http://wwww.startupwichita.com" + profile_path(person))
+        xml.link ("http://www.startupwichita.com" + profile_path(person))
         xml.guid person.id
 
         text = person.bio

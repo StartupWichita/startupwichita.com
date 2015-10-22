@@ -18,7 +18,7 @@ xml.rss :version => "2.0" do
         end
         xml.author resource.user.person.full_name
         xml.pubDate resource.created_at.to_s(:rfc822)
-        xml.link ("http://wwww.startupwichita.com" + resources_path(resource))
+        xml.link ("http://www.startupwichita.com" + resources_path(resource))
         xml.guid resource.id
 
         text = resource.content

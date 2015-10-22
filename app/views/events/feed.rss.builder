@@ -18,7 +18,7 @@ xml.rss :version => "2.0" do
         end
         xml.author event.user.person.full_name
         xml.pubDate event.created_at.to_s(:rfc822)
-        xml.link ("http://wwww.startupwichita.com" + event_path(event))
+        xml.link ("http://www.startupwichita.com" + event_path(event))
         xml.guid event.id
 
         text = event.content
