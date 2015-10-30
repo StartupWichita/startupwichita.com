@@ -1,7 +1,7 @@
 <div class="profile font-reset <%= person.featured ? 'featured' : nil %>">
     <div class="text-center head">
       <figure class="bg-cream">
-      <%= link_to profile_path(slug: person.friendly_id) do %> 
+      <%= link_to profile_path(slug: person.friendly_id) do %>
         <img src="<%= profile_image(person) %>" alt="" class="img-circle img-responsive" height="152" width="152">
       <% end %>
       </figure>
@@ -9,7 +9,7 @@
     </div>
     <div class="body clearfix">
       <div class="bio">
-        <p><%= person.bio %></p>
+        <%= markdown.render(person.bio).html_safe if person.bio %>
       </div>
       <% if !defined? preview %>
         <% if person.skill_list && person.skill_list.size > 0 %>

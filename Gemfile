@@ -13,6 +13,7 @@ gem 'jquery-rails'
 #gem 'turbolinks'
 #gem 'jquery-turbolinks'
 gem 'bootstrap-sass', '~> 3.3.3'
+gem 'redcarpet'
 
 # Authentication
 gem 'devise'

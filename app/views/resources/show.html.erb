@@ -30,7 +30,7 @@
                     </div>
                     <div class="body">
                         <div class="description">
-                            <p><%= @resource.content %></p>
+                            <%= markdown.render(@resource.content).html_safe %>
                             <p><a href="<%= @resource.url %>" title="<%= @resource.title %>"><%= @resource.url %></a>
                         </div>
                         <div class="meta font-heading">

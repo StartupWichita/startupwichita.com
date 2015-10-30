@@ -1,5 +1,9 @@
 module ApplicationHelper
 
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, quote: true, )
+  end
+
   def profile_image(person)
     if person.avatar.exists?
       return person.avatar.url
