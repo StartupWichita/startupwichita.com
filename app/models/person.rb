@@ -27,7 +27,7 @@ class Person < ActiveRecord::Base
   has_attached_file :avatar, styles: {
     thumb: '100x100>',
     square: '200x200#',
-    medium: '300x300>'
+    medium: '300x300!'
   }
   do_not_validate_attachment_file_type :avatar
 

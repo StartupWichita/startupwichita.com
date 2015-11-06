@@ -6,7 +6,7 @@ module ApplicationHelper
 
   def profile_image(person)
     if person.avatar.exists?
-      return person.avatar.url
+      return person.avatar.url(:medium)
     elsif person.email.present?
       return avatar_url(person.email)
     else

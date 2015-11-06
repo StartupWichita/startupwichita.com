@@ -2,7 +2,7 @@
     <div class="text-center head">
       <figure class="bg-cream">
       <%= link_to profile_path(slug: person.friendly_id) do %>
-        <img src="<%= profile_image(person) %>" alt="" class="img-circle img-responsive" height="152" width="152">
+        <img src="<%= profile_image(person) %>" alt="" class="profile-img img-circle img-responsive">
       <% end %>
       </figure>
       <h2 class="title"><%= link_to "#{person.first_name} #{person.last_name}", profile_path(slug: person.friendly_id) %></h2>
