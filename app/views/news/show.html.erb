@@ -24,7 +24,7 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="resource-item">
                     <div class="head">
-                        <h2 class="title"><%= link_to @news.title, @news.url %></h2>
+                        <h2 class="title"><%= link_to @news.title, @news.url + "?ref=StartupWichita.com" %></h2>
                     </div>
                     <div class="body">
                         <div class="description">
@@ -33,7 +33,7 @@
                         <% unless @news.url.blank? %>
                           <div class="meta font-heading">
                             <h4 class="meta-title">Source</h4>
-                            <span><%= link_to @news.title, @news.url, :class => "" %></span>
+                            <span><%= link_to @news.title, @news.url, :class => "", :ref => "StartupWichita.com" %></span>
                           </div>
                         <% end %>
                         <div class="meta font-heading">
