@@ -12,14 +12,14 @@
   <div class="util-body">
     <div class="collapse" id="f">
       <div class="container">
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-6">
             <h3>Find people by common skills and interests</h3>
             <h4>Skills</h4>
             <p>
               <% if Person.all_skill_tags.size > 0 %>
                 <% Person.all_skill_tags.each do |tag| %>
-                  <!-- <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span> -->
+                  <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
                 <% end %>
               <% else %>
                 No common skills found
@@ -44,7 +44,7 @@
                 <span class="tags"><%= link_to tag['name'], people_with_role_path(tag: tag['name']) %></span>
               <% end %>
             </p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
