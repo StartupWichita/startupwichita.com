@@ -8,20 +8,20 @@
     </section>
 
     <!-- Events section -->
-    <section class="section bg-grey">
-        <h2 class="section-title">Events</h2>
-        <% unless @featuredEvents.blank? || @featuredEvents.size < 2 %>
-            <div class="container">
-                <div class="row inline">
-                    <% @featuredEvents[0..5].each do |event| %>
-                        <div class="col-md-6 inline-block">
-                            <%= render partial: "shared/event", locals: { event: event } %>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
-        <% end %>
-    </section>
+    <% unless @featuredEvents.blank? || @featuredEvents.size < 2 %>
+      <section class="section bg-grey">
+          <h2 class="section-title">Events</h2>
+              <div class="container">
+                  <div class="row inline">
+                      <% @featuredEvents[0..5].each do |event| %>
+                          <div class="col-md-6 inline-block">
+                              <%= render partial: "shared/event", locals: { event: event } %>
+                          </div>
+                      <% end %>
+                  </div>
+              </div>
+        </section>
+    <% end %>
 
     <!-- News section -->
     <section class="section bg-charcoal">
