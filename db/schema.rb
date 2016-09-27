@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824142451) do
+ActiveRecord::Schema.define(version: 20160927192202) do
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string   "address"
   end
 
-  create_table "friendly_id_slugs", force: true do |t|
+  create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
@@ -32,10 +32,12 @@ ActiveRecord::Schema.define(version: 20150824142451) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
-  create_table "news", force: true do |t|
+  create_table "news", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "people", force: true do |t|
+  create_table "people", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "first_name"
     t.string   "last_name"
@@ -60,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150824142451) do
   add_index "people", ["slug"], name: "index_people_on_slug", unique: true
   add_index "people", ["user_id"], name: "index_people_on_user_id"
 
-  create_table "person_emails", force: true do |t|
+  create_table "person_emails", force: :cascade do |t|
     t.integer  "person_id"
     t.string   "recipient_email"
     t.string   "sender_name"
@@ -73,16 +75,16 @@ ActiveRecord::Schema.define(version: 20150824142451) do
 
   add_index "person_emails", ["person_id"], name: "index_person_emails_on_person_id"
 
-  create_table "person_roles", force: true do |t|
+  create_table "person_roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "resources", force: true do |t|
+  create_table "resources", force: :cascade do |t|
   end
 
-  create_table "taggings", force: true do |t|
+  create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
@@ -95,14 +97,14 @@ ActiveRecord::Schema.define(version: 20150824142451) do
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
-  create_table "tags", force: true do |t|
+  create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
 
-  create_table "topics", force: true do |t|
+  create_table "topics", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.string   "content"
@@ -114,7 +116,7 @@ ActiveRecord::Schema.define(version: 20150824142451) do
     t.string   "actable_type"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
