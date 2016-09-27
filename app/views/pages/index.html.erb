@@ -1,110 +1,72 @@
-<section>
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="row jumbotron">
-        <h2 class="text-center robotoSlab cream">Bringing connections and collisions to the entrepreneur, startup, and tech communities in Wichita, Kansas.</h2>
-    </div>
-
-    <!-- People section -->
-    <% unless @people.blank? %>
-        <div class="row people">
-            <div>
-                <h2 class="text-center robotoSlab cream">People that connect you</h2>
-                <div id="peopleCarousel" class="owl-carousel">
-                    <% @people.each do |person| %>
-                        <div>
-                            <%= link_to person_path(person) do %>
-                                <%= avatar(person, :display) %>
-                                <div class="people-teaser white text-center">
-                                    <h4><%= person.full_name %></h4>
-                                    <p><%= person.bio %></p>
-                                </div>
-                            <% end %>
-                        </div>
-                    <% end %>
-                </div>
+    <section class="section bg-cream">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="container">
+            <div class="jumbotron bg-cream charcoal">
+                <h2 class="text-center">Bringing connections and collisions to the entrepreneur, startup, and tech communities in Wichita, Kansas.</h2>
             </div>
         </div>
-    <% end %>
+    </section>
 
     <!-- Events section -->
     <% unless @featuredEvents.blank? || @featuredEvents.size < 2 %>
-        <div class="row events">
-            <div classs="container-fluid">
-                <div class="row">
-                    <div class="col-md-4 col-md-push-4">
-                        <div class="grey cream-bg title text-center">
-                            <h2 class="robotoSlab">Events</h2>
-                            <p>Keep up to date on the latest events revolving around startups in Wichita.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-md-pull-4">
-                        <%= link_to event_path(@featuredEvents[0]), :class => "white grey-bg event-first-box" do %>
-                            <h3><%= @featuredEvents[0].title %></h3>
-                            <p class="date"><%= @featuredEvents[0].starts_at.to_time.strftime('%B %d, %Y %I:%M %p') %> at <%= @featuredEvents[0].address %></p>
-                            <p><%= @featuredEvents[0].content.truncate 220%></p>
-                        <% end %>
-                    </div>
-                    <div class="col-md-4">
-                        <%= link_to event_path(@featuredEvents[1]), :class => "white grey-bg event-first-box" do %>
-                            <h3><%= @featuredEvents[1].title %></h3>
-                            <p class="date"><%= @featuredEvents[1].starts_at.to_time.strftime('%B %d, %Y %I:%M %p') %> at <%= @featuredEvents[1].address %></p>
-                            <p><%= @featuredEvents[1].content.truncate 220%></p>
-                        <% end %>
-                    </div>
-                </div>
-                <div class="row">
-                    <% @featuredEvents.drop(2).each do |event| %>
-                        <div class="col-md-3">
-                            <%= link_to event_path(event), :class => "white grey-bg event-feature" do %>
-                                <h3><%= event.title %></h3>
-                                <p class="date"><%= event.starts_at %> at <%= event.address %></p>
-                                <p><%= event.content.truncate 300 %> ...</p>
-                            <% end %>
+      <section class="section bg-grey">
+          <h2 class="section-title">Events</h2>
+              <div class="container">
+                  <div class="row inline">
+                      <% @featuredEvents[0..5].each do |event| %>
+                          <div class="col-md-6 inline-block">
+                              <%= render partial: "shared/event", locals: { event: event } %>
+                          </div>
+                      <% end %>
+                  </div>
+              </div>
+        </section>
+    <% end %>
+
+    <!-- News section -->
+    <section class="section bg-charcoal">
+        <h2 class="section-title">News</h2>
+        <% unless @newsItems.blank? %>
+            <div class="container">
+                <div class="row inline">
+                    <% @newsItems[0..3].each do |newsItem| %>
+                        <div class="col-md-6 inline-block">
+                            <%= render partial: "shared/news", locals: { newsItem: newsItem } %>
                         </div>
                     <% end %>
                 </div>
             </div>
-        </div>
-    <% end %>
+        <% end %>
+    </section>
 
-    <!-- News section -->
-    <% unless @newsItems.blank? %>
-        <div class="row news white orange-bg">
-            <div class="arrow-down cream right"></div>
-            <h2 class="text-center robotoSlab">News</h2>
-            <div id="newsCarousel" class="owl-carousel">
-                <% @newsItems.each do |newsItem| %>
-                    <div>
-                        <div class="news-teaser white">
-                            <%= link_to news_path(newsItem) do %>
-                                <h3 class="text-center white"><%= newsItem.title %></h3>
-                                <p class="text-center white"><%= newsItem.created_at.to_time.strftime('%B %d %I:%M %p') %></p>
-                                <p class="white"><%= newsItem.content.truncate 280 %>...</p>
-                            <% end %>
+    <!-- People section -->
+    <section class="section bg-grey">
+        <h2 class="section-title">People</h2>
+        <% unless @people.blank? %>
+            <div class="container">
+                <div class="row inline">
+                    <% @people.each do |person| %>
+                        <div class="col-sm-6 col-md-4 inline-block">
+                          <%= render partial: "shared/profile", locals: { person: person, featured: true, preview: true } %>
                         </div>
-                    </div>
-                <% end %>
+                    <% end %>
+                </div>
             </div>
-        </div>
-    <% end %>
+        <% end %>
+    </section>
 
     <!-- Resources section -->
-    <% unless @resources.blank? %>
-        <div class="row resources white cream-bg">
-            <div class="arrow-down orange left"></div>
-            <h2 class="text-center robotoSlab grey">Resources</h2>
-            <div id="resourcesCarousel" class="owl-carousel">
-                <% @resources.each do |resource| %>
-                    <div class="resource-wrapper">
-                        <div class="resources-teaser white">
-                            <%= link_to resource_path(resource), :class => "white grey-bg"  do %>
-                                <h3 class="white"><%= resource.title %></h3>
-                                <p class="white sm-collapse"><%= resource.content.truncate 230 %></p>
-                            <% end %>
+    <section class="section bg-charcoal">
+        <h2 class="section-title">Resources</h2>
+        <% unless @resources.blank? %>
+           <div class="container">
+                <div class="row inline">
+                    <% @resources[0..3].each do |resource| %>
+                        <div class="col-md-6 inline-block">
+                            <%= render partial: "shared/resource", locals: { resource: resource } %>
                         </div>
-                    </div>
-                <% end %>
+                    <% end %>
+                </div>
             </div>
-        </div>
-    <% end %>
-</section>
+        <% end %>
+    </section>

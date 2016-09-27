@@ -6,10 +6,11 @@ class Person < ActiveRecord::Base
 
   attr_accessor :role_list_tags, :delete_avatar
 
-  # this user relationship is optional (admins can edit people, and so can users who are attached to people)  
+  # this user relationship is optional (admins can edit people, and so can users who are attached to people)
   belongs_to :user
 
   scope :featured, -> { where(featured: true) }
+  default_scope -> { order(:id) }
 
   # Results in the following colums
   #   avatar_file_name
@@ -26,7 +27,7 @@ class Person < ActiveRecord::Base
   has_attached_file :avatar, styles: {
     thumb: '100x100>',
     square: '200x200#',
-    medium: '300x300>'
+    medium: '300x300!'
   }
   do_not_validate_attachment_file_type :avatar
 
@@ -37,7 +38,7 @@ class Person < ActiveRecord::Base
 
 
   def self.all_skill_tags
-    ActsAsTaggableOn::Tagging.all.where(context: "skills").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
+    ActsAsTaggableOn::Tagging.where(context: "skills").where.not(tagger_id: nil).map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
   end
 
   def self.all_interest_tags
@@ -53,6 +54,15 @@ class Person < ActiveRecord::Base
   end
 
   private
+
+  def self.to_csv
+      CSV.generate do |csv|
+        csv << column_names
+        all.each do |person|
+          csv << person.attributes.values_at(*column_names)
+        end
+      end
+  end
 
   def assign_role_list
     self.role_list = role_list_tags.join(",") unless role_list_tags.blank?

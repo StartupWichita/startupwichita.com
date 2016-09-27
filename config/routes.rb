@@ -34,4 +34,6 @@ Rails.application.routes.draw do
   root 'pages#index'
 
   get '/topics/tags', to: 'topics#tags', :defaults => { :format => :json }
+
+  match "/slack" => redirect("http://startupwichita-slackin.herokuapp.com"), as: :slack, via: :get
 end

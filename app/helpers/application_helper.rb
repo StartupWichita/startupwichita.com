@@ -1,12 +1,16 @@
 module ApplicationHelper
 
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, quote: true, )
+  end
+
   def profile_image(person)
     if person.avatar.exists?
-      return person.avatar.url
+      return person.avatar.url(:medium)
     elsif person.email.present?
       return avatar_url(person.email)
     else
-      return "/assets/missing.png"
+      return "https://cldup.com/DlSzJYRl0p.png"
     end
   end
 
@@ -30,9 +34,9 @@ module ApplicationHelper
   end
 
   def avatar_url(email)
-    default_url = "#{configatron.app_url}/assets/missing.png"
+    default_url = "https://cldup.com/DlSzJYRl0p.png"
     gravatar_id = Digest::MD5::hexdigest(email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}"
+    "https://gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}?#{configatron.app_url}/assets/missing.png"
   end
 
 end

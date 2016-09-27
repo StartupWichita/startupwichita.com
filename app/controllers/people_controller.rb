@@ -6,11 +6,15 @@ class PeopleController < InheritedResources::Base
 
   def index
     if params[:tag]
-      @featured_people = Person.where(featured: true).tagged_with(params[:tag])
-      @people = Person.where(featured: false).tagged_with(params[:tag])
+      @featured_people = Person.tagged_with(params[:tag]).where(featured: true).uniq
+      @people = Person.tagged_with(params[:tag]).where(featured: false).uniq
     else
       @featured_people = Person.where(featured: true)
       @people = Person.where(featured: false)
+    end
+    respond_to do |format|
+      format.html
+      format.csv {render text: @people.to_csv}
     end
   end
 
@@ -66,12 +70,12 @@ class PeopleController < InheritedResources::Base
     if @current_person.nil?
       return
     end
-    
+
     @current_person.user_id = nil
     @current_person.save
-    
+
     ### TODO Merge Profiles ###
-    
+
     @person = Person.friendly.find(params[:slug])
     if @person.user_id.nil?
       @person.user_id = current_user.id

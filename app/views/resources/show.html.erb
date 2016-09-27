@@ -1,29 +1,46 @@
-<section class="alternate">
-    <% content_for :utility_bar do %>
-        <%= link_to new_resource_path, :class => "btn pull-right" do %>
-            Add Resource <i class="glyphicon glyphicon-plus"></i>
-        <% end %>
-
-        <% if can_edit?(@resource) %>
-            <%= link_to resource_path(@resource), :data => { :confirm => "Are you sure you want to delete this resource?" }, :method => :delete, :class => "btn pull-right" do %>
-                Remove Resource <i class="glyphicon glyphicon-trash"></i>
+<% content_for :utility_bar do %>
+    <div class="util-head">
+        <div class="container">
+            <%= link_to new_resource_path, :class => "btn" do %>
+                <span class="glyphicon glyphicon-plus"></span> Add Resource
             <% end %>
 
-            <%= link_to edit_resource_path(@resource), :class => "btn pull-right" do %>
-                Edit Resource <i class="glyphicon glyphicon-edit"></i>
+            <% if can_edit?(@resource) %>
+                <%= link_to resource_path(@resource), :data => { :confirm => "Are you sure you want to delete this resource?" }, :method => :delete, :class => "btn" do %>
+                    <span class="glyphicon glyphicon-trash"></span> Remove Resource
+                <% end %>
+
+                <%= link_to edit_resource_path(@resource), :class => "btn" do %>
+                    <span class="glyphicon glyphicon-edit"></span> Edit Resource
+                <% end %>
             <% end %>
-        <% end %>
-    <% end %>
-
-    <div class="row">
-        <h2 class="robotoSlab"><%= @resource.title %></h2>
-        <span>Posted by: <%= @resource.user.person.full_name %></span> on
-        <span><%= @resource.created_at %></span>
+        </div>
     </div>
+<% end %>
 
-    <div class="row">
-        <p class="description"><%= @resource.content %></p>
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="resource-item">
+                    <div class="head text-center">
+                      <h2 class="title">
+                        <a href="<%= @resource.url %>" title="<%= @resource.title %>"><%= @resource.title %></a>
+                      </h2>
+                    </div>
+                    <div class="body">
+                        <div class="description">
+                            <%= markdown.render(@resource.content).html_safe %>
+                            <p><a href="<%= @resource.url %>" title="<%= @resource.title %>"><%= @resource.url %></a>
+                        </div>
+                        <div class="meta font-heading">
+                            <h4 class="meta-title">Posted by</h4>
+                            <span><%= @resource.user.person.full_name %></span> on <span><%= @resource.created_at.strftime('%d %B %Y') %></span>
+                        </div>
+                    </div>
+                </div>
+                <%= render partial: 'topics/disqus' %>
+            </div>
+        </div>
     </div>
-
-    <%= render partial: 'topics/disqus' %>
 </section>

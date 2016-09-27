@@ -1,37 +1,27 @@
 <% content_for :utility_bar do %>
-  <% if claimable(@person) %>
+  <!-- <% if claimable(@person) %>
     <%= link_to 'Claim This Profile', people_claim_path(@person), class: "btn btn-sm btn-claim" %>
-  <% end %>
+  <% end %> -->
   <% if owned_by_current_user(@person) || (!current_user.nil? && current_user.admin) %>
     <%= link_to 'Edit', edit_person_path(@person), class: "btn btn-edit" %>
   <%  end %>
 <% end %>
 
-<div class="container" style='margin-bottom: 100px; margin-top: 20px;'>
-  <div class="row">
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <%= render partial: "shared/profile", locals: { person: @person, featured: false } %>
 
-    <div class="col-md-2">
-    </div>
-
-    <div class="col-md-8">
-      <%= render partial: "shared/profile", locals: { person: @person, featured: false } %>
-
-      <div class='col-md-12'>
         <% if @person.phone.present? && @person.allow_contact %>
-          <hr/>
-          <div class="row">
-            <div class='col-md-12'>
               <h3>Phone Number</h3>
               <%= @person.phone %>
-            </div>
-          </div>
         <% end %>
 
         <% if @person.email.present? && @person.allow_contact %>
-          <hr/>
           <%= render partial: "person_email_form" %>
         <% end %>
       </div>
     </div>
   </div>
-</div>
+</section>

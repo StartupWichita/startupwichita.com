@@ -1,11 +1,13 @@
-<div class="row topic-form">
-    <h1 class="robotoSlab text-center">Edit Your Profile</h1>
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">Edit Your Profile</h1>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-horizontal col-md-offset-3 col-md-6" }) do |f| %>
         <%= devise_error_messages! %>
 
         <div class="form-group">
-            <%= f.label :email, :class => "col-md-4 control-label" %>
-            <div class="col-md-8">
+            <%= f.label :email, :class => "sr-only" %>
+            <div class="input-group">
+                <div class="input-group-addon">Email</div>
                 <%= f.email_field :email, autofocus: true, :class => "form-control" %>
             </div>
         </div>
@@ -45,22 +47,21 @@
         <% end %>
 
         <div class="form-group">
-            <div class="col-md-6 col-md-offset-4">
-                <%= f.submit "Update", :class => "btn btn-primary" %>
-            </div>
+            <%= f.submit "Update", :class => "btn btn-block btn-lg white bg-charcoal" %>
         </div>
     <% end %>
-</div>
+  </div>
+</section>
 
-<div class="row">
-    <h3 class="robotoSlab text-center">Unhappy?</h3>
-    <p class="col-md-12 text-center">
-        If you are unhappy with your account and would like to remove it
-        permanently from this site, you can do so by clicking the button below.
-    </p>
-    <div class="form-group row">
-        <div class="col-md-6 col-md-offset-4">
-            <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure you want to cancel your account?" }, method: :delete, class: "btn btn-danger" %>
+<section class="section bg-charcoal">
+    <div class="container">
+        <h3 class="section-title">Unhappy?</h3>
+        <p class="col-md-12 text-center">
+            If you are unhappy with your account and would like to remove it
+            permanently from this site, you can do so by clicking the button below.
+        </p>
+        <div class="form-group row text-center">
+            <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure you want to cancel your account?" }, method: :delete, class: "btn btn-lg bg-orange white" %>
         </div>
     </div>
-</div>
+</section>

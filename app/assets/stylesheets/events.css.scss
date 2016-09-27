@@ -1,33 +1,79 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.event-tabs {
-    border: none;
+// .event-tabs {
+//     border: none;
 
-    li {
-        width: 50%;
-        margin-bottom: 0px;
+//     li {
+//         width: 50%;
+//         margin-bottom: 0px;
 
-        &.active {
-            a {
-                background-color: #EF6032 !important;
-                color: #fff;
-                border: none;
+//         &.active {
+//             a {
+//                 background-color: #EF6032 !important;
+//                 color: #fff;
+//                 border: none;
 
-                &:hover,
-                &:focus {
-                    border: none;
-                    color: #fff;
-                }
-            }
-        }
+//                 &:hover,
+//                 &:focus {
+//                     border: none;
+//                     color: #fff;
+//                 }
+//             }
+//         }
 
-        a {
-            background-color: #fff8e8 !important;
-            color: #281816;
-            border: none;
-            border-radius: 0px;
-            margin-right: 0px;
-        }
+//         a {
+//             background-color: #fff8e8 !important;
+//             color: #281816;
+//             border: none;
+//             border-radius: 0px;
+//             margin-right: 0px;
+//         }
+//     }
+// }
+
+@import "variables.css.scss";
+
+.event-item {
+    display: table;
+    border-radius: 4px;
+    border-radius: $border-radius;
+    margin-bottom: 30px;
+    background: $cream;
+    color: $dark-grey;
+    width: 100%;
+}
+.event-item .head {
+    display: table-cell;
+    background: $dark-cream;
+    color: $charcoal;
+    vertical-align: middle;
+    padding: 1rem;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    width: 59px;
+}
+.event-item .body {
+    display: table-cell;
+    vertical-align: top;
+    padding: 1rem;
+}
+.event-item .title {
+    font-weight: 200;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+.event-item .title a {
+    color: $charcoal;
+    &:hover {
+        color: $orange;
     }
+}
+
+.event-item .date {
+    font-weight: 200;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: $font-heading;
+    line-height: 1.1;
 }

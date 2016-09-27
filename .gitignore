@@ -16,3 +16,4 @@
 /tmp
 /public/uploads/
 /config/initializers/devise.rb
+.DS_Store

@@ -61,15 +61,15 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = { host: 'http://startupwichita.com', port: 80 }
+  config.action_mailer.default_url_options = { host: 'http://www.startupwichita.com', port: 80 }
 
   config.action_mailer.smtp_settings = {
     :address => "smtp.sendgrid.net",
     :port => 25,
-    :domain => "domain_here",
+    :domain => ENV['URL'],
     :authentication => :plain,
-    :user_name => "username_here",
-    :password => "password_here"
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD']
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

@@ -1,3 +1,64 @@
 // Place all the styles related to the news controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables.css.scss";
+
+.news-item {
+    display: table;
+    border-radius: 4px;
+    border-radius: $border-radius;
+    margin-bottom: 30px;
+    background: $cream;
+    color: $dark-grey;
+    width: 100%;
+}
+.news-item .head {
+    display: table-cell;
+    background: $dark-cream;
+    color: $charcoal;
+    vertical-align: middle;
+    padding: 1rem;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    width: 59px;
+}
+.news-item .body {
+    display: table-cell;
+    vertical-align: top;
+    padding: 1rem;
+}
+.news-item .title {
+    font-weight: 200;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.5em;
+}
+.news-item .title a {
+    color: $charcoal;
+    &:hover {
+        color: $orange;
+    }
+}
+
+.news-item .date {
+    font-weight: 200;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: $font-heading;
+    line-height: 1.1;
+}
+.date-day {
+    font-size: 1.5em;
+    font-weight: 500;
+    line-height: 1;
+}
+.date-month {
+    font-size: .8em;
+}
+.date-year {
+    font-size: .75em;
+}
+.news-item .body a {
+    color: $charcoal;
+}

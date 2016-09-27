@@ -1,44 +1,34 @@
 <div class="container">
-  <div class="row">
+  <div class="row" style="margin: 4rem 0;">
     <div class="col-md-4 col-md-offset-4">
-      <div class="panel panel-default">
-        <div class="panel">
-          <div class="row-fluid user-row">
-            <%= image_tag("tophandlogo-02.png") do %>
-          </div>
+      <div class="resource-item">
+        <div class="head text-center">
+          <h3 class="title">Get Involved</h3>
         </div>
-        <div class="panel-body">
+        <div class="body">
+          <div class="login_result"></div>
           <%= form_for resource, as: resource_name, url: registration_path(resource_name), :html => {class: "form-signin"} do |f| %>
-            <fieldset>
-              <label class="panel-login">
-                <div class="login_result"></div>
-              </label>
-
+            <div class="col-sm-12 border-bottom" style="padding:0;">
               <%= f.email_field :email, autofocus: true, class: 'form-control form-input', placeholder: 'Email' %>
-              <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %>
+            </div>
+            <div class="col-sm-12 border-bottom" style="padding:0;">
               <%= f.password_field :password, autocomplete: 'off', autofocus: true, class: 'form-control form-input', placeholder: 'Password' %>
+            </div>
+            <div class="col-sm-12 border-bottom" style="padding:0;">
               <%= f.password_field :password_confirmation, autocomplete: 'off', autofocus: true, class: 'form-control form-input', placeholder: 'Confirm password' %>
-
+            </div>
+            <div class="col-sm-12 border-bottom" style="padding:0;">
               <% if devise_mapping.rememberable? -%>
-                <br/>
-                <div>
+                <div style="padding:6px 12px;">
                   <%= f.check_box :remember_me %> <%= f.label :remember_me %>
                 </div>
               <% end -%>
-
-              <br/>
-
-              <%= f.submit "Sign up", class: 'btn btn-lg btn-success btn-block' %>
-
-              <br/>
-
-              <%= render "devise/shared/links" %>
-            </fieldset>
+            </div>
+            <%= f.submit "Sign Up", id: 'login', class: 'btn btn-lg btn-block bg-charcoal white border-radius-top-none' %>
           <% end %>
         </div>
       </div>
+      <%= render "devise/shared/links" %>
     </div>
   </div>
 </div>
-
-<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>

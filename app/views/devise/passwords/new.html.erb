@@ -1,4 +1,4 @@
-<div class="row topic-row">
+<div class="row topic-row" >
     <h2 class="robotoSlab text-center">Forgot your password?</h2>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "form-horizontal col-md-offset-3 col-md-6" }) do |f| %>
@@ -18,5 +18,8 @@
             </div>
         </div>
     <% end %>
+    <br>
 
     <%= render "devise/shared/links" %>
+  </div>
+</div>
