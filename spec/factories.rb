@@ -1,24 +1,15 @@
-FactoryGirl.define do  factory :person_email do
-    person nil
-recipient_email "MyString"
-sender_email "MyString"
-message "MyText"
-sender_phone "MyString"
+FactoryGirl.define do
+  factory :person_email do
+    person
+    recipient_email 'MyString'
+    sender_name 'Sender'
+    sender_email 'MyString'
+    message 'MyText'
+    sender_phone 'MyString'
   end
+
   factory :person_role do
-    name "MyString"
-  end
-  factory :person do
-    user nil
-first_name "MyString"
-last_name "MyString"
-email "MyString"
-website "MyString"
-company_name "MyString"
-title "MyString"
-twitter_username "MyString"
-bio "MyText"
-#avatar ""
+    name 'MyString'
   end
 
   factory :user do
