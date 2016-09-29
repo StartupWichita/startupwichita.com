@@ -6,12 +6,13 @@ class PeopleController < InheritedResources::Base
 
   def index
     if params[:tag]
-      @featured_people = Person.tagged_with(params[:tag]).where(featured: true).uniq
-      @people = Person.tagged_with(params[:tag]).where(featured: false).uniq
+      @featured_people = Person.tagged_with(params[:tag]).uniq
+      @people = Person.tagged_with(params[:tag]).uniq
     else
-      @featured_people = Person.where(featured: true)
-      @people = Person.where(featured: false)
+      @featured_people = Person.all
+      @people = Person.all
     end
+
     respond_to do |format|
       format.html
       format.csv {render text: @people.to_csv}

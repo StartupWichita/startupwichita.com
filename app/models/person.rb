@@ -1,4 +1,10 @@
 class Person < ActiveRecord::Base
+  SCORING_GUIDE = {
+    first_name: 5, last_name: 5, email: 5, phone: 5, title: 5, twitter_username: 5,
+    allow_contact:5, interests: 5, roles: 5, website: 10, company_name: 10, bio: 10,
+    skills: 10, avatar_file_name: 15, featured: 100
+  }
+
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
@@ -10,7 +16,7 @@ class Person < ActiveRecord::Base
   belongs_to :user
 
   scope :featured, -> { where(featured: true) }
-  default_scope -> { order(:id) }
+  default_scope -> { order(profile_score: :desc).order(updated_at: :desc) }
 
   # Results in the following colums
   #   avatar_file_name
@@ -36,35 +42,47 @@ class Person < ActiveRecord::Base
 
   validates_presence_of :first_name, :last_name
 
-
-  def self.all_skill_tags
-    ActsAsTaggableOn::Tagging.where(context: "skills").where.not(tagger_id: nil).map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
-  end
-
-  def self.all_interest_tags
-    ActsAsTaggableOn::Tagging.all.where(context: "interests").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
-  end
-
-  def self.all_person_role_tags
-    PersonRole.all.map {|role| { "id" => "#{role.id}", "name" => role.name } }
+  if ActiveRecord::Base.connection.column_exists?(:people, :profile_score)
+    after_save :update_profile_score, on: [:create, :update]
   end
 
   def full_name
-    "#{self.first_name} #{self.last_name}"
+    "#{first_name} #{last_name}".strip
   end
+
+  class << self
+
+    def all_skill_tags
+      ActsAsTaggableOn::Tagging.where(context: "skills").where.not(tagger_id: nil).map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
+    end
+
+    def all_interest_tags
+      ActsAsTaggableOn::Tagging.all.where(context: "interests").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
+    end
+
+    def all_person_role_tags
+      PersonRole.all.map {|role| { "id" => "#{role.id}", "name" => role.name } }
+    end
 
   private
 
-  def self.to_csv
+    def to_csv
       CSV.generate do |csv|
         csv << column_names
-        all.each do |person|
-          csv << person.attributes.values_at(*column_names)
-        end
+        all.each { |person| csv << person.attributes.values_at(*column_names) }
       end
+    end
   end
 
   def assign_role_list
     self.role_list = role_list_tags.join(",") unless role_list_tags.blank?
+  end
+
+  def update_profile_score
+    total = 0
+
+    SCORING_GUIDE.each { |key, value| total += self.try(key).present? ? value : 0 }
+
+    self.update_column(:profile_score, total)
   end
 end
