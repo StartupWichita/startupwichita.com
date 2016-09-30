@@ -6,7 +6,7 @@
 #
 
 class News < ActiveRecord::Base
-  default_scope { order('created_at desc') }
+  default_scope { order('news.created_at desc') }
   acts_as :topic
   acts_as_taggable
 end
