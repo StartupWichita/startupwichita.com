@@ -12,30 +12,16 @@
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
+          <% end %>
 
-        <% if false %>
-            <div class="form-group">
-                <%= f.label :password, :class => "col-md-4 control-label" %>
-                <div class="col-md-8">
-                    <%= f.password_field :password, autocomplete: "off", :class => "form-control" %>
-                </div>
+        <div class="form-group">
+            <%= f.label :password, class: "col-md-4 control-label" do %>
+            Password <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Leave blank if you don't want to change it"></i>
+            <% end %>
+            <div class="col-md-8">
+                <%= f.password_field :password, autocomplete: 'off', class: "form-control" %>
             </div>
-
-            <div class="form-group">
-                <%= f.label :password_confirmation, "Confirm password", :class => "col-md-4 control-label" %>
-                <div class="col-md-8">
-                    <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <%= f.label :current_password, :class => "col-md-4 control-label" %>
-                <div class="col-md-8">
-                    <%= f.password_field :current_password, autocomplete: "off", :class => "form-control" %>
-                </div>
-            </div>
-        <% end %>
+        </div>
 
         <% f.object.build_person unless f.object.person.present? %>
         <%= f.fields_for :person do |ff| %>
