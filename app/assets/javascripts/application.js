@@ -15,10 +15,14 @@
 //= require bootstrap-sprockets
 //= require owl.carousel
 //= require select2
+//= require moment
+//= require bootstrap-datetimepicker
 //= require_tree .
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip({
       container: '.form-group'
   });
+
+  $('input.date-time-picker').datetimepicker();
 });

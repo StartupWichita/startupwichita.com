@@ -67,6 +67,8 @@ GEM
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bootstrap3-datetimepicker-rails (4.14.30)
+      momentjs-rails (>= 2.8.1)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
@@ -158,6 +160,8 @@ GEM
     mini_magick (4.0.4)
     mini_portile (0.6.0)
     minitest (5.5.1)
+    momentjs-rails (2.15.1)
+      railties (>= 3.1)
     multi_json (1.11.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -322,6 +326,7 @@ DEPENDENCIES
   acts-as-taggable-on
   annotate
   bootstrap-sass (~> 3.3.3)
+  bootstrap3-datetimepicker-rails (~> 4.14.30)
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)
@@ -337,6 +342,7 @@ DEPENDENCIES
   letter_opener
   mini_magick
   minitest
+  momentjs-rails (>= 2.9.0)
   omniauth-facebook
   omniauth-twitter
   owlcarousel-rails
