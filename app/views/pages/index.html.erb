@@ -8,7 +8,7 @@
     </section>
 
     <!-- Events section -->
-    <% unless @featuredEvents.blank? || @featuredEvents.size < 2 %>
+    <% unless @featuredEvents.empty? || @featuredEvents.size < 2 %>
       <section class="section bg-grey">
           <h2 class="section-title">Events</h2>
               <div class="container">
@@ -26,7 +26,7 @@
     <!-- News section -->
     <section class="section bg-charcoal">
         <h2 class="section-title">News</h2>
-        <% unless @newsItems.blank? %>
+        <% unless @newsItems.empty? %>
             <div class="container">
                 <div class="row inline">
                     <% @newsItems[0..3].each do |newsItem| %>
@@ -42,7 +42,7 @@
     <!-- People section -->
     <section class="section bg-grey">
         <h2 class="section-title">People</h2>
-        <% unless @people.blank? %>
+        <% unless @people.empty? %>
             <div class="container">
                 <div class="row inline">
                     <% @people.each do |person| %>
@@ -58,7 +58,7 @@
     <!-- Resources section -->
     <section class="section bg-charcoal">
         <h2 class="section-title">Resources</h2>
-        <% unless @resources.blank? %>
+        <% unless @resources.empty? %>
            <div class="container">
                 <div class="row inline">
                     <% @resources[0..3].each do |resource| %>
