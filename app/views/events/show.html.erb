@@ -33,7 +33,9 @@
                   <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= @event.address %>"><%= @event.address %></a></div>
                   <div><span class="glyphicon glyphicon-link"></span> <a target="_blank" href="<%= @event.url %>">More Info</a></div>
                 </p>
-                <%= markdown.render(@event.content).html_safe %>
+                <%= markdown
+                  .render(decorate_content_with_mentions(@event))
+                  .html_safe %>
               </div>
               <div class="meta font-heading">
                   <h4 class="meta-title">Posted by</h4>

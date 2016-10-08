@@ -5,6 +5,10 @@ class NewsController < ApplicationController
 
   respond_to :html
 
+  #to use mentions helper in view 
+  include MentionsHelper
+
+
   def index
     @news = News.all
     respond_with(@news)

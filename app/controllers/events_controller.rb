@@ -5,6 +5,9 @@ class EventsController < ApplicationController
 
   respond_to :html
 
+  #to use mentions helper in view 
+  include MentionsHelper
+
   def index
     @upcoming = Event.upcoming
     @recent = Event.recent
@@ -27,12 +30,14 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     @event.save
+    PersonMentions.extract_and_link!(@event)
     flash[:notice] = "Event successfully created"
     respond_with(@event)
   end
 
   def update
     @event.update(event_params)
+    PersonMentions.extract_and_link!(@event)
     flash[:notice] = "Event successfully updated"
     respond_with(@event)
   end
@@ -65,6 +70,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :content, :url, :starts_at, :ends_at, :address, :tag_list)
+    params.require(:event).permit(:title, :content, :url, :starts_at, :ends_at, :address, :tag_list, :tag_list => [])
   end
 end
