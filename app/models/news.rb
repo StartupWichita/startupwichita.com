@@ -12,9 +12,4 @@ class News < ActiveRecord::Base
   
   has_and_belongs_to_many :people
  
-  # mentions is an array of @ mentioned names
-  def link_mentions(mentions)
-    self.people = Person.where(slug: mentions)
-  end
-
 end

@@ -26,14 +26,14 @@ class NewsController < ApplicationController
     @news = News.new(news_params)
     @news.user = current_user
     @news.save
-    link_mentions(@news)
+    PersonMentions.extract_and_link!(@news)
     flash[:notice] = "News Item successfully created"
     respond_with(@news)
   end
 
   def update
     @news.update(news_params)
-    link_mentions(@news)
+    PersonMentions.extract_and_link!(@news)
     flash[:notice] = "News Item successfully updated"
     respond_with(@news)
   end
@@ -67,11 +67,5 @@ class NewsController < ApplicationController
     params.require(:news).permit(:title, :content, :url, :tag_list)
   end
   
-  def link_mentions(news_instance)
-     mentions = news_instance.content.scan(/@([a-z0-9_\-]+)/i)
-     unless mentions.empty? then
-       news_instance.link_mentions(mentions.flatten) 
-     end
-  end
 end
 
