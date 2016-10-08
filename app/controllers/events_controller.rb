@@ -9,8 +9,16 @@ class EventsController < ApplicationController
   include MentionsHelper
 
   def index
-    @upcoming = Event.upcoming
-    @recent = Event.recent
+    if params[:person] then
+      person    = Person.find_by(slug: params[:person])
+      @events   = person ? person.events : []
+      @upcoming = person ? person.events.upcoming : []
+      @recent   = person ? person.events.recent : []
+    else
+      @upcoming = Event.upcoming
+      @recent   = Event.recent
+      @events   = Event.all
+    end
     respond_with(@events)
   end
 

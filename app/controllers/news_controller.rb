@@ -10,7 +10,12 @@ class NewsController < ApplicationController
 
 
   def index
-    @news = News.all
+    if params[:person] then
+      person = Person.find_by(slug: params[:person])
+      @news = person ? person.news : []
+    else
+      @news = News.all
+    end
     respond_with(@news)
   end
 
