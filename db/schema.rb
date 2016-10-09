@@ -11,19 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160928005200) do
+ActiveRecord::Schema.define(version: 20161008054106) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.string   "address",   limit: nil
+    t.string   "address"
+  end
+
+  create_table "events_people", force: true do |t|
+    t.integer "event_id"
+    t.integer "person_id"
   end
 
   create_table "friendly_id_slugs", force: true do |t|
-    t.string   "slug",           limit: nil, null: false
-    t.integer  "sluggable_id",               null: false
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope",          limit: nil
+    t.string   "scope"
     t.datetime "created_at"
   end
 
@@ -33,31 +38,34 @@ ActiveRecord::Schema.define(version: 20160928005200) do
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "news", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  end
+
+  create_table "news_people", force: true do |t|
+    t.integer "news_id"
+    t.integer "person_id"
   end
 
   create_table "people", force: true do |t|
     t.integer  "user_id"
-    t.string   "first_name",          limit: nil
-    t.string   "last_name",           limit: nil
-    t.string   "email",               limit: nil
-    t.string   "phone",               limit: nil
-    t.string   "website",             limit: nil
-    t.string   "company_name",        limit: nil
-    t.string   "title",               limit: nil
-    t.string   "twitter_username",    limit: nil
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "company_name"
+    t.string   "title"
+    t.string   "twitter_username"
     t.text     "bio"
-    t.boolean  "featured",                        default: false
-    t.string   "avatar_file_name",    limit: nil
-    t.string   "avatar_content_type", limit: nil
+    t.boolean  "featured",            default: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "slug",                limit: nil
-    t.boolean  "allow_contact",                   default: true
+    t.string   "slug"
+    t.boolean  "allow_contact",       default: true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "profile_score",                   default: 0,     null: false
+    t.integer  "profile_score",       default: 0,     null: false
   end
 
   add_index "people", ["profile_score"], name: "index_people_on_profile_score"
@@ -66,10 +74,10 @@ ActiveRecord::Schema.define(version: 20160928005200) do
 
   create_table "person_emails", force: true do |t|
     t.integer  "person_id"
-    t.string   "recipient_email", limit: nil
-    t.string   "sender_name",     limit: nil
-    t.string   "sender_email",    limit: nil
-    t.string   "sender_phone",    limit: nil
+    t.string   "recipient_email"
+    t.string   "sender_name"
+    t.string   "sender_email"
+    t.string   "sender_phone"
     t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -78,7 +86,7 @@ ActiveRecord::Schema.define(version: 20160928005200) do
   add_index "person_emails", ["person_id"], name: "index_person_emails_on_person_id"
 
   create_table "person_roles", force: true do |t|
-    t.string   "name",       limit: nil
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -89,9 +97,9 @@ ActiveRecord::Schema.define(version: 20160928005200) do
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
-    t.string   "taggable_type", limit: nil
+    t.string   "taggable_type"
     t.integer  "tagger_id"
-    t.string   "tagger_type",   limit: nil
+    t.string   "tagger_type"
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
@@ -100,8 +108,8 @@ ActiveRecord::Schema.define(version: 20160928005200) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
   create_table "tags", force: true do |t|
-    t.string  "name",           limit: nil
-    t.integer "taggings_count",             default: 0
+    t.string  "name"
+    t.integer "taggings_count", default: 0
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
@@ -119,21 +127,21 @@ ActiveRecord::Schema.define(version: 20160928005200) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  limit: nil, default: "",    null: false
-    t.string   "encrypted_password",     limit: nil, default: "",    null: false
-    t.string   "reset_password_token",   limit: nil
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: nil
-    t.string   "last_sign_in_ip",        limit: nil
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",                              default: false
-    t.string   "provider",               limit: nil
-    t.string   "uid",                    limit: nil
+    t.boolean  "admin",                  default: false
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

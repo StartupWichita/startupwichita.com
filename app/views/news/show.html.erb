@@ -28,7 +28,9 @@
                     </div>
                     <div class="body">
                         <div class="description">
-                          <%= markdown.render(@news.content).html_safe %>
+                          <%= markdown
+                            .render(decorate_content_with_mentions(@news))
+                            .html_safe %>
                         </div>
                         <% unless @news.url.blank? %>
                           <div class="meta font-heading">
