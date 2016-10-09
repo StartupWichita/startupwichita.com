@@ -14,6 +14,8 @@ class Person < ActiveRecord::Base
 
   # this user relationship is optional (admins can edit people, and so can users who are attached to people)
   belongs_to :user
+  has_and_belongs_to_many :news
+  has_and_belongs_to_many :events
 
   scope :featured, -> { where(featured: true) }
   default_scope -> { order(profile_score: :desc).order(updated_at: :desc) }

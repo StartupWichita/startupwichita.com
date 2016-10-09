@@ -15,5 +15,6 @@
 /log/*.log
 /tmp
 /public/uploads/
+/public/system/*/*
 /config/initializers/devise.rb
 .DS_Store

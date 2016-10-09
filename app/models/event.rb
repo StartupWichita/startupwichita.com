@@ -12,6 +12,8 @@ class Event < ActiveRecord::Base
   acts_as :topic
   acts_as_taggable
 
+  has_and_belongs_to_many :people
+
   scope :upcoming, -> { where("ends_at >= ?", Time.now.utc - 6.hours).order("ends_at") }
   scope :recent, -> { where("ends_at < ?", Time.now.utc - 6.hours).order("ends_at").reverse }
   scope :featured, -> { upcoming.limit(8) }
