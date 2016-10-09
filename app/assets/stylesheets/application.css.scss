@@ -235,12 +235,27 @@ input[type="submit"].border-top-radius-none {
 .border-bottom { border-bottom: 1px solid $border-color }
 .border-left { border-left: 1px solid $border-color }
 
-.navbar-brand{
-    margin:0 auto;
-    float:none;
+.navbar-brand {
+    margin: 0 auto;
+    float: none;
+    height: auto;
+    img {
+      max-width: 200px;
+      @media only screen and (min-width: 360px) {
+        max-width: none;
+      }
+    }
+}
+.navbar-toggle {
+  margin-right: 1%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
-.navbar-collapse{
+.navbar-collapse {
     box-shadow:none;
 }
 .masthead {
@@ -248,12 +263,12 @@ input[type="submit"].border-top-radius-none {
     border-radius: 0;
 }
 
-.navigation-wrapper{
+.navigation-wrapper {
     position: relative;
     top: -32px;
 }
 
-.navbar{
+.navbar {
     margin-bottom:0;
     border-width:0 0 1px
 }
@@ -262,41 +277,56 @@ input[type="submit"].border-top-radius-none {
     max-width:860px;
     margin:0 auto;
     font-size:1.2em;
+    padding-bottom: 15px;
+    @media only screen and (min-width: 768px) {
+      padding: 0;
+    }
 }
 
 .nav-icon {
-    width:100%;
-    height:50px;
-    position:absolute;
+    width: 100%;
+    height: 50px;
+    position: absolute;
     top: 0;
-    left:0;
+    left: 0;
+    background-position: 100% 50%;
     transition: all .2s ease-in;
-    z-index:9;
+    z-index: 9;
+    @media only screen and (min-width: 768px) {
+      background-position: 50% 50%;
+    }
 }
 
 .navbar a:hover + .nav-icon{
+  @media only screen and (min-width: 768px) {
     top: -42px;
+  }
 }
 .nav > li {
     padding: 0;
 }
 .nav > li > a {
     z-index: 10;
-    text-align: center;
-    background:#281816;
+    @media only screen and (min-width: 768px) {
+      background: #281816;
+      text-align: center;
+    }
 }
 
-.nav{
-    position:relative;
+.nav {
+  position: relative;
 }
 
-.nav li{
+.nav li {
 }
 
-.nav>li>a:hover,
-.nav>li>a:focus {
-    background:#281816;
-    color:#ef592b;
+.nav > li > a:hover,
+.nav > li > a:focus {
+    color: #ef592b;
+    background: transparent;
+    @media only screen and (min-width: 768px) {
+      background: #281816;
+    }
 }
 
 .nav>li>a>img.img-responsive{
@@ -349,19 +379,19 @@ input[type="submit"].border-top-radius-none {
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
 }
-.arrow-down.orange{
+.arrow-down.orange {
     border-top: 26px solid $orange;
 }
-.arrow-down.cream{
+.arrow-down.cream {
     border-top: 26px solid $cream;
 }
-.arrow-down.left{
+.arrow-down.left {
     left:8px;
 }
-.arrow-down.right{
+.arrow-down.right {
     right:8px;
 }
-.news .arrow-down{
+.news .arrow-down {
     top:-2px;
 }
 
