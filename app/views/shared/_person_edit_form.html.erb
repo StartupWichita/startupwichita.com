@@ -1,16 +1,5 @@
 <%= f.hidden_field :user_id %>
 
-<% if current_user.admin? %>
-  <div class="form-group">
-    <%= f.label :featured, :class => "col-md-4 control-label" do %>
-    Featured Person <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="This is only visible to Admins. Checking this box will put this user on the front page."></i>
-    <% end %>
-    <div class="col-md-8">
-      <%= f.check_box :featured %>
-    </div>
-  </div>
-<% end %>
-
 <div class="form-group">
     <%= f.label :last_name, :class => "sr-only" %>
     <div class="input-group">
@@ -152,3 +141,14 @@
         </div>
     </div>
 </div>
+
+<% if current_user.admin? %>
+  <div class="form-group">
+    <%= f.label :featured, :class => "col-md-4 control-label" do %>
+    Featured Person <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="This is only visible to Admins. Checking this box will put this user on the front page."></i>
+    <% end %>
+    <div class="col-md-8">
+      <%= f.check_box :featured %>
+    </div>
+  </div>
+<% end %>
