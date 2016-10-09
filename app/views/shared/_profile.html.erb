@@ -9,6 +9,7 @@
     </div>
     <div class="body clearfix">
       <div class="bio">
+        <h2>Your profile is <%= person.profile_score %> out of 100</h2>
         <%= markdown.render(person.bio).html_safe if person.bio %>
       </div>
       <% if !defined? preview %>
@@ -39,7 +40,7 @@
             <% end %>
           </div>
         <% end %>
- 
+
         <% unless person.events.empty? then %>
           <div class="meta">
             <h4 class="meta-title">Related Events</h4>
@@ -51,7 +52,7 @@
             <% end %>
           </div>
         <% end %>
- 
+
         <% if person.role_list && person.role_list.size > 0 %>
           <div class="meta">
             <h4 class="meta-title">Roles</h4>
