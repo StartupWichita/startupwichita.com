@@ -5,7 +5,9 @@
         <img src="<%= profile_image(person) %>" alt="" class="profile-img img-circle img-responsive">
       <% end %>
       </figure>
+      <% if owned_by_current_user(@person) || (!current_user.nil? && current_user.admin) %>
       <h2 class="title"><%= link_to "#{person.first_name} #{person.last_name}", profile_path(slug: person.friendly_id) %></h2>
+      <%  end %>
     </div>
     <div class="body clearfix">
       <div class="bio">
