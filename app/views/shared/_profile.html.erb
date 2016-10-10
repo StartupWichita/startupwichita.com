@@ -9,7 +9,7 @@
     </div>
     <div class="body clearfix">
       <div class="bio">
-        <% if owned_by_current_user(@person) || (!current_user.nil? && current_user.admin) %>
+        <% if owned_by_current_user(@person) %>
         <h2>Your profile is <%= person.profile_score %> out of 100</h2>
         <% end %>
         <%= markdown.render(person.bio).html_safe if person.bio %>
