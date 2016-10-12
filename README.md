@@ -18,8 +18,8 @@ The projects beta was completed and launched about three months later at [startu
 - Run `rake db:migrate`.
 - Run `rails s`
 
-** We use sqlite3 as database. **
-** Data seeding is also included in the migrations. ** 
+**We use sqlite3 as database.**
+**Data seeding is also included in the migrations.** 
 
 ##We would love for you to use this app for your community or to contribute:
 
