@@ -4,6 +4,23 @@ Well, hello there. My name is [Kenton Hansen](http://startupwichita.com/profile/
 
 The projects beta was completed and launched about three months later at [startupwichita.com](http://startupwichita.com), and we as a community have been contributing to its development since then.
 
+## Prerequisites
+
+- ruby version 2.2.0
+- ImageMagick or GraphicsMagick command-line tool (used in
+  [minimagick](https://github.com/minimagick/minimagick) gem)
+- bundler
+
+##Installation and Setup
+
+- Clone the repo and `cd` into the directory.
+- Run `bundle install`.
+- Run `rake db:migrate`.
+- Run `rails s`
+
+** We use sqlite3 as database. **
+** Data seeding is also included in the migrations. ** 
+
 ##We would love for you to use this app for your community or to contribute:
 
 * Fork this repo
