@@ -6,11 +6,11 @@ class PeopleController < InheritedResources::Base
 
   def index
     if params[:tag]
-      @featured_people = Person.tagged_with(params[:tag]).uniq
-      @people = Person.tagged_with(params[:tag]).uniq
+      @featured_people = Person.where(:featured =>  true).tagged_with(params[:tag]).uniq
+      @people = Person.where(:featured => false).tagged_with(params[:tag]).uniq
     else
-      @featured_people = Person.all
-      @people = Person.all
+      @featured_people = Person.where(:featured =>  true)
+      @people = Person.where(:featured =>  false)
     end
 
     respond_to do |format|

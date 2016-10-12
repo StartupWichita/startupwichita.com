@@ -1,16 +1,5 @@
 <%= f.hidden_field :user_id %>
 
-<% if current_user.admin? %>
-  <div class="form-group">
-    <%= f.label :featured, :class => "col-md-4 control-label" do %>
-    Featured Person <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="This is only visible to Admins. Checking this box will put this user on the front page."></i>
-    <% end %>
-    <div class="col-md-8">
-      <%= f.check_box :featured %>
-    </div>
-  </div>
-<% end %>
-
 <div class="form-group">
     <%= f.label :last_name, :class => "sr-only" %>
     <div class="input-group">
@@ -120,7 +109,7 @@
 </div>
 
 <div class="form-group">
-  <img src="<%= profile_image(f.object) %>" alt="" class="profile-img img-circle img-responsive" style="float: left; margin: 5px;"><h3>You're face here</h3><p>If you already have a Gravatar set up with the email address in your profile, you're done! If not, you can <a target="_blank" href="https://en.gravatar.com/">click here to set that up.</a></p>
+  <img src="<%= profile_image(f.object) %>" alt="" class="profile-img img-circle img-responsive" style="float: left; margin: 5px;"><h3>Your face here</h3><p>If you already have a Gravatar set up with the email address in your profile, you're done! If not, you can <a target="_blank" href="https://en.gravatar.com/">click here to set that up.</a></p>
 
   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     No, I really, really want to upload an image instead of amazing web services.
@@ -152,3 +141,14 @@
         </div>
     </div>
 </div>
+
+<% if current_user.admin? %>
+  <div class="form-group">
+    <%= f.label :featured, :class => "col-md-4 control-label" do %>
+    Featured Person <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="This is only visible to Admins. Checking this box will put this user on the front page."></i>
+    <% end %>
+    <div class="col-md-8">
+      <%= f.check_box :featured %>
+    </div>
+  </div>
+<% end %>

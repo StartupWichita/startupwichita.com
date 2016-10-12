@@ -1,8 +1,8 @@
 class Person < ActiveRecord::Base
   SCORING_GUIDE = {
-    first_name: 5, last_name: 5, email: 5, phone: 5, title: 5, twitter_username: 5,
-    allow_contact:5, interests: 5, roles: 5, website: 10, company_name: 10, bio: 10,
-    skills: 10, avatar_file_name: 15, featured: 100
+    first_name: 5, last_name: 5, email: 15, phone: 0, title: 1, twitter_username: 5,
+    allow_contact:45, interests: 1, roles: 1, website: 1, company_name: 1, bio: 20,
+    skills: 1, avatar_file_name: 1, featured: 1000
   }
 
   extend FriendlyId
@@ -14,6 +14,8 @@ class Person < ActiveRecord::Base
 
   # this user relationship is optional (admins can edit people, and so can users who are attached to people)
   belongs_to :user
+  has_and_belongs_to_many :news
+  has_and_belongs_to_many :events
 
   scope :featured, -> { where(featured: true) }
   default_scope -> { order(profile_score: :desc).order(updated_at: :desc) }

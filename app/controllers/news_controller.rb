@@ -5,8 +5,17 @@ class NewsController < ApplicationController
 
   respond_to :html
 
+  #to use mentions helper in view 
+  include MentionsHelper
+
+
   def index
-    @news = News.all
+    if params[:person] then
+      person = Person.find_by(slug: params[:person])
+      @news = person ? person.news : []
+    else
+      @news = News.all
+    end
     respond_with(@news)
   end
 
@@ -26,12 +35,14 @@ class NewsController < ApplicationController
     @news = News.new(news_params)
     @news.user = current_user
     @news.save
+    PersonMentions.extract_and_link!(@news)
     flash[:notice] = "News Item successfully created"
     respond_with(@news)
   end
 
   def update
     @news.update(news_params)
+    PersonMentions.extract_and_link!(@news)
     flash[:notice] = "News Item successfully updated"
     respond_with(@news)
   end
@@ -64,4 +75,6 @@ class NewsController < ApplicationController
   def news_params
     params.require(:news).permit(:title, :content, :url, :tag_list)
   end
+  
 end
+
