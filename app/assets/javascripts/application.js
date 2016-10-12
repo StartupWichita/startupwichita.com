@@ -24,5 +24,5 @@ $(function () {
       container: '.form-group'
   });
 
-  $('input.date-time-picker').datetimepicker();
+  $('input.date-time-picker').datetimepicker( "option", "altFormat", "yy-mm-dd hh:mm:ss" );
 });
