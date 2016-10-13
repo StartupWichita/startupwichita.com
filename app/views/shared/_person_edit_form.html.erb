@@ -1,16 +1,5 @@
 <%= f.hidden_field :user_id %>
 
-<% if current_user.admin? %>
-  <div class="form-group">
-    <%= f.label :featured, :class => "col-md-4 control-label" do %>
-    Featured Person <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="This is only visible to Admins. Checking this box will put this user on the front page."></i>
-    <% end %>
-    <div class="col-md-8">
-      <%= f.check_box :featured %>
-    </div>
-  </div>
-<% end %>
-
 <div class="form-group">
   <img src="<%= profile_image(f.object) %>" alt="" class="profile-img img-circle img-responsive" style="float: left; margin: 5px;"><h3>You're face here</h3><p>If you already have a Gravatar set up with the email address in your profile, you're done! If not, you can <a target="_blank" href="https://signup.wordpress.com/signup/?ref=oauth2&oauth2_redirect=49608c71729e59cdfaf9388e01e03d91%40https%3A%2F%2Fpublic-api.wordpress.com%2Foauth2%2Fauthorize%2F%3Fclient_id%3D1854%26response_type%3Dcode%26blog_id%3D0%26state%3Dccda9f0e7803fd4134e79e60f8aa527cf5835a1ef6ea2e634d313f3ad992e36a%26redirect_uri%3Dhttps%253A%252F%252Fen.gravatar.com%252Fconnect%252F%253Faction%253Drequest_access_token%26jetpack-code%26jetpack-user-id%3D0%26action%3Doauth2-login&wpcom_connect=1">click here to set that up.</a></p>
 
@@ -144,6 +133,33 @@
 </div>
 
 <div class="form-group">
+<<<<<<< HEAD
+=======
+  <img src="<%= profile_image(f.object) %>" alt="" class="profile-img img-circle img-responsive" style="float: left; margin: 5px;"><h3>Your face here</h3><p>If you already have a Gravatar set up with the email address in your profile, you're done! If not, you can <a target="_blank" href="https://en.gravatar.com/">click here to set that up.</a></p>
+
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    No, I really, really want to upload an image instead of amazing web services.
+  </button>
+  <div class="collapse" id="collapseExample">
+      <br>
+        <%= f.label :avatar, :class => "sr-only" %>
+        <div class="input-group">
+          <div class="input-group-addon">Avatar</div>
+            <%= f.file_field :avatar, autofocus: true, :class => "form-control" %>
+        </div>
+        <%= f.label :delete_avatar, :class => "sr-only" %>
+        <div class="input-group">
+          <div class="input-group-addon">Remove Avatar <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Check if you would like to remove your custom image and fall back to the gravatar image associated with your email."></span></div>
+            <div class="bg-cream" style="padding: 6px 12px;">
+            <%= f.check_box :delete_avatar, autofocus: true %>
+            </div>
+        </div>
+
+  </div>
+</div>
+
+<div class="form-group">
+>>>>>>> 882d38aaf9353bad317818116494c70787f50a4c
     <%= f.label :allow_contact, :class => "sr-only"%>
     <div class="input-group">
         <div class="input-group-addon">Allow Contact <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Allow people to contact you via email. Your email will not be displayed anywhere. Your phone number will be shown to users if it is entered above."></i></div>
@@ -152,3 +168,14 @@
         </div>
     </div>
 </div>
+
+<% if current_user.admin? %>
+  <div class="form-group">
+    <%= f.label :featured, :class => "col-md-4 control-label" do %>
+    Featured Person <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="This is only visible to Admins. Checking this box will put this user on the front page."></i>
+    <% end %>
+    <div class="col-md-8">
+      <%= f.check_box :featured %>
+    </div>
+  </div>
+<% end %>
