@@ -20,7 +20,7 @@
                 <%= f.label :starts_at, "Start Date", :class => "sr-only" %>
                 <div class="input-group">
                     <div class="input-group-addon">Starts</div>
-                    <%= f.text_field :starts_at, class: "form-control date-time-picker" %>
+                    <%= f.text_field :starts_at, class: "form-control date-time-picker", dateFormat: 'yy-mm-dd hh:mm:ss' %>
                 </div>
             </div>
 
@@ -28,7 +28,7 @@
                 <%= f.label :ends_at, "End Date", :class => "sr-only" %>
                 <div class="input-group">
                     <div class="input-group-addon">Ends</div>
-                    <%= f.text_field :ends_at, class: "form-control date-time-picker" %>
+                    <%= f.text_field :ends_at, class: "form-control date-time-picker", dateFormat: 'yy-mm-dd hh:mm:ss' %>
                 </div>
             </div>
 
