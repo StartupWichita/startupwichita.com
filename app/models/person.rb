@@ -1,8 +1,12 @@
+require 'net/http'
+
 class Person < ActiveRecord::Base
+  include ApplicationHelper
+
   SCORING_GUIDE = {
     first_name: 5, last_name: 5, email: 15, phone: 0, title: 1, twitter_username: 5,
     allow_contact:45, interests: 1, roles: 1, website: 1, company_name: 1, bio: 20,
-    skills: 1, avatar_file_name: 1, featured: 1000
+    skills: 1, avatar_file_name: 1, featured: 1000, gravatar_image_found: 3
   }
 
   extend FriendlyId
@@ -84,6 +88,19 @@ class Person < ActiveRecord::Base
     total = 0
 
     SCORING_GUIDE.each { |key, value| total += self.try(key).present? ? value : 0 }
+
+    unless avatar.exists?
+      avatar = URI.parse(avatar_url(email))
+      Net::HTTP.start(avatar.host, avatar.port, use_ssl: true) do |http|
+        response = http.head "#{avatar.path}?d=404"
+        case response.code
+        when '200'
+          total += SCORING_GUIDE[:gravatar_image_found]
+        when '404'
+          total -= SCORING_GUIDE[:gravatar_image_found]
+        end
+      end
+    end
 
     self.update_column(:profile_score, total)
   end
