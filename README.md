@@ -31,6 +31,5 @@ The projects beta was completed and launched about three months later at [startu
 
 * Make a Pull Request
 
-<div style="background: #281816; width: 100%; text-align: center;">
 ![Our sweet logo designed by Dominic Flask](http://www.startupwichita.com/assets/tophandlogo-02-4bd31d8d294b67de4cc32b2c5141d6a9.png)
-</div>
+
