@@ -30,6 +30,8 @@ gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 gem 'configatron'
 
+gem 'meetup_client'
+
 gem 'momentjs-rails', '>= 2.9.0'
 
 gem 'gravatar_image_tag'
@@ -42,6 +44,8 @@ gem 'mini_magick'
 group :development, :test do
   gem 'spring'
   gem 'sqlite3'
+
+  gem 'dotenv-rails'
 
   gem 'annotate'
   gem 'pry'
