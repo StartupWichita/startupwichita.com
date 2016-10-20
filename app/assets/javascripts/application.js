@@ -32,6 +32,7 @@ $(function () {
     at: "@",
     data: '/at_who',
     displayTpl: "<li>${slug} <small>${full_name}</small></li>",
+    insertTpl: "${atwho-at}${slug}",
     searchKey: 'slug',
   });
 });
