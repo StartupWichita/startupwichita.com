@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   post '/people/:id/contact', to: 'people#contact', as: 'people_contact'
   get '/people/:id/contact', to: 'people#show', as: 'people_contact_get'
 
-  devise_for :users, :controllers => { :registrations => "registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, :controllers => { :registrations => "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
 
   match "/people/create_profile" => "people#new", as: :people_create_profile, :via => :get
 

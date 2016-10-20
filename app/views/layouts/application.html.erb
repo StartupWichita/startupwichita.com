@@ -107,12 +107,11 @@
         <%= yield :utility_bar %>
       </div>
     <% end %>
-
-    <% unless notice.blank? %>
+    <% if notice %>
       <div class="alert alert-success text-center"><div class="container"><%= notice %></div></div>
     <% end %>
 
-    <% unless alert.blank? %>
+    <% if alert %>
       <div class="alert alert-danger text-center"><div class="container"><%= alert %></div></div>
     <% end %>
 
