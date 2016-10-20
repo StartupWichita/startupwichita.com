@@ -6,11 +6,13 @@ class AtWhoController < ApplicationController
   private
 
   def serialized_people
-    Person.all.map do |profile|
-      {
-        slug: profile.slug,
-        full_name: profile.full_name,
-      }
+    [].tap do |collection|
+      Person.find_each do |person|
+        collection << {
+          slug: person.slug,
+          full_name: person.full_name,
+        }
+      end
     end
   end
 end
