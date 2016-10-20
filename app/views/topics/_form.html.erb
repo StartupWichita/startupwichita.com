@@ -9,7 +9,7 @@
 <div class="form-group">
     <%= f.label :content, :class => "sr-only" %>
     <div class="input-group">
-        <div class="input-group-addon">Content</div>
+        <div class="input-group-addon">Content <%= render 'shared/supports_markdown_icon' %></div>
         <%= f.text_area :content, :class => "form-control" %>
     </div>
 </div>
