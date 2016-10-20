@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :resources
   resources :news
   resources :events
+  resources :at_who
 
   resources :people do
     collection do
