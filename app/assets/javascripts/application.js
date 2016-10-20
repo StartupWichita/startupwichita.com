@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.atwho
 //= require bootstrap-sprockets
 //= require owl.carousel
 //= require select2
@@ -27,4 +28,11 @@ $(function () {
   $('input.date-time-picker').datetimepicker();
 
 
+  $('.at-who').atwho({
+    at: "@",
+    data: '/at_who',
+    displayTpl: "<li>${slug} <small>${full_name}</small></li>",
+    insertTpl: "${atwho-at}${slug}",
+    searchKey: 'slug',
+  });
 });

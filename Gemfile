@@ -40,6 +40,7 @@ gem 'select2-rails'
 gem 'sendgrid', '~> 1.2.0'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'jquery-atwho-rails'
 
 group :development, :test do
   gem 'spring'
@@ -59,6 +60,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
   gem 'rspec-nc'
+  gem 'rspec-json_expectations'
   gem 'minitest'
   gem 'capybara'
   gem 'formulaic'
