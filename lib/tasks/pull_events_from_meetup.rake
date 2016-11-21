@@ -11,7 +11,7 @@ namespace :events do
         title: event['name'],
         content: event['description'],
         url: event['event_url'],
-        starts_at: Time.at(event['time']/1000) - 6.hours,
+        starts_at: Time.at(event['time']/1000),
         ends_at: get_ends_at(event['time'], event['duration']),
         address: format_address(event['venue']),
         user_id: ENV['RAKE_EVENTS_OWNER_ID'])
@@ -25,12 +25,12 @@ namespace :events do
 
     def update_existing_event(event)
       record = Event.where(url: event['event_url']).first
-      return if record.user_id && record.user_id != ENV['RAKE_EVENTS_OWNER_ID']
+      return if record.user_id && record.user_id != ENV['RAKE_EVENTS_OWNER_ID'].to_i
 
       record.title = event['name']
       record.content = event['description']
       record.url = event['event_url']
-      record.starts_at = Time.at(event['time']/1000) - 6.hours,
+      record.starts_at = Time.at(event['time']/1000)
       record.ends_at = get_ends_at(event['time'], event['duration'])
       record.address = format_address(event['venue'])
       record.user_id = ENV['RAKE_EVENTS_OWNER_ID']
@@ -76,7 +76,7 @@ namespace :events do
     end
 
     def get_ends_at(time, duration)
-      duration ? (Time.at((time + duration)/1000) - 6.hours) : (Time.at(time/1000) - 6.hours)
+      duration ? (Time.at((time + duration)/1000) - 6.hours) : Time.at(time/1000)
     end
 
     # --------------------
