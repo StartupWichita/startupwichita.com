@@ -11,7 +11,7 @@ namespace :events do
         title: event['name'],
         content: event['description'],
         url: event['event_url'],
-        starts_at: Time.at(event['time']/1000) - 6.hours,
+        starts_at: get_starts_at(event['time']),
         ends_at: get_ends_at(event['time'], event['duration']),
         address: format_address(event['venue']),
         user_id: ENV['RAKE_EVENTS_OWNER_ID'])
@@ -30,7 +30,7 @@ namespace :events do
       record.title = event['name']
       record.content = event['description']
       record.url = event['event_url']
-      record.starts_at = Time.at(event['time']/1000) - 6.hours
+      record.starts_at = get_starts_at(event['time'])
       record.ends_at = get_ends_at(event['time'], event['duration'])
       record.address = format_address(event['venue'])
       record.user_id = ENV['RAKE_EVENTS_OWNER_ID']
@@ -54,6 +54,7 @@ namespace :events do
 
         response['results'].each do |event|
           next if event['time'] > two_months_from_now
+          next if duplicate_from_other_group(event)
           event_exists(event) ? update_existing_event(event) : create_new_event(event)
         end
       end
@@ -61,6 +62,14 @@ namespace :events do
 
     def event_exists(event)
       Event.where(url: event['event_url']).any?
+    end
+
+    def duplicate_from_other_group(event)
+      events = Event.where(
+        title: event['name'],
+        starts_at: get_starts_at(event['time']))
+
+      events.count > 0
     end
 
     def format_address(venue)
@@ -73,6 +82,10 @@ namespace :events do
       result << "#{venue['state']}"
       result << " #{venue['zip']}"
       result
+    end
+
+    def get_starts_at(time)
+      Time.at(time / 1000) - 6.hours
     end
 
     def get_ends_at(time, duration)
