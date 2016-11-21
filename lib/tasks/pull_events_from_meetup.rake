@@ -76,7 +76,7 @@ namespace :events do
     end
 
     def get_ends_at(time, duration)
-      duration ? Time.at((time + duration)/1000) : Time.at(time)
+      duration ? Time.at((time + duration)/1000) : Time.at(time/1000)
     end
 
     # --------------------
