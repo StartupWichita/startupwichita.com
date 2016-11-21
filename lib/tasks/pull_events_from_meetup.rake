@@ -11,7 +11,7 @@ namespace :events do
         title: event['name'],
         content: event['description'],
         url: event['event_url'],
-        starts_at: Time.at(event['time']/1000),
+        starts_at: Time.at(event['time']/1000).in_time_zone("America/Chicago"),
         ends_at: get_ends_at(event['time'], event['duration']),
         address: format_address(event['venue']),
         user_id: ENV['RAKE_EVENTS_OWNER_ID'])
