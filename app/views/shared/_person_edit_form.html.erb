@@ -91,7 +91,7 @@
 <div class="form-group">
     <%= f.label :bio, :class => "sr-only" %>
     <div class="input-group">
-      <div class="input-group-addon">Bio <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Feel free to use >Markdown to add panache to your bio."></span></div>
+      <div class="input-group-addon">Bio <%= render 'shared/supports_markdown_icon', title: "Feel free to use >Markdown to add panache to your bio." %></div>
       <%= f.text_area :bio, autofocus: true, :class => "form-control", :style => "height:8em" %>
     </div>
 </div>

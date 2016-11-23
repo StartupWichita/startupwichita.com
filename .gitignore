@@ -18,3 +18,4 @@
 /public/system/*/*
 /config/initializers/devise.rb
 .DS_Store
+.env
