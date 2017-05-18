@@ -35,9 +35,14 @@ class User < ActiveRecord::Base
       #user.image = auth.info.image # assuming the user model has an image
     end
   end
-  
-  
-  
+
+  def name
+    if @person == nil
+      return "Unknown Person"
+    end
+    @person.full_name
+  end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
