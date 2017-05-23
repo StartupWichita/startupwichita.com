@@ -21,4 +21,20 @@ require 'spec_helper'
 
 describe User, type: :model do
   let(:user) { FactoryGirl.create(:user) }
+
+  describe 'User.name' do
+    context 'when person is nil' do
+      it 'should give "Unknown User"' do
+        user = FactoryGirl.create(:user, person: nil)
+        expect(user.name).to eq('Unknown Person')
+      end
+    end
+    context 'when person is not nil' do
+      it 'should give name' do
+        user = FactoryGirl.create(:user)
+        user.person = FactoryGirl.create(:person)
+        expect(user.name).to eq(user.person.full_name)
+      end
+    end
+  end
 end
