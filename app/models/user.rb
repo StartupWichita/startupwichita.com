@@ -37,10 +37,10 @@ class User < ActiveRecord::Base
   end
 
   def name
-    if @person == nil
+    if person == nil
       return "Unknown Person"
     end
-    @person.full_name
+    person.full_name
   end
 
   def self.new_with_session(params, session)
