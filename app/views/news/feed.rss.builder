@@ -16,7 +16,7 @@ xml.rss :version => "2.0" do
         else
           xml.title ""
         end
-        xml.author news.user.person.full_name
+        xml.author news.user.name
         xml.pubDate news.created_at.to_s(:rfc822)
         xml.link ("http://www.startupwichita.com" + news_path(news))
         xml.guid news.id
