@@ -46,7 +46,7 @@ class Person < ActiveRecord::Base
   before_validation :assign_role_list
   before_validation { avatar.clear if delete_avatar == '1' }
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :email
 
   if ActiveRecord::Base.connection.column_exists?(:people, :profile_score)
     after_save :update_profile_score, on: [:create, :update]
@@ -59,11 +59,28 @@ class Person < ActiveRecord::Base
   class << self
 
     def all_skill_tags
-      ActsAsTaggableOn::Tagging.where(context: "skills").where.not(tagger_id: nil).map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
+      ActsAsTaggableOn::Tagging.where(context: "skills")
+        .where.not(tagger_id: nil)
+          .map do |tagging|
+            {
+              "id" => "#{tagging.tag.id}",
+              "name" => tagging.tag.name,
+              "tagging_count" => tagging.tag.taggings_count
+            }
+          end
+          .select{|t| t['tagging_count'] > 1}.uniq
     end
 
     def all_interest_tags
-      ActsAsTaggableOn::Tagging.all.where(context: "interests").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
+      ActsAsTaggableOn::Tagging.all.where(context: "interests")
+        .map do |tagging|
+          {
+            "id" => "#{tagging.tag.id}",
+            "name" => tagging.tag.name,
+            "tagging_count" => tagging.tag.taggings_count
+          }
+        end
+        .select{|t| t['tagging_count'] > 1}.uniq
     end
 
     def all_person_role_tags
