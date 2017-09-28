@@ -19,7 +19,7 @@
             <p>
               <% if Person.all_skill_tags.size > 0 %>
                 <% Person.all_skill_tags.each do |tag| %>
-                  <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+                  <span class="tags"><%= link_to tag.name, people_with_interests_path(tag: tag.name) %></span>
                 <% end %>
               <% else %>
                 No common skills found
@@ -29,7 +29,7 @@
             <p>
               <% if Person.all_interest_tags.size > 0 %>
                 <% Person.all_interest_tags.each do |tag| %>
-                  <span class="tags"><%= link_to tag['name'], people_with_interests_path(tag: tag['name']) %></span>
+                  <span class="tags"><%= link_to tag.name, people_with_interests_path(tag: tag.name) %></span>
                 <% end %>
               <% else %>
                 No common interests found

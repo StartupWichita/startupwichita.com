@@ -59,29 +59,19 @@ class Person < ActiveRecord::Base
 
   class << self
 
+    def selected_tags_for(context)
+      ActsAsTaggableOn::Tag.joins(:taggings)
+        .where("taggings.context = ?", context)
+        .where.not("taggings.tagger_id" => nil)
+        .distinct
+    end
+
     def all_skill_tags
-      ActsAsTaggableOn::Tagging.where(context: "skills")
-        .where.not(tagger_id: nil)
-          .map do |tagging|
-            {
-              "id" => "#{tagging.tag.id}",
-              "name" => tagging.tag.name,
-              "tagging_count" => tagging.tag.taggings_count
-            }
-          end
-          .select{|t| t['tagging_count'] > 1}.uniq
+      selected_tags_for("skills")
     end
 
     def all_interest_tags
-      ActsAsTaggableOn::Tagging.all.where(context: "interests")
-        .map do |tagging|
-          {
-            "id" => "#{tagging.tag.id}",
-            "name" => tagging.tag.name,
-            "tagging_count" => tagging.tag.taggings_count
-          }
-        end
-        .select{|t| t['tagging_count'] > 1}.uniq
+      selected_tags_for("interests")
     end
 
     def all_person_role_tags
