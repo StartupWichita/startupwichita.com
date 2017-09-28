@@ -216,6 +216,8 @@ GEM
     puma (2.11.1)
       rack (>= 1.1, < 2.0)
     rack (1.5.2)
+    rack-mini-profiler (0.10.5)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.10)
@@ -360,6 +362,7 @@ DEPENDENCIES
   pg
   pry
   puma
+  rack-mini-profiler
   rails
   rails_12factor
   redcarpet
@@ -383,4 +386,4 @@ RUBY VERSION
    ruby 2.2.0p0
 
 BUNDLED WITH
-   1.13.2
+   1.15.4
