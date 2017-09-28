@@ -82,5 +82,5 @@ end
 
 group :development do
   # benchmark performance
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler'
 end
