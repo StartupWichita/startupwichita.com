@@ -4,9 +4,22 @@ class Person < ActiveRecord::Base
   include ApplicationHelper
 
   SCORING_GUIDE = {
-    first_name: 5, last_name: 5, email: 15, phone: 0, title: 1, twitter_username: 5,
-    allow_contact:45, interests: 1, roles: 1, website: 1, company_name: 1, bio: 20,
-    skills: 1, avatar_file_name: 1, featured: 1000, gravatar_image_found: 3
+    allow_contact: 45,
+    avatar_file_name: 1,
+    bio: 20,
+    company_name: 1,
+    email: 15, 
+    featured: 1000,
+    first_name: 5, 
+    gravatar_image_found: 3,
+    interests: 1,
+    last_name: 5, 
+    phone: 0, 
+    roles: 1,
+    skills: 1, 
+    title: 1, 
+    twitter_username: 5,
+    website: 1
   }
 
   extend FriendlyId
