@@ -34,8 +34,20 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many :news
   has_and_belongs_to_many :events
 
-  scope :featured, -> { where(featured: true) }
+  scope :featured,     -> { where(featured: true) }
   scope :not_featured, -> { where(featured: false) }
+
+  scope :with_interests, -> { includes(:interests) }
+  scope :with_skills,    -> { includes(:skills) }
+  scope :with_news,      -> { includes(:news) }
+  scope :with_events,    -> { includes(:events) }
+  scope :with_associations, -> { 
+    with_events
+      .with_news
+      .with_interests
+      .with_skills
+  }
+
   default_scope -> { order(profile_score: :desc, updated_at: :desc) }
 
   # Results in the following colums

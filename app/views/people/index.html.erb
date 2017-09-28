@@ -56,11 +56,6 @@
 
     <% unless @people.blank? && @featured_people.blank? %>
       <% if @featured_people.size > 0 %>
-  <!--       <div class="row">
-          <div class="col-md-12">
-            <h2>Featured People</h2>
-          </div>
-        </div> -->
         <div class="row inline">
           <% @featured_people.each do |person| %>
             <% if person %>
