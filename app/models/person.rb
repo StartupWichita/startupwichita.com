@@ -36,7 +36,7 @@ class Person < ActiveRecord::Base
 
   scope :featured, -> { where(featured: true) }
   scope :not_featured, -> { where(featured: false) }
-  default_scope -> { order(profile_score: :desc).order(updated_at: :desc) }
+  default_scope -> { order(profile_score: :desc, updated_at: :desc) }
 
   # Results in the following colums
   #   avatar_file_name
