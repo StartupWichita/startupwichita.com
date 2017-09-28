@@ -22,6 +22,7 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many :events
 
   scope :featured, -> { where(featured: true) }
+  scope :not_featured, -> { where(featured: false) }
   default_scope -> { order(profile_score: :desc).order(updated_at: :desc) }
 
   # Results in the following colums
