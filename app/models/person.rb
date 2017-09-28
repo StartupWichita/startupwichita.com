@@ -72,26 +72,7 @@ class Person < ActiveRecord::Base
 
   class << self
 
-    def selected_tags_for(context)
-      ActsAsTaggableOn::Tag.joins(:taggings)
-        .where("taggings.context = ?", context)
-        .where.not("taggings.tagger_id" => nil)
-        .distinct
-    end
-
-    def all_skill_tags
-      selected_tags_for("skills")
-    end
-
-    def all_interest_tags
-      selected_tags_for("interests")
-    end
-
-    def all_person_role_tags
-      PersonRole.all.map {|role| { "id" => "#{role.id}", "name" => role.name } }
-    end
-
-  private
+    private
 
     def to_csv
       CSV.generate do |csv|
