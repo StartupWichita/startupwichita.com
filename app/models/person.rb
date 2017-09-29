@@ -4,9 +4,22 @@ class Person < ActiveRecord::Base
   include ApplicationHelper
 
   SCORING_GUIDE = {
-    first_name: 5, last_name: 5, email: 15, phone: 0, title: 1, twitter_username: 5,
-    allow_contact:45, interests: 1, roles: 1, website: 1, company_name: 1, bio: 20,
-    skills: 1, avatar_file_name: 1, featured: 1000, gravatar_image_found: 3
+    allow_contact: 45,
+    avatar_file_name: 1,
+    bio: 20,
+    company_name: 1,
+    email: 15, 
+    featured: 1000,
+    first_name: 5, 
+    gravatar_image_found: 3,
+    interests: 1,
+    last_name: 5, 
+    phone: 0, 
+    roles: 1,
+    skills: 1, 
+    title: 1, 
+    twitter_username: 5,
+    website: 1
   }
 
   extend FriendlyId
@@ -21,8 +34,21 @@ class Person < ActiveRecord::Base
   has_and_belongs_to_many :news
   has_and_belongs_to_many :events
 
-  scope :featured, -> { where(featured: true) }
-  default_scope -> { order(profile_score: :desc).order(updated_at: :desc) }
+  scope :featured,     -> { where(featured: true) }
+  scope :not_featured, -> { where(featured: false) }
+
+  scope :with_interests, -> { includes(:interests) }
+  scope :with_skills,    -> { includes(:skills) }
+  scope :with_news,      -> { includes(:news) }
+  scope :with_events,    -> { includes(:events) }
+  scope :with_associations, -> { 
+    with_events
+      .with_news
+      .with_interests
+      .with_skills
+  }
+
+  default_scope -> { order(profile_score: :desc, updated_at: :desc) }
 
   # Results in the following colums
   #   avatar_file_name
@@ -46,7 +72,7 @@ class Person < ActiveRecord::Base
   before_validation :assign_role_list
   before_validation { avatar.clear if delete_avatar == '1' }
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :email
 
   if ActiveRecord::Base.connection.column_exists?(:people, :profile_score)
     after_save :update_profile_score, on: [:create, :update]
@@ -58,19 +84,7 @@ class Person < ActiveRecord::Base
 
   class << self
 
-    def all_skill_tags
-      ActsAsTaggableOn::Tagging.where(context: "skills").where.not(tagger_id: nil).map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
-    end
-
-    def all_interest_tags
-      ActsAsTaggableOn::Tagging.all.where(context: "interests").map {|tagging| { "id" => "#{tagging.tag.id}", "name" => tagging.tag.name, "tagging_count" => tagging.tag.taggings_count } }.select{|t| t['tagging_count'] > 1}.uniq
-    end
-
-    def all_person_role_tags
-      PersonRole.all.map {|role| { "id" => "#{role.id}", "name" => role.name } }
-    end
-
-  private
+    private
 
     def to_csv
       CSV.generate do |csv|

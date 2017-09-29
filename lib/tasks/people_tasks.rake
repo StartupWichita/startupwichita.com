@@ -13,7 +13,7 @@
 #     # Only change on Sunday
 #     if Time.zone.now.wday == 0
 #       # Make sure we select different people at least each consecutive week, so get last week's winners
-#       featured_person_ids = Person.where(featured: true).collect{ |p| p.id }
+#       featured_person_ids = Person.featured.pluck(:id)
 #
 #       # Clear all from being featured
 #       Person.update_all(featured: false)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008054106) do
+ActiveRecord::Schema.define(version: 20170928183539) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20161008054106) do
     t.integer  "profile_score",       default: 0,     null: false
   end
 
+  add_index "people", ["featured"], name: "index_people_on_featured"
   add_index "people", ["profile_score"], name: "index_people_on_profile_score"
   add_index "people", ["slug"], name: "index_people_on_slug", unique: true
   add_index "people", ["user_id"], name: "index_people_on_user_id"
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(version: 20161008054106) do
     t.datetime "created_at"
   end
 
+  add_index "taggings", ["context"], name: "index_taggings_on_context"
   add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
 
