@@ -5,7 +5,7 @@
 #  id :integer          not null, primary key
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe News, type: :model do
   let(:news) { FactoryGirl.create(:news) }

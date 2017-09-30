@@ -14,7 +14,7 @@
 #  actable_type :string(255)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Topic, type: :model do
   let(:topic) { FactoryGirl.create(:topic) }

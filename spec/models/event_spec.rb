@@ -8,7 +8,7 @@
 #  address   :string(255)
 #
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe Event, type: :model do
   let(:event) { FactoryGirl.create(:event) }
