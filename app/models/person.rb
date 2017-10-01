@@ -8,18 +8,20 @@ class Person < ActiveRecord::Base
     avatar_file_name: 1,
     bio: 20,
     company_name: 1,
-    email: 15, 
+    email: 15,
     featured: 1000,
-    first_name: 5, 
+    first_name: 5,
     gravatar_image_found: 3,
     interests: 1,
-    last_name: 5, 
-    phone: 0, 
+    last_name: 5,
+    phone: 0,
     roles: 1,
-    skills: 1, 
-    title: 1, 
+    skills: 1,
+    title: 1,
     twitter_username: 5,
-    website: 1
+    website: 1,
+    total_posts: 0,
+    total_mentions: 0
   }
 
   extend FriendlyId
@@ -41,7 +43,7 @@ class Person < ActiveRecord::Base
   scope :with_skills,    -> { includes(:skills) }
   scope :with_news,      -> { includes(:news) }
   scope :with_events,    -> { includes(:events) }
-  scope :with_associations, -> { 
+  scope :with_associations, -> {
     with_events
       .with_news
       .with_interests
@@ -98,10 +100,29 @@ class Person < ActiveRecord::Base
     self.role_list = role_list_tags.join(",") unless role_list_tags.blank?
   end
 
+  def get_total_posts
+    @total_posts ||= news.count
+  end
+
+  def get_total_mentions
+    @total_mentions ||= News.all.map { |news| news.people.where(:id => id) ? 1 : 0 }
+    @total_mentions.reduce(&:+)
+  end
+
   def update_profile_score
     total = 0
 
-    SCORING_GUIDE.each { |key, value| total += self.try(key).present? ? value : 0 }
+    SCORING_GUIDE.each do |key, value|
+      if key.to_s == 'total_posts'
+        total += get_total_posts.present? ? get_total_posts : 0
+        next
+      elsif key.to_s == 'total_mentions'
+        total += get_total_mentions.present? ? get_total_mentions : 0
+        next
+      end
+
+      total += self.try(key).present? ? value : 0
+    end
 
     unless avatar.exists?
       avatar = URI.parse(avatar_url(email))
