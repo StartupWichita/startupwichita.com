@@ -13,6 +13,10 @@
                 <%= link_to edit_resource_path(@resource), :class => "btn" do %>
                     <span class="glyphicon glyphicon-edit"></span> Edit Resource
                 <% end %>
+
+                <%= link_to indications_path, :method => :post, :class => "btn" do %>
+                    <span class="glyphicon glyphicon-thumbs-down"></span> Mark As Spam
+                <% end %>
             <% end %>
         </div>
     </div>
