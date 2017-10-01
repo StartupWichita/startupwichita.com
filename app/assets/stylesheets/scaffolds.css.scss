@@ -35,11 +35,11 @@ div {
 
 #error_explanation {
   width: 450px;
-  border: 2px solid red;
+  border: 2px solid $orange;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: $cream;
   h2 {
     text-align: left;
     font-weight: bold;
@@ -47,11 +47,12 @@ div {
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
+    background-color: $orange;
+    color: $cream;
   }
   ul li {
     font-size: 12px;
     list-style: square;
+    color: $charcoal;
   }
 }
