@@ -2,10 +2,10 @@ RSpec.describe Person do
   let(:existing_person) { create(:person) }
 
   describe '#update_profile_score' do
-    it 'updates the score after create' do
-      new_person = Person.create(first_name: 'FirstName', last_name: 'LastName')
+    let(:new_person) { create(:person) }
 
-      expect(new_person.profile_score).to eq(15)
+    it 'updates the score after create' do
+      expect(new_person.profile_score).to_not eq(0)
     end
 
     it 'updates the score after an update' do
@@ -19,7 +19,7 @@ RSpec.describe Person do
   end
 
   describe '#default_scope' do
-    let!(:missing_email_phone) { create(:person, email: nil, phone: nil) }
+    let!(:missing_email_phone) { create(:person) }
     let!(:first_featured_person) { create(:person, featured: true) }
     let!(:second_featured_person) { create(:person, featured: true) }
 

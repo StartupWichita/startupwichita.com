@@ -5,7 +5,7 @@ class NewsController < ApplicationController
 
   respond_to :html
 
-  #to use mentions helper in view 
+  #to use mentions helper in view
   include MentionsHelper
 
 
@@ -75,6 +75,4 @@ class NewsController < ApplicationController
   def news_params
     params.require(:news).permit(:title, :content, :url, :tag_list)
   end
-  
 end
-
