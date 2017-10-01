@@ -32,4 +32,37 @@ RSpec.describe Person do
       expect(Person.first).to eq(first_featured_person)
     end
   end
+
+  describe '#completed_profile?' do
+
+    it 'has incomplete profile' do
+      expect(existing_person.completed_profile?).to eql(false)
+    end
+
+    it 'has incomplete profile with one topic' do
+      FactoryGirl.create(:news, user: existing_person.user)
+
+      expect(existing_person.completed_profile?).to eql(false)
+    end
+
+    it 'has incomplete profile with no avatar' do
+      existing_person.update_attributes(avatar_file_name: nil)
+
+      expect(existing_person.completed_profile?).to eql(false)
+    end
+
+    it 'has completed profile with long bio' do
+      existing_person.bio = 'Software engineer participating in Hackoberfest and trying to have a long bio!'
+      expect(existing_person.completed_profile?).to eql(true)
+    end
+
+    it 'has completed profile with three topics' do
+      1.upto(3).each do |i|
+        FactoryGirl.create(:news, user: existing_person.user)
+      end
+
+      expect(existing_person.completed_profile?).to eql(true)
+    end
+
+  end
 end
