@@ -22,7 +22,7 @@ describe Event, type: :model do
     let(:event_two) { FactoryGirl.create(:event, starts_at: 24.hours.ago, ends_at: 1.hour.from_now) }
 
     it 'should only return current and future Events' do
-      expect(Event.coming_soon).to eq [ event_two ]
+      expect(Event.upcoming).to eq [ event_two ]
     end
   end
 end
