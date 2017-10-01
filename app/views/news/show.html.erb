@@ -14,8 +14,8 @@
                     <span class="glyphicon glyphicon-edit"></span> Edit News
                 <% end %>
 
-                <%= link_to indications_path, :method => :post, :class => "btn" do %>
-                    <span class="glyphicon glyphicon-thumbs-down"></span> Mark As Spam
+                <%= link_to indications_path(id: @news.id, type: :news), :method => :post, :class => "btn" do %>
+                    <span class="glyphicon glyphicon-thumbs-down"></span> Flag For Spam
                 <% end %>
             <% end %>
         </div>
