@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+      <p>Hey <%= @user.name %>!</p>
+
+      <p>
+          User <%= @indication.user.name %> has just flagged <%= @indication.questionable_type.downcase %> #<%= @indication.questionable_id %> as spam.
+      </p>
+
+      <p>
+        Please, take a look when you have a minute!
+      </p>
+  </body>
+</html>

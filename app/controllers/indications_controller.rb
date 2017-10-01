@@ -4,7 +4,13 @@ class IndicationsController < ApplicationController
 
   def create
     return unless INDICATION_TYPES.include?(params[:type].to_sym)
-    params[:type].capitalize.constantize.find(params[:id]).indications.create(user_id: current_user.id)
-    redirect_to :back, notice: 'Thank you, admins has been notified!'
+
+    model      = params[:type].capitalize.constantize
+    indication = model.find(params[:id]).indications.new(user_id: current_user.id)
+
+    if indication.save
+      User.admins.each { |admin| UserMailer.indicate(indication, admin).deliver }
+      redirect_to :back, notice: 'Thank you, admins has been notified!'
+    end
   end
 end
