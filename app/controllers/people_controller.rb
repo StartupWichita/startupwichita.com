@@ -15,6 +15,9 @@ class PeopleController < InheritedResources::Base
       @people = Person.not_featured.with_associations
     end
 
+    @featured_people = @featured_people.select { |person| person.completed_profile? }
+    @people = @people.select { |person| person.completed_profile? }
+
     respond_to do |format|
       format.html
       format.csv {render text: @people.to_csv}
