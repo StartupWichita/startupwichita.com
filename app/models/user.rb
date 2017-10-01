@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook, :twitter]
 
   has_one :person
+  has_many :topics
   accepts_nested_attributes_for :person
 
   scope :admins, -> { where('admin = ?', true).all }

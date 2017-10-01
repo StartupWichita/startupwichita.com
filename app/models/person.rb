@@ -118,4 +118,38 @@ class Person < ActiveRecord::Base
 
     self.update_column(:profile_score, total)
   end
+
+  def completed_profile?
+    return false if [first_name, last_name, email, company_name].any? { |attribute| attribute.blank? }
+    return false if !has_avatar?
+    has_long_bio? || exceed_min_posts_count?(3)
+  end
+
+  def has_avatar?
+    avatar? || has_gravatar?
+  end
+
+  def has_gravatar?
+    # same logic as update_profile_score
+
+    avatar = URI.parse(avatar_url(email))
+    Net::HTTP.start(avatar.host, avatar.port, use_ssl: true) do |http|
+      response = http.head "#{avatar.path}?d=404"
+      case response.code
+      when '200'
+        return true
+      when '404'
+        return false
+      end
+    end
+  end
+
+  def has_long_bio?
+    return false if bio.blank?
+    bio.chars.length >= 60
+  end
+
+  def exceed_min_posts_count?(count)
+    user.topics.count >= count
+  end
 end
