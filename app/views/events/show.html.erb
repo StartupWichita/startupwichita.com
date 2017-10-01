@@ -13,6 +13,10 @@
           <%= link_to edit_event_path(@event), :class => "btn" do %>
               <span class="glyphicon glyphicon-edit"></span> Edit Event
           <% end %>
+
+          <%= link_to indications_path(id: @event.id, type: :event), :method => :post, :class => "btn" do %>
+              <span class="glyphicon glyphicon-thumbs-down"></span> Flag For Spam
+          <% end %>
       <% end %>
     </div>
   </div>

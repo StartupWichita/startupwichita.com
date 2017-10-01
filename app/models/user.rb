@@ -27,6 +27,8 @@ class User < ActiveRecord::Base
   has_one :person
   accepts_nested_attributes_for :person
 
+  scope :admins, -> { where('admin = ?', true).all }
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

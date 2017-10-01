@@ -8,4 +8,5 @@
 class Resource < ActiveRecord::Base
   acts_as :topic
   acts_as_taggable
+  has_many :indications, as: :questionable
 end

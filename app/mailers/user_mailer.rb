@@ -14,4 +14,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email,
          :subject => 'Password Reset Notification')
   end
+
+  def indicate(indication, user)
+    @indication = indication
+    @user       = user
+
+    mail(to: user.email, subject: "#{indication.questionable_type} ##{indication.questionable_id} flagged as spam (notice #{indication.questionable.indications.count})")
+  end
 end

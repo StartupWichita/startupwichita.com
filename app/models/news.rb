@@ -11,5 +11,5 @@ class News < ActiveRecord::Base
   acts_as_taggable
 
   has_and_belongs_to_many :people
-
+  has_many :indications, as: :questionable
 end

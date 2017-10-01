@@ -13,6 +13,7 @@ class Event < ActiveRecord::Base
   acts_as_taggable
 
   has_and_belongs_to_many :people
+  has_many :indications, as: :questionable
 
   scope :upcoming, -> { where("ends_at >= ?", Time.now.utc - 6.hours).order("ends_at") }
   scope :recent, -> { where("ends_at < ?", Time.now.utc - 6.hours).order("ends_at").reverse }
