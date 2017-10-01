@@ -1,4 +1,9 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :indication do
+    questionable_id 1
+questionable_type "MyString"
+user_id 1
+  end
+
   factory :person_email do
     person
     recipient_email 'MyString'
