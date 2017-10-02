@@ -6,6 +6,9 @@
 <br>
 <p>The projects beta was completed and launched about three months later at [startupwichita.com](http://startupwichita.com), and we as a community have been contributing to its development since then.</p>
 
+## Find an Issue?
+Please report any problems you might encounter by [creating an Issue](https://github.com/StartupWichita/startupwichita.com/issues).
+
 ## Requirements
 
 - ruby version 2.2.0
@@ -34,7 +37,7 @@ Start server ``` ruby rails s ```
  - <b>The more information, the better.</b> Make judicious use of the pull request body. Describe what changes were made, why you made them, and what impact they will have for users.
  - Pull requests are easy and fun. If this is your first pull request, it may help to understand GitHub Flow.
  - If you’re submitting a code contribution, be sure to read the code contributions section below.
- 
+
  ### Submitting a pull request via github.com
  1. Navigate to the file within StartupWichita/startupwichita.com that you’d like to edit.
  2. Click the pencil icon in the top right corner to edit the file
@@ -43,7 +46,7 @@ Start server ``` ruby rails s ```
  5. Click “Create pull request”
  6. Add a descriptive title and detailed description for your proposed change. The more information the better.
  7. Click “Create pull request”<br>
- 
+
  <p><b>That’s it! You’ll be automatically subscribed to receive updates as others review your proposed change and provide feedback.</b></p>
 
  ### Submitting a pull request via Git command line
