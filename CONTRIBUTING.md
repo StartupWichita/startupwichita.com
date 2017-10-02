@@ -18,7 +18,7 @@ Take a look at our open issues on the [GitHub Issues page](https://github.com/St
  6. Add a descriptive title and detailed description for your proposed change. The more information the better.
  7. Click “Create pull request”<br>
 
- **That’s it! You’ll be automatically subscribed to receive updates as others review your proposed change and provide feedback.**
+ **That’s it! You’ll be automatically subscribed to receive updates as others review your proposed change and provide feedback**
 
  ### Submitting a pull request via Git command line
  1. Fork the project by clicking “Fork” in the top right corner of StartupWichita/startupwichita.com.
