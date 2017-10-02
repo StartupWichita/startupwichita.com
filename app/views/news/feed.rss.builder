@@ -5,7 +5,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title "Startup Wichita - News"
     xml.author "Startup Wichita"
-    xml.description "Bringing connections and collisions to the entrepreneur, startup, and tech communities in Wichita, Kansas."
+    xml.description "Connecting the people in the startup and tech communities in Wichita, Kansas."
     xml.link "http://www.startupwichita.com"
     xml.language "en"
 
