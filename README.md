@@ -1,9 +1,9 @@
  ![Our sweet logo designed by Dominic Flask](http://www.startupwichita.com/assets/tophandlogo-02-4bd31d8d294b67de4cc32b2c5141d6a9.png?style="align:center")
   <h1>StartupWichita.com</h1>
 <h4">Ruby on Rails application for communities, their news, events, and resources; built for what Wichita, Kansas needed in their tech and startup scene.</h4>
-
+<br>
 <p>Well, hello there. My name is [Kenton Hansen](http://startupwichita.com/profile/kenton-hansen). You might remember me from such works as <b>"Startup Weekend Wichita"</b> or <b>"The Labor Party."</b> Today, however, I'm here to talk about this web application started at a Hackathon in March 2014 with [devICT](http://devict.org).</p>
-
+<br>
 <p>The projects beta was completed and launched about three months later at [startupwichita.com](http://startupwichita.com), and we as a community have been contributing to its development since then.</p>
 
 ## Requirements
