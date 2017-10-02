@@ -51,8 +51,18 @@
 <div class="form-group">
     <%= f.label :phone, :class => "sr-only" %>
     <div class="input-group">
-      <div class="input-group-addon">Phone <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="If you enter a phone number, and allow contact below, your phone number will be shown to other users."></span></div>
+      <div class="input-group-addon">Phone <span class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="If you enter a phone number, and check Allow Contact below, your phone number will be shown to the public."></span></div>
       <%= f.text_field :phone, autofocus: true, :class => "form-control" %>
+    </div>
+</div>
+
+<div class="form-group">
+    <%= f.label :allow_contact, :class => "sr-only"%>
+    <div class="input-group">
+        <div class="input-group-addon">Allow Contact <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Allow people to contact you via email. Your email will not be displayed anywhere. Your phone number will be shown to users if it is entered above."></i></div>
+        <div class="bg-cream" style="padding: 6px 12px;">
+            <%= f.check_box :allow_contact, autofocus: true %>
+        </div>
     </div>
 </div>
 
@@ -91,15 +101,16 @@
 <div class="form-group">
     <%= f.label :bio, :class => "sr-only" %>
     <div class="input-group">
-      <div class="input-group-addon">Bio <%= render 'shared/supports_markdown_icon', title: "Feel free to use >Markdown to add panache to your bio." %></div>
+      <div class="input-group-addon">Describe Yourself <%= render 'shared/supports_markdown_icon', title: "Feel free to use >Markdown to add panache to your bio." %></div>
       <%= f.text_area :bio, autofocus: true, :class => "form-control", :style => "height:8em" %>
     </div>
+    <%= render partial: "shared/markdown_help"%>
 </div>
 
 <div class="form-group">
     <%= f.label :skill_list, :class => "sr-only" %>
     <div class="input-group">
-      <div class="input-group-addon">Skill List<br>(seperate with commas)</div>
+      <div class="input-group-addon">Your Skill List<br>(seperate with commas)</div>
       <%= f.text_area :skill_list, autofocus: true, :class => "form-control", :style => "height:8em" %>
     </div>
 </div>
@@ -107,7 +118,7 @@
 <div class="form-group">
     <%= f.label :interest_list, :class => "sr-only" %>
     <div class="input-group">
-      <div class="input-group-addon">Interest List <br>(seperate with commas)</div>
+      <div class="input-group-addon">Your Interest List <br>(seperate with commas)</div>
       <%= f.text_area :interest_list, autofocus: true, :class => "form-control", :style => "height:8em" %>
     </div>
 </div>
@@ -128,16 +139,6 @@
                 <% end %>
               <% end %>
             <% end %>
-        </div>
-    </div>
-</div>
-
-<div class="form-group">
-    <%= f.label :allow_contact, :class => "sr-only"%>
-    <div class="input-group">
-        <div class="input-group-addon">Allow Contact <i class="glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="Allow people to contact you via email. Your email will not be displayed anywhere. Your phone number will be shown to users if it is entered above."></i></div>
-        <div class="bg-cream" style="padding: 6px 12px;">
-            <%= f.check_box :allow_contact, autofocus: true %>
         </div>
     </div>
 </div>
