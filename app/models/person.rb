@@ -39,8 +39,8 @@ class Person < ActiveRecord::Base
   scope :featured,     -> { where(featured: true) }
   scope :not_featured, -> { where(featured: false) }
 
-  scope :with_interests, -> { includes(:interests) }
-  scope :with_skills,    -> { includes(:skills) }
+  scope :with_interests, -> { references(:tags).includes(:interests) }
+  scope :with_skills,    -> { references(:tags).includes(:skills) }
   scope :with_news,      -> { includes(:news) }
   scope :with_events,    -> { includes(:events) }
   scope :with_associations, -> {
