@@ -27,7 +27,8 @@ describe ResourcesController, type: :controller do
     end
 
     describe "#destroy" do
-      let(:resource) { FactoryGirl.create(:resource) }
+      let(:topic) { FactoryGirl.create(:topic, user: user) }
+      let(:resource) { FactoryGirl.create(:resource, topic: topic) }
 
       context "success" do
         it "succeeds" do

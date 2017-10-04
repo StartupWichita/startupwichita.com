@@ -26,6 +26,11 @@ RSpec.configure do |config|
   config.include Formulaic::Dsl, type: :feature
   config.include FactoryGirl::Syntax::Methods
 
+  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
+  config.include Shoulda::Matchers::ActiveModel, type: :model
+  config.include Shoulda::Matchers::ActiveRecord, type: :model
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
