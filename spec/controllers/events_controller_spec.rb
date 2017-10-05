@@ -6,7 +6,9 @@ describe EventsController, type: :controller do
   context "unauthenticated" do
     describe "#index" do
       it "shows a list of current and future Events" do
-        expect(Event).to receive(:coming_soon)
+        expect(Event).to receive(:upcoming)
+        expect(Event).to receive(:recent)
+        expect(Event).to receive(:all)
 
         get :index
       end
@@ -33,7 +35,8 @@ describe EventsController, type: :controller do
     end
 
     describe "#destroy" do
-      let(:event) { FactoryGirl.create(:event) }
+      let(:topic) { FactoryGirl.create(:topic, user: user) }
+      let(:event) { FactoryGirl.create(:event, topic: topic) }
 
       context "success" do
         it "succeeds" do

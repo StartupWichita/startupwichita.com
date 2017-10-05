@@ -53,6 +53,10 @@ RSpec.describe PeopleController, :type => :controller do
   end
 
   describe "GET new" do
+    before do
+      allow(controller).to receive(:authenticate_user!)
+      allow(controller).to receive(:verify_administrator)
+    end
     it "assigns a new person as @person" do
       get :new, {}, valid_session
       expect(assigns(:person)).to be_a_new(Person)
