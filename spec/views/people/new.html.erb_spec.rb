@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 RSpec.describe "people/new", :type => :view do
+  let(:user) { FactoryGirl.create(:user) }
   before(:each) do
+    sign_in(user)
     assign(:person, Person.new(
       :user => nil,
       :first_name => "MyString",

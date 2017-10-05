@@ -27,7 +27,8 @@ describe NewsController, type: :controller do
     end
 
     describe "#destroy" do
-      let(:news) { FactoryGirl.create(:news) }
+      let(:topic) { FactoryGirl.create(:topic, user: user) }
+      let(:news) { FactoryGirl.create(:news, topic: topic) }
 
       context "success" do
         it "succeeds" do
