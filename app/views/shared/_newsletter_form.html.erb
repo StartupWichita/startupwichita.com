@@ -1,6 +1,7 @@
 <div class="row text-center">
     <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12 inline-block">
-        <%= form_tag "/newsletters", :html => { :class => 'form-horizontal' } do %>            
+        <%= form_tag "/newsletters", html: { :class => 'form-horizontal' },
+                :method => (subscribed_to_newsletters? ? :delete : :post) do %>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <% if user_signed_in? %>
@@ -10,7 +11,8 @@
                     <%= text_field_tag :email, "", :required => true, :class => "form-control", :placeholder => 'Email Address' %>
                 <% end %>
                 <span class="input-group-btn">
-                    <%= submit_tag "Subscribe", :class => "btn btn-secondary bg-charcoal white" %>
+                    <%= submit_tag (subscribed_to_newsletters? ? 'Unsubscribe' : 'Subscribe'), 
+                        :class => "btn btn-secondary #{subscribed_to_newsletters? ? 'btn-danger' : 'bg-charcoal'} white" %>
                 </span>
             </div>
         <% end %>

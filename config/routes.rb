@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  post '/newsletters', to: 'newsletter_signup#post'
+  resource :newsletters, :controller => :newsletter_signup, only: [:create, :destroy]
 
   get '/people/claim/:slug', to: 'people#claim', as: 'people_claim'
   post '/people/claim/:slug', to: 'people#claim_person', as: 'people_claim_person'
