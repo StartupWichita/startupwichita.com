@@ -35,6 +35,9 @@ Rails.application.routes.draw do
 
   match "/profile/:slug" => "people#show", as: :profile, :via => :get
 
+  controller :pages do
+    get :unsubscribe
+  end
   root 'pages#index'
 
   get '/topics/tags', to: 'topics#tags', :defaults => { :format => :json }
