@@ -39,4 +39,7 @@ module ApplicationHelper
     "https://gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}?#{configatron.app_url}/assets/missing.png"
   end
 
+  def subscribed_to_newsletters?
+    user_signed_in? && TuesdayReader.exists?(:person => current_user)
+  end
 end
