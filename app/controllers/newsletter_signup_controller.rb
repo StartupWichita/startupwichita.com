@@ -29,7 +29,14 @@ class NewsletterSignupController < ApplicationController
     end
     
     def fetch_reader
-        @tuesday_reader = TuesdayReader.where(allow_params).first unless !TuesdayReader.exists?(allow_params)
+        unless !TuesdayReader.exists?(allow_params)
+            @tuesday_reader = TuesdayReader.where(allow_params).first 
+        else
+            flash[:alert] = "Not Currently Subscribed!"
+            redirect_to :back
+        end
+    rescue ActionController::RedirectBackError
+        redirect_to :controller => :pages, :action => :index
     end
 
     private
