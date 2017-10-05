@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003071425) do
+ActiveRecord::Schema.define(version: 20171005085305) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
