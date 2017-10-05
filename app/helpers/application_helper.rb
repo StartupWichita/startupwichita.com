@@ -40,6 +40,6 @@ module ApplicationHelper
   end
 
   def subscribed_to_newsletters?
-    user_signed_in? && TuesdayReader.exists?(:person => current_user)
+    current_page?(unsubscribe_path) || (user_signed_in? && TuesdayReader.exists?(:person => current_user))
   end
 end
