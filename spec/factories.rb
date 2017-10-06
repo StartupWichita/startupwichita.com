@@ -1,7 +1,23 @@
-FactoryGirl.define do  factory :indication do
+FactoryGirl.define do
+    factory :indication do
     questionable_id 1
-questionable_type "MyString"
-user_id 1
+    questionable_type "MyString"
+    user_id 1
+  end
+
+    factory :person do
+    user
+    first_name 'Charles'
+    last_name 'Lee'
+    email 'charles.lee@example.com'
+    phone '999-999-9999'
+    website 'charleschanlee@example.com'
+    company_name 'Charlie Co.'
+    title 'Software Engineer'
+    twitter_username 'ExampleChar'
+    bio 'Software engineer participating in Hackoberfest!'
+    avatar_file_name 'example_avatar.jpg'
+    allow_contact true
   end
 
   factory :person_email do
