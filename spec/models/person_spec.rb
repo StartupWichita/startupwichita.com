@@ -1,4 +1,6 @@
+require 'rails_helper'
 RSpec.describe Person do
+  # validates presence of first_name, last_name, email
   let(:existing_person) { create(:person) }
 
   describe '#update_profile_score' do
@@ -6,7 +8,7 @@ RSpec.describe Person do
 
     it 'updates the score after create' do
       expect(new_person.profile_score).to_not eq(0)
-    end
+  end
 
     it 'updates the score after file name update' do
       expect { existing_person.update_attributes(avatar_file_name: nil) }.to change { existing_person.profile_score }.from(96).to(96 - 1)
