@@ -17,7 +17,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{::Rails.root}/spec/factories"
 
   config.use_transactional_fixtures = true
 
@@ -28,6 +28,7 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :controller
+  config.include ControllerHelpers, :type => :controller
   config.include Formulaic::Dsl, type: :feature
   config.include FactoryGirl::Syntax::Methods
 
