@@ -1,7 +1,6 @@
-require 'net/http'
-
 class Person < ActiveRecord::Base
   include ApplicationHelper
+<<<<<<< HEAD
 
   SCORING_GUIDE = {
     allow_contact: 45,
@@ -24,6 +23,8 @@ class Person < ActiveRecord::Base
     total_mentions: 0
   }
 
+=======
+>>>>>>> Extract scoring calculation to the dedicated service
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
@@ -110,34 +111,7 @@ class Person < ActiveRecord::Base
   end
 
   def update_profile_score
-    total = 0
-
-    SCORING_GUIDE.each do |key, value|
-      if key.to_s == 'total_posts'
-        total += get_total_posts.present? ? get_total_posts : 0
-        next
-      elsif key.to_s == 'total_mentions'
-        total += get_total_mentions.present? ? get_total_mentions : 0
-        next
-      end
-
-      total += self.try(key).present? ? value : 0
-    end
-
-    unless avatar.exists?
-      avatar = URI.parse(avatar_url(email))
-      Net::HTTP.start(avatar.host, avatar.port, use_ssl: true) do |http|
-        response = http.head "#{avatar.path}?d=404"
-        case response.code
-        when '200'
-          total += SCORING_GUIDE[:gravatar_image_found]
-        when '404'
-          total -= SCORING_GUIDE[:gravatar_image_found]
-        end
-      end
-    end
-
-    self.update_column(:profile_score, total)
+    ScoringService.(self)
   end
 
   def completed_profile?

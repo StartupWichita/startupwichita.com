@@ -13,7 +13,7 @@ RSpec.describe Person do
       existing_person.update_attributes(avatar_file_name: nil)
 
       expect(existing_person.profile_score).to eq(
-        old_score - described_class::SCORING_GUIDE[:avatar_file_name]
+        old_score - ScoringService::GUIDE[:avatar_file_name]
       )
     end
   end
