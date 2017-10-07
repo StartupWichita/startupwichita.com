@@ -34,23 +34,12 @@ class ScoringService
 
   def self.check_gravatar(person, score)
     unless person.avatar.exists?
-      gravatar = URI.parse(avatar_url(person.email))
-      Net::HTTP.start(gravatar.host, gravatar.port, use_ssl: true) do |http|
-        response = http.head "#{gravatar.path}?d=404"
-        case response.code
-        when '200'
-          score += GUIDE[:gravatar_image_found]
-        when '404'
-          score -= GUIDE[:gravatar_image_found]
-        end
+      if person.has_gravatar?
+        score += GUIDE[:gravatar_image_found]
+      else
+        score -= GUIDE[:gravatar_image_found]
       end
     end
     score
-  end
-
-  def self.avatar_url(email)
-    default_url = "https://cldup.com/DlSzJYRl0p.png"
-    gravatar_id = Digest::MD5::hexdigest(email).downcase
-    "https://gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}?#{configatron.app_url}/assets/missing.png"
   end
 end

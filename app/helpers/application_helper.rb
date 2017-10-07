@@ -32,4 +32,11 @@ module ApplicationHelper
       gravatar_image_tag user.email, gravatar: { size: sizes[format] }, :class => classes
     end
   end
+
+  def avatar_url(email)
+    default_url = "https://cldup.com/DlSzJYRl0p.png"
+    gravatar_id = Digest::MD5::hexdigest(email).downcase
+    "https://gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}?#{configatron.app_url}/assets/missing.png"
+  end
+
 end

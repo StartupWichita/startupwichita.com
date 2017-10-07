@@ -104,8 +104,6 @@ class Person < ActiveRecord::Base
   end
 
   def has_gravatar?
-    # same logic as update_profile_score
-
     avatar = URI.parse(avatar_url(email))
     Net::HTTP.start(avatar.host, avatar.port, use_ssl: true) do |http|
       response = http.head "#{avatar.path}?d=404"
