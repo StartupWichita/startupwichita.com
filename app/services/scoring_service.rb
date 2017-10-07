@@ -16,7 +16,7 @@ class ScoringService
     phone:                0,
     roles:                1,
     skills:               1,
-    title:                1 ,
+    title:                1,
     twitter_username:     5,
     website:              1
   }.freeze
