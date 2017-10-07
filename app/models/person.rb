@@ -1,30 +1,5 @@
 class Person < ActiveRecord::Base
   include ApplicationHelper
-<<<<<<< HEAD
-
-  SCORING_GUIDE = {
-    allow_contact: 45,
-    avatar_file_name: 1,
-    bio: 20,
-    company_name: 1,
-    email: 15,
-    featured: 1000,
-    first_name: 5,
-    gravatar_image_found: 3,
-    interests: 1,
-    last_name: 5,
-    phone: 0,
-    roles: 1,
-    skills: 1,
-    title: 1,
-    twitter_username: 5,
-    website: 1,
-    total_posts: 0,
-    total_mentions: 0
-  }
-
-=======
->>>>>>> Extract scoring calculation to the dedicated service
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
@@ -86,6 +61,10 @@ class Person < ActiveRecord::Base
   end
 
   class << self
+
+    def pdate_profiles_scores
+      all.each { |person| person.update_profile_score }
+    end
 
     private
 
