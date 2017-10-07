@@ -28,7 +28,7 @@ class ScoringService
   end
 
   def self.check_guide(person, score = DEFAULT_SCORE)
-    GUIDE.each { |key, value| score += person.try(key).present? ? value : 0; p score }
+    GUIDE.each { |key, value| score += person.try(key).present? ? value : 0 }
     score
   end
 
