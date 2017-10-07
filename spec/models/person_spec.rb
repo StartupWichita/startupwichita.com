@@ -9,12 +9,7 @@ RSpec.describe Person do
     end
 
     it 'updates the score after an update' do
-      old_score = existing_person.profile_score
-      existing_person.update_attributes(avatar_file_name: nil)
-
-      expect(existing_person.profile_score).to eq(
-        old_score - ScoringService::GUIDE[:avatar_file_name]
-      )
+      expect { existing_person.update_attributes(avatar_file_name: nil) }.to change { existing_person.profile_score }.from(96).to(95)
     end
   end
 
