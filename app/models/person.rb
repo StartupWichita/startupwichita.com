@@ -93,6 +93,10 @@ class Person < ActiveRecord::Base
     ScoringService.(self)
   end
 
+  def incomplete_profile?
+    return ! self.completed_profile?
+  end
+
   def completed_profile?
     return false if [first_name, last_name, email, company_name].any? { |attribute| attribute.blank? }
     return false if !has_avatar?
@@ -118,7 +122,7 @@ class Person < ActiveRecord::Base
 
   def has_long_bio?
     return false if bio.blank?
-    bio.chars.length >= 10
+    bio.chars.length >= 3
   end
 
   def exceed_min_posts_count?(count)

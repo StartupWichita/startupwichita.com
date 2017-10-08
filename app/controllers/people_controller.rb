@@ -10,13 +10,17 @@ class PeopleController < InheritedResources::Base
         .with_associations.tagged_with(params[:tag]).distinct
       @people = Person.not_featured
         .with_associations.tagged_with(params[:tag]).distinct
+      @incomplete_people = Person.not_featured
+        .with_associations.tagged_with(params[:tag]).distinct
     else
       @featured_people = Person.featured.with_associations
       @people = Person.not_featured.with_associations
+      @incomplete_people = Person.not_featured.with_associations
     end
 
     @featured_people = @featured_people.select { |person| person.completed_profile? }
     @people = @people.select { |person| person.completed_profile? }
+    @incomplete_people = @incomplete_people.select { |person| person.incomplete_profile? }
 
     respond_to do |format|
       format.html
