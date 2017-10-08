@@ -8,13 +8,12 @@ RSpec.describe Person do
       expect(new_person.profile_score).to_not eq(0)
     end
 
-    it 'updates the score after an update' do
-      old_score = existing_person.profile_score
-      existing_person.update_attributes(avatar_file_name: nil)
+    it 'updates the score after file name update' do
+      expect { existing_person.update_attributes(avatar_file_name: nil) }.to change { existing_person.profile_score }.from(96).to(96 - 1)
+    end
 
-      expect(existing_person.profile_score).to eq(
-        old_score - described_class::SCORING_GUIDE[:avatar_file_name]
-      )
+    it 'updates the score after valid gravatar update' do
+      expect { existing_person.update_attributes(email: '4ek@li.ru') }.to change { existing_person.profile_score }.from(96).to(96 + 3 + 3)
     end
   end
 
