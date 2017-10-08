@@ -18,6 +18,7 @@ class Event < ActiveRecord::Base
   scope :upcoming, -> { where("ends_at >= ?", Time.now.utc - 6.hours).order("ends_at") }
   scope :recent, -> { where("ends_at < ?", Time.now.utc - 6.hours).order("ends_at").reverse }
   scope :featured, -> { upcoming.limit(8) }
+  scope :active, -> { where('starts_at >= ?', Time.now.utc).where('end_at <= ?', Time.now.utc) }
 
   validates :starts_at, presence: true
   validates :ends_at, presence: true
