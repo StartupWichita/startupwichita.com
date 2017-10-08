@@ -96,7 +96,7 @@ class Person < ActiveRecord::Base
   def completed_profile?
     return false if [first_name, last_name, email, company_name].any? { |attribute| attribute.blank? }
     return false if !has_avatar?
-    has_long_bio? || exceed_min_posts_count?(3)
+    has_long_bio? #|| exceed_min_posts_count?(3)
   end
 
   def has_avatar?
@@ -122,6 +122,6 @@ class Person < ActiveRecord::Base
   end
 
   def exceed_min_posts_count?(count)
-    # User.topics.count >= count
+    User.topics.count >= count
   end
 end
