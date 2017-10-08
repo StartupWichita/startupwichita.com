@@ -118,7 +118,7 @@ class Person < ActiveRecord::Base
 
   def has_long_bio?
     return false if bio.blank?
-    bio.chars.length >= 60
+    bio.chars.length >= 10
   end
 
   def exceed_min_posts_count?(count)
