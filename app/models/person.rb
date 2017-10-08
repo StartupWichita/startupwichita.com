@@ -122,6 +122,6 @@ class Person < ActiveRecord::Base
   end
 
   def exceed_min_posts_count?(count)
-    # user.topic.count >= count
+    User.topics.count >= count
   end
 end
