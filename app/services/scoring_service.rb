@@ -4,7 +4,7 @@ class ScoringService
   DEFAULT_SCORE = 0.freeze
   GUIDE = {
     allow_contact:        45,
-    avatar_file_name:     1,
+    avatar_file_name:     3,
     bio:                  20,
     company_name:         1,
     email:                15,
