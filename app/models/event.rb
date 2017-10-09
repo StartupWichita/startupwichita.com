@@ -26,4 +26,8 @@ class Event < ActiveRecord::Base
 
   mount_uploader :image, EventImageUploader
   serialize :image, JSON
+
+  def has_image?
+    self.image.file.present?
+  end
 end

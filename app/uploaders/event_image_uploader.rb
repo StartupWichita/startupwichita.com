@@ -5,6 +5,8 @@ class EventImageUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
 
+  process :store_dimensions
+
   # Choose what kind of storage to use for this uploader:
   storage :file
 
@@ -50,5 +52,15 @@ class EventImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  private
+
+  def store_dimensions
+    if file && model
+      image = ::MiniMagick::Image.open(file.file)
+      model.image_width = image.width
+      model.image_height = image.height
+    end
+  end
 
 end

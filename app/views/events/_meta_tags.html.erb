@@ -1,0 +1,18 @@
+<!-- Events - Dynamic Facebook Open Graph Tags -->
+<% meta_tag :og_title, "Event - #{event.title}" %>
+<% meta_tag :og_description, event.content %>
+
+<% if event.has_image? %>
+    <% meta_tag :og_image, event.image.url %>
+    <% meta_tag :og_image_height, "#{event.image_height}" %>
+    <% meta_tag :og_image_width, "#{event.image_width}" %>
+<% end %>
+
+
+<!-- Events - Dynamic Twitter Card Tags -->
+<% meta_tag :twitter_title, "Event - #{event.title}" %>
+<% meta_tag :twitter_description, event.content %>
+
+<% if event.has_image? %>
+    <% meta_tag :twitter_image, event.image.url %>
+<% end %>
