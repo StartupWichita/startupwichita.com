@@ -30,6 +30,9 @@
             <div class="head text-center">
               <h2 class="title"><%= @event.title %></h2>
             </div>
+            <% unless @event.image.file.nil? %>
+                <%= image_tag(@event.image.url, width: '100%') %>
+            <% end %>
             <div class="body clearfix">
               <div class="description">
                 <h3><%= @event.starts_at.to_time.strftime('%b %d, %I:%M %p') %> &ndash; <%= @event.ends_at.to_time.strftime('%b %d, %I:%M %p') %></h3>

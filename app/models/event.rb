@@ -22,4 +22,7 @@ class Event < ActiveRecord::Base
   validates :starts_at, presence: true
   validates :ends_at, presence: true
   validates :address, presence: true
+
+  mount_uploader :image, EventImageUploader
+  serialize :image, JSON
 end

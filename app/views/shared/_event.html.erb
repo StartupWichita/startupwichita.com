@@ -6,6 +6,9 @@
       <div class="date-year"><%= event.starts_at.to_time.strftime('%Y') %></div>
     </div>
   </div>
+  <% unless event.image.file.nil? %>
+      <%= image_tag(event.image.url(:thumb), height: '116px') %>
+  <% end %>
   <div class="body">
     <h2 class="title"><%= link_to event_path(event) do %><%= event.title %><% end %></h2>
     <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= event.address %>"><%= event.address %></a></div>
@@ -15,3 +18,5 @@
     </div> -->
   </div>
 </div>
+
+
