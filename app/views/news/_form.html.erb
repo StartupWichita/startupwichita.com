@@ -16,7 +16,7 @@
 
             <%= render partial: 'topics/form', locals: { f: f } %>
 
-          <% unless @news.image.file.nil? %>
+          <% if @news.has_image? %>
               <div class="form-group">
                 <%= image_tag(@news.image.url, width: '100%') %>
                 <%= f.label :remove_image, :class => "sr-only" %>

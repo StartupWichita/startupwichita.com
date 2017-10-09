@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171009183144) do
+ActiveRecord::Schema.define(version: 20171009191656) do
 
   create_table "events", force: true do |t|
     t.datetime "starts_at"
@@ -49,7 +49,9 @@ ActiveRecord::Schema.define(version: 20171009183144) do
   end
 
   create_table "news", force: true do |t|
-    t.string "image"
+    t.string  "image"
+    t.integer "image_width"
+    t.integer "image_height"
   end
 
   create_table "news_people", force: true do |t|
