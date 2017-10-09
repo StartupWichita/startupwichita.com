@@ -30,6 +30,9 @@
                     <div class="head">
                         <h2 class="title"><%= link_to @news.title, @news.url + "?ref=StartupWichita.com" %></h2>
                     </div>
+                  <% unless @news.image.file.nil? %>
+                      <%= image_tag(@news.image.url, width: '100%') %>
+                  <% end %>
                     <div class="body">
                         <div class="description">
                           <%= markdown

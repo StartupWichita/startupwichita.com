@@ -16,6 +16,26 @@
 
             <%= render partial: 'topics/form', locals: { f: f } %>
 
+          <% unless @news.image.file.nil? %>
+              <div class="form-group">
+                <%= image_tag(@news.image.url, width: '100%') %>
+                <%= f.label :remove_image, :class => "sr-only" %>
+                <div class="input-group">
+                  <div class="input-group-addon">Remove Image</div>
+                  <div class="bg-cream" style="padding: 6px 12px;">
+                    <%= f.check_box :remove_image, autofocus: true %>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+          <div class="form-group">
+            <%= f.label :image, "Image", :class => "sr-only" %>
+            <div class="input-group">
+              <div class="input-group-addon">Image</div>
+              <%= f.file_field :image, autofocus: true, :class => "form-control" %>
+            </div>
+          </div>
+
             <div class="form-group">
                 <%= f.submit :class => "btn btn-block btn-lg white bg-charcoal" %>
             </div>

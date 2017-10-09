@@ -6,6 +6,9 @@
           <div class="date-year"><%= newsItem.created_at.strftime('%Y') %></div>
         </div>
     </div>
+   <% unless newsItem.image.file.nil? %>
+       <%= image_tag(newsItem.image.url(:thumb), height: '116px') %>
+   <% end %>
     <div class="body">
         <h2 class="title">
             <%= link_to news_path(newsItem) do %>
