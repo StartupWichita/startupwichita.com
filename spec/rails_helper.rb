@@ -28,7 +28,8 @@ RSpec.configure do |config|
 
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers, type: :controller
-  config.include ControllerHelpers, :type => :controller
+  config.include ControllerHelpers, type: :controller
+  config.include FeatureHelpers, type: :feature
   config.include Formulaic::Dsl, type: :feature
   config.include FactoryGirl::Syntax::Methods
 
