@@ -3,7 +3,7 @@
 <% meta_tag :og_description, news_item.content %>
 
 <% if news_item.has_image? %>
-    <% meta_tag :og_image, news_item.image.url %>
+    <% meta_tag :og_image, image_url(news_item.image.url) %>
     <% meta_tag :og_image_height, "#{news_item.image_height}" %>
     <% meta_tag :og_image_width, "#{news_item.image_width}" %>
 <% end %>
@@ -14,5 +14,5 @@
 <% meta_tag :twitter_description, news_item.content %>
 
 <% if news_item.has_image? %>
-    <% meta_tag :twitter_image, news_item.image.url %>
+    <% meta_tag :twitter_image, image_url(news_item.image.url) %>
 <% end %>
