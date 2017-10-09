@@ -1,3 +1,5 @@
+<% content_for :title, 'People' %>
+
 <% content_for :utility_bar do %>
   <div class="util-head">
       <div class="container">
@@ -70,6 +72,13 @@
           <% if person %>
             <div class="col-sm-6 col-md-4 inline-block">
               <%= render partial: "shared/profile", locals: { person: person, featured: false } %>
+            </div>
+          <% end %>
+        <% end %>
+        <% @incomplete_people.each do |person| %>
+          <% if person %>
+            <div class="col-sm-6 col-md-4 inline-block">
+              <%= render partial: "shared/unfinished_profile", locals: { person: person, featured: false } %>
             </div>
           <% end %>
         <% end %>
