@@ -11,11 +11,15 @@ RSpec.describe Person do
   end
 
     it 'updates the score after file name update' do
-      expect { existing_person.update_attributes(avatar_file_name: nil) }.to change { existing_person.profile_score }.from(96).to(96 - 1)
+      profile_score = existing_person.profile_score
+
+      expect { existing_person.update_attributes(avatar_file_name: nil) }.to change { existing_person.profile_score }.from(profile_score).to(profile_score - 3)
     end
 
     it 'updates the score after valid gravatar update' do
-      expect { existing_person.update_attributes(email: '4ek@li.ru') }.to change { existing_person.profile_score }.from(96).to(96 + 3 + 3)
+      profile_score = existing_person.profile_score
+
+      expect { existing_person.update_attributes(email: '4ek@li.ru') }.to change { existing_person.profile_score }.from(profile_score).to(profile_score + 3 + 3)
     end
   end
 
@@ -37,10 +41,12 @@ RSpec.describe Person do
   describe '#completed_profile?' do
 
     it 'has incomplete profile' do
+      existing_person.bio = nil
       expect(existing_person.completed_profile?).to eql(false)
     end
 
     it 'has incomplete profile with one topic' do
+      existing_person.bio = nil
       FactoryGirl.create(:news, user: existing_person.user)
 
       expect(existing_person.completed_profile?).to eql(false)
