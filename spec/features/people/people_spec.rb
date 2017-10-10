@@ -36,6 +36,7 @@ RSpec.feature "People", type: :feature do
 
       fill_in "person_first_name", with: "Test"
       fill_in "person_last_name", with: "Person"
+      fill_in "person_email", with: "test1234@test.com"
 
       click_button "Create Person"
 
