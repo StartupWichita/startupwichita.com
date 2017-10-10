@@ -29,6 +29,14 @@ Start server ``` ruby rails s ```
 
 **We use sqlite3 as database. Data seeding is also included in the migrations.**
 
+### Alternatively, use docker-compose
+
+Assuming you have docker and docker-compose installed on your system.
+
+`docker-compose up` - builds the image, runs migrations and seeding, and starts server. Should be accessible at port 3000 once running.
+
+To run commands in the context of the app, use: `docker-compose run app <your cmd>`. For example: `docker-compose run app bundle exec rake db:migrate`.
+
 ## We would love for you to use this app for your community or to contribute:
 
 ### Pull requests generally
