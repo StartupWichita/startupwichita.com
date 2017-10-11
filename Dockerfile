@@ -2,7 +2,7 @@ FROM ruby:2.2.0
 
 RUN apt-get update -qq \
     && apt-get install -y --no-install-recommends \
-       nodejs libpq-dev build-essential
+       nodejs libpq-dev build-essential sqlite3
 
 RUN mkdir /app
 WORKDIR /app
