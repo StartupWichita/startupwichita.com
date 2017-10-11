@@ -5,4 +5,8 @@ app:
     - "3000:3000"
   volumes:
     - .:/app
+  links:
+    - postgres:postgres
+postgres:
+  image: postgres
 
