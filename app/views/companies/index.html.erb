@@ -1,3 +1,17 @@
+<% content_for :title, 'Companies' %>
+
+<% content_for :utility_bar do %>
+  <% if !current_user.nil? && current_user.admin %>
+    <div class="util-head">
+        <div class="container">
+            <%= link_to new_company_path, class: 'btn' do %>
+               <span class="glyphicon glyphicon-plus"></span> Add Company 
+            <% end %>
+        </div>
+    </div>
+  <% end %>
+<% end %>
+
 <section class="section">
   <div class="container">
     <% if @companies.blank? %>
