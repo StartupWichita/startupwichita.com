@@ -1,0 +1,51 @@
+<div class="section">
+  <div class="container">
+    <h1 class="section-title">
+      Add New Company
+    </h1>
+
+    <%= form_for @company, html: { class: "col-md-offset-3 col-md-6" } do |f| %>
+      <% if @company.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@company.errors.count, "error") %> prohibited this person from being saved:
+          </h2>
+
+          <ul>
+            <% @company.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :name, class: 'sr-only' %>
+        <div class="input-group">
+          <div class="input-group-addon">Name</div>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :website, class: 'sr-only' %>
+        <div class="input-group">
+          <div class="input-group-addon">Website</div>
+          <%= f.url_field :website, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description, class: 'sr-only' %>
+        <div class="input-group">
+          <div class="input-group-addon">Description</div>
+          <%= f.text_area :description, class: 'form-control tall' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-block btn-lg white bg-charcoal' %>
+      </div>
+    <% end %>
+  </div>
+</div>
