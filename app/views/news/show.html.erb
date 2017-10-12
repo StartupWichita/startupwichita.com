@@ -1,3 +1,7 @@
+<% content_for :title, @news.title %>
+
+<%= render partial: 'news/meta_tags', locals: {news_item: @news} %>
+
 <% content_for :utility_bar do %>
     <div class="util-head">
         <div class="container">
@@ -30,6 +34,9 @@
                     <div class="head">
                         <h2 class="title"><%= link_to @news.title, @news.url + "?ref=StartupWichita.com" %></h2>
                     </div>
+                  <% if @news.has_image? %>
+                      <%= image_tag(@news.image.url, width: '100%') %>
+                  <% end %>
                     <div class="body">
                         <div class="description">
                           <%= markdown

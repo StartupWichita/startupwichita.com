@@ -1,0 +1,8 @@
+app:
+  build: .
+  command: bundle exec puma -t 5:5 -p 3000 -e development
+  ports:
+    - "3000:3000"
+  volumes:
+    - .:/app
+

@@ -6,6 +6,11 @@
           <div class="date-year"><%= newsItem.created_at.strftime('%Y') %></div>
         </div>
     </div>
+   <% if newsItem.has_image? %>
+       <%= link_to news_path(newsItem) do %>
+           <%= image_tag(newsItem.image.url(:thumb), height: '116px') %>
+       <% end %>
+   <% end %>
     <div class="body">
         <h2 class="title">
             <%= link_to news_path(newsItem) do %>

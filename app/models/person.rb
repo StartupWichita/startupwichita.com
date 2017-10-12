@@ -1,29 +1,5 @@
-require 'net/http'
-
 class Person < ActiveRecord::Base
   include ApplicationHelper
-
-  SCORING_GUIDE = {
-    allow_contact: 45,
-    avatar_file_name: 1,
-    bio: 20,
-    company_name: 1,
-    email: 15,
-    featured: 1000,
-    first_name: 5,
-    gravatar_image_found: 3,
-    interests: 1,
-    last_name: 5,
-    phone: 0,
-    roles: 1,
-    skills: 1,
-    title: 1,
-    twitter_username: 5,
-    website: 1,
-    total_posts: 0,
-    total_mentions: 0
-  }
-
   extend FriendlyId
   friendly_id :full_name, use: :slugged
 
@@ -39,8 +15,8 @@ class Person < ActiveRecord::Base
   scope :featured,     -> { where(featured: true) }
   scope :not_featured, -> { where(featured: false) }
 
-  scope :with_interests, -> { includes(:interests) }
-  scope :with_skills,    -> { includes(:skills) }
+  scope :with_interests, -> { references(:tags).includes(:interests) }
+  scope :with_skills,    -> { references(:tags).includes(:skills) }
   scope :with_news,      -> { includes(:news) }
   scope :with_events,    -> { includes(:events) }
   scope :with_associations, -> {
@@ -86,6 +62,10 @@ class Person < ActiveRecord::Base
 
   class << self
 
+    def pdate_profiles_scores
+      all.each { |person| person.update_profile_score }
+    end
+
     private
 
     def to_csv
@@ -110,40 +90,17 @@ class Person < ActiveRecord::Base
   end
 
   def update_profile_score
-    total = 0
+    ScoringService.(self)
+  end
 
-    SCORING_GUIDE.each do |key, value|
-      if key.to_s == 'total_posts'
-        total += get_total_posts.present? ? get_total_posts : 0
-        next
-      elsif key.to_s == 'total_mentions'
-        total += get_total_mentions.present? ? get_total_mentions : 0
-        next
-      end
-
-      total += self.try(key).present? ? value : 0
-    end
-
-    unless avatar.exists?
-      avatar = URI.parse(avatar_url(email))
-      Net::HTTP.start(avatar.host, avatar.port, use_ssl: true) do |http|
-        response = http.head "#{avatar.path}?d=404"
-        case response.code
-        when '200'
-          total += SCORING_GUIDE[:gravatar_image_found]
-        when '404'
-          total -= SCORING_GUIDE[:gravatar_image_found]
-        end
-      end
-    end
-
-    self.update_column(:profile_score, total)
+  def incomplete_profile?
+    return ! self.completed_profile?
   end
 
   def completed_profile?
     return false if [first_name, last_name, email, company_name].any? { |attribute| attribute.blank? }
     return false if !has_avatar?
-    has_long_bio? || exceed_min_posts_count?(3)
+    has_long_bio? #|| exceed_min_posts_count?(3)
   end
 
   def has_avatar?
@@ -151,8 +108,6 @@ class Person < ActiveRecord::Base
   end
 
   def has_gravatar?
-    # same logic as update_profile_score
-
     avatar = URI.parse(avatar_url(email))
     Net::HTTP.start(avatar.host, avatar.port, use_ssl: true) do |http|
       response = http.head "#{avatar.path}?d=404"
@@ -167,10 +122,10 @@ class Person < ActiveRecord::Base
 
   def has_long_bio?
     return false if bio.blank?
-    bio.chars.length >= 60
+    bio.chars.length >= 3
   end
 
   def exceed_min_posts_count?(count)
-    user.topics.count >= count
+    User.topics.count >= count
   end
 end

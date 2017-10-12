@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(version: 20171012172356) do
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.string   "address"
+    t.string   "image"
+    t.integer  "image_width"
+    t.integer  "image_height"
   end
 
   create_table "events_people", force: true do |t|
@@ -55,6 +58,9 @@ ActiveRecord::Schema.define(version: 20171012172356) do
   end
 
   create_table "news", force: true do |t|
+    t.string  "image"
+    t.integer "image_width"
+    t.integer "image_height"
   end
 
   create_table "news_people", force: true do |t|

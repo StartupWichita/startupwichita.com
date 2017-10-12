@@ -1,3 +1,7 @@
+<% content_for :title, @event.title %>
+
+<%= render partial: 'events/meta_tags', locals: {event: @event} %>
+
 <% content_for :utility_bar do %>
   <div class="util-head">
     <div class="container">
@@ -30,6 +34,9 @@
             <div class="head text-center">
               <h2 class="title"><%= @event.title %></h2>
             </div>
+            <% if @event.has_image? %>
+                <%= image_tag(@event.image.url, width: '100%') %>
+            <% end %>
             <div class="body clearfix">
               <div class="description">
                 <h3><%= @event.starts_at.to_time.strftime('%b %d, %I:%M %p') %> &ndash; <%= @event.ends_at.to_time.strftime('%b %d, %I:%M %p') %></h3>

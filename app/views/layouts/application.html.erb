@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Startup Wichita</title>
+    <title><%= yield(:title) + ' | ' if yield(:title).presence %>Startup Wichita</title>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -9,16 +9,29 @@
 
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <meta name="keywords" content="Startup Wichita, Business, Development, Resources, Wichita, Kansas">
-    <meta name="description" content="Startup Wichita :: The online connecting point of Wichita's Startup & Tech communities.">
+    <meta name="description" content="Startup Wichita :: The online connecting point of Wichita's Startup &amp; Tech communities.">
 
     <link href="<%= image_path 'icons/favicon.ico' %>" rel="shortcut icon" type="image/x-icon">
 
-    <meta property="fb:app_id" content="540895106043121">
-    <meta property="og:description" content="Startup Wichita :: The online connecting point of Wichita's Startup & Tech communities.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://startupwichita.com">
-    <meta property="og:image" content="<%= image_path 'tophandlogo-02.png' %>">
-    <meta property="fb:admins" content="kentonh">
+    <!-- Facebook Open Graph Tags -->
+    <meta property="fb:app_id" content="540895106043121" />
+    <meta property="fb:admins" content="kentonh" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:title" content="<%= yield_meta_tag(:og_title, "#{yield(:title) + ' | ' if yield(:title).presence}Startup Wichita") %>" />
+    <meta property="og:description" content="<%= yield_meta_tag(:og_description, "Startup Wichita :: The online connecting point of Wichita's Startup &amp; Tech communities.") %>" />
+    <meta property="og:image" content="<%= yield_meta_tag(:og_image, image_url('tophandlogo-02.png')) %>" />
+    <meta property="og:image:height" content="<%= yield_meta_tag(:og_image_height, '213') %>" />
+    <meta property="og:image:width" content="<%= yield_meta_tag(:og_image_width, '81') %>" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:site" content="@StartupWichita" />
+    <meta name="twitter:url" content="<%= request.original_url %>" />
+    <meta name="twitter:title" content="<%= yield_meta_tag(:twitter_title, "#{yield(:title) + ' | ' if yield(:title).presence}Startup Wichita") %>" />
+    <meta name="twitter:description" content="<%= yield_meta_tag(:twitter_description, "Startup Wichita :: The online connecting point of Wichita's Startup &amp; Tech communities.") %>" />
+    <meta name="twitter:image" content="<%= yield_meta_tag(:twitter_image, image_url('tophandlogo-02.png')) %>" />
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
