@@ -1,0 +1,35 @@
+<% content_for :title, @company.name %>
+
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="resource-item">
+          <div class="head text-center">
+            <h2 class="title">
+              <a href="<%= @company.website %>" title="<%= @company.name %>" target="_blank">
+                <%= @company.name %>
+              </a>
+            </h2>
+          </div>
+          <div class="body">
+            <div class="description">
+                <%= markdown.render(@company.description).html_safe %>
+                <p>
+                  <a href="<%= @company.website %>" title="<%= @company.name %>" target="_blank">
+                    <%= @company.name %>
+                  </a>
+                </p>
+            </div>
+            <div class="meta font-heading">
+                <h4 class="meta-title">Posted by</h4>
+                <span><%#= @company.user.person.full_name %></span> on <span><%= @company.created_at.strftime('%d %B %Y') %></span>
+            </div>
+          </div>
+        </div>
+
+        <%= render partial: 'topics/disqus' %>
+    </div>
+    </div>
+  </div>
+</section>

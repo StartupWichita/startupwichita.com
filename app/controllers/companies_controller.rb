@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
   end
   
   def show
+    @company = find_company
   end
 
   def new
@@ -35,5 +36,9 @@ class CompaniesController < ApplicationController
                   :logo,
                   :website,
                   :description)
+  end
+
+  def find_company
+    Company.find(params[:id])
   end
 end
