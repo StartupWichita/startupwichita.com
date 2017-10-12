@@ -1,5 +1,21 @@
 <% content_for :title, @company.name %>
 
+<% content_for :utility_bar do %>
+  <div class="util-head">
+    <div class="container">
+      <%= link_to new_company_path, class: 'btn' do %>
+        <span class="glyphicon glyphicon-plus"></span> Add Company
+      <% end %>
+
+      <% if can_edit?(@company) %>
+        <%= link_to edit_company_path(@company), class: 'btn' do %>
+            <span class="glyphicon glyphicon-edit"></span> Edit Company
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
 <section class="section">
   <div class="container">
     <div class="row">

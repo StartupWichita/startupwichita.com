@@ -18,6 +18,7 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    @company = find_company
   end
 
   def create
@@ -31,9 +32,21 @@ class CompaniesController < ApplicationController
   end
 
   def update
+    @company = find_company
+
+    if @company.update(company_params)
+      redirect_to company_path(@company)
+    else
+      render action: :edit
+    end
   end
 
   def destroy
+    @company = find_company
+
+    @company.destroy
+
+    redirect_to companies_path
   end
 
   private
