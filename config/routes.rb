@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :companies
+
   get '/people/claim/:slug', to: 'people#claim', as: 'people_claim'
   post '/people/claim/:slug', to: 'people#claim_person', as: 'people_claim_person'
 

@@ -1,0 +1,15 @@
+<section class="section">
+  <div class="container">
+    <% if @companies.blank? %>
+      <p>No companies yet.</p>
+    <% else %>
+        <div class="row inline">
+          <% @companies.each do |company| %>
+            <div class="col-sm-6 col-md-4 inline-block">
+              <%= render partial: "shared/company", locals: { company: company } %>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</section>
