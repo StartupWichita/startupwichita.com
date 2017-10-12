@@ -1,4 +1,10 @@
-FactoryGirl.define do  factory :indication do
+FactoryGirl.define do  factory :company do
+    name "MyString"
+logo ""
+website "MyString"
+description "MyText"
+  end
+  factory :indication do
     questionable_id 1
 questionable_type "MyString"
 user_id 1
