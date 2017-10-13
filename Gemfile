@@ -41,6 +41,7 @@ gem 'sendgrid', '~> 1.2.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'jquery-atwho-rails'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'spring'
