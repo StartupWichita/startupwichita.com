@@ -103,7 +103,6 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     configatron (4.5.1)
-    connection_pool (2.2.1)
     crass (1.0.2)
     database_cleaner (1.6.1)
     devise (4.3.0)
@@ -242,8 +241,6 @@ GEM
     rack (1.6.8)
     rack-mini-profiler (0.10.5)
       rack (>= 1.2.0)
-    rack-protection (2.0.0)
-      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.10)
@@ -288,7 +285,6 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
-    redis (4.0.1)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -346,11 +342,6 @@ GEM
       json
     shoulda-matchers (3.1.2)
       activesupport (>= 4.0.0)
-    sidekiq (5.0.5)
-      concurrent-ruby (~> 1.0)
-      connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.4, < 5)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -432,7 +423,6 @@ DEPENDENCIES
   select2-rails
   sendgrid (~> 1.2.0)
   shoulda-matchers
-  sidekiq
   spring
   spring-commands-rspec
   sqlite3
