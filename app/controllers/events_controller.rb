@@ -5,19 +5,19 @@ class EventsController < ApplicationController
 
   respond_to :html
 
-  #to use mentions helper in view 
+  #to use mentions helper in view
   include MentionsHelper
 
   def index
     if params[:person] then
       person    = Person.find_by(slug: params[:person])
-      @events   = person ? person.events : []
+      @events   = person ? person.events.active : []
       @upcoming = person ? person.events.upcoming : []
       @recent   = person ? person.events.recent : []
     else
       @upcoming = Event.upcoming
       @recent   = Event.recent
-      @events   = Event.all
+      @events   = Event.active
     end
     respond_with(@events)
   end
@@ -55,15 +55,15 @@ class EventsController < ApplicationController
     flash[:notice] = "Event successfully deleted"
     respond_with(@event)
   end
-  
-  
+
+
   def feed
     @events = Event.all
     respond_to do |format|
       format.rss { render :layout => false }
     end
   end
-  
+
 
   private
 
@@ -78,6 +78,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :content, :url, :starts_at, :ends_at, :address, :tag_list, :tag_list => [])
+    params.require(:event).permit(:title, :content, :url, :image, :remove_image, :starts_at, :ends_at, :address, :tag_list, :tag_list => [])
   end
 end

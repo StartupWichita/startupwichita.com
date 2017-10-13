@@ -91,6 +91,9 @@ GEM
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
     climate_control (0.2.0)
+    clockwork (2.0.2)
+      activesupport
+      tzinfo
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
@@ -384,6 +387,7 @@ DEPENDENCIES
   bootstrap3-datetimepicker-rails (~> 4.14.30)
   capybara
   carrierwave
+  clockwork
   coffee-rails (~> 4.0.0)
   configatron
   database_cleaner

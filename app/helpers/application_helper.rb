@@ -38,8 +38,20 @@ module ApplicationHelper
     gravatar_id = Digest::MD5::hexdigest(email).downcase
     "https://gravatar.com/avatar/#{gravatar_id}.png?s=292&r=g&d=#{CGI.escape(default_url)}?#{configatron.app_url}/assets/missing.png"
   end
-
+  
   def subscribed_to_newsletters?
     current_page?(unsubscribe_path) || (user_signed_in? && TuesdayReader.exists?(:person => current_user))
+  end
+  
+  def meta_tag(tag, content)
+    content_for :"meta_#{tag}", content
+  end
+
+  def meta_tags(meta_tags)
+    content_for :meta_tags, meta_tags
+  end
+
+  def yield_meta_tag(tag, default_content="")
+    content_for?(:"meta_#{tag}") ? content_for(:"meta_#{tag}") : default_content
   end
 end
