@@ -1,0 +1,17 @@
+<span class="vote-header">Vote on this event:</span>
+<%= form_tag votes_path, method: upvote_form_method(votable), class: "vote-form", "data-remote" => true do %>
+  <input type="hidden" name="votable_id" value="<%= votable.id %>">
+  <input type="hidden" name="votable_type" value="<%= votable.class.name %>">
+  <button type="submit" name="upvote" class="<%= upvote_button_class(votable) %>">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    Like
+  </button>
+<% end %>
+<%= form_tag votes_path, method: downvote_form_method(votable), class: "vote-form", "data-remote" => true do %>
+  <input type="hidden" name="votable_id" value="<%= votable.id %>">
+  <input type="hidden" name="votable_type" value="<%= votable.class.name %>">
+  <button type="submit" name="downvote" class="<%= downvote_button_class(votable) %>">
+    <span class="glyphicon glyphicon-thumbs-down"></span>
+    Dislike
+  </button>
+<% end %>

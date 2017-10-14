@@ -1,25 +1,46 @@
 class VotesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :set_votable
+  before_filter :ensure_votable
 
   def create
-    votable = if params[:event_id]
-      Event.find(params[:event_id])
-    end
-    return head(:not_found) unless votable
-    return head(:forbidden) if can_edit?(votable)
-
     if params.key?(:upvote)
-      votable.liked_by current_user
+      @votable.liked_by current_user
     else
-      votable.disliked_by current_user
+      @votable.disliked_by current_user
     end
 
-    head :created
+    if @votable.vote_registered?
+      head :created
+    else
+      head :unprocessable_entity
+    end
   end
 
   def destroy
+    if current_user.voted_for?(@votable)
+      @votable.unvote_by current_user
+    end
+
+    head :ok
   end
 
-  def update
+  private
+
+  def set_votable
+    model = if params[:votable_type] == "Event"
+      Event
+    end
+
+    if model
+      @votable = model.find(params[:votable_id])
+    end
+  end
+
+  def ensure_votable
+    return head(:not_found) unless @votable
+
+    # Disallow users to vote on their own items:
+    head :forbidden if can_edit?(@votable)
   end
 end

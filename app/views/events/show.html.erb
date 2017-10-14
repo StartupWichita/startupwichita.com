@@ -55,18 +55,7 @@
             </div>
           </div>
           <% if user_signed_in? && !can_edit?(@event) %>
-            <%= form_tag votes_path, method: :post do %>
-              <input type="hidden" name="event_id" value="<%= @event.id %>">
-              <span>Vote on this event:</span>
-              <button type="submit" name="upvote" class="<%= upvote_button_class(@event) %>">
-                <span class="glyphicon glyphicon-thumbs-up"></span>
-                Like
-              </button>
-              <button type="submit" name="downvote" class="<%= downvote_button_class(@event) %>">
-                <span class="glyphicon glyphicon-thumbs-down"></span>
-                Dislike
-              </button>
-            <% end %>
+            <%= render partial: "votes/form", locals: { votable: @event } %>
           <% end %>
           <%= render partial: 'topics/disqus' %>
         </div>
