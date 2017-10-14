@@ -23,7 +23,7 @@ Take a look at our open issues on the [GitHub Issues page](https://github.com/St
  ### Submitting a pull request via Git command line
  1. Fork the project by clicking “Fork” in the top right corner of StartupWichita/startupwichita.com.
  2. Clone the repository locally <br>
- ```ruby git clone https://github.com/StartupWichita/startupwichita.com.git ```
- 3. Create a new, descriptively named branch to contain your change <br> ``` ruby git checkout -b name_of_your_branch ```
- 4. Push the branch up <br> ```ruby git push origin name_of_your_branch ```
+ `git clone https://github.com/StartupWichita/startupwichita.com.git`
+ 3. Create a new, descriptively named branch to contain your change <br> `git checkout -b name_of_your_branch`
+ 4. Push the branch up <br> `git push origin name_of_your_branch`
  5. Create a pull request by visiting https://github.com/your-username/startupwichita.com and following the instructions at the top of the screen.
