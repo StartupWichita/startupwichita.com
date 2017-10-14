@@ -54,6 +54,20 @@
               </div>
             </div>
           </div>
+          <% if user_signed_in? && !can_edit?(@event) %>
+            <%= form_tag votes_path, method: :post do %>
+              <input type="hidden" name="event_id" value="<%= @event.id %>">
+              <span>Vote on this event:</span>
+              <button type="submit" name="upvote" class="btn bg-orange white">
+                <span class="glyphicon glyphicon-thumbs-up"></span>
+                Like
+              </button>
+              <button type="submit" name="downvote" class="btn bg-orange white">
+                <span class="glyphicon glyphicon-thumbs-down"></span>
+                Dislike
+              </button>
+            <% end %>
+          <% end %>
           <%= render partial: 'topics/disqus' %>
         </div>
       </div>
