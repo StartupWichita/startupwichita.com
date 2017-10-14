@@ -54,14 +54,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-  def upvoted?(votable)
-    return false unless voted_for?(votable)
-    voted_as_when_voted_for(votable)
-  end
-
-  def downvoted?(votable)
-    return false unless voted_for?(votable)
-    !voted_as_when_voted_for(votable)
-  end
 end

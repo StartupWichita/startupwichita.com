@@ -1,6 +1,6 @@
 module VotesHelper
   def upvote_button_class(votable)
-    if current_user.upvoted?(votable)
+    if current_user.voted_up_on?(votable)
       "btn bg-orange"
     else
       "btn bg-grey"
@@ -8,7 +8,7 @@ module VotesHelper
   end
 
   def downvote_button_class(votable)
-    if current_user.downvoted?(votable)
+    if current_user.voted_down_on?(votable)
       "btn bg-orange"
     else
       "btn bg-grey"
@@ -16,7 +16,7 @@ module VotesHelper
   end
 
   def upvote_form_method(votable)
-    if current_user.upvoted?(votable)
+    if current_user.voted_up_on?(votable)
       :delete
     else
       :post
@@ -24,7 +24,7 @@ module VotesHelper
   end
 
   def downvote_form_method(votable)
-    if current_user.downvoted?(votable)
+    if current_user.voted_down_on?(votable)
       :delete
     else
       :post
