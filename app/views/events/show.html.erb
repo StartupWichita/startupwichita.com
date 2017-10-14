@@ -55,7 +55,9 @@
             </div>
           </div>
           <% if user_signed_in? && !can_edit?(@event) %>
-            <%= render partial: "votes/form", locals: { votable: @event } %>
+            <div class="vote-container">
+              <%= render partial: "votes/form", locals: { votable: @event } %>
+            </div>
           <% end %>
           <%= render partial: 'topics/disqus' %>
         </div>

@@ -11,7 +11,7 @@ class VotesController < ApplicationController
     end
 
     if @votable.vote_registered?
-      head :created
+      render partial: 'votes/form', locals: { votable: @votable }
     else
       head :unprocessable_entity
     end
@@ -22,7 +22,7 @@ class VotesController < ApplicationController
       @votable.unvote_by current_user
     end
 
-    head :ok
+    render partial: 'votes/form', locals: { votable: @votable }
   end
 
   private
