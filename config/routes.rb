@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :events
   resources :at_who
   resources :indications, only: :create
+  resources :votes, only: [:create, :destroy, :update]
 
   resources :people do
     collection do
