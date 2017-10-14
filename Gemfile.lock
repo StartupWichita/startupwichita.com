@@ -50,6 +50,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (3.4.4)
       activerecord (>= 3.2, < 5)
+    acts_as_votable (0.11.0)
     addressable (2.3.8)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
@@ -336,6 +337,7 @@ DEPENDENCIES
   active_record-acts_as
   activeadmin!
   acts-as-taggable-on
+  acts_as_votable (~> 0.11.0)
   annotate
   bootstrap-sass (~> 3.3.3)
   bootstrap3-datetimepicker-rails (~> 4.14.30)
