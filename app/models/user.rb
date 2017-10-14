@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
   has_one :person
   has_many :topics
   accepts_nested_attributes_for :person
+  acts_as_voter
 
   scope :admins, -> { where('admin = ?', true).all }
 
