@@ -29,7 +29,7 @@ class VotesController < ApplicationController
     end
 
     if model
-      @votable = model.find(params[:votable_id])
+      @votable = model.find_by_id(params[:votable_id])
     end
   end
 
