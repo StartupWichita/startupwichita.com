@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   resources :at_who
   resources :indications, only: :create
 
+  resources :votes, only: [:create] do
+    collection do
+      delete :destroy
+    end
+  end
+
   resources :people do
     collection do
       post :send_message

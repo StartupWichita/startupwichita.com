@@ -23,6 +23,7 @@ gem 'omniauth-twitter'
 
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
+gem 'acts_as_votable', '~> 0.11.0'
 
 gem 'paperclip'
 gem 'acts-as-taggable-on'
