@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :newsletters, :controller => :newsletter_signup, only: [:create, :destroy]
+
   get '/people/claim/:slug', to: 'people#claim', as: 'people_claim'
   post '/people/claim/:slug', to: 'people#claim_person', as: 'people_claim_person'
 
@@ -39,6 +41,9 @@ Rails.application.routes.draw do
 
   match "/profile/:slug" => "people#show", as: :profile, :via => :get
 
+  controller :pages do
+    get :unsubscribe
+  end
   root 'pages#index'
 
   get '/topics/tags', to: 'topics#tags', :defaults => { :format => :json }

@@ -19,13 +19,15 @@ Please report any problems you might encounter by [creating an Issue](https://gi
 ## Installation and Setup
 
 Clone the repo and `cd` into the directory.
+
 ```ruby
 git clone https://github.com/StartupWichita/startupwichita.com.git
 cd startupwichita.com
 ```
-Then run ```ruby bundle install ```<br>
-Run the mirgations ``` ruby rake db:migrate ```<br>
-Start server ``` ruby rails s ```
+
+Then run `bundle install`
+Run the mirgations `rake db:migrate`
+Start server `rails s`
 
 **We use sqlite3 as database. Data seeding is also included in the migrations.**
 
@@ -59,7 +61,7 @@ To run commands in the context of the app, use: `docker-compose run app <your cm
 
  ### Submitting a pull request via Git command line
  1. Fork the project by clicking “Fork” in the top right corner of StartupWichita/startupwichita.com.
- 2. Clone the repository locally ```ruby git clone https://github.com/StartupWichita/startupwichita.com.git```
- 3. Create a new, descriptively named branch to contain your change <br> ``` ruby git checkout -b name_of_your_branch ```
- 4. Push the branch up ```ruby git push origin name_of_your_branch ```
+ 2. Clone the repository locally `git clone https://github.com/StartupWichita/startupwichita.com.git`
+ 3. Create a new, descriptively named branch to contain your change <br> `git checkout -b name_of_your_branch`
+ 4. Push the branch up `git push origin name_of_your_branch`
  5. Create a pull request by visiting https://github.com/your-username/startupwichita.com and following the instructions at the top of the screen.

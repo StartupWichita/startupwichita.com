@@ -9,6 +9,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+    super do
+      casual_reader_transition(resource.person) if resource.persisted?
+    end
+  end
+
   protected
 
   def after_sign_up_path_for(resource)
@@ -28,4 +34,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     resource.update_without_password(params)
   end
 
+  def casual_reader_transition(person)
+    email = person.email
+    puts "Ayo!"
+    return if email.blank?
+    puts "Ayo!"
+    if TuesdayReader.exists?(:email => email)
+      tuesday_reader = TuesdayReader.find_by(:email => email)
+      tuesday_reader.update(:person => person, :email => nil)
+    end
+  end
 end
