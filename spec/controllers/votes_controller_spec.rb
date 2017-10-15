@@ -18,7 +18,7 @@ describe VotesController, type: :controller do
       it "upvotes item the current user cannot edit" do
         expect(user.voted_up_on?(votable)).to eq(false)
 
-        post :create, upvote: 1, votable_type: votable.class.name, votable_id: votable.id
+        post :create, votable_type: votable.class.name, votable_id: votable.id
 
         expect(response).to have_http_status(:ok)
         expect(user.voted_up_on?(votable)).to eq(true)
@@ -27,10 +27,22 @@ describe VotesController, type: :controller do
       it "does not upvote item the current user can edit" do
         expect(user.voted_up_on?(my_votable)).to eq(false)
 
-        post :create, upvote: 1, votable_type: my_votable.class.name, votable_id: my_votable.id
+        post :create, votable_type: my_votable.class.name, votable_id: my_votable.id
 
         expect(response).to have_http_status(:forbidden)
         expect(user.voted_up_on?(my_votable)).to eq(false)
+      end
+
+      it "404s when invalid votable type is given" do
+        post :create, votable_type: user.class.name, votable_id: user.id
+
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it "404s when invalid votable ID is given" do
+        post :create, votable_type: votable.class.name, votable_id: votable.id + 100
+
+        expect(response).to have_http_status(:not_found)
       end
     end
 
@@ -50,7 +62,7 @@ describe VotesController, type: :controller do
   context "unauthenticated" do
     describe "#create" do
       it "redirects" do
-        post :create, upvote: 1, votable_type: votable.class.name, votable_id: votable.id
+        post :create, votable_type: votable.class.name, votable_id: votable.id
 
         expect(response).to have_http_status(:redirect)
       end
