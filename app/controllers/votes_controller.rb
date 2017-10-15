@@ -4,11 +4,7 @@ class VotesController < ApplicationController
   before_filter :ensure_votable
 
   def create
-    if params.key?(:upvote)
-      @votable.liked_by current_user
-    else
-      @votable.disliked_by current_user
-    end
+    @votable.liked_by current_user
 
     if @votable.vote_registered?
       render partial: 'votes/form', locals: { votable: @votable }
