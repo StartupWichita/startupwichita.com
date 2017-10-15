@@ -60,6 +60,14 @@ class Person < ActiveRecord::Base
     "#{first_name} #{last_name}".strip
   end
 
+  def news_items
+    news + News.where('user_id = ?', user_id)
+  end
+
+  def event_items
+    events + Event.where('user_id = ?', user_id)
+  end
+
   class << self
 
     def pdate_profiles_scores

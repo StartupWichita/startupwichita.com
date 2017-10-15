@@ -28,25 +28,25 @@
             <% end %>
           </div>
         <% end %>
-        <% unless person.news.empty? then %>
+        <% unless person.news_items.empty? then %>
           <div class="meta">
             <h4 class="meta-title">Related News</h4>
-            <% person.news.take(10).each do |news| %>
+            <% person.news_items.take(10).each do |news| %>
               <%= render partial: 'shared/news', locals: {newsItem: news} %>
             <% end %>
-            <% if person.news.size > 10 then %>
+            <% if person.news_items.size > 10 then %>
               <%= link_to "View More", news_index_path(person: person.slug) %>
             <% end %>
           </div>
         <% end %>
 
-        <% unless person.events.empty? then %>
+        <% unless person.event_items.empty? then %>
           <div class="meta">
             <h4 class="meta-title">Related Events</h4>
-            <% person.events.take(10).each do |event| %>
+            <% person.event_items.take(10).each do |event| %>
               <%= render partial: 'shared/event', locals: {event: event} %>
             <% end %>
-            <% if person.events.size > 10 then %>
+            <% if person.event_items.size > 10 then %>
               <%= link_to "View More", events_path(person: person.slug) %>
             <% end %>
           </div>
