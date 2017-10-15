@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.2.4'
 
 gem 'rails'#, '4.2.1'
 gem 'active_record-acts_as'
 
 # Asset Utilities - HTML / CSS / JS
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0.6'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
@@ -77,7 +77,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'puma'
+  gem 'puma', '= 3.10.0'
   gem 'clockwork'
 end
 

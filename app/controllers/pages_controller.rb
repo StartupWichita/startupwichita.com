@@ -5,4 +5,7 @@ class PagesController < ApplicationController
     @newsItems = News.all
     @resources = Resource.all
   end
+
+  def unsubscribe
+  end
 end

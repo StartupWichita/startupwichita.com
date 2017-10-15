@@ -136,6 +136,13 @@
             <p>Join the conversation!</p>
             <p><script async defer src="https://startupwichita-slackin.herokuapp.com/slackin.js"></script></p>
           </div>
+          <!-- Newsletter Sign-Up Form -->
+          <% unless current_page?(unsubscribe_path)%>
+            <section class="section">
+              <%= render partial: "shared/newsletter_form"%>
+            </section>
+          <% end %>
+          <!-- End of Newsletter Sign-Up Form -->
           <div class="logos text-center">
             <a target="_blank" href="http://labor-party.com/">
               <%= image_tag "logos/labor-party-flat.png", :alt => "The Labor Party" %>

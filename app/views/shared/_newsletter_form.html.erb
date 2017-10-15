@@ -1,0 +1,28 @@
+<div class="container text-center">
+    <h3>Tuesday Newsletters</h2>
+    <div class="row inline">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12 inline-block">
+            <%= form_tag "/newsletters", html: { :class => 'form-horizontal' },
+                    :method => (subscribed_to_newsletters? ? :delete : :post) do %>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <% if user_signed_in? %>
+                        <%= text_field_tag :email, current_user.email, :disabled => true, :class => "form-control" %>
+                        <div class= "hidden"><%= text_field_tag :person_id, current_user.id %></div>
+                    <% else %>
+                        <%= text_field_tag :email, "", :required => true, :class => "form-control", :placeholder => 'Email Address' %>
+                    <% end %>
+                    <span class="input-group-btn">
+                        <%= submit_tag (subscribed_to_newsletters? ? 'Unsubscribe' : 'Subscribe'), 
+                            :class => "btn btn-secondary #{subscribed_to_newsletters? ? 'btn-danger' : 'bg-charcoal'} white" %>
+                    </span>
+                </div>
+            <% end %>
+        </div>
+    </div>
+    <% unless user_signed_in? || current_page?(unsubscribe_path) %>
+        <div class="row inline">
+            <h5 style="text-decoration: underline;"><%= link_to 'Want to unsubscribe from Tuesday Newsletters?', unsubscribe_path %></h5>
+        </div>
+    <% end %>
+</div>

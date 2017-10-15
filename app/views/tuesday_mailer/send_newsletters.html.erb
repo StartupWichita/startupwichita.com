@@ -1,0 +1,17 @@
+<h1>Greetings Wichita-ites!</h1>
+This Tuesday Newsletter will keep you updated to the upcoming Events and News recently posted on our site.  
+<br /> 
+Stay up to date by stopping by  <a href="<%= @http_host %>" target="_blank">StartupWichita</a> anytime! 
+<br />
+<% unless @recent_news.blank? %>
+<h2>Recently Published News:</h2>
+<ul style="list-style-type: decimal;">
+<%= @recent_news.map{ |title, content| "<li>#{title}: #{content.truncate(100)}</li>"}.join('').html_safe%>
+</ul><br />
+<% end %>
+<% unless @recent_events.blank? %>
+<h2>Recently Published Events:</h2>
+<ul style='list-style-stype: decimal;'>
+<%= @recent_events.map { |title, content| "<li>#{title}: #{content.truncate(100)}</li>" }.join('').html_safe%>
+</ul><br />
+<% end %>
