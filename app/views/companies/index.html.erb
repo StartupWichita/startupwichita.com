@@ -1,0 +1,29 @@
+<% content_for :title, 'Companies' %>
+
+<% content_for :utility_bar do %>
+  <% if !current_user.nil? && current_user.admin %>
+    <div class="util-head">
+        <div class="container">
+            <%= link_to new_company_path, class: 'btn' do %>
+               <span class="glyphicon glyphicon-plus"></span> Add Company 
+            <% end %>
+        </div>
+    </div>
+  <% end %>
+<% end %>
+
+<section class="section">
+  <div class="container">
+    <% if @companies.blank? %>
+      <p>No companies yet.</p>
+    <% else %>
+        <div class="row inline">
+          <% @companies.each do |company| %>
+            <div class="col-sm-6 col-md-4 inline-block">
+              <%= render partial: "shared/company", locals: { company: company } %>
+            </div>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</section>

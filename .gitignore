@@ -19,3 +19,10 @@
 /config/initializers/devise.rb
 .DS_Store
 .env
+
+Vagrantfile
+.vagrant/
+hosts
+playbook.yml
+roles/
+group_vars/

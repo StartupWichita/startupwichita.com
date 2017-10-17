@@ -20,21 +20,16 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
-
 # Misc
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'acts_as_votable', '~> 0.11.0'
-
 gem 'paperclip'
 gem 'acts-as-taggable-on'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 gem 'configatron'
-
 gem 'meetup_client'
-
 gem 'momentjs-rails', '>= 2.9.0'
-
 gem 'gravatar_image_tag'
 gem 'owlcarousel-rails'
 gem 'select2-rails'
@@ -46,14 +41,10 @@ gem 'jquery-atwho-rails'
 group :development, :test do
   gem 'spring'
   gem 'sqlite3'
-
   gem 'dotenv-rails'
-
   gem 'annotate'
   gem 'pry'
-
   gem 'spring-commands-rspec'
-
   gem 'letter_opener'
 
   # Testing
@@ -85,4 +76,6 @@ end
 group :development do
   # benchmark performance
   gem 'rack-mini-profiler'
+  
+  gem 'faker'
 end

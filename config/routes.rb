@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :companies
   resource :newsletters, :controller => :newsletter_signup, only: [:create, :destroy]
 
   get '/people/claim/:slug', to: 'people#claim', as: 'people_claim'
