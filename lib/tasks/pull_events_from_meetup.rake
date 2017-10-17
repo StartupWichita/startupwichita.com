@@ -44,7 +44,7 @@ namespace :events do
 
     def get_and_load_events(event_sources)
       meetup_api = MeetupApi.new
-      two_months_from_now = (Time.now + (60*24*60*60)).to_i * 1000
+      two_months_from_now = (Time.now + 2.months).to_i
 
       event_sources.each do |source|
         response = meetup_api.events(

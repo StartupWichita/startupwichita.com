@@ -19,7 +19,7 @@
           <% end %>
 
           <%= link_to indications_path(id: @event.id, type: :event), :method => :post, :class => "btn" do %>
-              <span class="glyphicon glyphicon-thumbs-down"></span> Flag For Spam
+              <span class="glyphicon glyphicon-ban-circle"></span> Flag For Spam
           <% end %>
       <% end %>
     </div>
@@ -54,6 +54,11 @@
               </div>
             </div>
           </div>
+          <% if user_signed_in? && !can_edit?(@event) %>
+            <div class="vote-container">
+              <%= render partial: "votes/form", locals: { votable: @event } %>
+            </div>
+          <% end %>
           <%= render partial: 'topics/disqus' %>
         </div>
       </div>

@@ -11,6 +11,7 @@
 class Event < ActiveRecord::Base
   acts_as :topic
   acts_as_taggable
+  acts_as_votable
 
   has_and_belongs_to_many :people
   has_many :indications, as: :questionable

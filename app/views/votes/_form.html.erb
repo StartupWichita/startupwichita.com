@@ -1,0 +1,13 @@
+<span class="vote-header">Would you recommend this?</span>
+<%= form_tag votes_path, method: upvote_form_method(votable), class: "vote-form", "data-remote" => true do %>
+  <input type="hidden" name="votable_id" value="<%= votable.id %>">
+  <input type="hidden" name="votable_type" value="<%= votable.class.name %>">
+  <button type="submit" class="<%= upvote_button_class(votable) %>">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    <% if current_user.voted_up_on?(votable) %>
+      Recommended
+    <% else %>
+      Recommend
+    <% end %>
+  </button>
+<% end %>

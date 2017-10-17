@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   resources :at_who
   resources :indications, only: :create
 
+  resources :votes, only: [:create] do
+    collection do
+      delete :destroy
+    end
+  end
+
   resources :people do
     collection do
       post :send_message
@@ -18,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :companies
+  resource :newsletters, :controller => :newsletter_signup, only: [:create, :destroy]
 
   get '/people/claim/:slug', to: 'people#claim', as: 'people_claim'
   post '/people/claim/:slug', to: 'people#claim_person', as: 'people_claim_person'
@@ -35,6 +42,9 @@ Rails.application.routes.draw do
 
   match "/profile/:slug" => "people#show", as: :profile, :via => :get
 
+  controller :pages do
+    get :unsubscribe
+  end
   root 'pages#index'
 
   get '/topics/tags', to: 'topics#tags', :defaults => { :format => :json }
