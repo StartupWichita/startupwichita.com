@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show, :feed]
+  before_filter :authenticate_user!, except: [:index, :show]
 
   def index
     @companies = Company.all
