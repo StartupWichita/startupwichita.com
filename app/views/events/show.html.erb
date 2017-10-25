@@ -41,8 +41,8 @@
               <div class="description">
                 <h3><%= @event.starts_at.to_time.strftime('%b %d, %I:%M %p') %> &ndash; <%= @event.ends_at.to_time.strftime('%b %d, %I:%M %p') %></h3>
                 <p>
-                  <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= @event.address %>"><%= @event.address %></a></div>
-                  <div><span class="glyphicon glyphicon-link"></span> <a target="_blank" href="<%= @event.url %>">More Info</a></div>
+                  <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" rel="noreferrer noopener" href="http://maps.google.com/?q=<%= @event.address %>"><%= @event.address %></a></div>
+                  <div><span class="glyphicon glyphicon-link"></span> <a target="_blank" rel="noreferrer noopener" href="<%= @event.url %>">More Info</a></div>
                 </p>
                 <%= markdown
                   .render(decorate_content_with_mentions(@event))
