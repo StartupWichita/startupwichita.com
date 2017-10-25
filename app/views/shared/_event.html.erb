@@ -13,7 +13,7 @@
   <% end %>
   <div class="body">
     <h2 class="title"><%= link_to event_path(event) do %><%= event.title %><% end %></h2>
-    <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" href="http://maps.google.com/?q=<%= event.address %>"><%= event.address %></a></div>
+    <div><span class="glyphicon glyphicon-map-marker"></span> <a target="_blank" rel="noreferrer noopener" href="http://maps.google.com/?q=<%= event.address %>"><%= event.address %></a></div>
     <div><span class="glyphicon glyphicon-time"></span> <%= event.starts_at.to_time.strftime('%b %d, %I:%M %p') %> &ndash; <%= event.ends_at.to_time.strftime('%b %d, %I:%M %p') %></div>
 <!--          <div class="col-sm-12 col-md-4">
         <%= simple_format(event.content) %>
