@@ -37,7 +37,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 
 gem 'gravatar_image_tag'
 gem 'owlcarousel-rails'
-gem 'select2-rails'
+gem 'select2-rails', '~> 3.5'
 gem 'sendgrid', '~> 1.2.0'
 gem 'carrierwave'
 gem 'mini_magick'
