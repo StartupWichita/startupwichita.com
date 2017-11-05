@@ -23,7 +23,7 @@
                 <div class="input-group">
                   <div class="input-group-addon">Remove Image</div>
                   <div class="bg-cream" style="padding: 6px 12px;">
-                    <%= f.check_box :remove_image, autofocus: true %>
+                    <%= f.check_box :remove_image %>
                   </div>
                 </div>
               </div>
@@ -32,7 +32,7 @@
             <%= f.label :image, "Image", :class => "sr-only" %>
             <div class="input-group">
               <div class="input-group-addon">Image</div>
-              <%= f.file_field :image, autofocus: true, :class => "form-control" %>
+              <%= f.file_field :image, :class => "form-control" %>
             </div>
           </div>
 
