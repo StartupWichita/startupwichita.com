@@ -26,7 +26,7 @@ cd startupwichita.com
 ```
 
 Then run `bundle install`
-Run the mirgations `rake db:migrate`
+Run the migrations `rake db:migrate`
 Start server `rails s`
 
 **We use sqlite3 as database. Data seeding is also included in the migrations.**
