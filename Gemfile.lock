@@ -62,7 +62,7 @@ GEM
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
-    arbre (1.0.2)
+    arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (6.0.4)
     ast (2.3.0)
@@ -148,7 +148,8 @@ GEM
       actionpack (>= 4.1, < 5.2)
       activesupport (>= 4.1, < 5.2)
     hashie (3.5.6)
-    i18n (0.8.6)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     inherited_resources (1.7.2)
       actionpack (>= 3.2, < 5.2.x)
       has_scope (~> 0.6)
@@ -187,7 +188,9 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.8.0)
     mini_mime (0.1.4)
     mini_portile2 (2.3.0)
@@ -197,6 +200,7 @@ GEM
     multi_json (1.12.2)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    nio4r (2.3.1)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
     oauth (0.5.3)
@@ -239,7 +243,8 @@ GEM
     pry (0.11.1)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    puma (3.10.0)
+    puma (5.3.1)
+      nio4r (~> 2.0)
     rack (1.6.8)
     rack-mini-profiler (0.10.5)
       rack (>= 1.2.0)
@@ -364,7 +369,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tzinfo (1.2.3)
+    tzinfo (1.2.9)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
@@ -411,7 +416,7 @@ DEPENDENCIES
   paperclip
   pg
   pry
-  puma (= 3.10.0)
+  puma (= 5.3.1)
   rack-mini-profiler
   rails
   rails_12factor
