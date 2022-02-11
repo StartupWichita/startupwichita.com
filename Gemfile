@@ -78,7 +78,7 @@ end
 group :production do
   gem 'pg'
   gem 'rails_12factor'
-  gem 'puma', '= 3.10.0'
+  gem 'puma', '5.6.2'
   gem 'clockwork'
 end
 
